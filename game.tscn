@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://kmn6ndwu5otj"]
+
+[ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://entities/player/player.tscn" id="1_vgovh"]
+[ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://entities/environment/tree.tscn" id="2_xc4fa"]
+[ext_resource type="PackedScene" uid="uid://ci36jx3vvoocj" path="res://entities/ennemies/mob-1/mob-1.tscn" id="3_xkaot"]
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_vgovh")]
+position = Vector2(578, 326)
+
+[node name="Tree" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(137, 157)
+
+[node name="Tree2" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(199, 575)
+
+[node name="Tree3" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(264, 356)
+
+[node name="Tree4" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(904, 108)
+
+[node name="Tree5" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(856, 484)
+
+[node name="Tree6" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(1010, 313)
+
+[node name="Mob-1" parent="." instance=ExtResource("3_xkaot")]
+position = Vector2(292, 221)
+speed = 150.0
+chase_player = true

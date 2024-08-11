@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://brp1lqe74y0on"]
+
+[ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://entities/environment/tree-idle.png" id="1_lq71w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3oxiw"]
+atlas = ExtResource("1_lq71w")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aao5q"]
+atlas = ExtResource("1_lq71w")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkx4t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3oxiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aao5q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.5
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlt7m"]
+radius = 5.0
+height = 14.0
+
+[node name="Tree" type="StaticBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -26)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wkx4t")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0373842
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -13)
+shape = SubResource("CapsuleShape2D_hlt7m")
