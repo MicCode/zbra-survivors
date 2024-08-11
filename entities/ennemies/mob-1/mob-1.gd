@@ -16,7 +16,7 @@ func _ready():
 	%Health.current_health = health
 
 func _physics_process(delta):
-	if !is_dead && chase_player:
+	if !is_dead && chase_player && player != null:
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = direction_to_player * speed
 		move_and_slide()
@@ -24,6 +24,7 @@ func _physics_process(delta):
 func take_damage(damage: int):
 	%Sprite.play("hurt")
 	%Health.take_damage(damage)
+	%HitSound.play()
 
 func _on_animation_finished():
 	if !is_dead:
@@ -35,6 +36,7 @@ func _on_health_depleted():
 	%Sprite.play("dead")
 	set_collision_layer_value(2, false)
 	%DeathTimer.start(1.0)
+	remove_child(%Health)
 
 func _on_death_timer_timeout():
 	queue_free()

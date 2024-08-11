@@ -1,34 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=10 format=3 uid="uid://kmn6ndwu5otj"]
 
+[ext_resource type="Script" path="res://game.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://entities/player/player.tscn" id="1_vgovh"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://entities/environment/tree.tscn" id="2_xc4fa"]
-[ext_resource type="PackedScene" uid="uid://ci36jx3vvoocj" path="res://entities/ennemies/mob-1/mob-1.tscn" id="3_xkaot"]
+[ext_resource type="PackedScene" uid="uid://b3rym5f07tq1c" path="res://ui/pause-menu.tscn" id="4_u3m6b"]
+[ext_resource type="PackedScene" uid="uid://deyu38p7ie4ql" path="res://ui/game-over.tscn" id="5_puroo"]
+
+[sub_resource type="Curve2D" id="Curve2D_rf5nu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -306, -185, 0, 0, 0, 0, 302.5, -190, 0, 0, 0, 0, 305, 178, 0, 0, 0, 0, -306, 180, 0, 0, 0, 0, -307.5, -183)
+}
+point_count = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hers"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n5s5"]
+bg_color = Color(0.699195, 2.08165e-06, 6.73831e-07, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovb57"]
+line_spacing = 0.0
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_nconj")
 
-[node name="Player" parent="." instance=ExtResource("1_vgovh")]
-position = Vector2(578, 326)
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Tree" parent="." instance=ExtResource("2_xc4fa")]
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.338862, 0.575684, 0.270638, 1)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Tree" parent="Environment" instance=ExtResource("2_xc4fa")]
 position = Vector2(137, 157)
 
-[node name="Tree2" parent="." instance=ExtResource("2_xc4fa")]
+[node name="Tree2" parent="Environment" instance=ExtResource("2_xc4fa")]
 position = Vector2(199, 575)
 
-[node name="Tree3" parent="." instance=ExtResource("2_xc4fa")]
+[node name="Tree3" parent="Environment" instance=ExtResource("2_xc4fa")]
 position = Vector2(264, 356)
 
-[node name="Tree4" parent="." instance=ExtResource("2_xc4fa")]
+[node name="Tree4" parent="Environment" instance=ExtResource("2_xc4fa")]
 position = Vector2(904, 108)
 
-[node name="Tree5" parent="." instance=ExtResource("2_xc4fa")]
+[node name="Tree5" parent="Environment" instance=ExtResource("2_xc4fa")]
 position = Vector2(856, 484)
 
-[node name="Tree6" parent="." instance=ExtResource("2_xc4fa")]
+[node name="Tree6" parent="Environment" instance=ExtResource("2_xc4fa")]
 position = Vector2(1010, 313)
 
-[node name="Mob-1" parent="." instance=ExtResource("3_xkaot")]
-position = Vector2(292, 221)
-speed = 150.0
-chase_player = true
+[node name="Player" parent="." instance=ExtResource("1_vgovh")]
+unique_name_in_owner = true
+position = Vector2(578, 326)
+
+[node name="SpawnPath" type="Path2D" parent="Player"]
+curve = SubResource("Curve2D_rf5nu")
+
+[node name="SpawnPoint" type="PathFollow2D" parent="Player/SpawnPath"]
+unique_name_in_owner = true
+position = Vector2(-77.6012, -186.877)
+rotation = -0.00821674
+progress = 228.408
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GameUI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerHealth" type="ProgressBar" parent="GameUI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 576.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_6hers")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6n5s5")
+value = 75.0
+show_percentage = false
+
+[node name="Score" type="Label" parent="GameUI"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "12345"
+label_settings = SubResource("LabelSettings_ovb57")
+vertical_alignment = 1
+
+[node name="Pause-menu" parent="." instance=ExtResource("4_u3m6b")]
+visible = false
+
+[node name="GameOver" parent="." instance=ExtResource("5_puroo")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

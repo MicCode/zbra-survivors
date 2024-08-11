@@ -3,6 +3,7 @@ extends Area2D
 @export var range = 200.0
 @export var fire_rate = 1.0
 var flipped = false
+var firing = false
 
 const BULLET = preload("res://entities/projectiles/simple-bullet/simple-bullet.tscn")
 
@@ -42,7 +43,14 @@ func _on_timer_timeout():
 	shoot_bullet()
 
 func shoot_bullet():
+	firing = true
 	var new_bullet = BULLET.instantiate().with_damage(1)
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
 	get_node("/root/Game").add_child(new_bullet)
+	%Sprite.play("firing")
+	%ShootSound.play()
+
+func _on_sprite_animation_finished():
+	if firing:
+		%Sprite.play("idle")

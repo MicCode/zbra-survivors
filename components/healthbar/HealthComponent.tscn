@@ -13,7 +13,7 @@ script = ExtResource("1_dbme0")
 [node name="Bar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 offset_left = -18.0
-offset_top = -7.0
+offset_top = -3.0
 offset_right = 18.0
 theme_override_styles/background = SubResource("StyleBoxFlat_b1yor")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wu6k2")

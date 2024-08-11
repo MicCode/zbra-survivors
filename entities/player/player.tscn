@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=13 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://entities/player/player-idle.png" id="1_xqxvm"]
 [ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://entities/player/player-walk.png" id="2_e00jb"]
 [ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://entities/equipments/basic-gun/basic-gun.tscn" id="4_8ima8"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://components/healthbar/HealthComponent.tscn" id="5_yybqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie2s4"]
 atlas = ExtResource("1_xqxvm")
@@ -49,6 +50,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_5pv4u"]
 radius = 18.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4us1"]
+radius = 23.5053
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 collision_mask = 7
@@ -67,4 +71,20 @@ shape = SubResource("CircleShape2D_5pv4u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Basic-gun" parent="." instance=ExtResource("4_8ima8")]
+[node name="Gun" parent="." instance=ExtResource("4_8ima8")]
+unique_name_in_owner = true
+
+[node name="Health" parent="." instance=ExtResource("5_yybqa")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -25)
+visible_bar = false
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_l4us1")
+debug_color = Color(0.998759, 0, 0.1334, 0.42)

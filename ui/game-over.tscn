@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://deyu38p7ie4ql"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpejy"]
+line_spacing = 0.0
+font_size = 20
+font_color = Color(1, 0, 0, 1)
+
+[node name="Game-over" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -204.0
+offset_right = -184.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+pivot_offset = Vector2(39.6535, 17.0154)
+size_flags_horizontal = 4
+text = "GAME
+OVER"
+label_settings = SubResource("LabelSettings_fpejy")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -3,11 +3,16 @@ signal depleted
 
 @export var max_health = 100.0
 @export var current_health = 100.0
+@export var visible_bar = true
 
 func _ready():
 	current_health = max_health
 	%Bar.max_value = max_health
 	%Bar.value = current_health
+	if visible_bar:
+		%Bar.show()
+	else:
+		%Bar.hide()
 	
 func take_damage(damage: int):
 	current_health -= damage
