@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=17 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
 [ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://sprites/player/player-idle.png" id="3_hsq4i"]
 [ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://sprites/player/player-walk.png" id="4_4gd1v"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://components/healthbar/HealthComponent.tscn" id="5_yybqa"]
+[ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://sounds/lazercannon.mp3" id="6_yhd2o"]
+[ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie2s4"]
 atlas = ExtResource("3_hsq4i")
@@ -55,6 +57,13 @@ radius = 23.5053
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
 radius = 35.5035
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_677nt"]
+bg_color = Color(0, 0.631373, 0.968627, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -108,4 +117,35 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
+[node name="DashCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="DashCooldownProgress" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -6.5
+offset_top = 18.5
+offset_right = 6.5
+offset_bottom = 22.5
+theme_override_styles/fill = SubResource("StyleBoxFlat_677nt")
+value = 100.0
+show_percentage = false
+
+[node name="DashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_yhd2o")
+volume_db = -15.928
+pitch_scale = 2.0
+
+[node name="DashReadySound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_ngsqq")
+volume_db = -24.36
+pitch_scale = 2.8
+
 [connection signal="timeout" from="PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
+[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

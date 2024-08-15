@@ -16,6 +16,7 @@ func _ready():
 	%Health.max_health = stats.max_health
 	%Health.current_health = stats.health
 	%Health.update_display()
+	%DeathSound.pitch_scale = randf_range(0.8, 1.1)
 
 func _physics_process(_delta):
 	if !is_dead && chase_player && player != null:
@@ -27,6 +28,7 @@ func _physics_process(_delta):
 func take_damage(damage: float):
 	%Sprite.play("hurt")
 	%Health.take_damage(damage)
+	%HitSound.pitch_scale = randf_range(0.5, 2)
 	%HitSound.play()
 
 func _on_animation_finished():
@@ -36,6 +38,7 @@ func _on_animation_finished():
 func _on_health_depleted():
 	is_dead = true
 	dead.emit()
+	%DeathSound.play()
 	%Sprite.play("dead")
 	set_collision_layer_value(2, false)
 	%DeathTimer.start(1.0)

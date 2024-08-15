@@ -4,6 +4,7 @@ class_name Gun
 var flipped = false
 var cooling_down = false
 var gun_stats: GunStats
+var pitch_shift: float = 0.0
 
 func _ready():
 	gun_stats = EquipmentService.get_gun_stats(self)
@@ -42,6 +43,7 @@ func shoot_bullet():
 		new_bullet.global_rotation = %ShootingPoint.global_rotation
 		get_node("/root").get_node("./").add_child(new_bullet)
 		%Sprite.play("firing")
+		%ShootSound.pitch_scale = randf_range(0.9, 1.05) + pitch_shift
 		%ShootSound.play()
 		start_cooldown_timer()
 

@@ -2,23 +2,31 @@ extends CharacterBody2D
 signal health_changed
 signal health_depleted
 
-@export var max_health = 100.0
-@export var move_speed = 300.0
-@export var health = 100.0
+@export var max_health: float = 100.0
+@export var move_speed: float = 300.0
+@export var health: float = 100.0
+@export var dash_duration_s: float = 0.25
+@export var dash_cooldown_s: float = 3.0
+@export var dash_speed_multiplier: float = 5
 
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
 
 var is_alive = true
 var is_pickup_blocked = false
+var is_dashing = false
+var can_dash = true
 var equiped_gun: Gun
+@onready var dash_progress_stylebox: StyleBoxFlat = %DashCooldownProgress.get_theme_stylebox("fill")
 
 func _ready():
 	health = max_health
 	init_health()
+	%DashCooldownProgress.max_value = dash_cooldown_s
 	
 func _physics_process(delta):
 	if is_alive:
+		%DashCooldownProgress.value = dash_cooldown_s - %DashCooldownTimer.time_left
 		move()
 		check_for_ennemies(delta)
 		check_for_collectibles()
@@ -26,16 +34,31 @@ func _physics_process(delta):
 func move():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var h_direction = Input.get_axis("move_left", "move_right")
+	if can_dash && Input.is_action_pressed("dash"):
+		start_dashing()
 	
 	if h_direction != 0:
 		%Sprite.flip_h = (h_direction != 1)
-		
-	velocity = direction * move_speed
+	
+	if !is_dashing:
+		velocity = direction * move_speed
+	else:
+		velocity = direction * move_speed * dash_speed_multiplier
+
 	move_and_slide()
 	if velocity.length() > 0:
 		%Sprite.play("walk")
 	else:
 		%Sprite.play("idle")
+
+func start_dashing():
+	%DashSound.play()
+	%DashTimer.start(dash_duration_s)
+	%DashCooldownTimer.start(dash_cooldown_s)
+	is_dashing = true
+	can_dash = false
+	set_invincible(true)
+	dash_progress_stylebox.bg_color = Color("90c1e9ca")
 
 func check_for_ennemies(delta):
 	var overlapping_ennemies = %HurtBox.get_overlapping_bodies()
@@ -91,3 +114,24 @@ func block_pickup():
 
 func _on_pick_up_timer_timeout():
 	is_pickup_blocked = false
+
+
+func _on_dash_cooldown_timer_timeout() -> void:
+	if !can_dash:
+		can_dash = true
+		%DashReadySound.play()
+		dash_progress_stylebox.bg_color = Color("00A1F7FF")
+
+func _on_dash_timer_timeout() -> void:
+	if is_dashing:
+		is_dashing = false
+		set_invincible(false)
+	
+
+func set_invincible(invincible: bool):
+	get_node("CollisionShape2D").disabled = invincible
+	%HurtBox.get_node("shape").disabled = invincible
+	if invincible:
+		%Sprite.modulate.a = 0.5
+	else:
+		%Sprite.modulate.a = 1.0
