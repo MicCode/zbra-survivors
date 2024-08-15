@@ -3,23 +3,24 @@ class_name Ennemy
 
 signal dead
 
-@export var health: float = 3.0
-@export var speed: float = 200.0
 @export var chase_player = true
 @onready var player = get_node("/root/Game/Player")
 
 var is_dead = false
 var sprite_reversed = false
+var stats: EnnemyStats
 
 func _ready():
+	stats = EnnemiesService.get_ennemy_stats(self)
 	%Sprite.connect("animation_finished", _on_animation_finished)
-	%Health.max_health = health
-	%Health.current_health = health
+	%Health.max_health = stats.max_health
+	%Health.current_health = stats.health
+	%Health.update_display()
 
 func _physics_process(_delta):
 	if !is_dead && chase_player && player != null:
 		var direction_to_player = global_position.direction_to(player.global_position)
-		velocity = direction_to_player * speed
+		velocity = direction_to_player * stats.speed
 		move_and_slide()
 		%Sprite.flip_h = !sprite_reversed && direction_to_player.x < 0 || sprite_reversed && direction_to_player.x >= 0
 

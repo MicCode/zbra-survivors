@@ -59,12 +59,12 @@ func equip_gun(collectible: Collectible):
 		return
 
 	if equiped_gun:
-		var collectible_to_drop = LootTable.to_collectible(equiped_gun)
+		var collectible_to_drop = LootService.to_collectible(equiped_gun)
 		collectible_to_drop.global_position = global_position
 		get_node("/root").add_child(collectible_to_drop)
 		equiped_gun.queue_free()
 
-	var new_gun = LootTable.to_equipment(collectible)
+	var new_gun = LootService.to_equipment(collectible)
 	equiped_gun = new_gun
 	add_child(equiped_gun)
 	block_pickup()

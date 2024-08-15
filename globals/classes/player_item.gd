@@ -1,4 +1,3 @@
-extends Node
 class_name PlayerItem
 
 var collectible: Collectible

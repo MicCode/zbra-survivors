@@ -6,7 +6,7 @@ var cooling_down = false
 var gun_stats: GunStats
 
 func _ready():
-	gun_stats = EquipmentStats.get_gun_stats(self)
+	gun_stats = EquipmentService.get_gun_stats(self)
 	%AutoFireRange.shape.radius = gun_stats.fire_range
 
 func _process(_delta):

@@ -9,7 +9,7 @@ func _ready():
 	update_ui()
 
 func spawn_ennemy():
-	var new_ennemy = EnnemySpawner.spawn()
+	var new_ennemy = EnnemiesService.spawn()
 	if new_ennemy:
 		%SpawnPoint.progress_ratio = randf()
 		new_ennemy.global_position = %SpawnPoint.global_position

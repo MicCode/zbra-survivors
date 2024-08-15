@@ -19,9 +19,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-LootTable="*res://globals/loot_table.gd"
-EnnemySpawner="*res://globals/ennemy_spawner.gd"
-EquipmentStats="*res://globals/equipment_stats.gd"
+EnnemiesService="*res://globals/ennemies_service.gd"
+LootService="*res://globals/loot_service.gd"
+EquipmentService="*res://globals/equipment_service.gd"
 
 [input]
 

@@ -7,6 +7,9 @@ signal depleted
 
 func _ready():
 	current_health = max_health
+	update_display()
+
+func update_display():
 	%Bar.max_value = max_health
 	%Bar.value = current_health
 	if visible_bar:
@@ -19,4 +22,4 @@ func take_damage(damage: float):
 	%Bar.value = current_health
 	
 	if current_health <= 0:
-		emit_signal("depleted")
+		depleted.emit()
