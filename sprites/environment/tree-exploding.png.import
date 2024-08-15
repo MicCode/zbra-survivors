@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://curemujf2tqhp"
-path="res://.godot/imported/mob-1-walk.png-98d4180ba68dc80892262a3c173d735f.ctex"
+uid="uid://b0i4faxik8fu7"
+path="res://.godot/imported/tree-exploding.png-3a67cc072e2c46b9482cf022f30b15f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ennemies/mob-1/mob-1-walk.png"
-dest_files=["res://.godot/imported/mob-1-walk.png-98d4180ba68dc80892262a3c173d735f.ctex"]
+source_file="res://sprites/environment/tree-exploding.png"
+dest_files=["res://.godot/imported/tree-exploding.png-3a67cc072e2c46b9482cf022f30b15f4.ctex"]
 
 [params]
 

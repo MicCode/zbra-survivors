@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvkjjs72fxg4x"
-path="res://.godot/imported/mob-1-dead.png-08635b9cc7b1ded0700426a138d39167.ctex"
+uid="uid://bjwiq2q541nft"
+path="res://.godot/imported/player-walk.png-d1381c7080237c68be84024dadb48bf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ennemies/mob-1/mob-1-dead.png"
-dest_files=["res://.godot/imported/mob-1-dead.png-08635b9cc7b1ded0700426a138d39167.ctex"]
+source_file="res://sprites/player/player-walk.png"
+dest_files=["res://.godot/imported/player-walk.png-d1381c7080237c68be84024dadb48bf1.ctex"]
 
 [params]
 

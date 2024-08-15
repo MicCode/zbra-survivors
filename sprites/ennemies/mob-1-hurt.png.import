@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mbgktmkokcql"
-path="res://.godot/imported/player-idle.png-d7f58fe540fd05d9910b5396420673da.ctex"
+uid="uid://bceetuo4sphb"
+path="res://.godot/imported/mob-1-hurt.png-4c1529044ce519f9a55e2be6359c2194.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player-idle.png"
-dest_files=["res://.godot/imported/player-idle.png-d7f58fe540fd05d9910b5396420673da.ctex"]
+source_file="res://sprites/ennemies/mob-1-hurt.png"
+dest_files=["res://.godot/imported/mob-1-hurt.png-4c1529044ce519f9a55e2be6359c2194.ctex"]
 
 [params]
 

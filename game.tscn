@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=12 format=3 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://entities/player/player.tscn" id="1_vgovh"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://entities/environment/tree.tscn" id="2_xc4fa"]
 [ext_resource type="PackedScene" uid="uid://b3rym5f07tq1c" path="res://ui/pause-menu.tscn" id="4_u3m6b"]
 [ext_resource type="PackedScene" uid="uid://deyu38p7ie4ql" path="res://ui/game-over.tscn" id="5_puroo"]
-[ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://entities/collectibles/weapons/BasicGunCollectible.tscn" id="6_5n8pi"]
+[ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://entities/collectibles/guns/BasicGun/BasicGunCollectible.tscn" id="6_5n8pi"]
+[ext_resource type="PackedScene" uid="uid://n8mqdn0tb65" path="res://entities/collectibles/guns/Rifle/RifleGunCollectible.tscn" id="7_xct6d"]
 
 [sub_resource type="Curve2D" id="Curve2D_rf5nu"]
 _data = {
@@ -133,6 +134,9 @@ visible = false
 
 [node name="BasicGunCollectible" parent="." instance=ExtResource("6_5n8pi")]
 position = Vector2(333, 546)
+
+[node name="RifleGunCollectible" parent="." instance=ExtResource("7_xct6d")]
+position = Vector2(337, 158)
 
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]

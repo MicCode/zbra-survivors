@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cdr8rck7r5wts"]
 
 [ext_resource type="Script" path="res://entities/equipments/guns/gun.gd" id="1_wwnuv"]
-[ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://sprites/gun-firing.png" id="2_aj33k"]
-[ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/gun.png" id="3_0sfdt"]
+[ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://sprites/items/gun-firing.png" id="2_aj33k"]
+[ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/items/gun.png" id="3_0sfdt"]
 [ext_resource type="AudioStream" uid="uid://bj4sa5fvnssia" path="res://sounds/shoot.wav" id="4_fv3jv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_th6yu"]

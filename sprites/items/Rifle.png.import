@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvmtbfx0kym78"
-path="res://.godot/imported/tree-idle.png-194cec82044c3c55fe3cf6cc93df4812.ctex"
+uid="uid://cp367k8prjif0"
+path="res://.godot/imported/Rifle.png-03238580c2b5f1af1c8f90e26da03839.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tree-idle.png"
-dest_files=["res://.godot/imported/tree-idle.png-194cec82044c3c55fe3cf6cc93df4812.ctex"]
+source_file="res://sprites/items/Rifle.png"
+dest_files=["res://.godot/imported/Rifle.png-03238580c2b5f1af1c8f90e26da03839.ctex"]
 
 [params]
 

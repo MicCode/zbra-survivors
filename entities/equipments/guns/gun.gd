@@ -1,12 +1,11 @@
-extends Area2D
+extends EquipmentItem
 class_name Gun
 
 @export var fire_range = 200.0
 @export var fire_cooldown_s = 1.0
+@export var bullet_damage = 1.0
 var flipped = false
 var cooling_down = false
-
-const BULLET = preload("res://entities/projectiles/simple-bullet/simple-bullet.tscn")
 
 func _ready():
 	%AutoFireRange.shape.radius = fire_range
@@ -31,15 +30,18 @@ func _physics_process(_delta):
 			%CanvasGroup.translate(Vector2(0, -28))
 		%Sprite.set_flip_v(false)
 
+func get_bullet():
+	return preload("res://entities/projectiles/SimpleGunProjectile/SimpleGunProjectile.tscn")
+
 func target_mouse():
 	look_at(get_global_mouse_position())
 
 func shoot_bullet():
 	if !cooling_down:
-		var new_bullet = BULLET.instantiate().with_damage(1)
+		var new_bullet = get_bullet().instantiate().with_damage(bullet_damage)
 		new_bullet.global_position = %ShootingPoint.global_position
 		new_bullet.global_rotation = %ShootingPoint.global_rotation
-		get_node("/root/Game").add_child(new_bullet)
+		get_node("/root").get_node("./").add_child(new_bullet)
 		%Sprite.play("firing")
 		%ShootSound.play()
 		start_cooldown_timer()
@@ -55,4 +57,6 @@ func _on_sprite_animation_finished():
 
 func _on_cooldown_timer_timeout():
 	if cooling_down:
+		if !Input.is_action_pressed("fire"):
+			%Sprite.play("idle")
 		cooling_down = false

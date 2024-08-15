@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6s0dhmit678"
-path="res://.godot/imported/gun.png-09dca8ed166f892f413f3bc36a1cb0af.ctex"
+uid="uid://curemujf2tqhp"
+path="res://.godot/imported/mob-1-walk.png-ec7093f7ab26220954da6b0fedba890c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gun.png"
-dest_files=["res://.godot/imported/gun.png-09dca8ed166f892f413f3bc36a1cb0af.ctex"]
+source_file="res://sprites/ennemies/mob-1-walk.png"
+dest_files=["res://.godot/imported/mob-1-walk.png-ec7093f7ab26220954da6b0fedba890c.ctex"]
 
 [params]
 

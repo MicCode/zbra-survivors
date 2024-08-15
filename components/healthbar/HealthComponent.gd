@@ -1,8 +1,8 @@
 extends Node2D
 signal depleted
 
-@export var max_health = 100.0
-@export var current_health = 100.0
+@export var max_health: float = 100.0
+@export var current_health: float = 100.0
 @export var visible_bar = true
 
 func _ready():
@@ -14,7 +14,7 @@ func _ready():
 	else:
 		%Bar.hide()
 	
-func take_damage(damage: int):
+func take_damage(damage: float):
 	current_health -= damage
 	%Bar.value = current_health
 	

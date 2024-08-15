@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bspw82fhsmgk3"]
 
-[ext_resource type="Script" path="res://entities/collectibles/weapons/BasicGunCollectible.gd" id="1_pakd1"]
+[ext_resource type="Script" path="res://entities/collectibles/guns/BasicGun/BasicGunCollectible.gd" id="1_pakd1"]
 [ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://entities/collectibles/Collectible.tscn" id="1_rpajl"]
-[ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/gun.png" id="1_s2b2s"]
+[ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/items/gun.png" id="1_s2b2s"]
 
 [node name="BasicGunCollectible" instance=ExtResource("1_rpajl")]
 script = ExtResource("1_pakd1")

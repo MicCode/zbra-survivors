@@ -3,8 +3,8 @@ class_name Ennemy # TODO extract to abstract class and inherit from it
 
 signal dead
 
-@export var health = 3
-@export var speed = 200.0
+@export var health: float = 3.0
+@export var speed: float = 200.0
 @export var chase_player = true
 @onready var player = get_node("/root/Game/Player")
 
@@ -15,13 +15,13 @@ func _ready():
 	%Health.max_health = health
 	%Health.current_health = health
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !is_dead && chase_player && player != null:
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = direction_to_player * speed
 		move_and_slide()
 
-func take_damage(damage: int):
+func take_damage(damage: float):
 	%Sprite.play("hurt")
 	%Health.take_damage(damage)
 	%HitSound.play()

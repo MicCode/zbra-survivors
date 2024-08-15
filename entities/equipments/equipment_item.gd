@@ -1,2 +1,2 @@
-extends Node
+extends Area2D
 class_name EquipmentItem

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bceetuo4sphb"
-path="res://.godot/imported/mob-1-hurt.png-63d4997923487f454e9d7e73c0012763.ctex"
+uid="uid://mlv24insxcl0"
+path="res://.godot/imported/ennemy-2-hurt.png-d9dc6f593ad01a466a82808648e49221.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ennemies/mob-1/mob-1-hurt.png"
-dest_files=["res://.godot/imported/mob-1-hurt.png-63d4997923487f454e9d7e73c0012763.ctex"]
+source_file="res://sprites/ennemies/ennemy-2-hurt.png"
+dest_files=["res://.godot/imported/ennemy-2-hurt.png-d9dc6f593ad01a466a82808648e49221.ctex"]
 
 [params]
 

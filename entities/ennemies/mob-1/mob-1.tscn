@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://ci36jx3vvoocj"]
 
 [ext_resource type="Script" path="res://entities/ennemies/mob-1/mob-1.gd" id="1_hsysf"]
-[ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://entities/ennemies/mob-1/mob-1-dead.png" id="1_qppga"]
+[ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://sprites/ennemies/mob-1-dead.png" id="1_qppga"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_61tpv"]
-[ext_resource type="Texture2D" uid="uid://bceetuo4sphb" path="res://entities/ennemies/mob-1/mob-1-hurt.png" id="2_uknuq"]
-[ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://entities/ennemies/mob-1/mob-1-walk.png" id="3_sy8iv"]
+[ext_resource type="Texture2D" uid="uid://bceetuo4sphb" path="res://sprites/ennemies/mob-1-hurt.png" id="2_uknuq"]
+[ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://sprites/ennemies/mob-1-walk.png" id="3_sy8iv"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://components/healthbar/HealthComponent.tscn" id="4_nrwle"]
 [ext_resource type="AudioStream" uid="uid://l15ytlqmk1ww" path="res://sounds/hit.wav" id="6_sxgen"]
 

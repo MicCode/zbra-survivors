@@ -1,0 +1,2 @@
+extends GunCollectible
+class_name RifleGunCollectible
