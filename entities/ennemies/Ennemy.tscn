@@ -1,31 +1,31 @@
 [gd_scene load_steps=15 format=3 uid="uid://ci36jx3vvoocj"]
 
-[ext_resource type="Script" path="res://entities/ennemies/mob-1/mob-1.gd" id="1_hsysf"]
-[ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://sprites/ennemies/mob-1-dead.png" id="1_qppga"]
-[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_61tpv"]
-[ext_resource type="Texture2D" uid="uid://bceetuo4sphb" path="res://sprites/ennemies/mob-1-hurt.png" id="2_uknuq"]
-[ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://sprites/ennemies/mob-1-walk.png" id="3_sy8iv"]
-[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://components/healthbar/HealthComponent.tscn" id="4_nrwle"]
-[ext_resource type="AudioStream" uid="uid://l15ytlqmk1ww" path="res://sounds/hit.wav" id="6_sxgen"]
+[ext_resource type="Script" path="res://entities/ennemies/Ennemy.gd" id="1_qdj7r"]
+[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hl8ed"]
+[ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://sprites/ennemies/mob-1-dead.png" id="3_qem7r"]
+[ext_resource type="Texture2D" uid="uid://bceetuo4sphb" path="res://sprites/ennemies/mob-1-hurt.png" id="4_yy3p0"]
+[ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://sprites/ennemies/mob-1-walk.png" id="5_grokr"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://components/healthbar/HealthComponent.tscn" id="6_o0wmw"]
+[ext_resource type="AudioStream" uid="uid://l15ytlqmk1ww" path="res://sounds/hit.wav" id="7_idycx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45qg2"]
-atlas = ExtResource("1_qppga")
+atlas = ExtResource("3_qem7r")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tiurt"]
-atlas = ExtResource("2_uknuq")
+atlas = ExtResource("4_yy3p0")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahbay"]
-atlas = ExtResource("2_uknuq")
+atlas = ExtResource("4_yy3p0")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mska"]
-atlas = ExtResource("3_sy8iv")
+atlas = ExtResource("5_grokr")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brvno"]
-atlas = ExtResource("3_sy8iv")
+atlas = ExtResource("5_grokr")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cyjhj"]
@@ -67,17 +67,17 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_a4ja4"]
 radius = 15.0
 
-[node name="Mob-1" type="CharacterBody2D"]
+[node name="Ennemy" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 14
-script = ExtResource("1_hsysf")
+script = ExtResource("1_qdj7r")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)
 position = Vector2(0, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("2_61tpv")
+texture = ExtResource("2_hl8ed")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -92,7 +92,7 @@ frame_progress = 0.0701159
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_a4ja4")
 
-[node name="Health" parent="." instance=ExtResource("4_nrwle")]
+[node name="Health" parent="." instance=ExtResource("6_o0wmw")]
 unique_name_in_owner = true
 position = Vector2(0, -46)
 max_health = 3.0
@@ -105,7 +105,7 @@ one_shot = true
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -8)
-stream = ExtResource("6_sxgen")
+stream = ExtResource("7_idycx")
 volume_db = -5.0
 
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]

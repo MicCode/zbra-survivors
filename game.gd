@@ -3,18 +3,18 @@ extends Node2D
 var spawn_time_s = 3.0
 var score = 0
 var player_health = 100.0
-const MOB_1 = preload("res://entities/ennemies/mob-1/mob-1.tscn")
 
 func _ready():
 	%MobSpawnTimer.wait_time = spawn_time_s
 	update_ui()
 
 func spawn_ennemy():
-	var new_ennemy = MOB_1.instantiate()
-	%SpawnPoint.progress_ratio = randf()
-	new_ennemy.global_position = %SpawnPoint.global_position
-	new_ennemy.dead.connect(_on_ennemy_death)
-	add_child(new_ennemy)
+	var new_ennemy = EnnemySpawner.spawn()
+	if new_ennemy:
+		%SpawnPoint.progress_ratio = randf()
+		new_ennemy.global_position = %SpawnPoint.global_position
+		new_ennemy.dead.connect(_on_ennemy_death)
+		add_child(new_ennemy)
 
 func update_ui():
 	%Score.text = str(score)

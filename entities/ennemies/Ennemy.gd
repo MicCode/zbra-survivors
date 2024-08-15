@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Ennemy # TODO extract to abstract class and inherit from it
+class_name Ennemy
 
 signal dead
 
@@ -9,6 +9,7 @@ signal dead
 @onready var player = get_node("/root/Game/Player")
 
 var is_dead = false
+var sprite_reversed = false
 
 func _ready():
 	%Sprite.connect("animation_finished", _on_animation_finished)
@@ -20,6 +21,7 @@ func _physics_process(_delta):
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = direction_to_player * speed
 		move_and_slide()
+		%Sprite.flip_h = !sprite_reversed && direction_to_player.x < 0 || sprite_reversed && direction_to_player.x >= 0
 
 func take_damage(damage: float):
 	%Sprite.play("hurt")

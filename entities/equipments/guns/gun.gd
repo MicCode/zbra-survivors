@@ -1,14 +1,13 @@
 extends EquipmentItem
 class_name Gun
 
-@export var fire_range = 200.0
-@export var fire_cooldown_s = 1.0
-@export var bullet_damage = 1.0
 var flipped = false
 var cooling_down = false
+var gun_stats: GunStats
 
 func _ready():
-	%AutoFireRange.shape.radius = fire_range
+	gun_stats = EquipmentStats.get_gun_stats(self)
+	%AutoFireRange.shape.radius = gun_stats.fire_range
 
 func _process(_delta):
 	%CooldownProgress.value = %CooldownTimer.time_left
@@ -38,7 +37,7 @@ func target_mouse():
 
 func shoot_bullet():
 	if !cooling_down:
-		var new_bullet = get_bullet().instantiate().with_damage(bullet_damage)
+		var new_bullet = get_bullet().instantiate().with_damage(gun_stats.bullet_damage)
 		new_bullet.global_position = %ShootingPoint.global_position
 		new_bullet.global_rotation = %ShootingPoint.global_rotation
 		get_node("/root").get_node("./").add_child(new_bullet)
@@ -47,9 +46,9 @@ func shoot_bullet():
 		start_cooldown_timer()
 
 func start_cooldown_timer():
-	%CooldownProgress.max_value = fire_cooldown_s
-	%CooldownProgress.value = fire_cooldown_s
-	%CooldownTimer.start(fire_cooldown_s)
+	%CooldownProgress.max_value = gun_stats.fire_cooldown_s
+	%CooldownProgress.value = gun_stats.fire_cooldown_s
+	%CooldownTimer.start(gun_stats.fire_cooldown_s)
 	cooling_down = true
 
 func _on_sprite_animation_finished():
