@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6s0dhmit678"
-path="res://.godot/imported/gun.png-5964b905c2cb77b6e99b67453f6220f3.ctex"
+uid="uid://bvmtbfx0kym78"
+path="res://.godot/imported/tree-idle.png-194cec82044c3c55fe3cf6cc93df4812.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/equipments/basic-gun/gun.png"
-dest_files=["res://.godot/imported/gun.png-5964b905c2cb77b6e99b67453f6220f3.ctex"]
+source_file="res://sprites/tree-idle.png"
+dest_files=["res://.godot/imported/tree-idle.png-194cec82044c3c55fe3cf6cc93df4812.ctex"]
 
 [params]
 

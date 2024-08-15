@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=14 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_teghp"]
-[ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://entities/player/player-idle.png" id="1_xqxvm"]
-[ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://entities/player/player-walk.png" id="2_e00jb"]
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://entities/equipments/basic-gun/basic-gun.tscn" id="4_8ima8"]
+[ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://sprites/player-idle.png" id="1_xqxvm"]
+[ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://sprites/player-walk.png" id="2_e00jb"]
+[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://components/healthbar/HealthComponent.tscn" id="5_yybqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie2s4"]
@@ -53,10 +53,19 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4us1"]
 radius = 23.5053
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
+radius = 35.5035
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 collision_mask = 7
 script = ExtResource("1_teghp")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(0, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("2_hvbpw")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -71,12 +80,8 @@ shape = SubResource("CircleShape2D_5pv4u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Gun" parent="." instance=ExtResource("4_8ima8")]
-unique_name_in_owner = true
-
 [node name="Health" parent="." instance=ExtResource("5_yybqa")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -25)
 visible_bar = false
 
@@ -88,3 +93,12 @@ collision_mask = 2
 [node name="shape" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_l4us1")
 debug_color = Color(0.998759, 0, 0.1334, 0.42)
+
+[node name="CollectRadius" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectRadius"]
+shape = SubResource("CircleShape2D_4lpg2")
+debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)

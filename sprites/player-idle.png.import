@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xnd37rmkthv"
-path="res://.godot/imported/gun-firing.png-4b5f87de5565bf0f484cef88558dc663.ctex"
+uid="uid://mbgktmkokcql"
+path="res://.godot/imported/player-idle.png-d7f58fe540fd05d9910b5396420673da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/equipments/basic-gun/gun-firing.png"
-dest_files=["res://.godot/imported/gun-firing.png-4b5f87de5565bf0f484cef88558dc663.ctex"]
+source_file="res://sprites/player-idle.png"
+dest_files=["res://.godot/imported/player-idle.png-d7f58fe540fd05d9910b5396420673da.ctex"]
 
 [params]
 

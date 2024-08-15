@@ -9,10 +9,11 @@ signal health_depleted
 const DAMAGE_RATE = 50.0
 
 var is_alive = true
+var equiped_gun: Gun
 
 func _ready():
 	health = max_health
-	update_health()
+	init_health()
 	
 func _physics_process(delta):
 	if is_alive:
@@ -31,20 +32,34 @@ func _physics_process(delta):
 			%Sprite.play("idle")
 		
 		# Collisions -----------------------------------------------------------------------------
-		var overlapping = %HurtBox.get_overlapping_bodies()
-		if overlapping.size() > 0:
-			health -= DAMAGE_RATE * overlapping.size() * delta
+		var overlapping_ennemies = %HurtBox.get_overlapping_bodies()
+		if overlapping_ennemies.size() > 0:
+			health -= DAMAGE_RATE * overlapping_ennemies.size() * delta
 			%Health.current_health = health
 			health_changed.emit(health)
 			
 			if health <= 0:
-				health_depleted.emit()
-				is_alive = false
-				%Sprite.queue_free()
-				%Gun.queue_free()
+				die()
+		
+		var overlapping_collectibles = %CollectRadius.get_overlapping_bodies()
+		if overlapping_collectibles.size() > 0:
+			for collectible in overlapping_collectibles:
+				var equipment = LootTable.get_equipment(collectible)
+				if equipment != null:
+					if equipment is Gun && !equiped_gun:
+						equiped_gun = equipment
+						add_child(equiped_gun)
+						collectible.queue_free()
 		
 
-func update_health():
+func init_health():
 	%Health.max_health = max_health
 	%Health.current_health = health
 	health_changed.emit(health)
+	
+func die():
+	health_depleted.emit()
+	is_alive = false
+	%Sprite.queue_free()
+	if equiped_gun != null:
+		equiped_gun.queue_free()

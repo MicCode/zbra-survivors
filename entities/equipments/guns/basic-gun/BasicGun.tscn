@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6eulufrnjviy"]
+
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://entities/equipments/guns/gun.tscn" id="1_ybp5n"]
+[ext_resource type="Script" path="res://entities/equipments/guns/basic-gun/BasicGun.gd" id="2_of6s7"]
+
+[node name="BasicGun" instance=ExtResource("1_ybp5n")]
+script = ExtResource("2_of6s7")

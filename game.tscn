@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=11 format=3 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://entities/player/player.tscn" id="1_vgovh"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://entities/environment/tree.tscn" id="2_xc4fa"]
 [ext_resource type="PackedScene" uid="uid://b3rym5f07tq1c" path="res://ui/pause-menu.tscn" id="4_u3m6b"]
 [ext_resource type="PackedScene" uid="uid://deyu38p7ie4ql" path="res://ui/game-over.tscn" id="5_puroo"]
+[ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://entities/collectibles/weapons/BasicGunCollectible.tscn" id="6_5n8pi"]
 
 [sub_resource type="Curve2D" id="Curve2D_rf5nu"]
 _data = {
@@ -74,7 +75,7 @@ curve = SubResource("Curve2D_rf5nu")
 
 [node name="SpawnPoint" type="PathFollow2D" parent="Player/SpawnPath"]
 unique_name_in_owner = true
-position = Vector2(-77.6012, -186.877)
+position = Vector2(-77.6009, -186.877)
 rotation = -0.00821674
 progress = 228.408
 
@@ -129,6 +130,9 @@ visible = false
 [node name="GameOver" parent="." instance=ExtResource("5_puroo")]
 unique_name_in_owner = true
 visible = false
+
+[node name="BasicGunCollectible" parent="." instance=ExtResource("6_5n8pi")]
+position = Vector2(333, 546)
 
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]

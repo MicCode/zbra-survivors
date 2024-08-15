@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cr2atmw7lsjf5"]
 
 [ext_resource type="Script" path="res://entities/projectiles/simple-bullet/simple-bullet.gd" id="1_pubp6"]
-[ext_resource type="Texture2D" uid="uid://chvpktuin6q7y" path="res://entities/projectiles/simple-bullet/simple-bullet.png" id="2_11e8t"]
+[ext_resource type="Texture2D" uid="uid://chvpktuin6q7y" path="res://sprites/simple-bullet.png" id="2_11e8t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6s6x"]
 radius = 8.0
@@ -24,7 +24,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7rdc7")
 }],
 "loop": true,
-"name": &"default",
+"name": &"fly",
 "speed": 5.0
 }]
 
@@ -34,11 +34,17 @@ collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_pubp6")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1.19209e-07, 1.78814e-07)
+scale = Vector2(0.6, 0.6)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o6s6x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_thl04")
+animation = &"fly"
+autoplay = "fly"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

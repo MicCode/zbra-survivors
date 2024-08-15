@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvmtbfx0kym78"
-path="res://.godot/imported/tree-idle.png-4c9e732d305087c9b643701138784fc4.ctex"
+uid="uid://chvpktuin6q7y"
+path="res://.godot/imported/simple-bullet.png-6f2659941acd1fffd51c726bd2c597dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/environment/tree-idle.png"
-dest_files=["res://.godot/imported/tree-idle.png-4c9e732d305087c9b643701138784fc4.ctex"]
+source_file="res://sprites/simple-bullet.png"
+dest_files=["res://.godot/imported/simple-bullet.png-6f2659941acd1fffd51c726bd2c597dc.ctex"]
 
 [params]
 

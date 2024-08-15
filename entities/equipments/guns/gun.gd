@@ -1,4 +1,5 @@
 extends Area2D
+class_name Gun
 
 @export var range = 200.0
 @export var fire_rate = 1.0

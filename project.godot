@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+LootTable="*res://globals/loot_table.gd"
+
 [input]
 
 move_left={
@@ -51,6 +55,7 @@ pause_game={
 2d_physics/layer_2="ennemies"
 2d_physics/layer_3="environment"
 2d_physics/layer_4="projectiles"
+2d_physics/layer_5="collectibles"
 
 [rendering]
 
