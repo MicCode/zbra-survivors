@@ -43,7 +43,7 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_wwnuv")
 
-[node name="Reach" type="CollisionShape2D" parent="."]
+[node name="AutoFireRange" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_th6yu")
 
@@ -62,9 +62,9 @@ autoplay = "idle"
 unique_name_in_owner = true
 position = Vector2(8, -3)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-autostart = true
+one_shot = true
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
@@ -72,5 +72,16 @@ position = Vector2(43, -7)
 stream = ExtResource("4_fv3jv")
 volume_db = -5.0
 
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
+position = Vector2(19, -19)
+
+[node name="CooldownProgress" type="ProgressBar" parent="CanvasGroup"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.784314)
+offset_right = 22.0
+offset_bottom = 4.0
+show_percentage = false
+
 [connection signal="animation_finished" from="PivotPoint/Sprite" to="." method="_on_sprite_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -42,7 +42,7 @@ func _physics_process(delta):
 				die()
 		
 		var overlapping_collectibles = %CollectRadius.get_overlapping_bodies()
-		if overlapping_collectibles.size() > 0:
+		if overlapping_collectibles.size() > 0 && Input.is_action_pressed("grab"):
 			for collectible in overlapping_collectibles:
 				var equipment = LootTable.get_equipment(collectible)
 				if equipment != null:
