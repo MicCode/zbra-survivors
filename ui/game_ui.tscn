@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cplrhnikvgwm3"]
+
+[ext_resource type="Script" path="res://ui/game_ui.gd" id="1_70thh"]
+[ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/DashGauge.tscn" id="2_3a147"]
+[ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/Heart.tscn" id="3_g3ovh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ovb57"]
+line_spacing = 0.0
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_70thh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -74.0
+offset_right = 1063.0
+grow_vertical = 0
+
+[node name="DashGauge" parent="HBoxContainer" instance=ExtResource("2_3a147")]
+position = Vector2(45, 29)
+
+[node name="Hearts" type="CanvasGroup" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(0, -574)
+
+[node name="Heart" parent="HBoxContainer/Hearts" instance=ExtResource("3_g3ovh")]
+position = Vector2(120, 619)
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 13.0
+offset_right = 64.0
+offset_bottom = 23.0
+scale = Vector2(2.65466, 2.65466)
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_ovb57")
+
+[node name="Score" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 164.0
+offset_right = 664.0
+offset_bottom = 23.0
+scale = Vector2(2.65466, 2.65466)
+text = "12345"
+label_settings = SubResource("LabelSettings_ovb57")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=16 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
@@ -57,13 +57,6 @@ radius = 23.5053
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
 radius = 35.5035
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_677nt"]
-bg_color = Color(0, 0.631373, 0.968627, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -124,15 +117,9 @@ one_shot = true
 [node name="DashTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[node name="DashCooldownProgress" type="ProgressBar" parent="."]
+[node name="DamageTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-offset_left = -6.5
-offset_top = 18.5
-offset_right = 6.5
-offset_bottom = 22.5
-theme_override_styles/fill = SubResource("StyleBoxFlat_677nt")
-value = 100.0
-show_percentage = false
+one_shot = true
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -149,3 +136,4 @@ pitch_scale = 2.8
 [connection signal="timeout" from="PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

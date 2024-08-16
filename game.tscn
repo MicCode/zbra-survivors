@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=10 format=3 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://entities/player/player.tscn" id="1_vgovh"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://entities/environment/tree.tscn" id="2_xc4fa"]
 [ext_resource type="PackedScene" uid="uid://b3rym5f07tq1c" path="res://ui/pause-menu.tscn" id="4_u3m6b"]
+[ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/game_ui.tscn" id="4_yuug0"]
 [ext_resource type="PackedScene" uid="uid://deyu38p7ie4ql" path="res://ui/game-over.tscn" id="5_puroo"]
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://entities/collectibles/guns/BasicGun/BasicGunCollectible.tscn" id="6_5n8pi"]
 [ext_resource type="PackedScene" uid="uid://n8mqdn0tb65" path="res://entities/collectibles/guns/Rifle/RifleGunCollectible.tscn" id="7_xct6d"]
@@ -13,24 +14,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -306, -185, 0, 0, 0, 0, 302.5, -190, 0, 0, 0, 0, 305, 178, 0, 0, 0, 0, -306, 180, 0, 0, 0, 0, -307.5, -183)
 }
 point_count = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hers"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n5s5"]
-bg_color = Color(0.699195, 2.08165e-06, 6.73831e-07, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="LabelSettings" id="LabelSettings_ovb57"]
-line_spacing = 0.0
-font_size = 20
-font_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -84,46 +67,7 @@ progress = 228.408
 unique_name_in_owner = true
 autostart = true
 
-[node name="GameUI" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="GameUI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="PlayerHealth" type="ProgressBar" parent="GameUI"]
-unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -24.0
-offset_right = 576.0
-offset_bottom = -8.0
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_6hers")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6n5s5")
-value = 75.0
-show_percentage = false
-
-[node name="Score" type="Label" parent="GameUI"]
-unique_name_in_owner = true
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -32.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "12345"
-label_settings = SubResource("LabelSettings_ovb57")
-vertical_alignment = 1
+[node name="GameUI" parent="." instance=ExtResource("4_yuug0")]
 
 [node name="Pause-menu" parent="." instance=ExtResource("4_u3m6b")]
 visible = false
@@ -138,6 +82,5 @@ position = Vector2(333, 546)
 [node name="RifleGunCollectible" parent="." instance=ExtResource("7_xct6d")]
 position = Vector2(337, 158)
 
-[connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

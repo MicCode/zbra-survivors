@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7wx4swx7fty4"]
+
+[ext_resource type="Script" path="res://ui/dash_gauge.gd" id="1_mppy0"]
+[ext_resource type="Texture2D" uid="uid://b2s6kmwjhct7y" path="res://sprites/player/dash-gauge.png" id="2_8ntsr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h55uc"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyy8b"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6qfg"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwhia"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ttj"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elrvw"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xepru"]
+atlas = ExtResource("2_8ntsr")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yp8q0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h55uc")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyy8b")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6qfg")
+}],
+"loop": true,
+"name": &"loading_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwhia")
+}],
+"loop": true,
+"name": &"loading_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2ttj")
+}],
+"loop": true,
+"name": &"loading_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elrvw")
+}],
+"loop": true,
+"name": &"loading_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xepru")
+}],
+"loop": true,
+"name": &"using",
+"speed": 5.0
+}]
+
+[node name="DashGauge" type="Node2D"]
+script = ExtResource("1_mppy0")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_yp8q0")
+animation = &"full"

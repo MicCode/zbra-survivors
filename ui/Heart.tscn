@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bucnbe7ki6q3u"]
+
+[ext_resource type="Texture2D" uid="uid://cwid7q0qgx0pu" path="res://sprites/player/heart-16-hollow.png" id="1_5h0ir"]
+[ext_resource type="Texture2D" uid="uid://celhg4yv453kq" path="res://sprites/player/heart-16.png" id="2_2hfrj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vdrt"]
+atlas = ExtResource("1_5h0ir")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv7oh"]
+atlas = ExtResource("2_2hfrj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rxk8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vdrt")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv7oh")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="Heart" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7rxk8")
+animation = &"on"
+autoplay = "on"
