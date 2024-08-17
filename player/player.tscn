@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=3 uid="uid://gdo7fmio88fn"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
+[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
+[ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://sprites/player/player-idle.png" id="3_hsq4i"]
+[ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://sprites/player/player-walk.png" id="4_4gd1v"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/health_bar.tscn" id="5_yybqa"]
+[ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://sounds/lazercannon.mp3" id="6_yhd2o"]
+[ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie2s4"]
+atlas = ExtResource("3_hsq4i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2robk"]
+atlas = ExtResource("3_hsq4i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcfow"]
+atlas = ExtResource("4_4gd1v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnhld"]
+atlas = ExtResource("4_4gd1v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pli0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie2s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2robk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcfow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnhld")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pv4u"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4us1"]
+radius = 23.5053
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
+radius = 35.5035
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_mask = 7
+script = ExtResource("1_teghp")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(0, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("2_hvbpw")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pli0g")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.505765
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5pv4u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Health" parent="." instance=ExtResource("5_yybqa")]
+unique_name_in_owner = true
+position = Vector2(0, -25)
+visible_bar = false
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_l4us1")
+debug_color = Color(0.998759, 0, 0.1334, 0.42)
+
+[node name="CollectRadius" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectRadius"]
+shape = SubResource("CircleShape2D_4lpg2")
+debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)
+
+[node name="PickUpTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="DamageTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_yhd2o")
+volume_db = -15.928
+pitch_scale = 2.0
+
+[node name="DashReadySound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_ngsqq")
+volume_db = -24.36
+pitch_scale = 2.8
+
+[connection signal="timeout" from="PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
+[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

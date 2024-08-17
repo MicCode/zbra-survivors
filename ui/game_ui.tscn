@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" path="res://ui/game_ui.gd" id="1_70thh"]
-[ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/DashGauge.tscn" id="2_3a147"]
-[ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/Heart.tscn" id="3_g3ovh"]
+[ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/dash_gauge.tscn" id="2_3a147"]
+[ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/heart.tscn" id="3_g3ovh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ovb57"]
 line_spacing = 0.0

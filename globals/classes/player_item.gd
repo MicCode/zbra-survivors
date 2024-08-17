@@ -1,9 +1,9 @@
 class_name PlayerItem
 
-var collectible: Collectible
+var collectible: CollectibleItem
 var equipment: EquipmentItem
 
-func new(_collectible: Collectible, _equipment: EquipmentItem) -> PlayerItem:
+func new(_collectible: CollectibleItem, _equipment: EquipmentItem) -> PlayerItem:
 	collectible = _collectible
 	equipment = _equipment
 	return self

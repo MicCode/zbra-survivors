@@ -1,2 +1,0 @@
-extends Collectible
-class_name GunCollectible

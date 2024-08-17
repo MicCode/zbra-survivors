@@ -1,2 +1,0 @@
-extends GunCollectible
-class_name ShotGunCollectible

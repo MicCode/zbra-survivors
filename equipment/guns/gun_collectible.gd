@@ -1,0 +1,2 @@
+extends CollectibleItem
+class_name GunCollectible

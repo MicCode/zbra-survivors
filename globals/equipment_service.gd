@@ -1,44 +1,65 @@
 extends Node
+const EQUIPMENT_PATH = "res://equipment/"
+const GUNS_PATH = "guns/"
 
-func get_gun_damage(gun: Gun) -> float:
-	if gun is BasicGun:
-		return 2.0
-	elif gun is RifleGun:
-		return 0.5
-	elif gun is ShotGun:
-		return 0.5
-	else:
-		return 1.0
+var guns_catalog = {
+	"pistol": GunInfo.new()
+		.with_name("pistol")
+		.with_bullet_damage(2.0)
+		.with_fire_cooldown_s(1.0)
+		.with_bang_pitch_shift(-0.2),
 
-func get_gun_cooldown(gun: Gun) -> float:
-	if gun is BasicGun:
-		return 1.0
-	elif gun is RifleGun:
-		return 0.25
-	elif gun is ShotGun:
-		return 1.5
-	else:
-		return 1.0
+	"rifle": GunInfo.new()
+		.with_name("rifle")
+		.with_bullet_damage(0.5)
+		.with_fire_cooldown_s(0.25)
+		.with_bang_pitch_shift(0.0),
+
+	"shotgun": GunInfo.new()
+		.with_name("shotgun")
+		.with_bullet_damage(0.5)
+		.with_fire_cooldown_s(1.5)
+		.with_bang_pitch_shift(-0.5),
+}
+
+func get_gun_info(gun: Gun) -> GunInfo:
+	return guns_catalog[_get_gun_name(gun)]
+
+func to_equipment(collectible: CollectibleItem) -> EquipmentItem:
+	if collectible is GunCollectible:
+		var gun_name: String
+		if collectible is PistolCollectible:
+			gun_name = "pistol"
+		elif collectible is RifleCollectible:
+			gun_name = "rifle"
+		elif collectible is ShotgunCollectible:
+			gun_name = "shotgun"
+		return load(_get_gun_path(gun_name) + ".tscn").instantiate()
+	return null
+
+func to_collectible(equipment: EquipmentItem) -> CollectibleItem:
+	if equipment is Gun:
+		return load(_get_gun_path(_get_gun_name(equipment)) + "_collectible.tscn").instantiate()
+	return null
 
 func get_gun_projectile(gun: Gun) -> GunProjectile:
-	if gun is BasicGun:
-		return preload("res://equipments/guns/pistol/pistol_bullet.tscn").instantiate()
-	elif gun is RifleGun:
-		return preload("res://equipments/guns/rifle/rifle_bullet.tscn").instantiate()
-	elif gun is ShotGun:
-		return preload("res://equipments/guns/shotgun/shotgun_bullet.tscn").instantiate()
+	var projectile = load(_get_gun_path(_get_gun_name(gun)) + "_bullet.tscn").instantiate()
+	if projectile:
+		return projectile
 	else:
-		return preload("res://equipments/guns/gun_projectile.tscn").instantiate()
+		return load(EQUIPMENT_PATH + GUNS_PATH + "gun_projectile.tscn").instantiate()
 
-func get_gun_bang_pitch_shift(gun: Gun) -> float:
-	if gun is BasicGun:
-		return -0.2
-	elif gun is RifleGun:
-		return 0.0
-	elif gun is ShotGun:
-		return -0.5
+
+
+func _get_gun_name(gun: Gun) -> String:
+	if gun is Pistol:
+		return "pistol"
+	elif gun is Rifle:
+		return "rifle"
+	elif gun is Shotgun:
+		return "shotgun"
 	else:
-		return 0.0
+		return "cannot find gun name"
 
-func get_gun_stats(gun: Gun) -> GunStats:
-	return GunStats.create(get_gun_damage(gun), get_gun_cooldown(gun))
+func _get_gun_path(gun_name: String) -> String:
+	return EQUIPMENT_PATH + GUNS_PATH + gun_name + "/" + gun_name

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://30je3w5iuv1b"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/gun_projectile.tscn" id="1_52pqe"]
+[ext_resource type="Script" path="res://equipment/guns/pistol/pistol_bullet.gd" id="2_ylwr7"]
+
+[node name="PistolBullet" instance=ExtResource("1_52pqe")]
+script = ExtResource("2_ylwr7")
