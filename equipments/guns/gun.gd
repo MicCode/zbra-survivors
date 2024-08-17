@@ -4,7 +4,6 @@ class_name Gun
 var flipped = false
 var cooling_down = false
 var gun_stats: GunStats
-var pitch_shift: float = 0.0
 
 func _ready():
 	gun_stats = EquipmentService.get_gun_stats(self)
@@ -30,20 +29,17 @@ func _physics_process(_delta):
 			%CanvasGroup.translate(Vector2(0, -28))
 		%Sprite.set_flip_v(false)
 
-func get_bullet():
-	return preload("res://entities/projectiles/SimpleGunProjectile/SimpleGunProjectile.tscn")
-
 func target_mouse():
 	look_at(get_global_mouse_position())
 
 func shoot_bullet():
 	if !cooling_down:
-		var new_bullet = get_bullet().instantiate().with_damage(gun_stats.bullet_damage)
+		var new_bullet = EquipmentService.get_gun_projectile(self).with_damage(gun_stats.bullet_damage)
 		new_bullet.global_position = %ShootingPoint.global_position
 		new_bullet.global_rotation = %ShootingPoint.global_rotation
 		get_node("/root").get_node("./").add_child(new_bullet)
 		%Sprite.play("firing")
-		%ShootSound.pitch_scale = randf_range(0.9, 1.05) + pitch_shift
+		%ShootSound.pitch_scale = randf_range(0.9, 1.05) + EquipmentService.get_gun_bang_pitch_shift(self)
 		%ShootSound.play()
 		start_cooldown_timer()
 

@@ -30,26 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.338862, 0.575684, 0.270638, 1)
 
-[node name="Environment" type="Node" parent="."]
-
-[node name="Tree" parent="Environment" instance=ExtResource("2_xc4fa")]
-position = Vector2(137, 157)
-
-[node name="Tree2" parent="Environment" instance=ExtResource("2_xc4fa")]
-position = Vector2(199, 575)
-
-[node name="Tree3" parent="Environment" instance=ExtResource("2_xc4fa")]
-position = Vector2(264, 356)
-
-[node name="Tree4" parent="Environment" instance=ExtResource("2_xc4fa")]
-position = Vector2(904, 108)
-
-[node name="Tree5" parent="Environment" instance=ExtResource("2_xc4fa")]
-position = Vector2(856, 484)
-
-[node name="Tree6" parent="Environment" instance=ExtResource("2_xc4fa")]
-position = Vector2(1010, 313)
-
 [node name="Player" parent="." instance=ExtResource("1_vgovh")]
 unique_name_in_owner = true
 position = Vector2(578, 326)
@@ -81,6 +61,24 @@ position = Vector2(333, 546)
 
 [node name="RifleGunCollectible" parent="." instance=ExtResource("7_xct6d")]
 position = Vector2(337, 158)
+
+[node name="Tree" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(137, 157)
+
+[node name="Tree2" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(199, 575)
+
+[node name="Tree3" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(264, 356)
+
+[node name="Tree4" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(904, 108)
+
+[node name="Tree5" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(856, 484)
+
+[node name="Tree6" parent="." instance=ExtResource("2_xc4fa")]
+position = Vector2(1010, 313)
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=7 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" path="res://TreeTestScene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://entities/environment/tree.tscn" id="1_xqpa0"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://entities/player/player.tscn" id="2_cg6cr"]
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://entities/collectibles/guns/BasicGun/BasicGunCollectible.tscn" id="3_lpvee"]
 [ext_resource type="PackedScene" uid="uid://n8mqdn0tb65" path="res://entities/collectibles/guns/Rifle/RifleGunCollectible.tscn" id="4_l68rk"]
+[ext_resource type="PackedScene" uid="uid://upsgg7tvmfqf" path="res://entities/collectibles/guns/ShotGun/ShotGunCollectible.tscn" id="6_0vx2c"]
 
 [node name="TreeTestScene" type="Node2D"]
 script = ExtResource("1_sutrr")
@@ -26,3 +27,6 @@ position = Vector2(422, 327)
 
 [node name="RifleGunCollectible" parent="." instance=ExtResource("4_l68rk")]
 position = Vector2(495, 181)
+
+[node name="ShotGunCollectible" parent="." instance=ExtResource("6_0vx2c")]
+position = Vector2(468, 502)
