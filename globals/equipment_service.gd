@@ -6,20 +6,26 @@ var guns_catalog = {
 	"pistol": GunInfo.new()
 		.with_name("pistol")
 		.with_bullet_damage(2.0)
+		.with_bullet_speed(1500)
 		.with_fire_cooldown_s(1.0)
 		.with_bang_pitch_shift(-0.2),
 
 	"rifle": GunInfo.new()
 		.with_name("rifle")
-		.with_bullet_damage(0.5)
-		.with_fire_cooldown_s(0.25)
-		.with_bang_pitch_shift(0.0),
+		.with_bullet_damage(0.25)
+		.with_bullet_speed(2000)
+		.with_fire_cooldown_s(0.1)
+		.with_bullets_spread_angle_deg(15),
 
 	"shotgun": GunInfo.new()
 		.with_name("shotgun")
 		.with_bullet_damage(0.5)
+		.with_bullet_speed(1000)
 		.with_fire_cooldown_s(1.5)
-		.with_bang_pitch_shift(-0.5),
+		.with_bang_pitch_shift(-0.5)
+		.with_bullets_per_shot(10)
+		.with_bullets_spread_angle_deg(90)
+		.with_bullets_speed_variability(0.25),
 }
 
 func get_gun_info(gun: Gun) -> GunInfo:
@@ -48,7 +54,6 @@ func get_gun_projectile(gun: Gun) -> GunProjectile:
 		return projectile
 	else:
 		return load(EQUIPMENT_PATH + GUNS_PATH + "gun_projectile.tscn").instantiate()
-
 
 
 func _get_gun_name(gun: Gun) -> String:

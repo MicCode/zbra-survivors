@@ -39,7 +39,7 @@ animations = [{
 script = ExtResource("2_v02ng")
 
 [node name="Sprite" parent="PivotPoint" index="0"]
-position = Vector2(43, -3)
+position = Vector2(26, 0)
 sprite_frames = SubResource("SpriteFrames_0xlcn")
 animation = &"idle"
 frame_progress = 0.136057

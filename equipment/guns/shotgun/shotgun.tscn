@@ -57,7 +57,7 @@ animations = [{
 script = ExtResource("2_f1kua")
 
 [node name="Sprite" parent="PivotPoint" index="0"]
-position = Vector2(43, -3)
+position = Vector2(25, 2)
 sprite_frames = SubResource("SpriteFrames_3s4s2")
 
 [node name="ShootingPoint" parent="PivotPoint/Sprite" index="0"]

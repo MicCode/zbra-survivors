@@ -27,7 +27,8 @@ func _physics_process(_delta):
 
 func take_damage(damage: float):
 	%Sprite.play("hurt")
-	%Health.take_damage(damage)
+	if %Health:
+		%Health.take_damage(damage)
 	%HitSound.pitch_scale = randf_range(0.5, 2)
 	%HitSound.play()
 
