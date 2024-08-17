@@ -1,12 +1,26 @@
-[gd_scene load_steps=16 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=21 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
+[ext_resource type="Texture2D" uid="uid://bgymw4l2oymtc" path="res://sprites/player/player-dead.png" id="3_2bqqa"]
+[ext_resource type="Texture2D" uid="uid://si1biqu2tpxp" path="res://sprites/player/player-hurt.png" id="3_b0r7w"]
 [ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://sprites/player/player-idle.png" id="3_hsq4i"]
 [ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://sprites/player/player-walk.png" id="4_4gd1v"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/health_bar.tscn" id="5_yybqa"]
 [ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://sounds/lazercannon.mp3" id="6_yhd2o"]
 [ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
+atlas = ExtResource("3_2bqqa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvg3p"]
+atlas = ExtResource("3_b0r7w")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0oc7"]
+atlas = ExtResource("3_b0r7w")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie2s4"]
 atlas = ExtResource("3_hsq4i")
@@ -26,6 +40,25 @@ region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pli0g"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uir31")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvg3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0oc7")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ie2s4")
@@ -75,7 +108,6 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_pli0g")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.505765
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -136,6 +168,7 @@ stream = ExtResource("7_ngsqq")
 volume_db = -24.36
 pitch_scale = 2.8
 
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

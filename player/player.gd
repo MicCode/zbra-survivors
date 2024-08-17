@@ -7,6 +7,7 @@ const PICKUP_COOLDOWN_S = 0.5
 var is_pickup_blocked = false
 var equiped_gun: Gun
 var can_be_damaged = true
+var just_hurt = false
 
 func _ready():
 	init_health()
@@ -33,10 +34,11 @@ func move():
 		velocity = direction * GameState.player.move_speed * GameState.player.dash_speed_multiplier
 
 	move_and_slide()
-	if velocity.length() > 0:
-		%Sprite.play("walk")
-	else:
-		%Sprite.play("idle")
+	if !just_hurt:
+		if velocity.length() > 0:
+			%Sprite.play("walk")
+		else:
+			%Sprite.play("idle")
 
 func start_dashing():
 	%DashSound.play()
@@ -64,6 +66,8 @@ func take_damage():
 	GameState.emit_player_change()
 	can_be_damaged = false
 	%DamageTimer.start(GameState.player.damage_cooldown_s)
+	%Sprite.play("hurt")
+	just_hurt = true
 	
 	if GameState.player.health <= 0:
 		die()
@@ -101,9 +105,9 @@ func die():
 	health_depleted.emit()
 	GameState.player.is_alive = false
 	GameState.emit_player_change()
-	%Sprite.queue_free()
 	if equiped_gun != null:
 		equiped_gun.queue_free()
+	%Sprite.play("dead")
 
 
 func block_pickup():
@@ -136,3 +140,8 @@ func set_invincible(invincible: bool):
 		%Sprite.modulate.a = 0.5
 	else:
 		%Sprite.modulate.a = 1.0
+
+func _on_sprite_animation_finished() -> void:
+	if just_hurt:
+		just_hurt = false
+		%Sprite.play("idle")

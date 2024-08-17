@@ -15,14 +15,17 @@ config/version="0.0.1"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://sprites/player/player-idle.png"
+config/icon="res://sprites/ennemies/mob-1-dead.png"
 
 [autoload]
 
 EnnemiesService="*res://globals/ennemies_service.gd"
-LootService="*res://globals/loot_service.gd"
 EquipmentService="*res://globals/equipment_service.gd"
 GameState="*res://globals/game_state.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -75,6 +78,16 @@ dash={
 2d_physics/layer_4="projectiles"
 2d_physics/layer_5="collectibles"
 
+[physics]
+
+common/physics_ticks_per_second=200
+common/max_physics_steps_per_frame=25
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.180681, 0.406687, 0.253581, 1)
+anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_taa=true
