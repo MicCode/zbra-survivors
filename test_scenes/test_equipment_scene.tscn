@@ -30,3 +30,48 @@ position = Vector2(495, 181)
 
 [node name="ShotGunCollectible" parent="." instance=ExtResource("6_0vx2c")]
 position = Vector2(468, 502)
+
+[node name="Tree4" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1111, 214)
+
+[node name="Tree5" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1106, 454)
+
+[node name="Tree6" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1098, 703)
+
+[node name="Tree7" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1115, -8)
+
+[node name="Tree8" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1273, 89)
+
+[node name="Tree9" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1300, 293)
+
+[node name="Tree10" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1215, 575)
+
+[node name="Tree11" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1390, 437)
+
+[node name="Tree12" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1340, 690)
+
+[node name="Tree13" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1446, 155)
+
+[node name="Tree14" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1340, -92)
+
+[node name="Tree15" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(925, 786)
+
+[node name="Tree16" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1188, 860)
+
+[node name="Tree17" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1472, 582)
+
+[node name="Tree18" parent="." instance=ExtResource("1_xqpa0")]
+position = Vector2(1380, 836)

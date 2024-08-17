@@ -62,3 +62,6 @@ sprite_frames = SubResource("SpriteFrames_3s4s2")
 
 [node name="ShootingPoint" parent="PivotPoint/Sprite" index="0"]
 position = Vector2(16, -2.66667)
+
+[node name="ShellEjectPoint" parent="PivotPoint/Sprite" index="1"]
+position = Vector2(-7, -2)
