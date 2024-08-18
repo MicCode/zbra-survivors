@@ -10,12 +10,12 @@ enum MarkerColors {
 	GREEN,
 	RED
 }
-enum XDirections {
+enum XDir {
 	RIGHT,
 	CENTER_X,
 	LEFT
 }
-enum YDirections {
+enum YDir {
 	TOP,
 	CENTER_Y,
 	BOTTOM
@@ -41,54 +41,49 @@ func update_maker_location():
 	var ctrans = get_canvas_transform()
 	var view_size = get_viewport_rect().size / ctrans.get_scale()
 	
-	var bottom_left = (-ctrans.get_origin() / ctrans.get_scale())
+	var bottom_left = -ctrans.get_origin() / ctrans.get_scale()
 	var top_right = bottom_left + view_size
 	
 	var x = global_position.x
 	var y = global_position.y
 	
 	var marker_x = 0.0
-	var x_direction: XDirections
-	var y_direction: YDirections
+	var x_direction: XDir
+	var y_direction: YDir
 	
 	if x < bottom_left.x + MARKER_PADDING:
 		marker_x = bottom_left.x + MARKER_PADDING
-		x_direction = XDirections.LEFT
+		x_direction = XDir.LEFT
 	elif x > top_right.x - MARKER_PADDING:
 		marker_x = top_right.x - MARKER_PADDING
-		x_direction = XDirections.RIGHT
+		x_direction = XDir.RIGHT
 	else:
 		marker_x = x
-		x_direction = XDirections.CENTER_X
+		x_direction = XDir.CENTER_X
 		
 	var marker_y = 0.0
 	if y < bottom_left.y + MARKER_PADDING:
 		marker_y = bottom_left.y + MARKER_PADDING
-		y_direction = YDirections.TOP
+		y_direction = YDir.TOP
 	elif y > top_right.y - MARKER_PADDING:
 		marker_y = top_right.y - MARKER_PADDING
-		y_direction = YDirections.BOTTOM
+		y_direction = YDir.BOTTOM
 	else:
 		marker_y = y
-		y_direction = YDirections.CENTER_Y
+		y_direction = YDir.CENTER_Y
 	
 	%LocationMarker.global_position = Vector2(marker_x, marker_y)
 	%LocationMarker.global_rotation = get_directional_rotation(x_direction, y_direction)
 
-func get_directional_rotation(x_direction: XDirections, y_direction: YDirections) -> float:
-	match x_direction:
-		XDirections.LEFT:
-			match y_direction:
-				YDirections.TOP: return deg_to_rad(-45.0)
-				YDirections.BOTTOM: return deg_to_rad(-135.0)
-				_: return deg_to_rad(-90.0)
-		XDirections.RIGHT:
-			match y_direction:
-				YDirections.TOP: return deg_to_rad(45.0)
-				YDirections.BOTTOM: return deg_to_rad(135.0)
-				_: return deg_to_rad(90.0)
-		_:
-			match y_direction:
-				YDirections.TOP: return deg_to_rad(0.0)
-				YDirections.BOTTOM: return deg_to_rad(180.0)
-				_: return deg_to_rad(0.0)
+func get_directional_rotation(x_direction: XDir, y_direction: YDir) -> float:
+	if x_direction == XDir.CENTER_X:
+		match y_direction:
+			YDir.TOP: return deg_to_rad(0.0)
+			YDir.BOTTOM: return deg_to_rad(180.0)
+			_: return deg_to_rad(0.0)
+	else:
+		var flip = 1 if x_direction == XDir.RIGHT else -1
+		match y_direction:
+			YDir.TOP: return deg_to_rad(45.0 * flip)
+			YDir.BOTTOM: return deg_to_rad(135.0 * flip)
+			_: return deg_to_rad(90.0 * flip)

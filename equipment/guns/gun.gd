@@ -72,9 +72,9 @@ func eject_shell():
 	shell.start_animation()
 
 func start_cooldown_timer():
-	%CooldownProgress.max_value = gun_info.fire_cooldown_s
-	%CooldownProgress.value = gun_info.fire_cooldown_s
-	%CooldownTimer.start(gun_info.fire_cooldown_s)
+	%CooldownProgress.max_value = 1 / gun_info.shots_per_s
+	%CooldownProgress.value = 1 / gun_info.shots_per_s
+	%CooldownTimer.start(1 / gun_info.shots_per_s)
 	cooling_down = true
 
 func _on_sprite_animation_finished():
