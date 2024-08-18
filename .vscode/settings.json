@@ -1,4 +1,7 @@
 {
   "godotTools.editorPath.godot4": "e:\\SteamLibrary\\steamapps\\common\\Godot Engine\\godot.windows.opt.tools.64.exe",
-  "editor.detectIndentation": true
+  "editor.detectIndentation": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.indentSize": "tabSize"
 }

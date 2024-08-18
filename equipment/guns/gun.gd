@@ -10,7 +10,7 @@ func _ready():
 
 func _process(_delta):
 	%CooldownProgress.value = %CooldownTimer.time_left
-	target_mouse()
+	move_target()
 	if Input.is_action_pressed("fire"):
 		shoot()
 
@@ -24,8 +24,14 @@ func _physics_process(_delta):
 			flipped = false
 			%Sprite.scale = Vector2(1, 1)
 
-func target_mouse():
-	look_at(get_global_mouse_position())
+func move_target():
+	var joypads = Input.get_connected_joypads()
+	if joypads.size() > 0:
+		var joystick_direction = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+		var look_point = global_position + joystick_direction
+		look_at(look_point)
+	else:
+		look_at(get_global_mouse_position())
 
 func shoot():
 	if !cooling_down:
