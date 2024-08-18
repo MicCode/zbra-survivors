@@ -55,6 +55,7 @@ position = Vector2(8, -3)
 
 [node name="Crosshair" type="Sprite2D" parent="PivotPoint/Sprite/ShootingPoint"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(40, 0)
 texture = ExtResource("5_0c04k")
 

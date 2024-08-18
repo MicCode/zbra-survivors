@@ -11,7 +11,7 @@ func _ready() -> void:
 	%Score.text = str(GameState.score)
 	GameState.score_changed.connect(_on_score_changed)
 	GameState.player_state_changed.connect(_on_player_state_changed)
-	_on_player_state_changed(GameState.player)
+	_on_player_state_changed(GameState.player_state)
 
 func _on_score_changed(new_score: int):
 	%Score.text = str(new_score)
@@ -31,13 +31,15 @@ func _on_player_state_changed(player_state: PlayerState):
 		for heart in hearts:
 			heart.queue_free()
 			
-		var offset = 0
+		var x_position_offset = 0
 		for i in range(0, player_max_health, 1):
 			var new_heart = preload("res://ui/Heart.tscn").instantiate()
-			new_heart.position.x = HEARTS_START_X + offset
+			new_heart.position.x = HEARTS_START_X + x_position_offset
 			new_heart.position.y = HEARTS_START_Y
 			%Hearts.add_child(new_heart)
 			if i > player_health - 1:
 				new_heart.play("off")
-			offset += PIXELS_BETWEEN_HEARTS
-	
+			x_position_offset += PIXELS_BETWEEN_HEARTS
+
+	%XpBar.max_value = player_state.next_level_xp
+	%XpBar.value = player_state.xp

@@ -1,19 +1,37 @@
 extends Node
+const ENNEMIES_PATH = "res://ennemies/"
 
-func spawn() -> Ennemy:
-	var rnd = randi_range(0, 1)
-	match rnd:
-		0: 
-			return preload("res://ennemies/mob_1/mob_1.tscn").instantiate()
-		1: 
-			return preload("res://ennemies/mob_2/mob_2.tscn").instantiate()
+const MOB_1 = "mob_1"
+const MOB_2 = "mob_2"
 
-	return null
+var ennemies_catalog = {
+	MOB_1: EnnemyInfo.new()
+		.with_name(MOB_1)
+		.with_max_health(3.0)
+		.with_speed(200.0)
+		.with_xp_value(1.0),
 
-func get_ennemy_stats(ennemy: Ennemy) -> EnnemyStats:
+	MOB_2: EnnemyInfo.new()
+		.with_name(MOB_2)
+		.with_max_health(4.0)
+		.with_speed(175.0)
+		.with_xp_value(1.5),
+}
+
+func spawn_random() -> Ennemy:
+	var ennemy_name = ennemies_catalog.keys()[randi_range(0, ennemies_catalog.size() - 1)]
+	return load(_get_ennemy_path(ennemy_name) + ".tscn").instantiate()
+
+func get_info(ennemy: Ennemy) -> EnnemyInfo:
+	return ennemies_catalog[_get_ennemy_name(ennemy)]
+
+func _get_ennemy_name(ennemy: Ennemy) -> String:
 	if ennemy is Mob1:
-		return EnnemyStats.create(3.0, 200.0)
+		return MOB_1
 	elif ennemy is Mob2:
-		return EnnemyStats.create(4.0, 175.0)
+		return MOB_2
 	else:
-		return EnnemyStats.create(1.0, 200.0)
+		return "cannot find ennemy name"
+
+func _get_ennemy_path(ennemy_name: String) -> String:
+	return ENNEMIES_PATH + ennemy_name + "/" + ennemy_name

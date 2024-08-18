@@ -7,6 +7,8 @@ var gun_info: GunInfo
 
 func _ready():
 	gun_info = EquipmentService.get_gun_info(self)
+	if Input.get_connected_joypads().size() > 0:
+		%Crosshair.show()
 
 func _process(_delta):
 	%CooldownProgress.value = %CooldownTimer.time_left

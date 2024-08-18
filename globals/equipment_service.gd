@@ -2,23 +2,27 @@ extends Node
 const EQUIPMENT_PATH = "res://equipment/"
 const GUNS_PATH = "guns/"
 
+const PISTOL = "pistol"
+const RIFLE = "rifle"
+const SHOTGUN = "shotgun"
+
 var guns_catalog = {
-	"pistol": GunInfo.new()
-		.with_name("pistol")
+	PISTOL: GunInfo.new()
+		.with_name(PISTOL)
 		.with_bullet_damage(2.0)
 		.with_bullet_speed(1500)
 		.with_shots_per_s(1)
 		.with_bang_pitch_shift(-0.2),
 
-	"rifle": GunInfo.new()
-		.with_name("rifle")
+	RIFLE: GunInfo.new()
+		.with_name(RIFLE)
 		.with_bullet_damage(0.25)
 		.with_bullet_speed(2000)
 		.with_shots_per_s(10)
 		.with_bullets_spread_angle_deg(15),
 
-	"shotgun": GunInfo.new()
-		.with_name("shotgun")
+	SHOTGUN: GunInfo.new()
+		.with_name(SHOTGUN)
 		.with_bullet_damage(0.5)
 		.with_bullet_speed(1000)
 		.with_shots_per_s(0.8)
@@ -35,11 +39,11 @@ func to_equipment(collectible: CollectibleItem) -> EquipmentItem:
 	if collectible is GunCollectible:
 		var gun_name: String
 		if collectible is PistolCollectible:
-			gun_name = "pistol"
+			gun_name = PISTOL
 		elif collectible is RifleCollectible:
-			gun_name = "rifle"
+			gun_name = RIFLE
 		elif collectible is ShotgunCollectible:
-			gun_name = "shotgun"
+			gun_name = SHOTGUN
 		return load(_get_gun_path(gun_name) + ".tscn").instantiate()
 	return null
 
@@ -58,11 +62,11 @@ func get_gun_projectile(gun: Gun) -> GunProjectile:
 
 func _get_gun_name(gun: Gun) -> String:
 	if gun is Pistol:
-		return "pistol"
+		return PISTOL
 	elif gun is Rifle:
-		return "rifle"
+		return RIFLE
 	elif gun is Shotgun:
-		return "shotgun"
+		return SHOTGUN
 	else:
 		return "cannot find gun name"
 

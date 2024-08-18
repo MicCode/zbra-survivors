@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name Player
+
 signal health_depleted
 
 const DAMAGE_RATE = 50.0
@@ -11,27 +13,30 @@ var just_hurt = false
 
 func _ready():
 	init_health()
+	GameState.register_player_instance(self)
+	GameState.player_state_changed.connect(_on_player_state_changed)
 	
 func _physics_process(delta):
-	if GameState.player.is_alive:
+	if GameState.player_state.is_alive:
 		move()
 		check_for_ennemies(delta)
 		check_for_collectibles()
 		update_dash_gauge()
+		collect_xp()
 
 func move():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var h_direction = Input.get_axis("move_left", "move_right")
-	if GameState.player.can_dash && Input.is_action_pressed("dash"):
+	if GameState.player_state.can_dash && Input.is_action_pressed("dash"):
 		start_dashing()
 	
 	if h_direction != 0:
 		%Sprite.flip_h = (h_direction != 1)
 	
-	if !GameState.player.is_dashing:
-		velocity = direction * GameState.player.move_speed
+	if !GameState.player_state.is_dashing:
+		velocity = direction * GameState.player_state.move_speed
 	else:
-		velocity = direction * GameState.player.move_speed * GameState.player.dash_speed_multiplier
+		velocity = direction * GameState.player_state.move_speed * GameState.player_state.dash_speed_multiplier
 
 	move_and_slide()
 	if !just_hurt:
@@ -42,17 +47,17 @@ func move():
 
 func start_dashing():
 	%DashSound.play()
-	%DashTimer.start(GameState.player.dash_duration_s)
-	%DashCooldownTimer.start(GameState.player.dash_cooldown_s)
-	GameState.player.is_dashing = true
-	GameState.player.can_dash = false
+	%DashTimer.start(GameState.player_state.dash_duration_s)
+	%DashCooldownTimer.start(GameState.player_state.dash_cooldown_s)
+	GameState.player_state.is_dashing = true
+	GameState.player_state.can_dash = false
 	set_invincible(true)
 	GameState.emit_player_change()
 
 func update_dash_gauge():
-	var gauge_value = floor((1 - (%DashCooldownTimer.time_left / GameState.player.dash_cooldown_s)) * 5)
-	if gauge_value != GameState.player.dash_gauge_value:
-		GameState.player.dash_gauge_value = gauge_value
+	var gauge_value = floor((1 - (%DashCooldownTimer.time_left / GameState.player_state.dash_cooldown_s)) * 5)
+	if gauge_value != GameState.player_state.dash_gauge_value:
+		GameState.player_state.dash_gauge_value = gauge_value
 		GameState.emit_player_change()
 
 func check_for_ennemies(_delta):
@@ -61,15 +66,15 @@ func check_for_ennemies(_delta):
 		take_damage()
 
 func take_damage():
-	GameState.player.health -= 1
-	%Health.current_health = GameState.player.health
+	GameState.player_state.health -= 1
+	%Health.current_health = GameState.player_state.health
 	GameState.emit_player_change()
 	can_be_damaged = false
-	%DamageTimer.start(GameState.player.damage_cooldown_s)
+	%DamageTimer.start(GameState.player_state.damage_cooldown_s)
 	%Sprite.play("hurt")
 	just_hurt = true
 	
-	if GameState.player.health <= 0:
+	if GameState.player_state.health <= 0:
 		die()
 
 func check_for_collectibles():
@@ -78,6 +83,12 @@ func check_for_collectibles():
 		for collectible in overlapping_collectibles:
 			if collectible is GunCollectible:
 				equip_gun(collectible)
+				
+func collect_xp():
+	var overlapping_xp = %XpCollectRadius.get_overlapping_bodies()
+	for xp in overlapping_xp:
+		if xp is XpDrop && !xp.chase_player:
+			xp.chase_player = true
 
 func equip_gun(collectible: CollectibleItem):
 	if is_pickup_blocked:
@@ -97,13 +108,13 @@ func equip_gun(collectible: CollectibleItem):
 
 
 func init_health():
-	%Health.max_health = GameState.player.max_health
-	%Health.current_health = GameState.player.health
+	%Health.max_health = GameState.player_state.max_health
+	%Health.current_health = GameState.player_state.health
 
 	
 func die():
 	health_depleted.emit()
-	GameState.player.is_alive = false
+	GameState.player_state.is_alive = false
 	GameState.emit_player_change()
 	if equiped_gun != null:
 		equiped_gun.queue_free()
@@ -119,14 +130,14 @@ func _on_pick_up_timer_timeout():
 
 
 func _on_dash_cooldown_timer_timeout() -> void:
-	if !GameState.player.can_dash:
-		GameState.player.can_dash = true
+	if !GameState.player_state.can_dash:
+		GameState.player_state.can_dash = true
 		%DashReadySound.play()
 		GameState.emit_player_change()
 
 func _on_dash_timer_timeout() -> void:
-	if GameState.player.is_dashing:
-		GameState.player.is_dashing = false
+	if GameState.player_state.is_dashing:
+		GameState.player_state.is_dashing = false
 		set_invincible(false)
 		GameState.emit_player_change()
 
@@ -145,3 +156,6 @@ func _on_sprite_animation_finished() -> void:
 	if just_hurt:
 		just_hurt = false
 		%Sprite.play("idle")
+
+func _on_player_state_changed() -> void:
+	%XpCollectShape.shape.radius = GameState.player_state.xp_collect_radius

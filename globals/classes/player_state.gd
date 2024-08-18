@@ -6,6 +6,12 @@ var is_alive = true
 var max_health: int = 5
 var health: int = 5
 
+# === XP ===
+var xp: float = 0.0
+var xp_collect_radius: float = 100.0
+var level: int = 1
+var next_level_xp: float = 10.0
+
 # === MOVEMENTS ===
 var move_speed: float = 300.0
 

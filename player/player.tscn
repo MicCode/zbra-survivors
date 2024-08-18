@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=22 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
@@ -91,6 +91,9 @@ radius = 23.5053
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
 radius = 35.5035
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_12tvn"]
+radius = 100.0
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 collision_mask = 7
@@ -139,6 +142,17 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectRadius"]
 shape = SubResource("CircleShape2D_4lpg2")
 debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)
+
+[node name="XpCollectRadius" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 0, 1)
+collision_layer = 0
+collision_mask = 32
+
+[node name="XpCollectShape" type="CollisionShape2D" parent="XpCollectRadius"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_12tvn")
 
 [node name="PickUpTimer" type="Timer" parent="."]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=7 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" path="res://ui/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/dash_gauge.tscn" id="2_3a147"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ovb57"]
 line_spacing = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huejc"]
+bg_color = Color(0.6, 0.6, 0.6, 0.180392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7xiq"]
+bg_color = Color(0.843137, 0.721569, 0, 1)
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_70thh")
@@ -44,3 +50,23 @@ offset_bottom = 23.0
 scale = Vector2(2.65466, 2.65466)
 text = "12345"
 label_settings = SubResource("LabelSettings_ovb57")
+
+[node name="XpBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -767.0
+offset_top = -24.0
+offset_right = -591.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4.27974, 3.47579)
+theme_override_styles/background = SubResource("StyleBoxFlat_huejc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u7xiq")
+max_value = 10.0
+step = 1.0
+show_percentage = false

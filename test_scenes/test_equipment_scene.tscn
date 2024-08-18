@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=8 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" path="res://test_scenes/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://environment/tree.tscn" id="1_xqpa0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://equipment/guns/pistol/pistol_collectible.tscn" id="3_lpvee"]
 [ext_resource type="PackedScene" uid="uid://n8mqdn0tb65" path="res://equipment/guns/rifle/rifle_collectible.tscn" id="4_l68rk"]
 [ext_resource type="PackedScene" uid="uid://upsgg7tvmfqf" path="res://equipment/guns/shotgun/shotgun_collectible.tscn" id="6_0vx2c"]
+[ext_resource type="PackedScene" uid="uid://ceuyqoivr7ngj" path="res://player/xp_drop.tscn" id="7_b7b57"]
 
 [node name="TreeTestScene" type="Node2D"]
 script = ExtResource("1_sutrr")
@@ -75,3 +76,18 @@ position = Vector2(1472, 582)
 
 [node name="Tree18" parent="." instance=ExtResource("1_xqpa0")]
 position = Vector2(1380, 836)
+
+[node name="XpDrop" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(956, 615)
+
+[node name="XpDrop2" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(1223, 179)
+
+[node name="XpDrop3" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(1006, -33)
+
+[node name="XpDrop4" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(1372, 470)
+
+[node name="XpDrop5" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(1136, 291)
