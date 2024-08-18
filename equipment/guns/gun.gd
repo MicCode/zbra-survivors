@@ -32,6 +32,7 @@ func move_target():
 		look_at(look_point)
 	else:
 		look_at(get_global_mouse_position())
+	%Crosshair.global_rotation = 0.0
 
 func shoot():
 	if !cooling_down:

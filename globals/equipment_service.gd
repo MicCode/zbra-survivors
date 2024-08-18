@@ -14,7 +14,7 @@ var guns_catalog = {
 		.with_name("rifle")
 		.with_bullet_damage(0.25)
 		.with_bullet_speed(2000)
-		.with_shots_per_s(5)
+		.with_shots_per_s(10)
 		.with_bullets_spread_angle_deg(15),
 
 	"shotgun": GunInfo.new()
