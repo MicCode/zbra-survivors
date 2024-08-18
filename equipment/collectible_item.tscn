@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpqk78rbe30jr"]
+[gd_scene load_steps=7 format=3 uid="uid://dpqk78rbe30jr"]
 
 [ext_resource type="Script" path="res://equipment/collectible_item.gd" id="1_pakd1"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_l5uqt"]
+[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/location_marker.tscn" id="3_1l5bh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qasv"]
 radius = 16.0
@@ -67,3 +68,5 @@ modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(0.5, 10.5)
 scale = Vector2(1.21875, 0.75)
 texture = ExtResource("2_l5uqt")
+
+[node name="LocationMarker" parent="." instance=ExtResource("3_1l5bh")]

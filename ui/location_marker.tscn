@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dde4kdtsev4lf"]
+
+[ext_resource type="Script" path="res://ui/location_marker.gd" id="1_l32qi"]
+[ext_resource type="Texture2D" uid="uid://bbjtcm8fgwkmw" path="res://sprites/arrow-blue.png" id="1_ubs04"]
+
+[node name="LocationMarker" type="Node2D"]
+position = Vector2(0, 22)
+script = ExtResource("1_l32qi")
+
+[node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.443137)
+position = Vector2(0, -22)
+
+[node name="LocationMarker" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("1_ubs04")

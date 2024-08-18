@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ci36jx3vvoocj"]
+[gd_scene load_steps=17 format=3 uid="uid://ci36jx3vvoocj"]
 
 [ext_resource type="Script" path="res://ennemies/ennemy.gd" id="1_qdj7r"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hl8ed"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/health_bar.tscn" id="6_o0wmw"]
 [ext_resource type="AudioStream" uid="uid://l15ytlqmk1ww" path="res://sounds/hit.wav" id="7_idycx"]
 [ext_resource type="AudioStream" uid="uid://dwl6iltdmm7be" path="res://sounds/meow.mp3" id="8_mtw3n"]
+[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/location_marker.tscn" id="9_elh1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45qg2"]
 atlas = ExtResource("3_qem7r")
@@ -115,6 +116,12 @@ unique_name_in_owner = true
 stream = ExtResource("8_mtw3n")
 volume_db = 15.0
 pitch_scale = 0.8
+
+[node name="LocationMarker" parent="." instance=ExtResource("9_elh1f")]
+position = Vector2(0, 5.5)
+color = 2
+opacity = 0.5
+sprite_scale = 0.75
 
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
