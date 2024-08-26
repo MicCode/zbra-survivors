@@ -27,6 +27,16 @@ GameState="*res://globals/game_state.gd"
 
 window/stretch/mode="canvas_items"
 
+[file_customization]
+
+folder_colors={
+"res://ennemies/": "red",
+"res://equipment/": "yellow",
+"res://player/": "purple",
+"res://sounds/": "blue",
+"res://ui/": "green"
+}
+
 [input]
 
 move_left={

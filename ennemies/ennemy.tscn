@@ -110,12 +110,14 @@ unique_name_in_owner = true
 position = Vector2(0, -8)
 stream = ExtResource("7_idycx")
 volume_db = -5.0
+bus = &"Effects"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_mtw3n")
 volume_db = 15.0
 pitch_scale = 0.8
+bus = &"Effects"
 
 [node name="LocationMarker" parent="." instance=ExtResource("9_elh1f")]
 position = Vector2(0, 5.5)

@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready():
 	%MobSpawnTimer.wait_time = GameState.spawn_time_s
+	%BackMusicPlayer.play()
 
 func spawn_ennemy():
 	var new_ennemy = EnnemiesService.spawn_random()
@@ -22,4 +23,5 @@ func _on_ennemy_death(ennemy: Ennemy):
 
 func _on_player_health_depleted():
 	%GameOver.show()
+	%GameOverSound.play()
 	get_tree().paused = true

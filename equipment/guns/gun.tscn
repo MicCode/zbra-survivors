@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdr8rck7r5wts"]
+[gd_scene load_steps=10 format=3 uid="uid://cdr8rck7r5wts"]
 
 [ext_resource type="Script" path="res://equipment/guns/gun.gd" id="1_wwnuv"]
 [ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://sprites/items/gun-firing.png" id="2_aj33k"]
 [ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/items/gun.png" id="3_0sfdt"]
 [ext_resource type="AudioStream" uid="uid://bj4sa5fvnssia" path="res://sounds/shoot.wav" id="4_fv3jv"]
 [ext_resource type="Texture2D" uid="uid://dofuk7jiind1d" path="res://sprites/items/crosshair.png" id="5_0c04k"]
+[ext_resource type="AudioStream" uid="uid://doknagn7n2ebr" path="res://sounds/reload.wav" id="6_bme8e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6oin"]
 atlas = ExtResource("2_aj33k")
@@ -86,6 +87,15 @@ unique_name_in_owner = true
 position = Vector2(43, -7)
 stream = ExtResource("4_fv3jv")
 volume_db = -5.0
+bus = &"Effects"
+
+[node name="EquipSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_bme8e")
+volume_db = 8.0
+pitch_scale = 0.8
+autoplay = true
+bus = &"Effects"
 
 [connection signal="animation_finished" from="PivotPoint/Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=23 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/health_bar.tscn" id="5_yybqa"]
 [ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://sounds/lazercannon.mp3" id="6_yhd2o"]
 [ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]
+[ext_resource type="AudioStream" uid="uid://qen7gpw0psw8" path="res://sounds/ouch.wav" id="10_2qr18"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
 atlas = ExtResource("3_2bqqa")
@@ -175,12 +176,21 @@ unique_name_in_owner = true
 stream = ExtResource("6_yhd2o")
 volume_db = -15.928
 pitch_scale = 2.0
+bus = &"Effects"
 
 [node name="DashReadySound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_ngsqq")
 volume_db = -24.36
 pitch_scale = 2.8
+bus = &"Effects"
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_2qr18")
+volume_db = -7.222
+pitch_scale = 1.68
+bus = &"Effects"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="timeout" from="PickUpTimer" to="." method="_on_pick_up_timer_timeout"]

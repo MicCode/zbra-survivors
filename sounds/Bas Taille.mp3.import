@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0avsi7j03wsb"
+path="res://.godot/imported/Bas Taille.mp3-72b61d31c3e3c9cf12b2e1b16c3d5e57.mp3str"
+
+[deps]
+
+source_file="res://sounds/Bas Taille.mp3"
+dest_files=["res://.godot/imported/Bas Taille.mp3-72b61d31c3e3c9cf12b2e1b16c3d5e57.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

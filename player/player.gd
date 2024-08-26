@@ -72,6 +72,7 @@ func take_damage():
 	can_be_damaged = false
 	%DamageTimer.start(GameState.player_state.damage_cooldown_s)
 	%Sprite.play("hurt")
+	%HitSound.play()
 	just_hurt = true
 	
 	if GameState.player_state.health <= 0:
