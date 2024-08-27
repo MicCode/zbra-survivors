@@ -1,4 +1,7 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://d17t22jgiq30a"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://d17t22jgiq30a"]
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_xhsvq"]
+resource_name = "Limiter"
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_5hcra"]
 resource_name = "Reverb"
@@ -7,17 +10,19 @@ wet = 0.05
 
 [resource]
 bus/0/volume_db = 0.0694828
+bus/0/effect/0/effect = SubResource("AudioEffectLimiter_xhsvq")
+bus/0/effect/0/enabled = true
 bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -15.1981
+bus/1/volume_db = 0.0672607
 bus/1/send = &"Master"
 bus/2/name = &"Effects"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 3.44026
+bus/2/volume_db = -0.328256
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectReverb_5hcra")
 bus/2/effect/0/enabled = true

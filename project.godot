@@ -22,6 +22,7 @@ config/icon="res://sprites/ennemies/mob-1-dead.png"
 EnnemiesService="*res://globals/ennemies_service.gd"
 EquipmentService="*res://globals/equipment_service.gd"
 GameState="*res://globals/game_state.gd"
+GameSettings="*res://globals/game_settings.gd"
 
 [display]
 
@@ -32,6 +33,7 @@ window/stretch/mode="canvas_items"
 folder_colors={
 "res://ennemies/": "red",
 "res://equipment/": "yellow",
+"res://globals/": "gray",
 "res://player/": "purple",
 "res://sounds/": "blue",
 "res://ui/": "green"
