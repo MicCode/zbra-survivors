@@ -8,7 +8,7 @@ var fire_range = 2000.0
 
 var bang_pitch_shift = 0.0
 
-var bullet_damage: float = 1.0
+var bullet_damage: int = 10
 var bullets_per_shot: int = 1
 var bullets_spread_angle_deg: int = 0
 var bullet_speed: int = 200
@@ -25,7 +25,7 @@ func with_bullets_per_shot(_bullets_per_shot: int) -> GunInfo:
 	bullets_per_shot = _bullets_per_shot
 	return self
 
-func with_bullet_damage(_bullet_damage: float) -> GunInfo:
+func with_bullet_damage(_bullet_damage: int) -> GunInfo:
 	bullet_damage = _bullet_damage
 	return self
 

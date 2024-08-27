@@ -25,12 +25,16 @@ func _physics_process(_delta):
 		move_and_slide()
 		%Sprite.flip_h = !sprite_reversed && direction_to_player.x < 0 || sprite_reversed && direction_to_player.x >= 0
 
-func take_damage(damage: float):
-	%Sprite.play("hurt")
-	if %Health:
-		%Health.take_damage(damage)
-	%HitSound.pitch_scale = randf_range(0.5, 2)
-	%HitSound.play()
+func take_damage(damage: int):
+	if !is_dead:
+		%Sprite.play("hurt")
+		%HitSound.pitch_scale = randf_range(0.5, 2)
+		%HitSound.play()
+		if %Health:
+			%Health.take_damage(damage)
+		var damage_marker = preload("res://ui/DamageIndicator.tscn").instantiate().with_damage(damage)
+		damage_marker.global_position = %DamageAnchor.global_position
+		get_node("/root").get_node("./").add_child(damage_marker)
 
 func _on_animation_finished():
 	if !is_dead:

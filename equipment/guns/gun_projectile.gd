@@ -4,10 +4,10 @@ class_name GunProjectile
 var speed: float = 2000
 var travel_distance: float = 2000
 var is_fire: bool = false
-var damage: float = 1.0
+var damage: int = 10
 var travelled_distance = 0.0
 
-func with_damage(_damage: float) -> GunProjectile:
+func with_damage(_damage: int) -> GunProjectile:
 	damage = _damage
 	return self
 

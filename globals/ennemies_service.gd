@@ -7,13 +7,13 @@ const MOB_2 = "mob_2"
 var ennemies_catalog = {
 	MOB_1: EnnemyInfo.new()
 		.with_name(MOB_1)
-		.with_max_health(3.0)
+		.with_max_health(30)
 		.with_speed(200.0)
 		.with_xp_value(1.0),
 
 	MOB_2: EnnemyInfo.new()
 		.with_name(MOB_2)
-		.with_max_health(4.0)
+		.with_max_health(40)
 		.with_speed(175.0)
 		.with_xp_value(1.5),
 }

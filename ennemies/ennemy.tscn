@@ -139,6 +139,10 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_gicfc")
 debug_color = Color(0.838792, 0.353043, 0.410436, 0.42)
 
+[node name="DamageAnchor" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -49)
+
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
