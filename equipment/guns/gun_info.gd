@@ -4,7 +4,7 @@ class_name GunInfo
 var name = "gun"
 
 var shots_per_s = 1.0
-var fire_range = 200.0
+var fire_range = 2000.0
 
 var bang_pitch_shift = 0.0
 
@@ -13,7 +13,9 @@ var bullets_per_shot: int = 1
 var bullets_spread_angle_deg: int = 0
 var bullet_speed: int = 200
 var bullets_speed_variability: float = 0.0
+
 var eject_cartridges: bool = true
+var inflict_fire: bool = false
 
 func with_name(_name: String) -> GunInfo:
 	name = _name
@@ -53,4 +55,8 @@ func with_bang_pitch_shift(_bang_pitch_shift: float) -> GunInfo:
 
 func with_eject_cartridges(_eject_cartridges: bool) -> GunInfo:
 	eject_cartridges = _eject_cartridges
+	return self
+
+func with_inflict_fire(_inflict_fire: bool) -> GunInfo:
+	inflict_fire = _inflict_fire
 	return self

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci36jx3vvoocj"]
+[gd_scene load_steps=18 format=3 uid="uid://ci36jx3vvoocj"]
 
 [ext_resource type="Script" path="res://ennemies/ennemy.gd" id="1_qdj7r"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hl8ed"]
@@ -69,6 +69,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_a4ja4"]
 radius = 15.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gicfc"]
+radius = 14.5344
+
 [node name="Ennemy" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 collision_layer = 2
@@ -91,6 +94,7 @@ autoplay = "walk"
 frame_progress = 0.0701159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 visible = false
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_a4ja4")
@@ -125,5 +129,16 @@ color = 2
 opacity = 0.5
 sprite_scale = 0.75
 
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_gicfc")
+debug_color = Color(0.838792, 0.353043, 0.410436, 0.42)
+
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

@@ -1,9 +1,9 @@
 extends Area2D
 class_name GunProjectile
 
-@export var speed: float = 2000
-@export var travel_distance: float = 2000
-
+var speed: float = 2000
+var travel_distance: float = 2000
+var is_fire: bool = false
 var damage: float = 1.0
 var travelled_distance = 0.0
 
@@ -14,6 +14,10 @@ func with_damage(_damage: float) -> GunProjectile:
 func with_travel_distance(_travel_distance: float) -> GunProjectile:
 	travel_distance = _travel_distance
 	return self
+
+func with_is_fire(_is_fire: bool) -> GunProjectile:
+	is_fire = _is_fire
+	return self
 	
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
@@ -23,8 +27,6 @@ func _physics_process(delta):
 		queue_free()
 
 func _on_body_entered(body):
-	queue_free()
 	if body is Ennemy:
-		body.take_damage(damage)
-	elif body is EnvTree:
-		body.explode()
+		await get_tree().create_timer(0.01).timeout
+		queue_free()

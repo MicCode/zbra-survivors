@@ -10,39 +10,40 @@ const FLAMETHROWER = "flamethrower"
 var guns_catalog = {
 	PISTOL: GunInfo.new()
 		.with_name(PISTOL)
+		.with_bang_pitch_shift(-0.2)
 		.with_bullet_damage(2.0)
 		.with_bullet_speed(1500)
-		.with_shots_per_s(1)
-		.with_bang_pitch_shift(-0.2),
+		.with_shots_per_s(1),
 
 	RIFLE: GunInfo.new()
 		.with_name(RIFLE)
 		.with_bullet_damage(0.25)
 		.with_bullet_speed(2000)
-		.with_shots_per_s(10)
-		.with_bullets_spread_angle_deg(15),
+		.with_bullets_spread_angle_deg(15)
+		.with_shots_per_s(10),
 
 	SHOTGUN: GunInfo.new()
 		.with_name(SHOTGUN)
+		.with_bang_pitch_shift(-0.5)
 		.with_bullet_damage(0.5)
 		.with_bullet_speed(1000)
-		.with_shots_per_s(0.8)
-		.with_bang_pitch_shift(-0.5)
 		.with_bullets_per_shot(10)
+		.with_bullets_speed_variability(0.25)
 		.with_bullets_spread_angle_deg(90)
-		.with_bullets_speed_variability(0.25),
+		.with_shots_per_s(0.8),
 
 	FLAMETHROWER: GunInfo.new()
 		.with_name(FLAMETHROWER)
+		.with_bang_pitch_shift(-0.8)
 		.with_bullet_damage(0.1)
 		.with_bullet_speed(750)
 		.with_bullets_per_shot(1)
-		.with_bullets_spread_angle_deg(50)
 		.with_bullets_speed_variability(0.5)
-		.with_bang_pitch_shift(-0.8)
+		.with_bullets_spread_angle_deg(50)
+		.with_eject_cartridges(false)
 		.with_fire_range(200)
-		.with_shots_per_s(50)
-		.with_eject_cartridges(false),
+		.with_inflict_fire(true)
+		.with_shots_per_s(50),
 }
 
 func get_gun_info(gun: Gun) -> GunInfo:

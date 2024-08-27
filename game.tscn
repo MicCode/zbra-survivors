@@ -96,7 +96,7 @@ tile_map_data = PackedByteArray("AAD4/wQAAAAAAAAAAQAIAPn/AAAAAAAAAQDO//f/AAAAAAA
 tile_set = SubResource("TileSet_goox5")
 
 [node name="Collectible" parent="." instance=ExtResource("12_7ybou")]
-position = Vector2(825, 517)
+position = Vector2(882, 526)
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

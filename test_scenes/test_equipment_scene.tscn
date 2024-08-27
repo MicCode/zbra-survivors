@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=11 format=4 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" path="res://test_scenes/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://environment/tree.tscn" id="1_xqpa0"]
@@ -7,75 +7,29 @@
 [ext_resource type="PackedScene" uid="uid://n8mqdn0tb65" path="res://equipment/guns/rifle/rifle_collectible.tscn" id="4_l68rk"]
 [ext_resource type="PackedScene" uid="uid://upsgg7tvmfqf" path="res://equipment/guns/shotgun/shotgun_collectible.tscn" id="6_0vx2c"]
 [ext_resource type="PackedScene" uid="uid://ceuyqoivr7ngj" path="res://player/xp_drop.tscn" id="7_b7b57"]
+[ext_resource type="PackedScene" uid="uid://bjac33uc3ygca" path="res://equipment/guns/flamethrower/flamethrower_collectible.tscn" id="8_w10lt"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1fsqm"]
+resource_name = "Trees"
+scenes/1/scene = ExtResource("1_xqpa0")
+
+[sub_resource type="TileSet" id="TileSet_1dht0"]
+sources/0 = SubResource("TileSetScenesCollectionSource_1fsqm")
 
 [node name="TreeTestScene" type="Node2D"]
 script = ExtResource("1_sutrr")
-
-[node name="Tree" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(956, 143)
-
-[node name="Tree2" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(961, 336)
-
-[node name="Tree3" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(954, 548)
 
 [node name="Player" parent="." instance=ExtResource("2_cg6cr")]
 position = Vector2(577, 324)
 
 [node name="BasicGunCollectible" parent="." instance=ExtResource("3_lpvee")]
-position = Vector2(422, 327)
+position = Vector2(334, 219)
 
 [node name="RifleGunCollectible" parent="." instance=ExtResource("4_l68rk")]
-position = Vector2(495, 181)
+position = Vector2(509, 62)
 
 [node name="ShotGunCollectible" parent="." instance=ExtResource("6_0vx2c")]
-position = Vector2(468, 502)
-
-[node name="Tree4" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1111, 214)
-
-[node name="Tree5" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1106, 454)
-
-[node name="Tree6" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1098, 703)
-
-[node name="Tree7" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1115, -8)
-
-[node name="Tree8" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1273, 89)
-
-[node name="Tree9" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1300, 293)
-
-[node name="Tree10" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1215, 575)
-
-[node name="Tree11" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1390, 437)
-
-[node name="Tree12" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1340, 690)
-
-[node name="Tree13" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1446, 155)
-
-[node name="Tree14" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1340, -92)
-
-[node name="Tree15" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(925, 786)
-
-[node name="Tree16" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1188, 860)
-
-[node name="Tree17" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1472, 582)
-
-[node name="Tree18" parent="." instance=ExtResource("1_xqpa0")]
-position = Vector2(1380, 836)
+position = Vector2(492, 571)
 
 [node name="XpDrop" parent="." instance=ExtResource("7_b7b57")]
 position = Vector2(956, 615)
@@ -91,3 +45,12 @@ position = Vector2(1372, 470)
 
 [node name="XpDrop5" parent="." instance=ExtResource("7_b7b57")]
 position = Vector2(1136, 291)
+
+[node name="Collectible" parent="." instance=ExtResource("8_w10lt")]
+position = Vector2(324, 439)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+position = Vector2(2, -2)
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_1dht0")

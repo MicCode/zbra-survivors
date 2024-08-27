@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://fnoy4ifioady"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/gun_projectile.tscn" id="1_ytb8c"]
+[ext_resource type="Script" path="res://equipment/guns/flamethrower/flamethrower_bullet.gd" id="2_8r2ne"]
+[ext_resource type="Texture2D" uid="uid://sptmojautd37" path="res://sprites/items/flame-bullet.png" id="3_10iuj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpikc"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tk6t"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kphpm"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu4k1"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51uw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpikc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tk6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kphpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu4k1")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 20.0
+}]
+
+[node name="GunProjectile" instance=ExtResource("1_ytb8c")]
+script = ExtResource("2_8r2ne")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_51uw1")
+animation = &"flying"
+autoplay = "flying"
+frame_progress = 0.646162

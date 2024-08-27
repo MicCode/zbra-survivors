@@ -47,3 +47,8 @@ func _on_health_depleted():
 
 func _on_death_timer_timeout():
 	queue_free()
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	if area is GunProjectile:
+		take_damage(area.damage)

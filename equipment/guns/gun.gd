@@ -48,7 +48,7 @@ func shoot():
 
 func spawn_bullets():
 	for i in range(0, gun_info.bullets_per_shot):
-		var new_bullet = EquipmentService.get_gun_projectile(self).with_damage(gun_info.bullet_damage).with_travel_distance(gun_info.fire_range)
+		var new_bullet = EquipmentService.get_gun_projectile(self).with_damage(gun_info.bullet_damage).with_travel_distance(gun_info.fire_range).with_is_fire(gun_info.inflict_fire)
 
 		var speed_offset = randf_range(
 			1 - gun_info.bullets_speed_variability,
