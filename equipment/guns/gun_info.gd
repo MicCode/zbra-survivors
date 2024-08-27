@@ -13,6 +13,7 @@ var bullets_per_shot: int = 1
 var bullets_spread_angle_deg: int = 0
 var bullet_speed: int = 200
 var bullets_speed_variability: float = 0.0
+var eject_cartridges: bool = true
 
 func with_name(_name: String) -> GunInfo:
 	name = _name
@@ -48,4 +49,8 @@ func with_fire_range(_fire_range: float) -> GunInfo:
 
 func with_bang_pitch_shift(_bang_pitch_shift: float) -> GunInfo:
 	bang_pitch_shift = _bang_pitch_shift
+	return self
+
+func with_eject_cartridges(_eject_cartridges: bool) -> GunInfo:
+	eject_cartridges = _eject_cartridges
 	return self

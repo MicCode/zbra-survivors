@@ -158,5 +158,5 @@ func _on_sprite_animation_finished() -> void:
 		just_hurt = false
 		%Sprite.play("idle")
 
-func _on_player_state_changed() -> void:
-	%XpCollectShape.shape.radius = GameState.player_state.xp_collect_radius
+func _on_player_state_changed(player_state: PlayerState) -> void:
+	%XpCollectShape.shape.radius = player_state.xp_collect_radius

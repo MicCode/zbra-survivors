@@ -39,7 +39,8 @@ func move_target():
 func shoot():
 	if !cooling_down:
 		spawn_bullets()
-		eject_shell()
+		if EquipmentService.get_gun_info(self).eject_cartridges:
+			eject_cartridge()
 		%Sprite.play("firing")
 		%ShootSound.pitch_scale = randf_range(0.9, 1.05) + gun_info.bang_pitch_shift
 		%ShootSound.play()
@@ -47,7 +48,7 @@ func shoot():
 
 func spawn_bullets():
 	for i in range(0, gun_info.bullets_per_shot):
-		var new_bullet = EquipmentService.get_gun_projectile(self).with_damage(gun_info.bullet_damage)
+		var new_bullet = EquipmentService.get_gun_projectile(self).with_damage(gun_info.bullet_damage).with_travel_distance(gun_info.fire_range)
 
 		var speed_offset = randf_range(
 			1 - gun_info.bullets_speed_variability,
@@ -65,7 +66,7 @@ func spawn_bullets():
 		new_bullet.global_rotation = %ShootingPoint.global_rotation + spread_angle_offset
 		get_node("/root").get_node("./").add_child(new_bullet)
 		
-func eject_shell():
+func eject_cartridge():
 	# TODO make shell configurable to vary between guns
 	var shell = preload("res://equipment/guns/ammo_shell.tscn").instantiate()
 	shell.global_position = %ShellEjectPoint.global_position

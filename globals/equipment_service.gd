@@ -5,6 +5,7 @@ const GUNS_PATH = "guns/"
 const PISTOL = "pistol"
 const RIFLE = "rifle"
 const SHOTGUN = "shotgun"
+const FLAMETHROWER = "flamethrower"
 
 var guns_catalog = {
 	PISTOL: GunInfo.new()
@@ -30,6 +31,18 @@ var guns_catalog = {
 		.with_bullets_per_shot(10)
 		.with_bullets_spread_angle_deg(90)
 		.with_bullets_speed_variability(0.25),
+
+	FLAMETHROWER: GunInfo.new()
+		.with_name(FLAMETHROWER)
+		.with_bullet_damage(0.1)
+		.with_bullet_speed(750)
+		.with_bullets_per_shot(1)
+		.with_bullets_spread_angle_deg(50)
+		.with_bullets_speed_variability(0.5)
+		.with_bang_pitch_shift(-0.8)
+		.with_fire_range(200)
+		.with_shots_per_s(50)
+		.with_eject_cartridges(false),
 }
 
 func get_gun_info(gun: Gun) -> GunInfo:
@@ -44,6 +57,8 @@ func to_equipment(collectible: CollectibleItem) -> EquipmentItem:
 			gun_name = RIFLE
 		elif collectible is ShotgunCollectible:
 			gun_name = SHOTGUN
+		elif collectible is FlamethrowerCollectible:
+			gun_name = FLAMETHROWER
 		return load(_get_gun_path(gun_name) + ".tscn").instantiate()
 	return null
 
@@ -53,9 +68,9 @@ func to_collectible(equipment: EquipmentItem) -> CollectibleItem:
 	return null
 
 func get_gun_projectile(gun: Gun) -> GunProjectile:
-	var projectile = load(_get_gun_path(_get_gun_name(gun)) + "_bullet.tscn").instantiate()
+	var projectile = load(_get_gun_path(_get_gun_name(gun)) + "_bullet.tscn")
 	if projectile:
-		return projectile
+		return projectile.instantiate()
 	else:
 		return load(EQUIPMENT_PATH + GUNS_PATH + "gun_projectile.tscn").instantiate()
 
@@ -67,6 +82,8 @@ func _get_gun_name(gun: Gun) -> String:
 		return RIFLE
 	elif gun is Shotgun:
 		return SHOTGUN
+	elif gun is Flamethrower:
+		return FLAMETHROWER
 	else:
 		return "cannot find gun name"
 

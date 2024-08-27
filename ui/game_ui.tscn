@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 offset_top = -74.0
 offset_right = 1063.0
 grow_vertical = 0
+size_flags_vertical = 4
 
 [node name="DashGauge" parent="HBoxContainer" instance=ExtResource("2_3a147")]
 position = Vector2(45, 29)

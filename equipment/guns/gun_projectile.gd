@@ -10,6 +10,10 @@ var travelled_distance = 0.0
 func with_damage(_damage: float) -> GunProjectile:
 	damage = _damage
 	return self
+
+func with_travel_distance(_travel_distance: float) -> GunProjectile:
+	travel_distance = _travel_distance
+	return self
 	
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
