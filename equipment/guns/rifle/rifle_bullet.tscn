@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfkoyinfbishd"]
 
-[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/gun_projectile.tscn" id="1_0meby"]
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/generic/bullet.tscn" id="1_0meby"]
 [ext_resource type="Texture2D" uid="uid://bgot5v3svfkrv" path="res://sprites/items/rifle-bullet.png" id="2_14nh3"]
 [ext_resource type="Script" path="res://equipment/guns/rifle/rifle_bullet.gd" id="2_x1h8g"]
 

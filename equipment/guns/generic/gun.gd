@@ -48,7 +48,7 @@ func shoot():
 
 func spawn_bullets():
 	for i in range(0, gun_info.bullets_per_shot):
-		var new_bullet = EquipmentService.get_gun_projectile(self).with_damage(gun_info.bullet_damage).with_travel_distance(gun_info.fire_range).with_is_fire(gun_info.inflict_fire)
+		var new_bullet = EquipmentService.get_gun_projectile(self).from(gun_info)
 
 		var speed_offset = randf_range(
 			1 - gun_info.bullets_speed_variability,
@@ -68,7 +68,7 @@ func spawn_bullets():
 		
 func eject_cartridge():
 	# TODO make shell configurable to vary between guns
-	var shell = preload("res://equipment/guns/ammo_shell.tscn").instantiate()
+	var shell = preload("res://equipment/guns/generic/ammo_shell.tscn").instantiate()
 	shell.global_position = %ShellEjectPoint.global_position
 	if flipped:
 		shell.scale = Vector2(-1, 1)

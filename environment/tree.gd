@@ -23,7 +23,7 @@ func _on_sprite_animation_finished():
 func _on_explode_zone_area_entered(body: Node2D) -> void:
 	if !is_destroyed:
 		body.queue_free()
-		if body is GunProjectile:
+		if body is Bullet:
 			if body.is_fire:
 				burn()
 				return

@@ -1,1 +1,1 @@
-extends GunProjectile
+extends Bullet

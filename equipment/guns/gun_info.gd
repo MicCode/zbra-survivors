@@ -16,6 +16,7 @@ var bullets_speed_variability: float = 0.0
 
 var eject_cartridges: bool = true
 var inflict_fire: bool = false
+var pierce_count: int = 0
 
 func with_name(_name: String) -> GunInfo:
 	name = _name
@@ -59,4 +60,8 @@ func with_eject_cartridges(_eject_cartridges: bool) -> GunInfo:
 
 func with_inflict_fire(_inflict_fire: bool) -> GunInfo:
 	inflict_fire = _inflict_fire
+	return self
+
+func with_pierce_count(_pierce_count: int) -> GunInfo:
+	pierce_count = _pierce_count
 	return self

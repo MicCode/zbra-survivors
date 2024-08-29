@@ -54,5 +54,5 @@ func _on_death_timer_timeout():
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if area is GunProjectile:
+	if area is Bullet:
 		take_damage(area.damage)
