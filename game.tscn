@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=23 format=4 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bwchgfk4bqi5g" path="res://environment/grass3.tscn" id="14_dvbc3"]
 [ext_resource type="PackedScene" uid="uid://bqif8yh3k1bty" path="res://environment/grass4.tscn" id="15_7foxv"]
 [ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://equipment/guns/sniper/sniper_collectible.tscn" id="17_xm7rv"]
+[ext_resource type="PackedScene" uid="uid://ceuyqoivr7ngj" path="res://player/xp_drop.tscn" id="18_u4r3o"]
 
 [sub_resource type="Curve2D" id="Curve2D_rf5nu"]
 _data = {
@@ -113,6 +114,10 @@ position = Vector2(882, 526)
 
 [node name="Collectible2" parent="." instance=ExtResource("17_xm7rv")]
 position = Vector2(641, 37)
+
+[node name="XpDrop" parent="." instance=ExtResource("18_u4r3o")]
+position = Vector2(396, 818)
+xp_value = 10.0
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

@@ -15,6 +15,7 @@ func _ready():
 	init_health()
 	GameState.register_player_instance(self)
 	GameState.player_state_changed.connect(_on_player_state_changed)
+	GameState.player_gained_level.connect(_on_player_level_gained)
 	
 func _physics_process(delta):
 	if GameState.player_state.is_alive:
@@ -112,7 +113,6 @@ func init_health():
 	%Health.max_health = GameState.player_state.max_health
 	%Health.current_health = GameState.player_state.health
 
-	
 func die():
 	health_depleted.emit()
 	GameState.player_state.is_alive = false
@@ -160,3 +160,11 @@ func _on_sprite_animation_finished() -> void:
 
 func _on_player_state_changed(player_state: PlayerState) -> void:
 	%XpCollectShape.shape.radius = player_state.xp_collect_radius
+	
+func _on_player_level_gained(new_level: int):
+	%Effects.show()
+	%Effects.play("lvlup")
+	%LvlUpSound.play()
+
+func _on_effects_animation_finished() -> void:
+	%Effects.hide()

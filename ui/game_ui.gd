@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var player_health: int = 0
 var player_max_health: int = 0
+var player_xp: float = 0.0
 
 const PIXELS_BETWEEN_HEARTS: int = 35
 const HEARTS_START_X: int = 120
@@ -26,6 +27,10 @@ func _on_player_state_changed(player_state: PlayerState):
 		player_health = player_state.health
 		changed = true
 		
+	if player_state.xp != player_xp:
+		player_xp = player_state.xp
+		changed = true
+		
 	if changed:
 		var hearts = %Hearts.get_children()
 		for heart in hearts:
@@ -40,6 +45,8 @@ func _on_player_state_changed(player_state: PlayerState):
 			if i > player_health - 1:
 				new_heart.play("off")
 			x_position_offset += PIXELS_BETWEEN_HEARTS
+			
+		%XpLabel.text = str(player_xp) + "/" + str(player_state.next_level_xp)
 
 	%XpBar.max_value = player_state.next_level_xp
 	%XpBar.value = player_state.xp

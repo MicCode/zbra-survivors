@@ -1,6 +1,7 @@
 extends Node
 signal player_state_changed
 signal score_changed
+signal player_gained_level
 
 
 var player_state: PlayerState
@@ -17,6 +18,13 @@ func increment_score(i: int):
 	
 func gain_xp(xp: float):
 	player_state.xp += xp
+	if player_state.xp >= player_state.next_level_xp:
+		var excess = player_state.xp - player_state.next_level_xp
+		player_state.xp = excess
+		player_state.next_level_xp += player_state.next_level_xp / 4
+		player_state.level += 1 #TODO we should test if excess is still superior to next_level_xp and add more level if necessary
+		player_gained_level.emit(player_state.level)
+		
 	emit_player_change()
 
 func emit_player_change():

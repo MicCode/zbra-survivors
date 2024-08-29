@@ -83,3 +83,7 @@ position = Vector2(-270, 351)
 
 [node name="Ennemy8" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(-336, 345)
+
+[node name="XpDrop6" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(100, 99)
+xp_value = 10.0

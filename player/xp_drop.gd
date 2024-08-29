@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name XpDrop
 
 var chase_player = false
-var xp_value: float = 1.0
+@export var xp_value: float = 1.0
 
 func with_value(_value: float) -> XpDrop:
 	xp_value = _value
@@ -17,3 +17,4 @@ func _physics_process(_delta: float) -> void:
 		if abs((global_position - player_position).length()) < 10:
 			GameState.gain_xp(xp_value)
 			queue_free()
+	
