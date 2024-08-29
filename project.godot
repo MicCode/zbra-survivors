@@ -23,6 +23,7 @@ EnnemiesService="*res://globals/ennemies_service.gd"
 EquipmentService="*res://globals/equipment_service.gd"
 GameState="*res://globals/game_state.gd"
 GameSettings="*res://globals/game_settings.gd"
+Enums="*res://globals/enums.gd"
 
 [display]
 

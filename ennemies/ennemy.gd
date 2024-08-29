@@ -25,7 +25,7 @@ func _physics_process(_delta):
 		move_and_slide()
 		%Sprite.flip_h = !sprite_reversed && direction_to_player.x < 0 || sprite_reversed && direction_to_player.x >= 0
 
-func take_damage(damage: int):
+func take_damage(damage: int, inflict_bleed: bool, hit_position: Vector2):
 	if !is_dead:
 		%Sprite.play("hurt")
 		%HitSound.pitch_scale = randf_range(0.5, 2)
@@ -35,24 +35,41 @@ func take_damage(damage: int):
 		var damage_marker = preload("res://ui/DamageIndicator.tscn").instantiate().with_damage(damage)
 		damage_marker.global_position = %DamageAnchor.global_position
 		get_node("/root").get_node("./").add_child(damage_marker)
+		if inflict_bleed:
+			bleed(hit_position)
+
+func bleed(hit_position: Vector2):
+	var direction: Enums.Orientations
+	if hit_position.x < global_position.x:
+		direction = Enums.Orientations.RIGHT
+	else:
+		direction = Enums.Orientations.LEFT
+	var bleed = preload("res://effects/bleed.tscn").instantiate().at(global_position, direction)
+	get_node("/root").get_node("./").add_child(bleed)
 
 func _on_animation_finished():
 	if !is_dead:
 		%Sprite.play("walk")
 
 func _on_health_depleted():
-	is_dead = true
-	dead.emit(self)
-	%DeathSound.play()
-	%Sprite.play("dead")
-	set_collision_layer_value(2, false)
-	%DeathTimer.start(1.0)
-	remove_child(%Health)
+	if info.can_die:
+		is_dead = true
+		dead.emit(self)
+		%DeathSound.play()
+		%Sprite.play("dead")
+		set_collision_layer_value(2, false)
+		%DeathTimer.start(1.0)
+		remove_child(%Health)
 
 func _on_death_timer_timeout():
-	queue_free()
+	%AnimationPlayer.play("fade_away")
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Bullet:
-		take_damage(area.damage)
+		take_damage(area.damage, !area.is_fire, area.global_position)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fade_away":
+		queue_free()

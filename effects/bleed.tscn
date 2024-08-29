@@ -1,0 +1,166 @@
+[gd_scene load_steps=21 format=3 uid="uid://dtx68anb1bv5m"]
+
+[ext_resource type="Texture2D" uid="uid://csamxdklif5bt" path="res://sprites/effects/blood-drop-side.png" id="1_lj8ph"]
+[ext_resource type="Texture2D" uid="uid://b5ddnwpiqdll2" path="res://sprites/effects/blood-drop-below.png" id="2_tb2wo"]
+[ext_resource type="Script" path="res://effects/bleed.gd" id="2_ttjvm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv44t"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n780w"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg6rk"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl5p8"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pska"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3od7"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gib22"]
+atlas = ExtResource("1_lj8ph")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f825t"]
+atlas = ExtResource("2_tb2wo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8nlk"]
+atlas = ExtResource("2_tb2wo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arso4"]
+atlas = ExtResource("2_tb2wo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_613f8"]
+atlas = ExtResource("2_tb2wo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28shb"]
+atlas = ExtResource("2_tb2wo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyqd3"]
+atlas = ExtResource("2_tb2wo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8c75n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv44t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n780w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg6rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl5p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pska")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3od7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gib22")
+}],
+"loop": false,
+"name": &"horizontal",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f825t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8nlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arso4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_613f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28shb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyqd3")
+}],
+"loop": false,
+"name": &"vertical",
+"speed": 20.0
+}]
+
+[sub_resource type="Animation" id="Animation_f5dvw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8mljp"]
+resource_name = "fade_away"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 2.2974),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.329412), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_op4qh"]
+_data = {
+"RESET": SubResource("Animation_f5dvw"),
+"fade_away": SubResource("Animation_8mljp")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_8c75n")
+animation = &"horizontal"
+autoplay = "horizontal"
+script = ExtResource("2_ttjvm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_op4qh")
+}
+autoplay = "fade_away"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

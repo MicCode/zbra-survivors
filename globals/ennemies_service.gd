@@ -1,10 +1,16 @@
 extends Node
 const ENNEMIES_PATH = "res://ennemies/"
 
+const DUMMY = "dummy"
 const MOB_1 = "mob_1"
 const MOB_2 = "mob_2"
 
 var ennemies_catalog = {
+	DUMMY: EnnemyInfo.new()
+		.with_name(DUMMY)
+		.with_can_die(false)
+		.with_max_health(1_000_000_000),
+	
 	MOB_1: EnnemyInfo.new()
 		.with_name(MOB_1)
 		.with_max_health(30)
@@ -18,15 +24,22 @@ var ennemies_catalog = {
 		.with_xp_value(1.5),
 }
 
+var spawnable_ennemies = [
+	MOB_1,
+	MOB_2,
+]
+
 func spawn_random() -> Ennemy:
-	var ennemy_name = ennemies_catalog.keys()[randi_range(0, ennemies_catalog.size() - 1)]
+	var ennemy_name = spawnable_ennemies[randi_range(0, spawnable_ennemies.size() - 1)]
 	return load(_get_ennemy_path(ennemy_name) + ".tscn").instantiate()
 
 func get_info(ennemy: Ennemy) -> EnnemyInfo:
 	return ennemies_catalog[_get_ennemy_name(ennemy)]
 
 func _get_ennemy_name(ennemy: Ennemy) -> String:
-	if ennemy is Mob1:
+	if ennemy is DummyEnnemy:
+		return DUMMY
+	elif ennemy is Mob1:
 		return MOB_1
 	elif ennemy is Mob2:
 		return MOB_2
