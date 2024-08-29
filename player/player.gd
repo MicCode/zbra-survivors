@@ -161,7 +161,7 @@ func _on_sprite_animation_finished() -> void:
 func _on_player_state_changed(player_state: PlayerState) -> void:
 	%XpCollectShape.shape.radius = player_state.xp_collect_radius
 	
-func _on_player_level_gained(new_level: int):
+func _on_player_level_gained(_new_level: int):
 	%Effects.show()
 	%Effects.play("lvlup")
 	%LvlUpSound.play()

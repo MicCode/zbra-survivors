@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=11 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" path="res://ui/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/dash_gauge.tscn" id="2_3a147"]
@@ -12,6 +12,120 @@ bg_color = Color(0.6, 0.6, 0.6, 0.180392)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7xiq"]
 bg_color = Color(0.843137, 0.721569, 0, 1)
+
+[sub_resource type="Animation" id="Animation_n5s0o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%LevelLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%LevelLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%XpLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%XpLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.811765)]
+}
+
+[sub_resource type="Animation" id="Animation_4wuty"]
+resource_name = "xpgain"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%XpLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%XpLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.811765), Color(1, 0.933333, 0, 0.811765), Color(1, 1, 1, 0.811765)]
+}
+
+[sub_resource type="Animation" id="Animation_upm1x"]
+resource_name = "lvlup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%LevelLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%LevelLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.933333, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2s7m"]
+_data = {
+"RESET": SubResource("Animation_n5s0o"),
+"lvlup": SubResource("Animation_upm1x"),
+"xpgain": SubResource("Animation_4wuty")
+}
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_70thh")
@@ -69,22 +183,49 @@ scale = Vector2(4.27974, 3.47579)
 theme_override_styles/background = SubResource("StyleBoxFlat_huejc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_u7xiq")
 max_value = 10.0
-step = 1.0
+step = 0.1
 show_percentage = false
 
-[node name="XpLabel" type="Label" parent="."]
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="XpLabel" type="Label" parent="Container"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.811765)
-anchors_preset = 3
+layout_mode = 2
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -85.0
-offset_top = -50.0
-offset_right = -14.0
-offset_bottom = -27.0
+offset_left = 1027.0
+offset_top = 557.0
+offset_right = 1098.0
+offset_bottom = 580.0
 grow_horizontal = 0
 grow_vertical = 0
+pivot_offset = Vector2(71, 23)
 text = "123/4567"
 horizontal_alignment = 2
+
+[node name="LevelLabel" type="Label" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 557.0
+offset_right = 429.0
+offset_bottom = 580.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 23)
+text = "Niv. 1"
+
+[node name="XpAnimationPlayer" type="AnimationPlayer" parent="Container"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_a2s7m")
+}
+speed_scale = 2.0
