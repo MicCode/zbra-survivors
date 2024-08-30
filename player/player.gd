@@ -105,6 +105,7 @@ func equip_gun(collectible: CollectibleItem):
 	var new_gun = EquipmentService.to_equipment(collectible)
 	equiped_gun = new_gun
 	add_child(equiped_gun)
+	GameState.change_equipped_gun(equiped_gun)
 	block_pickup()
 	collectible.queue_free()
 

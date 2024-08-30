@@ -2,12 +2,14 @@ extends Node
 signal player_state_changed
 signal score_changed
 signal player_gained_level
+signal equipped_gun_changed
 
 
 var player_state: PlayerState
 var player_instance: Player
 var score: int = 0
 var spawn_time_s: float = 3.0
+var equipped_gun: Gun
 
 func _init() -> void:
 	player_state = PlayerState.new()
@@ -35,3 +37,7 @@ func emit_score_change():
 
 func register_player_instance(_player):
 	player_instance = _player
+
+func change_equipped_gun(_new_gun: Gun):
+	equipped_gun = _new_gun
+	equipped_gun_changed.emit(equipped_gun)

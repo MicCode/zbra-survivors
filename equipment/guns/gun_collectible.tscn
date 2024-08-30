@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvu2hswqayla6"]
+
+[ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_sdufc"]
+[ext_resource type="Script" path="res://equipment/guns/gun_collectible.gd" id="2_afsvs"]
+[ext_resource type="PackedScene" uid="uid://ccgmshd6826dt" path="res://equipment/guns/generic/gun_info_panel.tscn" id="3_mq4n0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uidp6"]
+radius = 56.5022
+
+[node name="GunCollectible" instance=ExtResource("1_sdufc")]
+script = ExtResource("2_afsvs")
+
+[node name="InfoDisplayZone" type="Area2D" parent="." index="0"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfoDisplayZone" index="0"]
+shape = SubResource("CircleShape2D_uidp6")
+debug_color = Color(0, 0.645903, 0.249673, 0.42)
+
+[node name="Sprite" parent="." index="2"]
+z_index = 4095
+
+[node name="GunInfoPanel" parent="." index="6" instance=ExtResource("3_mq4n0")]
+unique_name_in_owner = true
+visible = false
+z_index = 4000
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="body_entered" from="InfoDisplayZone" to="." method="_on_info_display_zone_body_entered"]
+[connection signal="body_exited" from="InfoDisplayZone" to="." method="_on_info_display_zone_body_exited"]
