@@ -7,13 +7,14 @@ signal dead
 @export var is_chasing_player = true
 @export var is_sprite_reversed = false
 
-@onready var player = get_node("/root/Game/Player")
+var player: Player
 var is_dead = false
 var is_burning = false
 var info: EnnemyInfo
 
 func _ready():
 	info = EnnemiesService.get_info(ennemy_name)
+	player = GameState.player_instance
 	%Sprite.connect("animation_finished", _on_animation_finished)
 	%Health.max_health = info.max_health
 	%Health.current_health = info.health
