@@ -45,7 +45,7 @@ func _on_player_state_changed(player_state: PlayerState):
 			
 		var x_position_offset = 0
 		for i in range(0, player_max_health, 1):
-			var new_heart = preload("res://ui/Heart.tscn").instantiate()
+			var new_heart = preload("res://ui/heart.tscn").instantiate()
 			new_heart.position.x = HEARTS_START_X + x_position_offset
 			new_heart.position.y = HEARTS_START_Y
 			%Hearts.add_child(new_heart)

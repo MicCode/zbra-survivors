@@ -52,5 +52,5 @@ func get_diff(a: float, b: float) -> String:
 	else:
 		return ""
 
-func get_dps(gun_info: GunInfo) -> float:
-	return gun_info.bullet_damage * gun_info.bullets_per_shot * gun_info.shots_per_s
+func get_dps(_gun_info: GunInfo) -> float:
+	return _gun_info.bullet_damage * _gun_info.bullets_per_shot * _gun_info.shots_per_s

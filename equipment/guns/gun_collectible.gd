@@ -7,10 +7,10 @@ func _ready() -> void:
 		%GunInfoPanel.init(EquipmentService.get_gun_info(gun))
 
 
-func _on_info_display_zone_body_entered(body: Node2D) -> void:
+func _on_info_display_zone_body_entered(_body: Node2D) -> void:
 	if %GunInfoPanel:
 		%GunInfoPanel.show()
 
-func _on_info_display_zone_body_exited(body: Node2D) -> void:
-	if %GunInfoPanel:
-		%GunInfoPanel.hide()
+func _on_info_display_zone_body_exited(_body: Node2D) -> void:
+	if has_node("GunInfoPanel"):
+		get_node("GunInfoPanel").hide()
