@@ -21,6 +21,7 @@ animations = [{
 
 [node name="GunProjectile" instance=ExtResource("1_pafpe")]
 script = ExtResource("2_x0bmm")
+gun_name = "sniper"
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(2, 0.613333)

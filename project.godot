@@ -22,11 +22,11 @@ config/icon="res://sprites/ennemies/mob-1-dead.png"
 [autoload]
 
 EnnemiesService="*res://globals/ennemies_service.gd"
-EquipmentService="*res://globals/equipment_service.gd"
 GameState="*res://globals/game_state.gd"
 GameSettings="*res://globals/game_settings.gd"
 Enums="*res://globals/enums.gd"
 SceneManager="*res://globals/scene_manager.gd"
+GunService="*res://globals/gun_service.gd"
 
 [display]
 

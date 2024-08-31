@@ -1,12 +1,14 @@
 extends EquipmentItem
 class_name Gun
 
+@export var gun_name: String = "gun"
+
 var flipped = false
 var cooling_down = false
 var gun_info: GunInfo
 
 func _ready():
-	gun_info = EquipmentService.get_gun_info(self)
+	gun_info = GunService.get_info(gun_name)
 	if Input.get_connected_joypads().size() > 0:
 		%Crosshair.show()
 
@@ -39,7 +41,7 @@ func move_target():
 func shoot():
 	if !cooling_down:
 		spawn_bullets()
-		if EquipmentService.get_gun_info(self).eject_cartridges:
+		if gun_info.eject_cartridges:
 			eject_cartridge()
 		%Sprite.play("firing")
 		%ShootSound.pitch_scale = randf_range(0.9, 1.05) + gun_info.bang_pitch_shift
@@ -49,7 +51,7 @@ func shoot():
 
 func spawn_bullets():
 	for i in range(0, gun_info.bullets_per_shot):
-		var new_bullet = EquipmentService.get_gun_projectile(self).from(gun_info)
+		var new_bullet = GunService.create_projectile(gun_name).from(gun_info)
 
 		var speed_offset = randf_range(
 			1 - gun_info.bullets_speed_variability,

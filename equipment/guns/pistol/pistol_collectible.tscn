@@ -6,6 +6,7 @@
 
 [node name="BasicGunCollectible" instance=ExtResource("1_rpajl")]
 script = ExtResource("1_pakd1")
+gun_name = "pistol"
 
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource("1_s2b2s")

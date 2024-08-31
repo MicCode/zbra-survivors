@@ -1,1 +1,1 @@
-extends Bullet
+extends Area2D

@@ -1,10 +1,10 @@
 extends CollectibleItem
 class_name GunCollectible
 
+@export var gun_name: String = "gun"
+
 func _ready() -> void:
-	var gun = EquipmentService.to_equipment(self)
-	if gun != null:
-		%GunInfoPanel.init(EquipmentService.get_gun_info(gun))
+	%GunInfoPanel.init(GunService.get_info(gun_name))
 
 
 func _on_info_display_zone_body_entered(_body: Node2D) -> void:

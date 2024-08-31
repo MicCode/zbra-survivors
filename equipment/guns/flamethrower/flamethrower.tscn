@@ -48,6 +48,7 @@ animations = [{
 
 [node name="Gun" instance=ExtResource("1_dkguj")]
 script = ExtResource("2_lx138")
+gun_name = "flamethrower"
 
 [node name="Sprite" parent="PivotPoint" index="0"]
 sprite_frames = SubResource("SpriteFrames_nj1vh")

@@ -12,7 +12,7 @@ func init(_gun_info: GunInfo):
 	
 
 func _on_equipped_gun_changed(new_gun: Gun):
-	equipped_gun_info = EquipmentService.get_gun_info(new_gun)
+	equipped_gun_info = GunService.get_info(new_gun.gun_name)
 	update_displayed_stats()
 	if equipped_gun_info && gun_info:
 		%GunName.text = gun_info.display_name.to_upper()

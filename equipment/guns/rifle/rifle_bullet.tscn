@@ -17,6 +17,7 @@ animations = [{
 
 [node name="RifleBullet" instance=ExtResource("1_0meby")]
 script = ExtResource("2_x1h8g")
+gun_name = "rifle"
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_qfslt")

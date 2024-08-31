@@ -5,3 +5,4 @@
 
 [node name="PistolBullet" instance=ExtResource("1_52pqe")]
 script = ExtResource("2_ylwr7")
+gun_name = "pistol"

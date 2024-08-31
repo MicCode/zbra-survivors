@@ -1,6 +1,8 @@
 extends Area2D
 class_name Bullet
 
+@export var gun_name: String = "gun"
+
 var speed: float = 2000
 var travel_distance: float = 2000
 var is_fire: bool = false

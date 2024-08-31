@@ -6,6 +6,7 @@
 
 [node name="Collectible" instance=ExtResource("1_tosty")]
 script = ExtResource("2_wnq87")
+gun_name = "sniper"
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="2"]
 texture = ExtResource("3_7ac6p")

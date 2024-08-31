@@ -61,6 +61,7 @@ animations = [{
 
 [node name="Gun" instance=ExtResource("1_sen5n")]
 script = ExtResource("2_doncw")
+gun_name = "sniper"
 
 [node name="Sprite" parent="PivotPoint" index="0"]
 position = Vector2(27, -3)

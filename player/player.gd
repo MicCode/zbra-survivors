@@ -86,7 +86,7 @@ func check_for_collectibles():
 	if overlapping_collectibles.size() > 0 && (Input.is_action_pressed("grab") || !equiped_gun):
 		for collectible in overlapping_collectibles:
 			if collectible is GunCollectible:
-				equip_gun(collectible)
+				equip_gun(collectible as GunCollectible)
 				
 func collect_xp():
 	var overlapping_xp = %XpCollectRadius.get_overlapping_bodies()
@@ -94,17 +94,17 @@ func collect_xp():
 		if xp is XpDrop && !xp.chase_player:
 			xp.chase_player = true
 
-func equip_gun(collectible: CollectibleItem):
+func equip_gun(collectible: GunCollectible):
 	if is_pickup_blocked:
 		return
 
 	if equiped_gun:
-		var collectible_to_drop = EquipmentService.to_collectible(equiped_gun)
+		var collectible_to_drop = GunService.create_collectible(equiped_gun.gun_name)
 		collectible_to_drop.global_position = global_position
 		SceneManager.current_scene.add_child(collectible_to_drop)
 		equiped_gun.queue_free()
 
-	var new_gun = EquipmentService.to_equipment(collectible)
+	var new_gun = GunService.create_gun(collectible.gun_name)
 	equiped_gun = new_gun
 	add_child(equiped_gun)
 	GameState.change_equipped_gun(equiped_gun)

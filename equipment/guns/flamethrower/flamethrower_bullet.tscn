@@ -1,8 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://fnoy4ifioady"]
 
 [ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/bullet.tscn" id="1_ytb8c"]
-[ext_resource type="Script" path="res://equipment/guns/flamethrower/flamethrower_bullet.gd" id="2_8r2ne"]
 [ext_resource type="Texture2D" uid="uid://sptmojautd37" path="res://sprites/items/flame-bullet.png" id="3_10iuj"]
+
+[sub_resource type="GDScript" id="GDScript_x41og"]
+script/source = "extends Bullet
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mpikc"]
 atlas = ExtResource("3_10iuj")
@@ -41,7 +44,8 @@ animations = [{
 }]
 
 [node name="GunProjectile" instance=ExtResource("1_ytb8c")]
-script = ExtResource("2_8r2ne")
+script = SubResource("GDScript_x41og")
+gun_name = "flamethrower"
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_51uw1")

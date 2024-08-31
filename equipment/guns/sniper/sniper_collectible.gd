@@ -1,2 +1,1 @@
 extends GunCollectible
-class_name SniperCollectible

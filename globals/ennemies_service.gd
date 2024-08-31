@@ -1,50 +1,39 @@
 extends Node
 const ENNEMIES_PATH = "res://ennemies/"
 
-const DUMMY = "dummy"
-const MOB_1 = "mob_1"
-const MOB_2 = "mob_2"
-
-var ennemies_catalog = {
-	DUMMY: EnnemyInfo.new()
-		.with_name(DUMMY)
-		.with_can_die(false)
-		.with_max_health(1_000_000_000),
-	
-	MOB_1: EnnemyInfo.new()
-		.with_name(MOB_1)
+var spawnable_ennemies = [
+	EnnemyInfo.new()
+		.with_name("mob_1")
 		.with_max_health(30)
 		.with_speed(200.0)
 		.with_xp_value(1.0),
-
-	MOB_2: EnnemyInfo.new()
-		.with_name(MOB_2)
+	EnnemyInfo.new()
+		.with_name("mob_2")
 		.with_max_health(40)
 		.with_speed(175.0)
 		.with_xp_value(1.5),
-}
-
-var spawnable_ennemies = [
-	MOB_1,
-	MOB_2,
 ]
 
+var all_ennemies = [
+	EnnemyInfo.new()
+		.with_name("dummy")
+		.with_can_die(false)
+		.with_max_health(1_000_000_000),
+] + spawnable_ennemies
+
 func spawn_random() -> Ennemy:
-	var ennemy_name = spawnable_ennemies[randi_range(0, spawnable_ennemies.size() - 1)]
-	return load(_get_ennemy_path(ennemy_name) + ".tscn").instantiate()
+	var random_ennemy = spawnable_ennemies[randi_range(0, spawnable_ennemies.size() - 1)]
+	return load(_get_ennemy_path(random_ennemy.name) + ".tscn").instantiate() # FIXME test if scene exists before trying to instantiate
 
-func get_info(ennemy: Ennemy) -> EnnemyInfo:
-	return ennemies_catalog[_get_ennemy_name(ennemy)]
-
-func _get_ennemy_name(ennemy: Ennemy) -> String:
-	if ennemy is DummyEnnemy:
-		return DUMMY
-	elif ennemy is Mob1:
-		return MOB_1
-	elif ennemy is Mob2:
-		return MOB_2
+func get_info(ennemy_name: String) -> EnnemyInfo:
+	var match = all_ennemies.filter(func(ennemy):
+		return ennemy.name == ennemy_name
+	)
+	if match.size() > 0:
+		return match[0]
 	else:
-		return "cannot find ennemy name"
+		#TODO log error ?
+		return null
 
 func _get_ennemy_path(ennemy_name: String) -> String:
 	return ENNEMIES_PATH + ennemy_name + "/" + ennemy_name

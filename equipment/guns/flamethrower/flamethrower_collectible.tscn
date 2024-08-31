@@ -6,6 +6,7 @@
 
 [node name="FlamethrowerCollectible" instance=ExtResource("1_mjqcg")]
 script = ExtResource("2_nbong")
+gun_name = "flamethrower"
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="2"]
 texture = ExtResource("3_u2of1")

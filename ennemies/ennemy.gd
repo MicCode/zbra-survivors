@@ -3,16 +3,17 @@ class_name Ennemy
 
 signal dead
 
-@export var chase_player = true
-@onready var player = get_node("/root/Game/Player")
+@export var ennemy_name: String
+@export var is_chasing_player = true
+@export var is_sprite_reversed = false
 
+@onready var player = get_node("/root/Game/Player")
 var is_dead = false
 var is_burning = false
-var sprite_reversed = false
 var info: EnnemyInfo
 
 func _ready():
-	info = EnnemiesService.get_info(self)
+	info = EnnemiesService.get_info(ennemy_name)
 	%Sprite.connect("animation_finished", _on_animation_finished)
 	%Health.max_health = info.max_health
 	%Health.current_health = info.health
@@ -20,11 +21,11 @@ func _ready():
 	%DeathSound.pitch_scale = randf_range(0.8, 1.1)
 
 func _physics_process(_delta):
-	if !is_dead && chase_player && player != null:
+	if !is_dead && is_chasing_player && player != null:
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = direction_to_player * info.speed
 		move_and_slide()
-		%Sprite.flip_h = !sprite_reversed && direction_to_player.x < 0 || sprite_reversed && direction_to_player.x >= 0
+		%Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
 func take_damage(bullet: Bullet):
 	if !is_dead:

@@ -3,5 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ci36jx3vvoocj" path="res://ennemies/ennemy.tscn" id="1_jv4vy"]
 [ext_resource type="Script" path="res://ennemies/dummy/dummy.gd" id="2_au0hn"]
 
-[node name="Ennemy" instance=ExtResource("1_jv4vy")]
+[node name="DummyEnnemy" instance=ExtResource("1_jv4vy")]
 script = ExtResource("2_au0hn")
+ennemy_name = "dummy"
+is_chasing_player = false
+is_sprite_reversed = null
