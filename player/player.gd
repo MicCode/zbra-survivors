@@ -121,6 +121,7 @@ func die():
 	if equiped_gun != null:
 		equiped_gun.queue_free()
 	%Sprite.play("dead")
+	GameState.is_game_over = true
 
 
 func block_pickup():

@@ -1,6 +1,8 @@
 extends Node2D
 
 func _ready():
+	GameState.reset()
+	get_tree().paused = false
 	GameSettings.apply_audio_settings()
 	%MobSpawnTimer.wait_time = GameState.spawn_time_s
 	%BackMusicPlayer.play()

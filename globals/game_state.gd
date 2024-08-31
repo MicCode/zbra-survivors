@@ -10,6 +10,16 @@ var player_instance: Player
 var score: int = 0
 var spawn_time_s: float = 3.0
 var equipped_gun: Gun
+var is_game_over = false
+
+func reset():
+	player_state.reset()
+	score = 0
+	spawn_time_s = 3.0
+	equipped_gun = null
+	is_game_over = false
+	player_state_changed.emit(player_state)
+	score_changed.emit(score)
 
 func _init() -> void:
 	player_state = PlayerState.new()
@@ -24,7 +34,7 @@ func gain_xp(xp: float):
 		var excess = player_state.xp - player_state.next_level_xp
 		player_state.xp = excess
 		player_state.next_level_xp += player_state.next_level_xp / 4
-		player_state.level += 1 #TODO we should test if excess is still superior to next_level_xp and add more level if necessary
+		player_state.level += 1 # TODO we should test if excess is still superior to next_level_xp and add more level if necessary
 		player_gained_level.emit(player_state.level)
 		
 	emit_player_change()

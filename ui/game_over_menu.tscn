@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://deyu38p7ie4ql"]
+[gd_scene load_steps=3 format=3 uid="uid://deyu38p7ie4ql"]
+
+[ext_resource type="Script" path="res://ui/game_over_menu.gd" id="1_73h2w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpejy"]
 line_spacing = 0.0
@@ -7,6 +9,7 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="Game-over" type="CanvasLayer"]
 process_mode = 3
+script = ExtResource("1_73h2w")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -21,17 +24,43 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -204.0
-offset_right = -184.0
-offset_bottom = -133.0
+offset_left = -265.0
+offset_top = -202.0
+offset_right = -129.0
+offset_bottom = -131.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(10, 10)
+scale = Vector2(8, 8)
 pivot_offset = Vector2(39.6535, 17.0154)
 size_flags_horizontal = 4
-text = "GAME
-OVER"
+text = "GAME OVER"
 label_settings = SubResource("LabelSettings_fpejy")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 415.0
+offset_right = 146.0
+offset_bottom = 478.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "RESTART"
+
+[node name="MenuButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 492.0
+offset_right = 146.0
+offset_bottom = 555.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "MAIN MENU"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
