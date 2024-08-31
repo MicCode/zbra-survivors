@@ -26,7 +26,7 @@ var is_dashing = false
 var can_dash = true
 var dash_gauge_value: int = 5 # [0..5] where 0 = empty and 5 = full
 
-
+## Reset all player statistics, like if the game has just been started
 func reset():
 	is_alive = true
 	max_health = 5

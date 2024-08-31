@@ -12,14 +12,15 @@ var spawn_time_s: float = 3.0
 var equipped_gun: Gun
 var is_game_over = false
 
+## Resets all game state info, like if the game was freshly started
 func reset():
 	player_state.reset()
 	score = 0
 	spawn_time_s = 3.0
 	equipped_gun = null
 	is_game_over = false
-	player_state_changed.emit(player_state)
-	score_changed.emit(score)
+	emit_player_change()
+	emit_score_change()
 
 func _init() -> void:
 	player_state = PlayerState.new()

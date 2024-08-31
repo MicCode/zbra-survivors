@@ -10,7 +10,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.875607, 0.81926, 3.85046e-07, 1)
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -46,7 +46,7 @@ alignment = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Dégats"
+text = "Damage"
 label_settings = ExtResource("2_qi3mi")
 
 [node name="Attack" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
@@ -86,7 +86,7 @@ alignment = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Tir/s"
+text = "Shot/s"
 label_settings = ExtResource("2_qi3mi")
 horizontal_alignment = 1
 vertical_alignment = 3
