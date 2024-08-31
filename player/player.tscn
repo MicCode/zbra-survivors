@@ -148,11 +148,11 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4us1"]
 radius = 23.5053
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
-radius = 35.5035
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_12tvn"]
 radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
+radius = 35.5035
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -191,75 +191,87 @@ unique_name_in_owner = true
 position = Vector2(0, -25)
 visible_bar = false
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="Triggers" type="CanvasGroup" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
 visible = false
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
 
-[node name="shape" type="CollisionShape2D" parent="HurtBox"]
+[node name="shape" type="CollisionShape2D" parent="Triggers/HurtBox"]
 shape = SubResource("CircleShape2D_l4us1")
 debug_color = Color(0.998759, 0, 0.1334, 0.42)
 
-[node name="CollectRadius" type="Area2D" parent="."]
-unique_name_in_owner = true
-visible = false
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectRadius"]
-shape = SubResource("CircleShape2D_4lpg2")
-debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)
-
-[node name="XpCollectRadius" type="Area2D" parent="."]
+[node name="XpCollectRadius" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 0, 1)
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 32
 
-[node name="XpCollectShape" type="CollisionShape2D" parent="XpCollectRadius"]
+[node name="XpCollectShape" type="CollisionShape2D" parent="Triggers/XpCollectRadius"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_12tvn")
 
-[node name="PickUpTimer" type="Timer" parent="."]
+[node name="CollectRadius" type="Area2D" parent="Triggers"]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CollectRadius"]
+shape = SubResource("CircleShape2D_4lpg2")
+debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="PickUpTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="DashCooldownTimer" type="Timer" parent="."]
+[node name="DashCooldownTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="DashTimer" type="Timer" parent="."]
+[node name="DashTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 
-[node name="DamageTimer" type="Timer" parent="."]
+[node name="DamageTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="DashSound" type="AudioStreamPlayer" parent="."]
+[node name="DashGhostTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="DashSound" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
 stream = ExtResource("6_yhd2o")
 volume_db = -15.928
 pitch_scale = 2.0
 bus = &"Effects"
 
-[node name="DashReadySound" type="AudioStreamPlayer" parent="."]
+[node name="DashReadySound" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
 stream = ExtResource("7_ngsqq")
 volume_db = -24.36
 pitch_scale = 2.8
 bus = &"Effects"
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+[node name="HitSound" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
 stream = ExtResource("10_2qr18")
 volume_db = -7.222
 pitch_scale = 1.68
 bus = &"Effects"
 
-[node name="LvlUpSound" type="AudioStreamPlayer" parent="."]
+[node name="LvlUpSound" type="AudioStreamPlayer" parent="Sounds"]
 unique_name_in_owner = true
 stream = ExtResource("12_c1clg")
 volume_db = -16.396
@@ -267,7 +279,8 @@ bus = &"Effects"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Effects" to="." method="_on_effects_animation_finished"]
-[connection signal="timeout" from="PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
-[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Timers/PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
+[connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Timers/DashGhostTimer" to="." method="_on_dash_ghost_timer_timeout"]

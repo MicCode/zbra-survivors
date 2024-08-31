@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnsbwxbia3apq"]
+
+[ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_30sr2"]
+
+[sub_resource type="Animation" id="Animation_cgpgd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(578, 324)]
+}
+
+[sub_resource type="Animation" id="Animation_ws8ew"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.535886, 1, 0.217638),
+"update": 0,
+"values": [Vector2(200, 200), Vector2(800, 400), Vector2(200, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyv8v"]
+_data = {
+"RESET": SubResource("Animation_cgpgd"),
+"move": SubResource("Animation_ws8ew")
+}
+
+[node name="DashTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_30sr2")]
+position = Vector2(578, 324)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dyv8v")
+}
+autoplay = "move"

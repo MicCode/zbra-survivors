@@ -5,6 +5,7 @@ signal health_depleted
 
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
+const DASH_GHOST_INTERVAL_S = 0.01
 
 var is_pickup_blocked = false
 var equiped_gun: Gun
@@ -54,6 +55,7 @@ func start_dashing():
 	GameState.player_state.can_dash = false
 	set_invincible(true)
 	GameState.emit_player_change()
+	%DashGhostTimer.start(DASH_GHOST_INTERVAL_S)
 
 func update_dash_gauge():
 	var gauge_value = floor((1 - (%DashCooldownTimer.time_left / GameState.player_state.dash_cooldown_s)) * 5)
@@ -143,6 +145,16 @@ func _on_dash_timer_timeout() -> void:
 		GameState.player_state.is_dashing = false
 		set_invincible(false)
 		GameState.emit_player_change()
+		
+func _on_dash_ghost_timer_timeout() -> void:
+	if GameState.player_state.is_dashing:
+		var ghost = preload("res://player/dash_ghost.tscn").instantiate()
+		ghost.global_position = global_position
+		ghost.global_rotation = global_rotation
+		ghost.global_scale = global_scale * 1.5 # because sprite is also internally scaled by 1.5
+		ghost.z_index = -1
+		SceneManager.current_scene.add_child(ghost)
+		%DashGhostTimer.start(DASH_GHOST_INTERVAL_S)
 
 func _on_damage_timer_timeout() -> void:
 	can_be_damaged = true
