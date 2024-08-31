@@ -69,7 +69,7 @@ func spawn_bullets():
 		
 func eject_cartridge():
 	# TODO make shell configurable to vary between guns
-	var shell = preload("res://equipment/guns/generic/ammo_shell.tscn").instantiate()
+	var shell = preload("res://equipment/guns/ammo_shell.tscn").instantiate()
 	shell.global_position = %ShellEjectPoint.global_position
 	if flipped:
 		shell.scale = Vector2(-1, 1)

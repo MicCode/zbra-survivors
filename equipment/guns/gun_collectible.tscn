@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_sdufc"]
 [ext_resource type="Script" path="res://equipment/guns/gun_collectible.gd" id="2_afsvs"]
-[ext_resource type="PackedScene" uid="uid://ccgmshd6826dt" path="res://equipment/guns/generic/gun_info_panel.tscn" id="3_mq4n0"]
+[ext_resource type="PackedScene" uid="uid://ccgmshd6826dt" path="res://equipment/guns/gun_info_panel.tscn" id="3_mq4n0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uidp6"]
 radius = 56.5022

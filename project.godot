@@ -36,8 +36,7 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://export/": "gray",
-"res://globals/": "pink",
-"res://scenes/": "red",
+"res://scenes/": "teal",
 "res://scenes/test/": "green",
 "res://sounds/": "blue",
 "res://sprites/": "blue"

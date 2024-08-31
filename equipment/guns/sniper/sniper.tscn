@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dm30dh6tpw4bg"]
 
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/generic/gun.tscn" id="1_sen5n"]
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/gun.tscn" id="1_sen5n"]
 [ext_resource type="Script" path="res://equipment/guns/sniper/sniper.gd" id="2_doncw"]
 [ext_resource type="Texture2D" uid="uid://b8k7hvcm3pii5" path="res://sprites/items/sniper.png" id="3_wilyu"]
 
