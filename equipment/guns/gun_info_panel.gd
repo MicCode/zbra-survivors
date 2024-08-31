@@ -15,6 +15,7 @@ func _on_equipped_gun_changed(new_gun: Gun):
 	equipped_gun_info = EquipmentService.get_gun_info(new_gun)
 	update_displayed_stats()
 	if equipped_gun_info && gun_info:
+		%GunName.text = gun_info.display_name.to_upper()
 		%Attack.modulate = get_modulation_color(gun_info.bullet_damage, equipped_gun_info.bullet_damage)
 		%DPS.modulate = get_modulation_color(get_dps(gun_info), get_dps(equipped_gun_info))
 		%Reload.modulate = get_modulation_color(gun_info.shots_per_s, equipped_gun_info.shots_per_s)
@@ -23,6 +24,7 @@ func _on_equipped_gun_changed(new_gun: Gun):
 		
 func update_displayed_stats():
 	if gun_info:
+		%GunName.text = gun_info.display_name.to_upper()
 		%Attack.text = str(gun_info.bullet_damage)
 		%DPS.text = str(get_dps(gun_info))
 		%Reload.text = str(gun_info.shots_per_s)

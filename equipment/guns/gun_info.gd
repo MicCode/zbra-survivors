@@ -2,6 +2,7 @@ extends Resource
 class_name GunInfo
 
 var name = "gun"
+var display_name = "gun"
 
 var shots_per_s = 1.0
 var fire_range = 2000.0
@@ -20,6 +21,10 @@ var pierce_count: int = 0
 
 func with_name(_name: String) -> GunInfo:
 	name = _name
+	return self
+
+func with_display_name(_display_name: String) -> GunInfo:
+	display_name = _display_name
 	return self
 
 func with_bullets_per_shot(_bullets_per_shot: int) -> GunInfo:

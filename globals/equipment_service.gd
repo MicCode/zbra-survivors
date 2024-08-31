@@ -11,6 +11,7 @@ const SNIPER = "sniper"
 var guns_catalog = {
 	PISTOL: GunInfo.new()
 		.with_name(PISTOL)
+		.with_display_name("Pistol")
 		.with_bang_pitch_shift(-0.2)
 		.with_bullet_damage(20)
 		.with_bullet_speed(1500)
@@ -18,6 +19,7 @@ var guns_catalog = {
 
 	RIFLE: GunInfo.new()
 		.with_name(RIFLE)
+		.with_display_name("Assault Rifle")
 		.with_bullet_damage(3)
 		.with_bullet_speed(2000)
 		.with_bullets_spread_angle_deg(15)
@@ -25,6 +27,7 @@ var guns_catalog = {
 
 	SHOTGUN: GunInfo.new()
 		.with_name(SHOTGUN)
+		.with_display_name("Shotgun")
 		.with_bang_pitch_shift(-0.5)
 		.with_bullet_damage(5)
 		.with_bullet_speed(1000)
@@ -35,6 +38,7 @@ var guns_catalog = {
 
 	FLAMETHROWER: GunInfo.new()
 		.with_name(FLAMETHROWER)
+		.with_display_name("Flame Thrower")
 		.with_bang_pitch_shift(-0.8)
 		.with_bullet_damage(1)
 		.with_bullet_speed(750)
@@ -48,6 +52,7 @@ var guns_catalog = {
 
 	SNIPER: GunInfo.new()
 		.with_name(SNIPER)
+		.with_display_name("Sniper Rifle")
 		.with_bullet_speed(3000)
 		.with_bullet_damage(100)
 		.with_fire_range(1000)
