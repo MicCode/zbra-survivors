@@ -1,6 +1,6 @@
 extends Node
 
-var enable_music: bool = false
+var enable_music: bool = true
 var master_volume_db: float = 0.0
 var music_volume_db: float = -15.2
 var effects_volume_db: float = 3.4

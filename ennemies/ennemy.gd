@@ -44,7 +44,6 @@ func take_damage(bullet: Bullet):
 func set_burning():
 	%BurnTimer.start()
 	if !is_burning:
-		%FireEmitter.emitting = true
 		%FireLight.show()
 		%FireAnimation.play("emit")
 		
@@ -87,7 +86,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_burn_timer_timeout() -> void:
 	%FireAnimation.play("fadeout")
-	%FireEmitter.emitting = false
 	is_burning = false
 
 func _on_fire_animation_animation_finished(anim_name: StringName) -> void:
