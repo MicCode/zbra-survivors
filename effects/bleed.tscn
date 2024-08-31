@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dtx68anb1bv5m"]
+[gd_scene load_steps=23 format=3 uid="uid://dtx68anb1bv5m"]
 
 [ext_resource type="Texture2D" uid="uid://csamxdklif5bt" path="res://sprites/effects/blood-drop-side.png" id="1_lj8ph"]
 [ext_resource type="Texture2D" uid="uid://b5ddnwpiqdll2" path="res://sprites/effects/blood-drop-below.png" id="2_tb2wo"]
@@ -145,6 +145,25 @@ _data = {
 "fade_away": SubResource("Animation_8mljp")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4a14p"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(-1, -0.5, 0)
+spread = 24.775
+flatness = 1.0
+initial_velocity_min = 50.0
+initial_velocity_max = 80.65
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+scale_max = 3.0
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xfqno"]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8c75n")
@@ -162,5 +181,18 @@ libraries = {
 "": SubResource("AnimationLibrary_op4qh")
 }
 autoplay = "fade_away"
+
+[node name="ParticlesEmitter" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(16, 0)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_4a14p")
+texture = SubResource("CanvasTexture_xfqno")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.79
+randomness = 0.48
+fixed_fps = 60
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

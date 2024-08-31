@@ -7,6 +7,7 @@ signal dead
 @onready var player = get_node("/root/Game/Player")
 
 var is_dead = false
+var is_burning = false
 var sprite_reversed = false
 var info: EnnemyInfo
 
@@ -25,18 +26,28 @@ func _physics_process(_delta):
 		move_and_slide()
 		%Sprite.flip_h = !sprite_reversed && direction_to_player.x < 0 || sprite_reversed && direction_to_player.x >= 0
 
-func take_damage(damage: int, inflict_bleed: bool, hit_position: Vector2):
+func take_damage(bullet: Bullet):
 	if !is_dead:
 		%Sprite.play("hurt")
 		%HitSound.pitch_scale = randf_range(0.5, 2)
 		%HitSound.play()
 		if %Health:
-			%Health.take_damage(damage)
-		var damage_marker = preload("res://ui/DamageIndicator.tscn").instantiate().with_damage(damage)
+			%Health.take_damage(bullet.damage)
+		var damage_marker = preload("res://ui/DamageIndicator.tscn").instantiate().with_damage(bullet.damage)
 		damage_marker.global_position = %DamageAnchor.global_position
 		get_node("/root").get_node("./").add_child(damage_marker)
-		if inflict_bleed:
-			bleed(hit_position)
+		if bullet.is_fire:
+			set_burning()
+		else:
+			bleed(bullet.global_position)
+			
+func set_burning():
+	%BurnTimer.start()
+	if !is_burning:
+		%FireEmitter.emitting = true
+		%FireLight.show()
+		%FireAnimation.play("emit")
+		
 
 func bleed(hit_position: Vector2):
 	var direction: Enums.Orientations
@@ -44,8 +55,8 @@ func bleed(hit_position: Vector2):
 		direction = Enums.Orientations.RIGHT
 	else:
 		direction = Enums.Orientations.LEFT
-	var bleed = preload("res://effects/bleed.tscn").instantiate().at(global_position, direction)
-	get_node("/root").get_node("./").add_child(bleed)
+	var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(global_position, direction)
+	get_node("/root").get_node("./").add_child(bleed_effect)
 
 func _on_animation_finished():
 	if !is_dead:
@@ -67,9 +78,19 @@ func _on_death_timer_timeout():
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Bullet:
-		take_damage(area.damage, !area.is_fire, area.global_position)
+		take_damage(area as Bullet)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_away":
 		queue_free()
+
+func _on_burn_timer_timeout() -> void:
+	%FireAnimation.play("fadeout")
+	%FireEmitter.emitting = false
+	is_burning = false
+
+func _on_fire_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fadeout":
+		%FireAnimation.stop()
+		%FireLight.hide()

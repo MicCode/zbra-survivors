@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdr8rck7r5wts"]
+[gd_scene load_steps=16 format=3 uid="uid://cdr8rck7r5wts"]
 
 [ext_resource type="Script" path="res://equipment/guns/generic/gun.gd" id="1_wwnuv"]
 [ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://sprites/items/gun-firing.png" id="2_aj33k"]
@@ -37,8 +37,65 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_doari"]
+offsets = PackedFloat32Array(0, 0.0649351, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.636364, 0.636364, 0.636364, 0.636364, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_737s3"]
+gradient = SubResource("Gradient_doari")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.866973, 0.169725)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gclat"]
+polygon = PackedVector2Array(0, -38, 0, 40, -4, 41, -4, -42)
+
+[sub_resource type="Animation" id="Animation_ocvq5"]
+resource_name = "flash"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0001, 0.05),
+"transitions": PackedFloat32Array(1, 0.0625),
+"update": 0,
+"values": [10.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1pr87"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_30b3j"]
+_data = {
+"RESET": SubResource("Animation_1pr87"),
+"flash": SubResource("Animation_ocvq5")
+}
+
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_wwnuv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_top = -152.0
+offset_right = 325.0
+offset_bottom = 117.0
+color = Color(0, 0.560784, 0, 1)
 
 [node name="PivotPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -59,6 +116,38 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(40, 0)
 texture = ExtResource("5_0c04k")
+
+[node name="PointLight2D" type="PointLight2D" parent="PivotPoint/Sprite/ShootingPoint"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(2, 0)
+scale = Vector2(0.680002, -0.2)
+energy = 0.0
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 38.1
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_737s3")
+texture_scale = 2.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="PivotPoint/Sprite/ShootingPoint/PointLight2D"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 0)
+occluder = SubResource("OccluderPolygon2D_gclat")
+occluder_light_mask = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="PivotPoint/Sprite/ShootingPoint/PointLight2D/LightOccluder2D"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 73.5)
+scale = Vector2(1, 12.1667)
+polygon = PackedVector2Array(0, -3, 0, -9, -4, -9, -4, -3)
+
+[node name="MuzzleFlash" type="AnimationPlayer" parent="PivotPoint/Sprite/ShootingPoint/PointLight2D"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_30b3j")
+}
 
 [node name="ShellEjectPoint" type="Marker2D" parent="PivotPoint/Sprite"]
 unique_name_in_owner = true

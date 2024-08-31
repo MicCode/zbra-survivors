@@ -14,10 +14,13 @@ func burn():
 		is_destroyed = true
 		%Sprite.play("burn")
 		%ExplodeSound.play()
+		%FireLight.show()
+		%FireLightAnimation.play("fadeout")
 
 func _on_sprite_animation_finished():
 	if is_destroyed:
 		get_node("Shadow").queue_free()
+		%FireLight.hide()
 
 
 func _on_explode_zone_area_entered(body: Node2D) -> void:

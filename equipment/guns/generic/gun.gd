@@ -44,6 +44,7 @@ func shoot():
 		%Sprite.play("firing")
 		%ShootSound.pitch_scale = randf_range(0.9, 1.05) + gun_info.bang_pitch_shift
 		%ShootSound.play()
+		%MuzzleFlash.play("flash")
 		start_cooldown_timer()
 
 func spawn_bullets():
