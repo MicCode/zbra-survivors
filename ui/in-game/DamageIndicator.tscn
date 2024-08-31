@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://clqrr48gd337w"]
 
-[ext_resource type="Script" path="res://ui/damage_indicator.gd" id="1_7ecw7"]
+[ext_resource type="Script" path="res://ui/in-game/damage_indicator.gd" id="1_7ecw7"]
 
 [sub_resource type="Animation" id="Animation_8mhby"]
 resource_name = "popin"

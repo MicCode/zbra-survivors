@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://deyu38p7ie4ql"]
 
-[ext_resource type="Script" path="res://ui/game_over_menu.gd" id="1_73h2w"]
+[ext_resource type="Script" path="res://ui/menu/game_over_menu.gd" id="1_73h2w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpejy"]
 line_spacing = 0.0

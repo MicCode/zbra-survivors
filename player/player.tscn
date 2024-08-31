@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://si1biqu2tpxp" path="res://sprites/player/player-hurt.png" id="3_b0r7w"]
 [ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://sprites/player/player-idle.png" id="3_hsq4i"]
 [ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://sprites/player/player-walk.png" id="4_4gd1v"]
-[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/health_bar.tscn" id="5_yybqa"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="5_yybqa"]
 [ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://sounds/lazercannon.mp3" id="6_yhd2o"]
 [ext_resource type="Texture2D" uid="uid://bnx4gwxp4icjk" path="res://sprites/player/level-up.png" id="7_l7eyr"]
 [ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]

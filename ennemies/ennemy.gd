@@ -33,9 +33,9 @@ func take_damage(bullet: Bullet):
 		%HitSound.play()
 		if %Health:
 			%Health.take_damage(bullet.damage)
-		var damage_marker = preload("res://ui/DamageIndicator.tscn").instantiate().with_damage(bullet.damage)
+		var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(bullet.damage)
 		damage_marker.global_position = %DamageAnchor.global_position
-		get_node("/root").get_node("./").add_child(damage_marker)
+		SceneManager.current_scene.add_child(damage_marker)
 		if bullet.is_fire:
 			set_burning()
 		else:
@@ -55,7 +55,7 @@ func bleed(hit_position: Vector2):
 	else:
 		direction = Enums.Orientations.LEFT
 	var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(global_position, direction)
-	get_node("/root").get_node("./").add_child(bleed_effect)
+	SceneManager.current_scene.add_child(bleed_effect)
 
 func _on_animation_finished():
 	if !is_dead:

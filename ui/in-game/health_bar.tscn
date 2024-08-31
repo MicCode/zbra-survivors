@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl0vk4malih5v"]
 
-[ext_resource type="Script" path="res://ui/health_bar.gd" id="1_mq771"]
+[ext_resource type="Script" path="res://ui/in-game/health_bar.gd" id="1_mq771"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1yor"]
 

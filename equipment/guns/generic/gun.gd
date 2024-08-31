@@ -65,7 +65,7 @@ func spawn_bullets():
 			) / 2
 		)
 		new_bullet.global_rotation = %ShootingPoint.global_rotation + spread_angle_offset
-		get_node("/root").get_node("./").add_child(new_bullet)
+		SceneManager.current_scene.add_child(new_bullet)
 		
 func eject_cartridge():
 	# TODO make shell configurable to vary between guns
@@ -73,7 +73,7 @@ func eject_cartridge():
 	shell.global_position = %ShellEjectPoint.global_position
 	if flipped:
 		shell.scale = Vector2(-1, 1)
-	get_node("/root").get_node("./").add_child(shell)
+	SceneManager.current_scene.add_child(shell)
 	shell.start_animation()
 
 func start_cooldown_timer():

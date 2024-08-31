@@ -99,7 +99,7 @@ func equip_gun(collectible: CollectibleItem):
 	if equiped_gun:
 		var collectible_to_drop = EquipmentService.to_collectible(equiped_gun)
 		collectible_to_drop.global_position = global_position
-		get_node("/root").add_child(collectible_to_drop)
+		SceneManager.current_scene.add_child(collectible_to_drop)
 		equiped_gun.queue_free()
 
 	var new_gun = EquipmentService.to_equipment(collectible)

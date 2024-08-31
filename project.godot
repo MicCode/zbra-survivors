@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Zbra Survivors"
 config/version="0.0.1"
-run/main_scene="res://ui/main_menu.tscn"
+run/main_scene="res://ui/menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://icon.png"
@@ -26,7 +26,7 @@ EquipmentService="*res://globals/equipment_service.gd"
 GameState="*res://globals/game_state.gd"
 GameSettings="*res://globals/game_settings.gd"
 Enums="*res://globals/enums.gd"
-SceneSwitcher="*res://globals/scene_switcher.gd"
+SceneManager="*res://globals/scene_manager.gd"
 
 [display]
 
@@ -35,12 +35,12 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
-"res://ennemies/": "red",
-"res://equipment/": "yellow",
-"res://globals/": "gray",
-"res://player/": "purple",
+"res://export/": "gray",
+"res://globals/": "pink",
+"res://scenes/": "red",
+"res://scenes/test/": "green",
 "res://sounds/": "blue",
-"res://ui/": "green"
+"res://sprites/": "blue"
 }
 
 [input]

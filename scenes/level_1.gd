@@ -22,7 +22,7 @@ func _on_ennemy_death(ennemy: Ennemy):
 	GameState.increment_score(1)
 	var xp = preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.info.xp_value)
 	xp.global_position = ennemy.global_position
-	get_node("/root").call_deferred("add_child", xp)
+	SceneManager.current_scene.call_deferred("add_child", xp)
 
 func _on_player_health_depleted():
 	%GameOver.show()

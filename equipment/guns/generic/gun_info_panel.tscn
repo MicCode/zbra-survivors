@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccgmshd6826dt"]
 
 [ext_resource type="Script" path="res://equipment/guns/generic/gun_info_panel.gd" id="1_m0kus"]
-[ext_resource type="LabelSettings" uid="uid://ykrbrp483rhl" path="res://ui/small_black_label_settings.tres" id="2_qi3mi"]
-[ext_resource type="LabelSettings" uid="uid://cbqtn43hxrfti" path="res://ui/black_label_settings.tres" id="3_nta82"]
+[ext_resource type="LabelSettings" uid="uid://ykrbrp483rhl" path="res://ui/theme/small_black_label_settings.tres" id="2_qi3mi"]
+[ext_resource type="LabelSettings" uid="uid://cbqtn43hxrfti" path="res://ui/theme/black_label_settings.tres" id="3_nta82"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48b3b"]
 bg_color = Color(1, 1, 1, 0.498039)

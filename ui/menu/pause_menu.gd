@@ -13,4 +13,4 @@ func _input(event):
 
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
-	SceneSwitcher.switch_to("res://ui/main_menu.tscn")
+	SceneManager.switch_to("res://ui/menu/main_menu.tscn")
