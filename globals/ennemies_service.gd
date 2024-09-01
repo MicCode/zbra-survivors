@@ -5,12 +5,12 @@ var spawnable_ennemies = [
 	EnnemyInfo.new()
 		.with_name("mob_1")
 		.with_max_health(30)
-		.with_speed(200.0)
+		.with_speed(100.0)
 		.with_xp_value(1.0),
 	EnnemyInfo.new()
 		.with_name("mob_2")
 		.with_max_health(40)
-		.with_speed(175.0)
+		.with_speed(150.0)
 		.with_xp_value(1.5),
 ]
 

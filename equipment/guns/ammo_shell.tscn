@@ -51,7 +51,6 @@ script = ExtResource("1_ptik2")
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 z_index = -1
-scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_i8mk3")
 
 [node name="Path2D" type="Path2D" parent="."]

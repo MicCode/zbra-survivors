@@ -160,7 +160,8 @@ func _on_damage_timer_timeout() -> void:
 	can_be_damaged = true
 
 func set_invincible(invincible: bool):
-	get_node("CollisionShape2D").disabled = invincible
+	set_collision_mask_value(2, !invincible) # ennemies layer
+	set_collision_mask_value(3, !invincible) # environment layer
 	%HurtBox.get_node("shape").disabled = invincible
 	if invincible:
 		%Sprite.modulate.a = 0.5

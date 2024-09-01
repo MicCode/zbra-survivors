@@ -153,16 +153,16 @@ position = Vector2(120, 619)
 offset_left = 13.0
 offset_right = 64.0
 offset_bottom = 23.0
-scale = Vector2(2.65466, 2.65466)
+scale = Vector2(1.5, 1.5)
 text = "SCORE:"
 label_settings = SubResource("LabelSettings_ovb57")
 
 [node name="Score" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 164.0
-offset_right = 664.0
+offset_left = 103.0
+offset_right = 603.0
 offset_bottom = 23.0
-scale = Vector2(2.65466, 2.65466)
+scale = Vector2(1.5, 1.5)
 text = "12345"
 label_settings = SubResource("LabelSettings_ovb57")
 

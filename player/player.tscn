@@ -149,14 +149,13 @@ radius = 18.0
 radius = 23.5053
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12tvn"]
-radius = 100.0
+radius = 62.002
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
 radius = 35.5035
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(2, 2)
-collision_mask = 7
+collision_mask = 71
 script = ExtResource("1_teghp")
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -181,10 +180,10 @@ sprite_frames = SubResource("SpriteFrames_rj14w")
 animation = &"lvlup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_5pv4u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="Health" parent="." instance=ExtResource("5_yybqa")]
 unique_name_in_owner = true
@@ -218,7 +217,6 @@ shape = SubResource("CircleShape2D_12tvn")
 
 [node name="CollectRadius" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
-visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 16

@@ -123,6 +123,7 @@ look_right={
 2d_physics/layer_4="projectiles"
 2d_physics/layer_5="collectibles"
 2d_physics/layer_6="xp"
+2d_physics/layer_7="invisible_walls"
 
 [physics]
 

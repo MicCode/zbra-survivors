@@ -27,7 +27,7 @@ unique_name_in_owner = true
 visible = false
 z_index = 4000
 position = Vector2(-0.5, 0.5)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.75, 0.75)
 
 [node name="ButtonIcon" parent="." index="7" instance=ExtResource("4_4y1ga")]
 unique_name_in_owner = true

@@ -13,7 +13,9 @@ var bullet_damage: int = 10
 var bullets_per_shot: int = 1
 var bullets_spread_angle_deg: int = 0
 var bullet_speed: int = 200
-var bullets_speed_variability: float = 0.0
+var bullets_speed_delta: float = 0.0
+var bullet_size: float = 1.0
+var bullet_size_delta: float = 0.0
 
 var eject_cartridges: bool = true
 var inflict_fire: bool = false
@@ -39,12 +41,20 @@ func with_bullets_spread_angle_deg(_bullets_spread_angle_deg: int) -> GunInfo:
 	bullets_spread_angle_deg = _bullets_spread_angle_deg
 	return self
 
-func with_bullets_speed_variability(_bullets_speed_variability: float) -> GunInfo:
-	bullets_speed_variability = _bullets_speed_variability
+func with_bullets_speed_delta(_bullets_speed_delta: float) -> GunInfo:
+	bullets_speed_delta = _bullets_speed_delta
 	return self
 
 func with_bullet_speed(_bullet_speed: int) -> GunInfo:
 	bullet_speed = _bullet_speed
+	return self
+
+func with_bullet_size(_bullet_size: float) -> GunInfo:
+	bullet_size = _bullet_size
+	return self
+
+func with_bullet_size_delta(_bullet_size_delta: float) -> GunInfo:
+	bullet_size_delta = _bullet_size_delta
 	return self
 
 func with_shots_per_s(_shots_per_s: float) -> GunInfo:

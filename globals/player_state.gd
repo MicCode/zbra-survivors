@@ -13,7 +13,7 @@ var level: int = 1
 var next_level_xp: float = 10.0
 
 # === MOVEMENTS ===
-var move_speed: float = 300.0
+var move_speed: float = 200.0
 
 # === DAMAGES ===
 var damage_cooldown_s: float = 1.0

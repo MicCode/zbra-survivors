@@ -54,11 +54,12 @@ func spawn_bullets():
 		var new_bullet = GunService.create_projectile(gun_name).from(gun_info)
 
 		var speed_offset = randf_range(
-			1 - gun_info.bullets_speed_variability,
-			1 + gun_info.bullets_speed_variability
+			1 - gun_info.bullets_speed_delta,
+			1 + gun_info.bullets_speed_delta
 		)
 		new_bullet.speed = gun_info.bullet_speed * speed_offset
 		new_bullet.global_position = %ShootingPoint.global_position
+		new_bullet.global_scale = new_bullet.global_scale * (gun_info.bullet_size + randf_range(-gun_info.bullet_size_delta / 2, gun_info.bullet_size_delta / 2))
 
 		var spread_angle_offset = deg_to_rad(
 			randf_range(

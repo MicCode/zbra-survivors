@@ -8,6 +8,7 @@ func explode():
 		is_destroyed = true
 		%Sprite.play("explode")
 		%ExplodeSound.play()
+		set_collision_layer_value(3, false)
 
 func burn():
 	if !is_destroyed:
@@ -16,6 +17,7 @@ func burn():
 		%ExplodeSound.play()
 		%FireLight.show()
 		%FireLightAnimation.play("fadeout")
+		set_collision_layer_value(3, false)
 
 func _on_sprite_animation_finished():
 	if is_destroyed:
