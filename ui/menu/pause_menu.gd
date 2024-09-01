@@ -3,7 +3,7 @@ extends CanvasLayer
 var paused = false
 
 func _input(event):
-	if event.is_action_pressed("pause_game") && !GameState.is_game_over:
+	if event.is_action_pressed("pause_game") && !GameService.is_game_over:
 		paused = !paused
 		get_tree().paused = paused
 		if paused:

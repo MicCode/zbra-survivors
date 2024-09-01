@@ -10,10 +10,10 @@ const HEARTS_START_X: int = 120
 const HEARTS_START_Y: int = 619
 
 func _ready() -> void:
-	%Score.text = str(GameState.score)
-	GameState.score_changed.connect(_on_score_changed)
-	GameState.player_state_changed.connect(_on_player_state_changed)
-	_on_player_state_changed(GameState.player_state)
+	%Score.text = str(GameService.score)
+	GameService.score_changed.connect(_on_score_changed)
+	GameService.player_state_changed.connect(_on_player_state_changed)
+	_on_player_state_changed(GameService.player_state)
 
 func _on_score_changed(new_score: int):
 	%Score.text = str(new_score)
@@ -53,7 +53,7 @@ func _on_player_state_changed(player_state: PlayerState):
 				new_heart.play("off")
 			x_position_offset += PIXELS_BETWEEN_HEARTS
 			
-		%XpLabel.text = str(player_xp) + " / " + str(player_state.next_level_xp)
+		%XpLabel.text = str(floor(player_xp)) + " / " + str(floor(player_state.next_level_xp))
 		%LevelLabel.text = "Niv. " + str(player_state.level)
 
 	%XpBar.max_value = player_state.next_level_xp

@@ -4,7 +4,7 @@ var gun_info: GunInfo
 var equipped_gun_info: GunInfo
 
 func _ready() -> void:
-	GameState.equipped_gun_changed.connect(_on_equipped_gun_changed)
+	GameService.equipped_gun_changed.connect(_on_equipped_gun_changed)
 
 func init(_gun_info: GunInfo):
 	gun_info = _gun_info

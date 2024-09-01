@@ -14,7 +14,7 @@ enum DashGaugeStates {
 var state: DashGaugeStates = DashGaugeStates.FULL
 
 func _ready() -> void:
-	GameState.player_state_changed.connect(_update_gauge)
+	GameService.player_state_changed.connect(_update_gauge)
 	var joypads = Input.get_connected_joypads()
 	if joypads.size() > 0:
 		%ButtonIcon.key_name = "B"

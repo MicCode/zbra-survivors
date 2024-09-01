@@ -27,10 +27,12 @@ GameSettings="*res://globals/game_settings.gd"
 Enums="*res://globals/enums.gd"
 SceneManager="*res://globals/scene_manager.gd"
 GunService="*res://globals/gun_service.gd"
+GameService="*res://globals/game_service.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [file_customization]
 
@@ -134,7 +136,3 @@ common/max_physics_steps_per_frame=25
 
 textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.435192, 0.435192, 0.435192, 1)
-anti_aliasing/quality/msaa_2d=3
-anti_aliasing/quality/msaa_3d=3
-anti_aliasing/quality/screen_space_aa=1
-anti_aliasing/quality/use_taa=true

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bev8kghrhhghh"]
+
+[ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_flf81"]
+[ext_resource type="Script" path="res://equipment/items/life_flask.gd" id="2_1kmta"]
+[ext_resource type="Texture2D" uid="uid://celhg4yv453kq" path="res://sprites/player/heart-16.png" id="3_thx1n"]
+
+[sub_resource type="Gradient" id="Gradient_bnjk0"]
+offsets = PackedFloat32Array(0, 0.188312, 1)
+colors = PackedColorArray(0.998639, 0.607871, 0.549292, 1, 0.684947, 0.314703, 0.229896, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y1oeg"]
+gradient = SubResource("Gradient_bnjk0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[node name="Collectible" instance=ExtResource("1_flf81")]
+script = ExtResource("2_1kmta")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("3_thx1n")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="5"]
+energy = 2.0
+texture = SubResource("GradientTexture2D_y1oeg")

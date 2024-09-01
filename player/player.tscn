@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=49 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
@@ -10,8 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://sounds/lazercannon.mp3" id="6_yhd2o"]
 [ext_resource type="Texture2D" uid="uid://bnx4gwxp4icjk" path="res://sprites/player/level-up.png" id="7_l7eyr"]
 [ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]
+[ext_resource type="Texture2D" uid="uid://dymt52ugwiobd" path="res://sprites/player/player-effects-heal.png" id="7_qp5db"]
 [ext_resource type="AudioStream" uid="uid://qen7gpw0psw8" path="res://sounds/ouch.wav" id="10_2qr18"]
 [ext_resource type="AudioStream" uid="uid://6l78umox8pi5" path="res://sounds/lvlup.wav" id="12_c1clg"]
+[ext_resource type="AudioStream" uid="uid://cxru2f02empok" path="res://sounds/drink.mp3" id="13_x6obx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
 atlas = ExtResource("3_2bqqa")
@@ -85,6 +87,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukgm5"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3bkj"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kc4g"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juvrg"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85mn5"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c34h"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7dv2"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og100"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bu2e"]
+atlas = ExtResource("7_qp5db")
+region = Rect2(256, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_misy4"]
 atlas = ExtResource("7_l7eyr")
 region = Rect2(0, 0, 32, 32)
@@ -115,6 +153,38 @@ region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rj14w"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukgm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3bkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kc4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juvrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85mn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c34h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7dv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og100")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bu2e")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_misy4")
@@ -154,9 +224,89 @@ radius = 62.002
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
 radius = 35.5035
 
+[sub_resource type="Gradient" id="Gradient_0bcxw"]
+offsets = PackedFloat32Array(0, 0.350649, 0.551948, 0.727273, 0.811688, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.987007, 0.981352, 0.976486, 1, 0.80796, 0.73072, 0.663398, 1, 0.437645, 0.395807, 0.359341, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pmtm4"]
+gradient = SubResource("Gradient_0bcxw")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[sub_resource type="Animation" id="Animation_t1scx"]
+resource_name = "burst"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.148651),
+"update": 0,
+"values": [1.0, 50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.0490367),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4iifq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dq4s"]
+_data = {
+"RESET": SubResource("Animation_4iifq"),
+"burst": SubResource("Animation_t1scx")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 71
 script = ExtResource("1_teghp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -669.0
+offset_top = -425.0
+offset_right = 754.0
+offset_bottom = 416.0
+color = Color(0.435192, 0.435192, 0.435192, 1)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)
@@ -177,7 +327,7 @@ visible = false
 position = Vector2(0, -7.5)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_rj14w")
-animation = &"lvlup"
+animation = &"heal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -276,6 +426,22 @@ unique_name_in_owner = true
 stream = ExtResource("12_c1clg")
 volume_db = -16.396
 bus = &"Effects"
+
+[node name="HealSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("13_x6obx")
+volume_db = 3.0
+pitch_scale = 1.5
+
+[node name="EffectLight" type="PointLight2D" parent="."]
+energy = 0.0
+texture = SubResource("GradientTexture2D_pmtm4")
+
+[node name="EffectAnimation" type="AnimationPlayer" parent="EffectLight"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_6dq4s")
+}
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Effects" to="." method="_on_effects_animation_finished"]

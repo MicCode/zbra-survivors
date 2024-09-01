@@ -19,7 +19,7 @@ const BURN_DAMAGE: float = 0.5
 
 func _ready():
 	ennemy_info = EnnemiesService.get_info(ennemy_name)
-	player = GameState.player_instance
+	player = GameService.player_instance
 	%Sprite.connect("animation_finished", _on_animation_finished)
 	%Health.max_health = ennemy_info.max_health
 	%Health.current_health = ennemy_info.health

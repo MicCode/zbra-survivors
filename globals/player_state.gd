@@ -26,6 +26,9 @@ var is_dashing = false
 var can_dash = true
 var dash_gauge_value: int = 5 # [0..5] where 0 = empty and 5 = full
 
+# === DROP CHANCES ===
+var life_drop_chance: float = 0.1
+
 ## Reset all player statistics, like if the game has just been started
 func reset():
 	is_alive = true
@@ -43,3 +46,4 @@ func reset():
 	is_dashing = false
 	can_dash = true
 	dash_gauge_value = 5
+	life_drop_chance = 0.1
