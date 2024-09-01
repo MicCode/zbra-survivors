@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvu2hswqayla6"]
+[gd_scene load_steps=6 format=3 uid="uid://bvu2hswqayla6"]
 
 [ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_sdufc"]
 [ext_resource type="Script" path="res://equipment/guns/gun_collectible.gd" id="2_afsvs"]
 [ext_resource type="PackedScene" uid="uid://ccgmshd6826dt" path="res://equipment/guns/gun_info_panel.tscn" id="3_mq4n0"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="4_4y1ga"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uidp6"]
 radius = 56.5022
 
 [node name="GunCollectible" instance=ExtResource("1_sdufc")]
 script = ExtResource("2_afsvs")
+gun_name = "gun"
 
 [node name="InfoDisplayZone" type="Area2D" parent="." index="0"]
 collision_layer = 0
@@ -26,6 +28,17 @@ visible = false
 z_index = 4000
 position = Vector2(-0.5, 0.5)
 scale = Vector2(0.5, 0.5)
+
+[node name="ButtonIcon" parent="." index="7" instance=ExtResource("4_4y1ga")]
+unique_name_in_owner = true
+visible = false
+offset_left = 6.5
+offset_top = 7.5
+offset_right = 22.5
+offset_bottom = 23.5
+scale = Vector2(0.75, 0.75)
+key_name = "E"
+animate = true
 
 [connection signal="body_entered" from="InfoDisplayZone" to="." method="_on_info_display_zone_body_entered"]
 [connection signal="body_exited" from="InfoDisplayZone" to="." method="_on_info_display_zone_body_exited"]

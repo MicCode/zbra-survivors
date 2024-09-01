@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc8rkdfax3ovv"]
+
+[ext_resource type="Script" path="res://ui/controls/controls_map.gd" id="1_8gw53"]
+
+[node name="ControlsMap" type="CanvasLayer"]
+script = ExtResource("1_8gw53")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 262.0
+offset_bottom = 284.0
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2

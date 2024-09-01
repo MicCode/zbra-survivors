@@ -15,11 +15,25 @@ var state: DashGaugeStates = DashGaugeStates.FULL
 
 func _ready() -> void:
 	GameState.player_state_changed.connect(_update_gauge)
+	var joypads = Input.get_connected_joypads()
+	if joypads.size() > 0:
+		%ButtonIcon.key_name = "B"
+		%ButtonIcon.controller_name = "xbox"
+	else:
+		%ButtonIcon.key_name = "SPACE"
+		%ButtonIcon.controller_name = "keyboard"
+	%ButtonIcon.update_texture()
 	
 func _update_gauge(new_player_state: PlayerState):
 	var new_state = get_new_gauge_state(new_player_state)
 	if new_state != state:
 		state = new_state
+		if state == DashGaugeStates.FULL:
+			%ButtonIcon.animate = true
+			%ButtonIcon.modulate = Color(1, 1, 1, 1)
+		else:
+			%ButtonIcon.animate = false
+			%ButtonIcon.modulate = Color(1, 1, 1, 0.5)
 		update_animation()
 
 func get_new_gauge_state(new_player_state: PlayerState) -> DashGaugeStates:

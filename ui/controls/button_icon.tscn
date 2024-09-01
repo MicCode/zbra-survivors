@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b022lydfmv6ep"]
+
+[ext_resource type="Texture2D" uid="uid://mwe7k0d56v3j" path="res://sprites/ui/controls/keyboard/keyboard-A.png" id="1_d2mbv"]
+[ext_resource type="Script" path="res://ui/controls/button_icon.gd" id="2_bw52e"]
+
+[node name="ButtonIcon" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_d2mbv")
+script = ExtResource("2_bw52e")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
