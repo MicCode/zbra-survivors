@@ -146,7 +146,7 @@ animations = [{
 radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4us1"]
-radius = 23.5053
+radius = 10.6888
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12tvn"]
 radius = 62.002
@@ -180,6 +180,7 @@ sprite_frames = SubResource("SpriteFrames_rj14w")
 animation = &"lvlup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_5pv4u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -217,6 +218,7 @@ shape = SubResource("CircleShape2D_12tvn")
 
 [node name="CollectRadius" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
+visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 16
