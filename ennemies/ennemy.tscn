@@ -339,12 +339,20 @@ libraries = {
 "": SubResource("AnimationLibrary_emfb7")
 }
 
-[node name="BurnTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="BurnTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
+one_shot = true
+
+[node name="BurnTickTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
 
 [connection signal="animation_finished" from="FireLight/FireAnimation" to="." method="_on_fire_animation_animation_finished"]
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]
+[connection signal="timeout" from="Timers/BurnTimer" to="." method="_on_burn_timer_timeout"]
+[connection signal="timeout" from="Timers/BurnTickTimer" to="." method="_on_burn_tick_timer_timeout"]

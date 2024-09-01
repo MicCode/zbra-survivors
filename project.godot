@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
-config/icon="res://sprites/ennemies/mob-1-dead.png"
+config/icon="res://sprites/player/player-icon.png"
 
 [autoload]
 

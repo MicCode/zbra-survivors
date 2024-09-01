@@ -1,6 +1,9 @@
 # ZBRA Survivors
 
-![](./image.png)
+![](./screenshot.png)
+
+## Live demo
+<iframe frameborder="0" src="https://itch.io/embed/2938623" width="552" height="167"><a href="https://micmacmec.itch.io/zbra-survivorz">Zbra Survivorz by Micmacmec</a></iframe>
 
 ## TODO
 

@@ -20,7 +20,7 @@ func _on_mob_spawn_timer_timeout():
 
 func _on_ennemy_death(ennemy: Ennemy):
 	GameState.increment_score(1)
-	var xp = preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.info.xp_value)
+	var xp = preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.ennemy_info.xp_value)
 	xp.global_position = ennemy.global_position
 	SceneManager.current_scene.call_deferred("add_child", xp)
 

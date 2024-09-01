@@ -69,27 +69,35 @@ position = Vector2(1136, 291)
 
 [node name="Ennemy" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(795, 360)
+is_sprite_reversed = false
 
 [node name="Ennemy2" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(910, 184)
+is_sprite_reversed = false
 
 [node name="Ennemy3" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(858, 691)
+is_sprite_reversed = false
 
 [node name="Ennemy4" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(-72, 350)
+is_sprite_reversed = false
 
 [node name="Ennemy5" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(-138, 349)
+is_sprite_reversed = false
 
 [node name="Ennemy6" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(-202, 351)
+is_sprite_reversed = false
 
 [node name="Ennemy7" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(-270, 351)
+is_sprite_reversed = false
 
 [node name="Ennemy8" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(-336, 345)
+is_sprite_reversed = false
 
 [node name="XpDrop6" parent="." instance=ExtResource("7_b7b57")]
 position = Vector2(100, 99)
