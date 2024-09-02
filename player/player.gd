@@ -12,6 +12,9 @@ var equiped_gun: Gun
 var can_be_damaged = true
 var just_hurt = false
 
+var is_radiating = false
+var radiance_duration_s: float = 5.0
+
 func _ready():
 	init_health()
 	GameService.register_player_instance(self)
@@ -23,6 +26,8 @@ func _physics_process(delta):
 		move()
 		check_for_ennemies(delta)
 		check_for_collectibles()
+		if is_radiating:
+			burn_things()
 		update_dash_gauge()
 		collect_xp()
 
@@ -90,6 +95,18 @@ func check_for_collectibles():
 					equip_gun(collectible as GunCollectible)
 			elif collectible is LifeFlask:
 				collect_life_flask(collectible as LifeFlask)
+			elif collectible is RadianceFlask:
+				collect_radiance_flask(collectible as RadianceFlask)
+				
+func burn_things():
+	var bodies_in_radiance = %RadianceRadius.get_overlapping_bodies()
+	for body in bodies_in_radiance:
+		if body is EnvTree:
+			if !body.is_destroyed:
+				body.burn()
+		elif body is Ennemy:
+			if !body.is_dead && !body.is_burning:
+				body.set_burning()
 				
 func collect_xp():
 	var overlapping_xp = %XpCollectRadius.get_overlapping_bodies()
@@ -114,15 +131,27 @@ func equip_gun(collectible: GunCollectible):
 	block_pickup()
 	collectible.queue_free()
 
-func collect_life_flask(life_flask: LifeFlask):
+func collect_life_flask(flask: LifeFlask):
 	if GameService.player_state.health < GameService.player_state.max_health:
-		GameService.player_state.health = min(GameService.player_state.health + life_flask.life_amount, GameService.player_state.max_health)
+		GameService.player_state.health = min(GameService.player_state.health + flask.life_amount, GameService.player_state.max_health)
 		GameService.emit_player_change()
 		%HealSound.pitch_scale = randf_range(0.9, 1.1)
 		%HealSound.play()
 		%Effects.show()
 		%Effects.play("heal")
-		life_flask.queue_free()
+		flask.queue_free()
+		
+func collect_radiance_flask(flask: RadianceFlask):
+	if !is_radiating:
+		is_radiating = true
+		%RadianceEffectAnimation.play("fadein")
+		%RadianceEffect.show()
+		%RadianceTimer.start(radiance_duration_s)
+		%RadianceCollision.disabled = false
+		%Effects.show()
+		%Effects.play("radiance")
+		%BurnSound.play()
+		flask.queue_free()
 
 func init_health():
 	%Health.max_health = GameService.player_state.max_health
@@ -191,8 +220,30 @@ func _on_player_state_changed(player_state: PlayerState) -> void:
 func _on_player_level_gained(_new_level: int):
 	%Effects.show()
 	%Effects.play("lvlup")
-	%EffectAnimation.play("burst")
+	%LvlUpEffectLight.show()
+	%LvlUpEffectAnimation.play("burst")
 	%LvlUpSound.play()
 
 func _on_effects_animation_finished() -> void:
-	%Effects.hide()
+	if !is_radiating:
+		%Effects.hide()
+		%BurnSound.stop()
+	else:
+		%Effects.play("radiance")
+
+func _on_lvl_up_effect_animation_animation_finished(_anim_name: StringName) -> void:
+	%LvlUpEffectLight.hide()
+
+
+func _on_radiance_effect_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fadein" && is_radiating:
+		%RadianceEffectAnimation.play("radiate")
+	elif anim_name == "fadeout":
+		%RadianceEffect.hide()
+
+
+func _on_radiance_timer_timeout() -> void:
+	if is_radiating:
+		is_radiating = false
+		%RadianceEffectAnimation.play("fadeout")
+		%RadianceCollision.disabled = true

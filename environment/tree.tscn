@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://brp1lqe74y0on"]
+[gd_scene load_steps=31 format=3 uid="uid://brp1lqe74y0on"]
 
 [ext_resource type="Script" path="res://environment/tree.gd" id="1_g11to"]
 [ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://sprites/environment/tree-idle.png" id="1_lq71w"]
@@ -162,6 +162,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [2.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%FireLight/../LightOccluder2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%FireLight/../LightOccluder2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_28u6k"]
 resource_name = "fadeout"
@@ -178,6 +202,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [2.0, 0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%FireLight/../LightOccluder2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.0743255),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%FireLight/../LightOccluder2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.0824694),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -25)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1efgm"]
 _data = {
@@ -185,8 +233,11 @@ _data = {
 "fadeout": SubResource("Animation_28u6k")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eigig"]
+polygon = PackedVector2Array(-4, -56, -13, -39, -13, -24, -8, -20, -3, -11, -4, -3, -5, 0, 4, -1, 6, -18, 11, -21, 15, -26, 13, -50, 5, -58)
+
 [node name="Tree" type="StaticBody2D"]
-collision_layer = 4
+collision_layer = 132
 collision_mask = 0
 script = ExtResource("1_g11to")
 
@@ -204,7 +255,8 @@ sprite_frames = SubResource("SpriteFrames_wkx4t")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(1, -13)
 shape = SubResource("CapsuleShape2D_hlt7m")
 
@@ -236,6 +288,10 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_1efgm")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_eigig")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="area_entered" from="ExplodeZone" to="." method="_on_explode_zone_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=63 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
@@ -11,9 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://bnx4gwxp4icjk" path="res://sprites/player/level-up.png" id="7_l7eyr"]
 [ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://sounds/beep.mp3" id="7_ngsqq"]
 [ext_resource type="Texture2D" uid="uid://dymt52ugwiobd" path="res://sprites/player/player-effects-heal.png" id="7_qp5db"]
+[ext_resource type="Texture2D" uid="uid://twi8lfwt883a" path="res://sprites/player/player-effects-radiance.png" id="9_sing3"]
 [ext_resource type="AudioStream" uid="uid://qen7gpw0psw8" path="res://sounds/ouch.wav" id="10_2qr18"]
 [ext_resource type="AudioStream" uid="uid://6l78umox8pi5" path="res://sounds/lvlup.wav" id="12_c1clg"]
 [ext_resource type="AudioStream" uid="uid://cxru2f02empok" path="res://sounds/drink.mp3" id="13_x6obx"]
+[ext_resource type="AudioStream" uid="uid://d3blh14kvftbe" path="res://sounds/burning.wav" id="16_12bmd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
 atlas = ExtResource("3_2bqqa")
@@ -151,6 +153,22 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("7_l7eyr")
 region = Rect2(192, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_30do6"]
+atlas = ExtResource("9_sing3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ximb8"]
+atlas = ExtResource("9_sing3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7lso"]
+atlas = ExtResource("9_sing3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj0be"]
+atlas = ExtResource("9_sing3")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_rj14w"]
 animations = [{
 "frames": [{
@@ -210,6 +228,23 @@ animations = [{
 "loop": false,
 "name": &"lvlup",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30do6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ximb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7lso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj0be")
+}],
+"loop": false,
+"name": &"radiance",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5pv4u"]
@@ -224,6 +259,8 @@ radius = 62.002
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
 radius = 35.5035
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1s8oo"]
+
 [sub_resource type="Gradient" id="Gradient_0bcxw"]
 offsets = PackedFloat32Array(0, 0.350649, 0.551948, 0.727273, 0.811688, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.987007, 0.981352, 0.976486, 1, 0.80796, 0.73072, 0.663398, 1, 0.437645, 0.395807, 0.359341, 1, 0, 0, 0, 0)
@@ -235,33 +272,6 @@ height = 100
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.75, 0.75)
-
-[sub_resource type="Animation" id="Animation_t1scx"]
-resource_name = "burst"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.148651),
-"update": 0,
-"values": [1.0, 50.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.0490367),
-"update": 0,
-"values": [1.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_4iifq"]
 length = 0.001
@@ -290,14 +300,232 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_t1scx"]
+resource_name = "burst"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.148651),
+"update": 0,
+"values": [1.0, 50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.0490367),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6dq4s"]
 _data = {
 "RESET": SubResource("Animation_4iifq"),
 "burst": SubResource("Animation_t1scx")
 }
 
+[sub_resource type="Gradient" id="Gradient_r8qdj"]
+offsets = PackedFloat32Array(0, 0.38961, 0.551948, 0.75974, 0.941558)
+colors = PackedColorArray(1, 1, 0.416, 0, 0.945, 0.981, 0.897, 1, 0.889912, 0.674856, 0.130243, 1, 0.705937, 0.390961, 1.92523e-07, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m1t3w"]
+gradient = SubResource("Gradient_r8qdj")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
+[sub_resource type="Animation" id="Animation_bcvwj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Triggers/RadianceRadius/RadianceCollision:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eo7mm"]
+resource_name = "fadein"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.210224, 1),
+"update": 0,
+"values": [0.0, 3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.143588),
+"update": 0,
+"values": [0.01, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Triggers/RadianceRadius/RadianceCollision:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(18, 18)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sounds/BurnSound:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.75]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sounds/BurnSound:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.31864, 0.183011),
+"update": 0,
+"values": [-69.611, 1.874]
+}
+
+[sub_resource type="Animation" id="Animation_7wrnt"]
+resource_name = "fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.143587),
+"update": 0,
+"values": [3.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sounds/BurnSound:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -69.611]
+}
+
+[sub_resource type="Animation" id="Animation_ppjmx"]
+resource_name = "radiance"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [3.0, 2.0, 3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.392292, 1, 0.183011),
+"update": 0,
+"values": [1.0, 1.5, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Triggers/RadianceRadius/RadianceCollision:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(18, 18), Vector2(25, 25), Vector2(18, 18)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhkvu"]
+_data = {
+"RESET": SubResource("Animation_bcvwj"),
+"fadein": SubResource("Animation_eo7mm"),
+"fadeout": SubResource("Animation_7wrnt"),
+"radiate": SubResource("Animation_ppjmx")
+}
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 71
+collision_mask = 199
 script = ExtResource("1_teghp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -306,7 +534,7 @@ offset_left = -669.0
 offset_top = -425.0
 offset_right = 754.0
 offset_bottom = 416.0
-color = Color(0.435192, 0.435192, 0.435192, 1)
+color = Color(0.316154, 0.483476, 0.332573, 1)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)
@@ -327,7 +555,9 @@ visible = false
 position = Vector2(0, -7.5)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_rj14w")
-animation = &"heal"
+animation = &"radiance"
+frame = 1
+frame_progress = 0.784924
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -377,6 +607,17 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_4lpg2")
 debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)
 
+[node name="RadianceRadius" type="Area2D" parent="Triggers"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 128
+
+[node name="RadianceCollision" type="CollisionShape2D" parent="Triggers/RadianceRadius"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_1s8oo")
+disabled = true
+debug_color = Color(0.729, 0.652, 0.101, 0.422)
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="PickUpTimer" type="Timer" parent="Timers"]
@@ -396,6 +637,9 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="DashGhostTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="RadianceTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 
 [node name="Sounds" type="Node" parent="."]
@@ -433,15 +677,40 @@ stream = ExtResource("13_x6obx")
 volume_db = 3.0
 pitch_scale = 1.5
 
-[node name="EffectLight" type="PointLight2D" parent="."]
+[node name="BurnSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("16_12bmd")
+volume_db = -69.611
+pitch_scale = 2.0
+bus = &"Effects"
+
+[node name="LvlUpEffectLight" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+visible = false
 energy = 0.0
 texture = SubResource("GradientTexture2D_pmtm4")
 
-[node name="EffectAnimation" type="AnimationPlayer" parent="EffectLight"]
+[node name="LvlUpEffectAnimation" type="AnimationPlayer" parent="LvlUpEffectLight"]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_6dq4s")
 }
+
+[node name="RadianceEffect" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+color = Color(0.968419, 0.924793, 0.902046, 1)
+energy = 0.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_m1t3w")
+texture_scale = 0.01
+
+[node name="RadianceEffectAnimation" type="AnimationPlayer" parent="RadianceEffect"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_vhkvu")
+}
+autoplay = "RESET"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Effects" to="." method="_on_effects_animation_finished"]
@@ -450,3 +719,6 @@ libraries = {
 [connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Timers/DashGhostTimer" to="." method="_on_dash_ghost_timer_timeout"]
+[connection signal="timeout" from="Timers/RadianceTimer" to="." method="_on_radiance_timer_timeout"]
+[connection signal="animation_finished" from="LvlUpEffectLight/LvlUpEffectAnimation" to="." method="_on_lvl_up_effect_animation_animation_finished"]
+[connection signal="animation_finished" from="RadianceEffect/RadianceEffectAnimation" to="." method="_on_radiance_effect_animation_animation_finished"]

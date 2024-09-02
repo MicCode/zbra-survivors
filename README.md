@@ -25,3 +25,7 @@
 - change player stats on lvl up
 - menu to show current stats (player and equipped gun)
 ​
+## TO BE FIXED
+
+- keyboard cannot be used if a controller is plugged in (both should work independently)
+- flamethrower sound is buggy (sound is played each time a flame is thrown)

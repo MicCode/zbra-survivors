@@ -14,8 +14,8 @@ var is_burning = false
 
 # TODO make burning related stats variable
 const BURN_DURATION_S: float = 1.1
-const BURN_TICK_S: float = 0.5
-const BURN_DAMAGE: float = 0.5
+const BURN_TICK_S: float = 0.25
+const BURN_DAMAGE: float = 2
 
 func _ready():
 	ennemy_info = EnnemiesService.get_info(ennemy_name)
@@ -71,6 +71,7 @@ func _on_health_depleted():
 		%DeathSound.play()
 		%Sprite.play("dead")
 		set_collision_layer_value(2, false)
+		set_collision_layer_value(8, false)
 		%DeathTimer.start(1.0)
 		remove_child(%Health)
 

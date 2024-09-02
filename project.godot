@@ -22,7 +22,6 @@ config/icon="res://sprites/player/player-icon.png"
 [autoload]
 
 EnnemiesService="*res://globals/ennemies_service.gd"
-GameState="*res://globals/game_state.gd"
 GameSettings="*res://globals/game_settings.gd"
 Enums="*res://globals/enums.gd"
 SceneManager="*res://globals/scene_manager.gd"
@@ -126,6 +125,7 @@ look_right={
 2d_physics/layer_5="collectibles"
 2d_physics/layer_6="xp"
 2d_physics/layer_7="invisible_walls"
+2d_physics/layer_8="radiance"
 
 [physics]
 
