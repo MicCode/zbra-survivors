@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Ennemy
 
-signal dead
-
 @export var ennemy_name: String
 @export var is_chasing_player = true
 @export var is_sprite_reversed = false
@@ -67,13 +65,13 @@ func _on_animation_finished():
 func _on_health_depleted():
 	if ennemy_info.can_die:
 		is_dead = true
-		dead.emit(self)
 		%DeathSound.play()
 		%Sprite.play("dead")
 		set_collision_layer_value(2, false)
 		set_collision_layer_value(8, false)
 		%DeathTimer.start(1.0)
 		remove_child(%Health)
+		GameService.register_ennemy_death(self)
 
 func _on_death_timer_timeout():
 	%AnimationPlayer.play("fade_away")

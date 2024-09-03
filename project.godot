@@ -27,6 +27,8 @@ Enums="*res://globals/enums.gd"
 SceneManager="*res://globals/scene_manager.gd"
 GunService="*res://globals/gun_service.gd"
 GameService="*res://globals/game_service.gd"
+EventsService="*res://globals/events_service.gd"
+AudioService="*res://globals/audio_service.gd"
 
 [display]
 

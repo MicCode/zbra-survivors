@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://deyu38p7ie4ql"]
+[gd_scene load_steps=4 format=3 uid="uid://deyu38p7ie4ql"]
 
 [ext_resource type="Script" path="res://ui/menu/game_over_menu.gd" id="1_73h2w"]
+[ext_resource type="AudioStream" uid="uid://cqm8306cshwlu" path="res://sounds/die.wav" id="2_b0jhf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpejy"]
 line_spacing = 0.0
@@ -61,6 +62,12 @@ offset_bottom = 555.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 25
 text = "MAIN MENU"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_b0jhf")
+pitch_scale = 1.4
+autoplay = true
+bus = &"Effects"
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

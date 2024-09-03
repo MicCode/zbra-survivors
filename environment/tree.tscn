@@ -290,6 +290,7 @@ libraries = {
 }
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_eigig")
 

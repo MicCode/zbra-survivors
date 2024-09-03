@@ -52,3 +52,27 @@ func register_player_instance(_player):
 func change_equipped_gun(_new_gun: Gun):
 	equipped_gun = _new_gun
 	equipped_gun_changed.emit(equipped_gun)
+
+func register_ennemy_death(ennemy: Ennemy) -> void:
+	increment_score(1)
+	var xp: XpDrop = preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.ennemy_info.xp_value)
+	xp.global_position = ennemy.global_position
+	SceneManager.current_scene.call_deferred("add_child", xp)
+
+	# TODO refactor this code to have a more generic way to drop items
+	if randf() <= GameService.player_state.life_drop_chance:
+		var life_flask: LifeFlask = preload("res://equipment/items/life_flask.tscn").instantiate().with_life_amount(1) # TODO make life amount configurable
+		life_flask.global_position = ennemy.global_position
+		SceneManager.current_scene.call_deferred("add_child", life_flask)
+		
+	if randf() <= GameService.player_state.radiance_drop_chance:
+		var radiance_flask: RadianceFlask = preload("res://equipment/items/radiance_flask.tscn").instantiate()
+		radiance_flask.global_position = ennemy.global_position
+		SceneManager.current_scene.call_deferred("add_child", radiance_flask)
+
+func show_game_over() -> void:
+	var current_scene = SceneManager.current_scene
+	if current_scene:
+		var game_over_menu = preload("res://ui/menu/game_over_menu.tscn").instantiate()
+		current_scene.add_child(game_over_menu)
+		current_scene.get_tree().paused = true

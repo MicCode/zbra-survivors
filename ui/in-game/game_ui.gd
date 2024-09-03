@@ -58,3 +58,11 @@ func _on_player_state_changed(player_state: PlayerState):
 
 	%XpBar.max_value = player_state.next_level_xp
 	%XpBar.value = player_state.xp
+
+func set_remaining_time(remaining_s: float):
+	var remaining_minutes = floor(remaining_s / 60 )
+	var remaining_seconds = floor(remaining_s - remaining_minutes * 60)
+	%RemainingTime.text = format_time(remaining_minutes, remaining_seconds)
+
+func format_time(minutes: int, seconds: int) -> String:
+	return str("%02d:%02d" % [minutes, seconds])

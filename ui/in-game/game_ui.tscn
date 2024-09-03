@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=12 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
@@ -127,6 +127,9 @@ _data = {
 "xpgain": SubResource("Animation_4wuty")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_vrht4"]
+font_size = 30
+
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_70thh")
 
@@ -229,3 +232,14 @@ libraries = {
 "": SubResource("AnimationLibrary_a2s7m")
 }
 speed_scale = 2.0
+
+[node name="RemainingTime" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 13.0
+offset_top = 23.0
+offset_right = 90.0
+offset_bottom = 65.0
+scale = Vector2(1.5, 1.5)
+text = "12:34"
+label_settings = SubResource("LabelSettings_vrht4")

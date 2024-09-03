@@ -10,6 +10,7 @@ func explode():
 		%ExplodeSound.play()
 		set_collision_layer_value(3, false)
 		set_collision_layer_value(8, false)
+		%LightOccluder2D.hide()
 
 func burn():
 	if !is_destroyed:

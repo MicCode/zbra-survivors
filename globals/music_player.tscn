@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7a5lypeg0cyt"]
+
+[ext_resource type="AudioStream" uid="uid://dk617by86n56j" path="res://sounds/music/courage.mp3" id="1_sxf05"]
+[ext_resource type="AudioStream" uid="uid://c4r42w2sk00ut" path="res://sounds/music/Bas Taille.mp3" id="2_aifkr"]
+[ext_resource type="Script" path="res://globals/music_player.gd" id="3_uufii"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kqauu"]
+clip_count = 2
+clip_0/name = &"MainTheme"
+clip_0/stream = ExtResource("1_sxf05")
+clip_0/auto_advance = 0
+clip_1/name = &"BossBattle"
+clip_1/stream = ExtResource("2_aifkr")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 0): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamInteractive_kqauu")
+bus = &"Music"
+script = ExtResource("3_uufii")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
