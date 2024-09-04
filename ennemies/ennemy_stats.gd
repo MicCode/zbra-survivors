@@ -1,6 +1,7 @@
 class_name EnnemyInfo
 
 var name = "ennemy"
+var nice_name = "ennemy nice name"
 var max_health: int = 30
 var health: int = 30
 var speed: float = 200.0
@@ -9,6 +10,10 @@ var can_die: bool = true
 
 func with_name(_name: String) -> EnnemyInfo:
 	name = _name
+	return self
+
+func with_nice_name(_nice_name: String) -> EnnemyInfo:
+	nice_name = _nice_name
 	return self
 
 func with_max_health(_max_health: int) -> EnnemyInfo:

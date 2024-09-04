@@ -4,6 +4,7 @@ signal score_changed
 signal player_gained_level
 signal equipped_gun_changed
 
+signal boss_changed(boss_info: EnnemyInfo)
 
 var player_state: PlayerState
 var player_instance: Player
@@ -21,6 +22,7 @@ func reset():
 	is_game_over = false
 	emit_player_change()
 	emit_score_change()
+	boss_changed.emit(null)
 
 func _init() -> void:
 	player_state = PlayerState.new()

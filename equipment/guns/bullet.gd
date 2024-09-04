@@ -19,6 +19,10 @@ func with_damage(_damage: int) -> Bullet:
 	damage = _damage
 	return self
 
+func with_speed(_speed: float) -> Bullet:
+	speed = _speed
+	return self
+
 func with_travel_distance(_travel_distance: float) -> Bullet:
 	travel_distance = _travel_distance
 	return self

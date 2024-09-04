@@ -14,19 +14,19 @@
 [ext_resource type="PackedScene" uid="uid://diqxvqy6dowgw" path="res://equipment/items/radiance_flask.tscn" id="12_vs4yp"]
 [ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://equipment/items/life_flask.tscn" id="13_6k7wn"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cflog"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlg04"]
 texture = ExtResource("2_37kje")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_mblyq"]
-sources/0 = SubResource("TileSetAtlasSource_cflog")
+sources/0 = SubResource("TileSetAtlasSource_xlg04")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1fsqm"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_l5hof"]
 resource_name = "Trees"
 scenes/1/scene = ExtResource("1_xqpa0")
 
 [sub_resource type="TileSet" id="TileSet_1dht0"]
-sources/0 = SubResource("TileSetScenesCollectionSource_1fsqm")
+sources/0 = SubResource("TileSetScenesCollectionSource_l5hof")
 
 [node name="TreeTestScene" type="Node2D"]
 script = ExtResource("1_sutrr")

@@ -3,6 +3,7 @@ class_name EnvTree
 
 var is_destroyed = false
 
+# TODO explode() burn() and wither() functions could be refactored
 func explode():
 	if !is_destroyed:
 		is_destroyed = true
@@ -21,6 +22,15 @@ func burn():
 		%FireLightAnimation.play("fadeout")
 		set_collision_layer_value(3, false)
 		set_collision_layer_value(8, false)
+		
+func wither():
+	if !is_destroyed:
+		is_destroyed = true
+		%Sprite.play("wither")
+		%ExplodeSound.play()
+		set_collision_layer_value(3, false)
+		set_collision_layer_value(8, false)
+		%LightOccluder2D.hide()
 
 func _on_sprite_animation_finished():
 	if is_destroyed:

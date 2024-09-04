@@ -1,5 +1,7 @@
 extends Node2D
 
+var is_boss_spawned = false
+
 func _ready():
 	%GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
 	GameService.reset()
@@ -23,3 +25,14 @@ func _on_player_health_depleted():
 
 func _on_remaining_time_interval_timeout() -> void:
 	%GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
+
+func _on_time_before_boss_timeout() -> void:
+	call_deferred("spawn_boss")
+
+func spawn_boss():
+	if !is_boss_spawned:
+		is_boss_spawned = true
+		var boss = preload("res://ennemies/boss_1/Boss1.tscn").instantiate()
+		add_child(boss)
+		boss.global_position = %BossSpawnPoint.global_position
+		%MusicPlayer.switch_to("BossBattle")

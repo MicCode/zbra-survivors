@@ -235,7 +235,6 @@ speed_scale = 2.0
 
 [node name="RemainingTime" type="Label" parent="."]
 unique_name_in_owner = true
-visible = false
 offset_left = 13.0
 offset_top = 23.0
 offset_right = 90.0

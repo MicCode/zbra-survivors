@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://brp1lqe74y0on"]
+[gd_scene load_steps=38 format=3 uid="uid://brp1lqe74y0on"]
 
 [ext_resource type="Script" path="res://environment/tree.gd" id="1_g11to"]
 [ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://sprites/environment/tree-idle.png" id="1_lq71w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0i4faxik8fu7" path="res://sprites/environment/tree-exploding.png" id="3_0odta"]
 [ext_resource type="Texture2D" uid="uid://c4xqqh6nhvb" path="res://sprites/environment/tree-burning.png" id="3_4brj3"]
 [ext_resource type="AudioStream" uid="uid://c8mmey6t4sqyj" path="res://sounds/falling-leaves.wav" id="5_he00s"]
+[ext_resource type="Texture2D" uid="uid://das4vccwbvswv" path="res://sprites/environment/tree-wither.png" id="6_nenqp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gs0qu"]
 atlas = ExtResource("3_4brj3")
@@ -66,6 +67,30 @@ region = Rect2(0, 0, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_aao5q"]
 atlas = ExtResource("1_lq71w")
 region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sehya"]
+atlas = ExtResource("6_nenqp")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neanj"]
+atlas = ExtResource("6_nenqp")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2650"]
+atlas = ExtResource("6_nenqp")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq5i5"]
+atlas = ExtResource("6_nenqp")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pcso"]
+atlas = ExtResource("6_nenqp")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfy55"]
+atlas = ExtResource("6_nenqp")
+region = Rect2(80, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wkx4t"]
 animations = [{
@@ -128,6 +153,29 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sehya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neanj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2650")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq5i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pcso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfy55")
+}],
+"loop": false,
+"name": &"wither",
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlt7m"]
@@ -252,7 +300,7 @@ unique_name_in_owner = true
 position = Vector2(0, -26)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wkx4t")
-animation = &"idle"
+animation = &"wither"
 autoplay = "idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -263,7 +311,7 @@ shape = SubResource("CapsuleShape2D_hlt7m")
 [node name="ExplodeZone" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 4
-collision_mask = 8
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeZone"]
 position = Vector2(1, -27.5)
@@ -273,6 +321,8 @@ debug_color = Color(0.874474, 0.459713, 0.525191, 0.42)
 [node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_he00s")
+volume_db = -6.0
+bus = &"Effects"
 
 [node name="FireLight" type="PointLight2D" parent="."]
 unique_name_in_owner = true
@@ -296,3 +346,4 @@ occluder = SubResource("OccluderPolygon2D_eigig")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="area_entered" from="ExplodeZone" to="." method="_on_explode_zone_area_entered"]
+[connection signal="body_entered" from="ExplodeZone" to="." method="_on_explode_zone_body_entered"]

@@ -120,6 +120,7 @@ look_right={
 [layer_names]
 
 2d_render/layer_2="muzzle_flash"
+2d_render/layer_3="environment"
 2d_physics/layer_1="player"
 2d_physics/layer_2="ennemies"
 2d_physics/layer_3="environment"
@@ -131,7 +132,7 @@ look_right={
 
 [physics]
 
-common/physics_ticks_per_second=200
+common/physics_ticks_per_second=144
 common/max_physics_steps_per_frame=25
 
 [rendering]
