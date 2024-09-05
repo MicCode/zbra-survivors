@@ -179,7 +179,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 wait_time = 300.0
 one_shot = true
-autostart = true
 
 [node name="RemainingTimeInterval" type="Timer" parent="."]
 wait_time = 0.5

@@ -1,8 +1,10 @@
 extends Node2D
 
 var is_boss_spawned = false
+const TIME_BEFORE_BOSS_S: float = 300.0
 
 func _ready():
+	%TimeBeforeBoss.start(TIME_BEFORE_BOSS_S)
 	%GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
 	GameService.reset()
 	get_tree().paused = false
@@ -37,3 +39,8 @@ func spawn_boss():
 		add_child(boss)
 		boss.global_position = %BossSpawnPoint.global_position
 		%MusicPlayer.switch_to("BossBattle")
+		GameService.boss_changed.connect(on_boss_changed)
+
+func on_boss_changed(new_boss_info: EnnemyInfo):
+	if new_boss_info.health <= 0:
+		%MusicPlayer.switch_to("MainTheme")

@@ -18,7 +18,7 @@ func _init() -> void:
 	boss_info = EnnemyInfo.new()
 	boss_info.name = "boss-1"
 	boss_info.nice_name = "ZBRA, Devourer Of Worlds"
-	boss_info.max_health = 100
+	boss_info.max_health = 1000
 	boss_info.health = boss_info.max_health
 	boss_info.speed = 150.0
 	boss_info.xp_value = 50.0
@@ -114,3 +114,7 @@ func _on_wither_radius_body_entered(body: Node2D) -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		handle_bullet_hit(area as Bullet)
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "die":
+		queue_free()

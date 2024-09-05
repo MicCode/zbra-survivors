@@ -25,7 +25,6 @@
 - change player stats on lvl up
 - menu to show current stats (player and equipped gun)
 - change ennemies spawn frequencies and statistics during game
-- spawn a boss when counter reach 00:00
 ​
 ## TO BE FIXED
 
