@@ -15,11 +15,26 @@ var just_hurt = false
 var is_radiating = false
 var radiance_duration_s: float = 5.0
 
+var is_timewrapping = false
+var timewrap_duration_s: float = 5.0
+var timewrap_time_scale: float = 0.5
+var actual_time_scale: float = 1.0
+var time_scale_target: float = 1.0
+var time_scale_change_interval: float = 0.01
+
 func _ready():
 	init_health()
 	GameService.register_player_instance(self)
 	GameService.player_state_changed.connect(_on_player_state_changed)
 	GameService.player_gained_level.connect(_on_player_level_gained)
+	
+func _process(_delta: float) -> void:
+	if actual_time_scale != time_scale_target:
+		if actual_time_scale < time_scale_target:
+			actual_time_scale += time_scale_change_interval
+		else:
+			actual_time_scale -= time_scale_change_interval
+		AudioServer.playback_speed_scale = actual_time_scale
 	
 func _physics_process(delta):
 	if GameService.player_state.is_alive:
@@ -30,6 +45,7 @@ func _physics_process(delta):
 			burn_things()
 		update_dash_gauge()
 		collect_xp()
+		
 
 func move(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -98,6 +114,8 @@ func check_for_collectibles():
 				collect_life_flask(collectible as LifeFlask)
 			elif collectible is RadianceFlask:
 				collect_radiance_flask(collectible as RadianceFlask)
+			elif collectible is TimewrapClock:
+				collect_timewrap_clock(collectible as TimewrapClock)
 				
 func burn_things():
 	var bodies_in_radiance = %RadianceRadius.get_overlapping_bodies()
@@ -153,6 +171,15 @@ func collect_radiance_flask(flask: RadianceFlask):
 		%Effects.play("radiance")
 		%BurnSound.play()
 		flask.queue_free()
+
+func collect_timewrap_clock(clock: TimewrapClock):
+	if !is_timewrapping:
+		is_timewrapping = true
+		%TimewrapTimer.start(timewrap_duration_s * timewrap_time_scale)
+		Engine.time_scale = timewrap_time_scale
+		time_scale_target = timewrap_time_scale
+		GameService.player_state.move_speed /= (timewrap_time_scale * 1.5)
+		clock.queue_free()
 
 func init_health():
 	%Health.max_health = GameService.player_state.max_health
@@ -250,3 +277,9 @@ func _on_radiance_timer_timeout() -> void:
 		is_radiating = false
 		%RadianceEffectAnimation.play("fadeout")
 		%RadianceCollision.disabled = true
+
+func _on_timewrap_timer_timeout() -> void:
+	Engine.time_scale = 1.0
+	is_timewrapping = false
+	time_scale_target = 1.0
+	GameService.player_state.move_speed *= (timewrap_time_scale * 1.5)

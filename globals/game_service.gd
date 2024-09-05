@@ -8,14 +8,16 @@ signal boss_changed(boss_info: EnnemyInfo)
 
 var player_state: PlayerState
 var player_instance: Player
+var music_player_instance: MusicPlayer
+
 var score: int = 0
 var spawn_time_s: float = 3.0
 var equipped_gun: Gun
 var is_game_over = false
 
 ## Resets all game state info, like if the game was freshly started
-func reset():
-	player_state.reset()
+func reset() -> void:
+	player_state = PlayerState.new()
 	score = 0
 	spawn_time_s = 3.0
 	equipped_gun = null
@@ -27,11 +29,11 @@ func reset():
 func _init() -> void:
 	player_state = PlayerState.new()
 
-func increment_score(i: int):
+func increment_score(i: int) -> void:
 	score += i
 	emit_score_change()
 	
-func gain_xp(xp: float):
+func gain_xp(xp: float) -> void:
 	player_state.xp += xp
 	if player_state.xp >= player_state.next_level_xp:
 		var excess = player_state.xp - player_state.next_level_xp
@@ -42,35 +44,33 @@ func gain_xp(xp: float):
 		
 	emit_player_change()
 
-func emit_player_change():
+func emit_player_change() -> void:
 	player_state_changed.emit(player_state)
 
-func emit_score_change():
+func emit_score_change() -> void:
 	score_changed.emit(score)
 
-func register_player_instance(_player):
+func register_player_instance(_player) -> void:
 	player_instance = _player
 
-func change_equipped_gun(_new_gun: Gun):
+func change_equipped_gun(_new_gun: Gun) -> void:
 	equipped_gun = _new_gun
 	equipped_gun_changed.emit(equipped_gun)
 
 func register_ennemy_death(ennemy: Ennemy) -> void:
 	increment_score(1)
-	var xp: XpDrop = preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.ennemy_info.xp_value)
-	xp.global_position = ennemy.global_position
-	SceneManager.current_scene.call_deferred("add_child", xp)
+	drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.ennemy_info.xp_value), ennemy.global_position)
 
-	# TODO refactor this code to have a more generic way to drop items
 	if randf() <= GameService.player_state.life_drop_chance:
-		var life_flask: LifeFlask = preload("res://equipment/items/life_flask.tscn").instantiate().with_life_amount(1) # TODO make life amount configurable
-		life_flask.global_position = ennemy.global_position
-		SceneManager.current_scene.call_deferred("add_child", life_flask)
-		
-	if randf() <= GameService.player_state.radiance_drop_chance:
-		var radiance_flask: RadianceFlask = preload("res://equipment/items/radiance_flask.tscn").instantiate()
-		radiance_flask.global_position = ennemy.global_position
-		SceneManager.current_scene.call_deferred("add_child", radiance_flask)
+		drop_item(preload("res://equipment/items/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
+	elif randf() <= GameService.player_state.radiance_drop_chance:
+		drop_item(preload("res://equipment/items/radiance_flask.tscn").instantiate(), ennemy.global_position)
+	elif randf() <= GameService.player_state.timewrap_drop_change:
+		drop_item(preload("res://equipment/items/timewrap_clock.tscn").instantiate(), ennemy.global_position)
+
+func drop_item(item: Node2D, position: Vector2) -> void:
+	item.global_position = position
+	SceneManager.current_scene.call_deferred("add_child", item)
 
 func show_game_over() -> void:
 	var current_scene = SceneManager.current_scene

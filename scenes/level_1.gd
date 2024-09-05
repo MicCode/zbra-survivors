@@ -9,6 +9,7 @@ func _ready():
 	GameSettings.apply_audio_settings()
 	%MobSpawnTimer.wait_time = GameService.spawn_time_s
 	%MusicPlayer.play()
+	GameService.music_player_instance = %MusicPlayer
 
 func spawn_ennemy():
 	var new_ennemy = EnnemiesService.spawn_random()

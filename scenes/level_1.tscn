@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=29 format=4 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://bqif8yh3k1bty" path="res://environment/grass4.tscn" id="15_7foxv"]
 [ext_resource type="PackedScene" uid="uid://c7a5lypeg0cyt" path="res://globals/music_player.tscn" id="17_hw0e1"]
 [ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://equipment/guns/sniper/sniper_collectible.tscn" id="17_xm7rv"]
-[ext_resource type="PackedScene" uid="uid://ceuyqoivr7ngj" path="res://player/xp_drop.tscn" id="18_u4r3o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08k3h"]
 texture = ExtResource("2_a6upr")
@@ -137,10 +136,6 @@ position = Vector2(752, 481)
 [node name="Collectible2" parent="." instance=ExtResource("17_xm7rv")]
 position = Vector2(582, 142)
 
-[node name="XpDrop" parent="." instance=ExtResource("18_u4r3o")]
-position = Vector2(396, 818)
-xp_value = 10.0
-
 [node name="InvisibleWall" type="StaticBody2D" parent="."]
 position = Vector2(-1938, -1626)
 collision_layer = 64
@@ -182,7 +177,7 @@ unique_name_in_owner = true
 
 [node name="TimeBeforeBoss" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 15.0
+wait_time = 300.0
 one_shot = true
 autostart = true
 

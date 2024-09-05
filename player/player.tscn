@@ -642,6 +642,10 @@ unique_name_in_owner = true
 [node name="RadianceTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 
+[node name="TimewrapTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="Sounds" type="Node" parent="."]
 
 [node name="DashSound" type="AudioStreamPlayer" parent="Sounds"]
@@ -720,5 +724,6 @@ autoplay = "RESET"
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Timers/DashGhostTimer" to="." method="_on_dash_ghost_timer_timeout"]
 [connection signal="timeout" from="Timers/RadianceTimer" to="." method="_on_radiance_timer_timeout"]
+[connection signal="timeout" from="Timers/TimewrapTimer" to="." method="_on_timewrap_timer_timeout"]
 [connection signal="animation_finished" from="LvlUpEffectLight/LvlUpEffectAnimation" to="." method="_on_lvl_up_effect_animation_animation_finished"]
 [connection signal="animation_finished" from="RadianceEffect/RadianceEffectAnimation" to="." method="_on_radiance_effect_animation_animation_finished"]
