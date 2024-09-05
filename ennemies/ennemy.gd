@@ -24,11 +24,11 @@ func _ready():
 	%Health.update_display()
 	%DeathSound.pitch_scale = randf_range(0.8, 1.1)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if !is_dead && is_chasing_player && player != null:
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = direction_to_player * ennemy_info.speed
-		move_and_slide()
+		move_and_collide(velocity * delta)
 		%Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
 func handle_bullet_hit(bullet: Bullet):

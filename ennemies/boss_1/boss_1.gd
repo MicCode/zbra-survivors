@@ -10,6 +10,7 @@ var is_shooting = false
 
 const MINIMUM_TIME_BETWEEN_SHOTS_S: float = 3.0
 const MAXIMUM_TIME_BETWEEN_SHOTS_S: float = 5.0
+const SHOOT_START_DELAY_S: float = 0.3
 
 # TODO there are many similarities with Ennemy class, there is probably a lot of refactoring to do
 
@@ -17,7 +18,7 @@ func _init() -> void:
 	boss_info = EnnemyInfo.new()
 	boss_info.name = "boss-1"
 	boss_info.nice_name = "ZBRA, Devourer Of Worlds"
-	boss_info.max_health = 1000
+	boss_info.max_health = 100
 	boss_info.health = boss_info.max_health
 	boss_info.speed = 150.0
 	boss_info.xp_value = 50.0
@@ -26,11 +27,11 @@ func _init() -> void:
 func _ready():
 	player = GameService.player_instance
 	
-func _physics_process(_delta):
+func _physics_process(delta):
 	if is_ready && !is_dead && !is_shooting && player != null:
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = direction_to_player * boss_info.speed
-		move_and_slide()
+		move_and_collide(velocity * delta)
 		%Sprite.flip_h = direction_to_player.x > 0
 
 	
@@ -40,23 +41,28 @@ func start_chase():
 	
 func shoot():
 	if !is_dead:
-		var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate().with_damage(1).with_speed(1000)
-		get_tree().root.add_child(bullet)
-		bullet.global_position = %ShootPoint.global_position
-		bullet.look_at(player.global_position)
-		is_shooting = true
 		%Sprite.play("shoot")
-		%ShootSound.play()
+		%ShootDelayTimer.start(SHOOT_START_DELAY_S)
+		is_shooting = true
+
+func _on_shoot_delay_timer_timeout() -> void:
+	var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate().with_damage(1).with_speed(1000)
+	get_tree().root.add_child(bullet)
+	bullet.global_position = %ShootPoint.global_position
+	bullet.look_at(player.global_position)
+	%ShootSound.play()
 	
 func handle_bullet_hit(bullet: Bullet):
-	if !is_dead:
+	if bullet is BossBullet:
+		return
+	if is_ready && !is_dead:
 		take_damage(bullet.damage)
 		#if bullet.is_fire:
 			#set_burning()
 		#else:
 			#bleed(bullet.global_position)
 
-func take_damage(damage: float):
+func take_damage(damage: int):
 	boss_info.health -= damage
 	# TODO change sprite modulation on hit
 	%HitSound.pitch_scale = randf_range(0.5, 2)
@@ -64,6 +70,7 @@ func take_damage(damage: float):
 	var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
 	damage_marker.global_position = %DamageAnchor.global_position
 	SceneManager.current_scene.add_child(damage_marker)
+	%AnimationPlayer.play("hurt")
 	
 	if boss_info.health <= 0:
 		die()

@@ -1,6 +1,6 @@
 extends Node2D
 
-const PLAY_MUSIC = true
+const PLAY_MUSIC = false
 var is_boss_spawned = false
 
 func _ready() -> void:

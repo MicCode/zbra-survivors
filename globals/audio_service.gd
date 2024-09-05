@@ -17,11 +17,12 @@ func play_oneshot(sound_name: String) -> void:
 	
 
 func _load_sound(sound_name: String, directory: String) -> Resource:
-	var sound_file = load(directory + sound_name + ".mp3")
-	if sound_file == null:
-		sound_file = load(directory + sound_name + ".wav")
-	if sound_file == null:
-		sound_file = load(directory + sound_name + ".ogg")
-	if sound_file == null:
+	if ResourceLoader.exists(directory + sound_name + ".mp3"):
+		return load(directory + sound_name + ".mp3")
+	elif ResourceLoader.exists(directory + sound_name + ".wav"):
+		return load(directory + sound_name + ".wav")
+	elif ResourceLoader.exists(directory + sound_name + ".ogg"):
+		return load(directory + sound_name + ".ogg")
+	else:
 		print_debug("Cannot find sound [" + sound_name + "] in " + directory)
-	return sound_file
+		return null

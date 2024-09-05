@@ -23,7 +23,7 @@ func _ready():
 	
 func _physics_process(delta):
 	if GameService.player_state.is_alive:
-		move()
+		move(delta)
 		check_for_ennemies(delta)
 		check_for_collectibles()
 		if is_radiating:
@@ -31,7 +31,7 @@ func _physics_process(delta):
 		update_dash_gauge()
 		collect_xp()
 
-func move():
+func move(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var h_direction = Input.get_axis("move_left", "move_right")
 	if GameService.player_state.can_dash && Input.is_action_pressed("dash"):
@@ -45,7 +45,7 @@ func move():
 	else:
 		velocity = direction * GameService.player_state.move_speed * GameService.player_state.dash_speed_multiplier
 
-	move_and_slide()
+	move_and_collide(velocity * delta)
 	if !just_hurt:
 		if velocity.length() > 0:
 			%Sprite.play("walk")
@@ -73,8 +73,8 @@ func check_for_ennemies(_delta):
 	if overlapping_ennemies.size() > 0 && can_be_damaged:
 		take_damage()
 
-func take_damage():
-	GameService.player_state.health -= 1
+func take_damage(damage: int = 1):
+	GameService.player_state.health -= damage
 	%Health.current_health = GameService.player_state.health
 	GameService.emit_player_change()
 	can_be_damaged = false
@@ -82,6 +82,7 @@ func take_damage():
 	%Sprite.play("hurt")
 	%HitSound.play()
 	just_hurt = true
+	%HurtBox.set_collision_mask_value(2, false) # ennemies
 	
 	if GameService.player_state.health <= 0:
 		die()
@@ -213,6 +214,7 @@ func set_invincible(invincible: bool):
 func _on_sprite_animation_finished() -> void:
 	if just_hurt:
 		just_hurt = false
+		%HurtBox.set_collision_mask_value(2, true) # ennemies
 		%Sprite.play("idle")
 
 func _on_player_state_changed(player_state: PlayerState) -> void:

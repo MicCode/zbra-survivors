@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-var boss_info: EnnemyInfo
-
 func _ready() -> void:
 	%BossLife.hide()
 	GameService.boss_changed.connect(_on_boss_changed)

@@ -43,7 +43,7 @@ func _physics_process(delta):
 		queue_free()
 
 func _on_body_entered(body):
-	if body is Ennemy:
+	if body is Ennemy || body is Boss1:
 		pierced_bodies += 1
 		if pierced_bodies >= pierce_count:
 			await get_tree().create_timer(0.01).timeout

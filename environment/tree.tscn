@@ -290,6 +290,7 @@ collision_mask = 0
 script = ExtResource("1_g11to")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.196078)
 position = Vector2(-0.5, -6)
 scale = Vector2(2, 2)

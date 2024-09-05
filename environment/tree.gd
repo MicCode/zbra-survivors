@@ -3,40 +3,35 @@ class_name EnvTree
 
 var is_destroyed = false
 
-# TODO explode() burn() and wither() functions could be refactored
 func explode():
 	if !is_destroyed:
 		is_destroyed = true
-		%Sprite.play("explode")
-		%ExplodeSound.play()
-		set_collision_layer_value(3, false)
-		set_collision_layer_value(8, false)
+		destroy("explode")
 		%LightOccluder2D.hide()
 
 func burn():
 	if !is_destroyed:
 		is_destroyed = true
-		%Sprite.play("burn")
-		%ExplodeSound.play()
+		destroy("burn")
 		%FireLight.show()
 		%FireLightAnimation.play("fadeout")
-		set_collision_layer_value(3, false)
-		set_collision_layer_value(8, false)
 		
 func wither():
 	if !is_destroyed:
 		is_destroyed = true
-		%Sprite.play("wither")
-		%ExplodeSound.play()
-		set_collision_layer_value(3, false)
-		set_collision_layer_value(8, false)
+		destroy("wither")
 		%LightOccluder2D.hide()
+
+func destroy(effect_name: String):
+	%Sprite.play(effect_name)
+	%ExplodeSound.play()
+	set_collision_layer_value(3, false)
+	set_collision_layer_value(8, false)
 
 func _on_sprite_animation_finished():
 	if is_destroyed:
-		get_node("Shadow").queue_free()
+		%Shadow.queue_free()
 		%FireLight.hide()
-
 
 func _on_explode_zone_area_entered(body: Node2D) -> void:
 	if !is_destroyed:

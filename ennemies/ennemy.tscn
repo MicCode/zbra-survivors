@@ -245,7 +245,7 @@ _data = {
 }
 
 [node name="Ennemy" type="CharacterBody2D"]
-collision_layer = 130
+collision_layer = 2
 collision_mask = 14
 script = ExtResource("1_qdj7r")
 
