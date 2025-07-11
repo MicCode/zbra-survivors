@@ -4,11 +4,10 @@ signal score_changed
 signal player_gained_level
 signal equipped_gun_changed
 
-signal boss_changed(boss_info: EnnemyInfo)
+signal boss_changed(boss_info: EnnemyStats)
 
 var player_state: PlayerState
 var player_instance: Player
-var music_player_instance: MusicPlayer
 
 var score: int = 0
 var spawn_time_s: float = 3.0
@@ -59,7 +58,7 @@ func change_equipped_gun(_new_gun: Gun) -> void:
 
 func register_ennemy_death(ennemy: Ennemy) -> void:
     increment_score(1)
-    drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.ennemy_info.xp_value), ennemy.global_position)
+    drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.stats.xp_value), ennemy.global_position)
 
     if randf() <= GameService.player_state.life_drop_chance:
         drop_item(preload("res://equipment/items/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)

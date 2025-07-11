@@ -4,7 +4,7 @@ class_name Boss1
 var is_ready = false
 var is_dead = false
 var is_burning = false
-var boss_info: EnnemyInfo
+var boss_info: EnnemyStats
 var player: Player
 var is_shooting = false
 
@@ -15,7 +15,7 @@ const SHOOT_START_DELAY_S: float = 0.3
 # TODO there are many similarities with Ennemy class, there is probably a lot of refactoring to do
 
 func _init() -> void:
-    boss_info = EnnemyInfo.new()
+    boss_info = EnnemyStats.new()
     boss_info.name = "boss-1"
     boss_info.nice_name = "ZBRA, Devourer Of Worlds"
     boss_info.max_health = 1000
@@ -50,7 +50,7 @@ func _on_shoot_delay_timer_timeout() -> void:
     get_tree().root.add_child(bullet)
     bullet.global_position = %ShootPoint.global_position
     bullet.look_at(player.global_position)
-    %ShootSound.play()
+    Sounds.zap()
 
 func handle_bullet_hit(bullet: Bullet):
     if bullet is BossBullet:
@@ -65,8 +65,7 @@ func handle_bullet_hit(bullet: Bullet):
 func take_damage(damage: int):
     boss_info.health -= damage
     # TODO change sprite modulation on hit
-    %HitSound.pitch_scale = randf_range(0.5, 2)
-    %HitSound.play()
+    Sounds.hit()
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
     damage_marker.global_position = %DamageAnchor.global_position
     SceneManager.current_scene.add_child(damage_marker)
@@ -89,7 +88,7 @@ func bleed(hit_position: Vector2):
 func die():
     is_dead = true
     %Sprite.play("die")
-    %DeathSound.play()
+    Sounds.boss_1_death()
     %AnimationPlayer.play("die")
     set_collision_layer_value(2, false)
     set_collision_layer_value(8, false)

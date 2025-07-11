@@ -4,7 +4,7 @@ func _ready() -> void:
     %BossLife.hide()
     GameService.boss_changed.connect(_on_boss_changed)
 
-func _on_boss_changed(boss_info: EnnemyInfo):
+func _on_boss_changed(boss_info: EnnemyStats):
     if boss_info != null && boss_info.health > 0:
         %BossLife.show()
         %BossLife.max_value = boss_info.max_health

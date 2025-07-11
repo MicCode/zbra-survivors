@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=57 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_hvbpw"]
@@ -7,15 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://assets/sprites/player/player-idle.png" id="3_hsq4i"]
 [ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://assets/sprites/player/player-walk.png" id="4_4gd1v"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="5_yybqa"]
-[ext_resource type="AudioStream" uid="uid://cykhxqq27ld8o" path="res://assets/sounds/lazercannon.mp3" id="6_yhd2o"]
 [ext_resource type="Texture2D" uid="uid://bnx4gwxp4icjk" path="res://assets/sprites/player/level-up.png" id="7_l7eyr"]
-[ext_resource type="AudioStream" uid="uid://c50m1xtfc84gp" path="res://assets/sounds/beep.mp3" id="7_ngsqq"]
 [ext_resource type="Texture2D" uid="uid://dymt52ugwiobd" path="res://assets/sprites/player/player-effects-heal.png" id="7_qp5db"]
 [ext_resource type="Texture2D" uid="uid://twi8lfwt883a" path="res://assets/sprites/player/player-effects-radiance.png" id="9_sing3"]
-[ext_resource type="AudioStream" uid="uid://qen7gpw0psw8" path="res://assets/sounds/ouch.wav" id="10_2qr18"]
-[ext_resource type="AudioStream" uid="uid://6l78umox8pi5" path="res://assets/sounds/lvlup.wav" id="12_c1clg"]
-[ext_resource type="AudioStream" uid="uid://cxru2f02empok" path="res://assets/sounds/drink.mp3" id="13_x6obx"]
-[ext_resource type="AudioStream" uid="uid://d3blh14kvftbe" path="res://assets/sounds/burning.wav" id="16_12bmd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
 atlas = ExtResource("3_2bqqa")
@@ -423,30 +417,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(18, 18)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Sounds/BurnSound:pitch_scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 0.75]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Sounds/BurnSound:volume_db")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.31864, 0.183011),
-"update": 0,
-"values": [-69.611, 1.874]
-}
 
 [sub_resource type="Animation" id="Animation_7wrnt"]
 resource_name = "fadeout"
@@ -462,18 +432,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 0.143587),
 "update": 0,
 "values": [3.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sounds/BurnSound:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -69.611]
 }
 
 [sub_resource type="Animation" id="Animation_ppjmx"]
@@ -645,48 +603,6 @@ unique_name_in_owner = true
 [node name="TimewrapTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
-
-[node name="Sounds" type="Node" parent="."]
-
-[node name="DashSound" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("6_yhd2o")
-volume_db = -15.928
-pitch_scale = 2.0
-bus = &"Effects"
-
-[node name="DashReadySound" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("7_ngsqq")
-volume_db = -24.36
-pitch_scale = 2.8
-bus = &"Effects"
-
-[node name="HitSound" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("10_2qr18")
-volume_db = -7.222
-pitch_scale = 1.68
-bus = &"Effects"
-
-[node name="LvlUpSound" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("12_c1clg")
-volume_db = -16.396
-bus = &"Effects"
-
-[node name="HealSound" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("13_x6obx")
-volume_db = 3.0
-pitch_scale = 1.5
-
-[node name="BurnSound" type="AudioStreamPlayer" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("16_12bmd")
-volume_db = -69.611
-pitch_scale = 2.0
-bus = &"Effects"
 
 [node name="LvlUpEffectLight" type="PointLight2D" parent="."]
 unique_name_in_owner = true

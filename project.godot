@@ -22,16 +22,19 @@ config/icon="res://assets/sprites/player/player-icon.png"
 [autoload]
 
 EnnemiesService="*res://globals/ennemies_service.gd"
-GameSettings="*res://globals/game_settings.gd"
 Enums="*res://globals/enums.gd"
 SceneManager="*res://globals/scene_manager.gd"
 GunService="*res://globals/gun_service.gd"
 GameService="*res://globals/game_service.gd"
 EventsService="*res://globals/events_service.gd"
-AudioService="*res://globals/audio_service.gd"
+SoundPlayer="*res://globals/sound/sound_player.gd"
+Sounds="*res://globals/sound/sounds.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
