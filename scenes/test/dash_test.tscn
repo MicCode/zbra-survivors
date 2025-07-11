@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dyv8v"]
 _data = {
-"RESET": SubResource("Animation_cgpgd"),
-"move": SubResource("Animation_ws8ew")
+&"RESET": SubResource("Animation_cgpgd"),
+&"move": SubResource("Animation_ws8ew")
 }
 
 [node name="DashTest" type="Node2D"]

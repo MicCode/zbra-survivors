@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://csamxdklif5bt" path="res://sprites/effects/blood-drop-side.png" id="1_lj8ph"]
 [ext_resource type="Texture2D" uid="uid://b5ddnwpiqdll2" path="res://sprites/effects/blood-drop-below.png" id="2_tb2wo"]
-[ext_resource type="Script" path="res://effects/bleed.gd" id="2_ttjvm"]
+[ext_resource type="Script" uid="uid://k7ssqosel1f4" path="res://effects/bleed.gd" id="2_ttjvm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jv44t"]
 atlas = ExtResource("1_lj8ph")
@@ -141,8 +141,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_op4qh"]
 _data = {
-"RESET": SubResource("Animation_f5dvw"),
-"fade_away": SubResource("Animation_8mljp")
+&"RESET": SubResource("Animation_f5dvw"),
+&"fade_away": SubResource("Animation_8mljp")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]

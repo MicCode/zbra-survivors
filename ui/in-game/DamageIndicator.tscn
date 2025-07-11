@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://clqrr48gd337w"]
 
-[ext_resource type="Script" path="res://ui/in-game/damage_indicator.gd" id="1_7ecw7"]
+[ext_resource type="Script" uid="uid://b0d3thqbenxv3" path="res://ui/in-game/damage_indicator.gd" id="1_7ecw7"]
 
 [sub_resource type="Animation" id="Animation_apsb5"]
 length = 0.001
@@ -82,8 +82,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vdcmg"]
 _data = {
-"RESET": SubResource("Animation_apsb5"),
-"popin": SubResource("Animation_8mhby")
+&"RESET": SubResource("Animation_apsb5"),
+&"popin": SubResource("Animation_8mhby")
 }
 
 [node name="DamageIndicator" type="Node2D"]

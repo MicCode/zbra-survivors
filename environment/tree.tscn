@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=3 uid="uid://brp1lqe74y0on"]
 
-[ext_resource type="Script" path="res://environment/tree.gd" id="1_g11to"]
+[ext_resource type="Script" uid="uid://b48t8wj5qs1fk" path="res://environment/tree.gd" id="1_g11to"]
 [ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://sprites/environment/tree-idle.png" id="1_lq71w"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="1_xbm4e"]
 [ext_resource type="Texture2D" uid="uid://b0i4faxik8fu7" path="res://sprites/environment/tree-exploding.png" id="3_0odta"]
@@ -277,8 +277,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1efgm"]
 _data = {
-"RESET": SubResource("Animation_w25hu"),
-"fadeout": SubResource("Animation_28u6k")
+&"RESET": SubResource("Animation_w25hu"),
+&"fadeout": SubResource("Animation_28u6k")
 }
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eigig"]

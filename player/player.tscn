@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=3 uid="uid://gdo7fmio88fn"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_teghp"]
+[ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="2_hvbpw"]
 [ext_resource type="Texture2D" uid="uid://bgymw4l2oymtc" path="res://sprites/player/player-dead.png" id="3_2bqqa"]
 [ext_resource type="Texture2D" uid="uid://si1biqu2tpxp" path="res://sprites/player/player-hurt.png" id="3_b0r7w"]
@@ -329,8 +329,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6dq4s"]
 _data = {
-"RESET": SubResource("Animation_4iifq"),
-"burst": SubResource("Animation_t1scx")
+&"RESET": SubResource("Animation_4iifq"),
+&"burst": SubResource("Animation_t1scx")
 }
 
 [sub_resource type="Gradient" id="Gradient_r8qdj"]
@@ -518,10 +518,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vhkvu"]
 _data = {
-"RESET": SubResource("Animation_bcvwj"),
-"fadein": SubResource("Animation_eo7mm"),
-"fadeout": SubResource("Animation_7wrnt"),
-"radiate": SubResource("Animation_ppjmx")
+&"RESET": SubResource("Animation_bcvwj"),
+&"fadein": SubResource("Animation_eo7mm"),
+&"fadeout": SubResource("Animation_7wrnt"),
+&"radiate": SubResource("Animation_ppjmx")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -697,7 +697,7 @@ texture = SubResource("GradientTexture2D_pmtm4")
 [node name="LvlUpEffectAnimation" type="AnimationPlayer" parent="LvlUpEffectLight"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_6dq4s")
+&"": SubResource("AnimationLibrary_6dq4s")
 }
 
 [node name="RadianceEffect" type="PointLight2D" parent="."]
@@ -712,7 +712,7 @@ texture_scale = 0.01
 [node name="RadianceEffectAnimation" type="AnimationPlayer" parent="RadianceEffect"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_vhkvu")
+&"": SubResource("AnimationLibrary_vhkvu")
 }
 autoplay = "RESET"
 

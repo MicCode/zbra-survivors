@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bujh631q50ecc"]
 
 [ext_resource type="Texture2D" uid="uid://cskuralh3yult" path="res://sprites/items/ammo-shell.png" id="1_i8mk3"]
-[ext_resource type="Script" path="res://equipment/guns/ammo_shell.gd" id="1_ptik2"]
+[ext_resource type="Script" uid="uid://cnei8v73yrqoe" path="res://equipment/guns/ammo_shell.gd" id="1_ptik2"]
 
 [sub_resource type="Curve2D" id="Curve2D_368di"]
 _data = {
@@ -41,8 +41,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gs35y"]
 _data = {
-"RESET": SubResource("Animation_6ubqr"),
-"fade": SubResource("Animation_nigy3")
+&"RESET": SubResource("Animation_6ubqr"),
+&"fade": SubResource("Animation_nigy3")
 }
 
 [node name="AmmoShell" type="Node2D"]

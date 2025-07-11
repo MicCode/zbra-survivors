@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjac33uc3ygca"]
 
 [ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/gun_collectible.tscn" id="1_mjqcg"]
-[ext_resource type="Script" path="res://equipment/guns/flamethrower/flamethrower_collectible.gd" id="2_nbong"]
+[ext_resource type="Script" uid="uid://rsdsughs1ct7" path="res://equipment/guns/flamethrower/flamethrower_collectible.gd" id="2_nbong"]
 [ext_resource type="Texture2D" uid="uid://cgmaysyk0j8c3" path="res://sprites/items/flame-thrower-icon.png" id="3_u2of1"]
 
 [node name="FlamethrowerCollectible" instance=ExtResource("1_mjqcg")]
