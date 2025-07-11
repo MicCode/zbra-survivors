@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cplrhnikvgwm3"]
 
-[ext_resource type="Script" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
+[ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 
@@ -122,9 +122,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2s7m"]
 _data = {
-"RESET": SubResource("Animation_n5s0o"),
-"lvlup": SubResource("Animation_upm1x"),
-"xpgain": SubResource("Animation_4wuty")
+&"RESET": SubResource("Animation_n5s0o"),
+&"lvlup": SubResource("Animation_upm1x"),
+&"xpgain": SubResource("Animation_4wuty")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_vrht4"]

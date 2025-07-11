@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cjw0jumou6ntu"]
 
 [ext_resource type="PackedScene" uid="uid://ci36jx3vvoocj" path="res://ennemies/ennemy.tscn" id="1_quukp"]
-[ext_resource type="Script" path="res://ennemies/mob_2/mob_2.gd" id="2_uli14"]
+[ext_resource type="Script" uid="uid://d4niy55y3jsqm" path="res://ennemies/mob_2/mob_2.gd" id="2_uli14"]
 [ext_resource type="Texture2D" uid="uid://drnelp42j481v" path="res://sprites/ennemies/ennemy-2-dead.png" id="3_6b8w7"]
 [ext_resource type="Texture2D" uid="uid://l6cj1tg044xc" path="res://sprites/ennemies/ennemy-2-walk.png" id="3_vp2e4"]
 [ext_resource type="Texture2D" uid="uid://mlv24insxcl0" path="res://sprites/ennemies/ennemy-2-hurt.png" id="4_0u3s6"]

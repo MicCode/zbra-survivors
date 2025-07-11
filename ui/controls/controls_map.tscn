@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dc8rkdfax3ovv"]
 
-[ext_resource type="Script" path="res://ui/controls/controls_map.gd" id="1_8gw53"]
+[ext_resource type="Script" uid="uid://bjhh6vtevdu6e" path="res://ui/controls/controls_map.gd" id="1_8gw53"]
 
 [node name="ControlsMap" type="CanvasLayer"]
 script = ExtResource("1_8gw53")

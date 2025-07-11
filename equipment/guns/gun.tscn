@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cdr8rck7r5wts"]
 
-[ext_resource type="Script" path="res://equipment/guns/gun.gd" id="1_wwnuv"]
+[ext_resource type="Script" uid="uid://5arw325siv8x" path="res://equipment/guns/gun.gd" id="1_wwnuv"]
 [ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://sprites/items/gun-firing.png" id="2_aj33k"]
 [ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/items/gun.png" id="3_0sfdt"]
 [ext_resource type="AudioStream" uid="uid://bj4sa5fvnssia" path="res://sounds/shoot.wav" id="4_fv3jv"]
@@ -83,8 +83,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_30b3j"]
 _data = {
-"RESET": SubResource("Animation_1pr87"),
-"flash": SubResource("Animation_ocvq5")
+&"RESET": SubResource("Animation_1pr87"),
+&"flash": SubResource("Animation_ocvq5")
 }
 
 [node name="Gun" type="Node2D"]

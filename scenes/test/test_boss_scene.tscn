@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=4 uid="uid://cf6i5afx50h3"]
 
-[ext_resource type="Script" path="res://scenes/test/test_boss_scene.gd" id="1_b33x6"]
+[ext_resource type="Script" uid="uid://bg7on8ssfugqj" path="res://scenes/test/test_boss_scene.gd" id="1_b33x6"]
 [ext_resource type="Texture2D" uid="uid://lwsx1yqgw1tt" path="res://sprites/environment/floor.png" id="1_slep5"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://environment/tree.tscn" id="2_5o2pg"]
 [ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/in-game/game_ui.tscn" id="2_t4igd"]

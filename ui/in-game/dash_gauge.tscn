@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c7wx4swx7fty4"]
 
-[ext_resource type="Script" path="res://ui/in-game/dash_gauge.gd" id="1_mppy0"]
+[ext_resource type="Script" uid="uid://cji0tqswdo0sb" path="res://ui/in-game/dash_gauge.gd" id="1_mppy0"]
 [ext_resource type="Texture2D" uid="uid://b2s6kmwjhct7y" path="res://sprites/player/dash-gauge.png" id="2_8ntsr"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_6fws7"]
 

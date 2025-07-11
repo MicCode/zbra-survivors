@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvu2hswqayla6"]
 
 [ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_sdufc"]
-[ext_resource type="Script" path="res://equipment/guns/gun_collectible.gd" id="2_afsvs"]
+[ext_resource type="Script" uid="uid://2mhr1pb8ovwo" path="res://equipment/guns/gun_collectible.gd" id="2_afsvs"]
 [ext_resource type="PackedScene" uid="uid://ccgmshd6826dt" path="res://equipment/guns/gun_info_panel.tscn" id="3_mq4n0"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="4_4y1ga"]
 

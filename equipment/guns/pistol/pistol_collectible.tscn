@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bspw82fhsmgk3"]
 
-[ext_resource type="Script" path="res://equipment/guns/pistol/pistol_collectible.gd" id="1_pakd1"]
+[ext_resource type="Script" uid="uid://dnva0ikahk7yx" path="res://equipment/guns/pistol/pistol_collectible.gd" id="1_pakd1"]
 [ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/gun_collectible.tscn" id="1_rpajl"]
 [ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://sprites/items/gun.png" id="1_s2b2s"]
 
