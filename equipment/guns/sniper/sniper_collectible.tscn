@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/gun_collectible.tscn" id="1_tosty"]
 [ext_resource type="Script" uid="uid://mmrhnydemshd" path="res://equipment/guns/sniper/sniper_collectible.gd" id="2_wnq87"]
-[ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://sprites/items/sniper-idle.png" id="3_7ac6p"]
+[ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://assets/sprites/items/sniper-idle.png" id="3_7ac6p"]
 
 [node name="Collectible" instance=ExtResource("1_tosty")]
 script = ExtResource("2_wnq87")

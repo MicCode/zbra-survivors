@@ -8,15 +8,15 @@ class_name ControllerButtonIcon
 
 
 func _ready() -> void:
-	update_texture()
+    update_texture()
 
 func update_texture():
-	if pressed:
-		texture = load("res://sprites/ui/controls/" + controller_name + "/" + controller_name + "-" + key_name + "-p.png")
-	else:
-		texture = load("res://sprites/ui/controls/" + controller_name + "/" + controller_name + "-" + key_name + ".png")
+    if pressed:
+        texture = load("res://assets/sprites/ui/controls/" + controller_name + "/" + controller_name + "-" + key_name + "-p.png")
+    else:
+        texture = load("res://assets/sprites/ui/controls/" + controller_name + "/" + controller_name + "-" + key_name + ".png")
 
 func _on_timer_timeout() -> void:
-	if animate:
-		pressed = !pressed
-		update_texture()
+    if animate:
+        pressed = !pressed
+        update_texture()

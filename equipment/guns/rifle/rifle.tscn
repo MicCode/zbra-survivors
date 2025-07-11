@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cyr7muf08kwe2"]
 
 [ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/gun.tscn" id="1_ynb55"]
-[ext_resource type="Texture2D" uid="uid://b2kcfg2omy42e" path="res://sprites/items/Rifle-firing.png" id="2_tvf2g"]
+[ext_resource type="Texture2D" uid="uid://b2kcfg2omy42e" path="res://assets/sprites/items/Rifle-firing.png" id="2_tvf2g"]
 [ext_resource type="Script" uid="uid://ftttb6f0qs1q" path="res://equipment/guns/rifle/rifle.gd" id="2_v02ng"]
-[ext_resource type="Texture2D" uid="uid://cp367k8prjif0" path="res://sprites/items/Rifle.png" id="3_a5ebd"]
+[ext_resource type="Texture2D" uid="uid://cp367k8prjif0" path="res://assets/sprites/items/Rifle.png" id="3_a5ebd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdn8v"]
 atlas = ExtResource("2_tvf2g")

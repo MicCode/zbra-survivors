@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bujh631q50ecc"]
 
-[ext_resource type="Texture2D" uid="uid://cskuralh3yult" path="res://sprites/items/ammo-shell.png" id="1_i8mk3"]
+[ext_resource type="Texture2D" uid="uid://cskuralh3yult" path="res://assets/sprites/items/ammo-shell.png" id="1_i8mk3"]
 [ext_resource type="Script" uid="uid://cnei8v73yrqoe" path="res://equipment/guns/ammo_shell.gd" id="1_ptik2"]
 
 [sub_resource type="Curve2D" id="Curve2D_368di"]

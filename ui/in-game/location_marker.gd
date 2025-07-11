@@ -26,9 +26,9 @@ func _ready() -> void:
     %LocationMarker.modulate.a = opacity
     %LocationMarker.scale = Vector2(sprite_scale, sprite_scale)
     match color:
-        MarkerColors.RED: %LocationMarker.texture = load("res://sprites/arrow-red.png")
-        MarkerColors.GREEN: %LocationMarker.texture = load("res://sprites/arrow-green.png")
-        _: %LocationMarker.texture = load("res://sprites/arrow-blue.png")
+        MarkerColors.RED: %LocationMarker.texture = load("res://assets/sprites/arrow-red.png")
+        MarkerColors.GREEN: %LocationMarker.texture = load("res://assets/sprites/arrow-green.png")
+        _: %LocationMarker.texture = load("res://assets/sprites/arrow-blue.png")
 
 func _process(_delta: float) -> void:
     if %ScreenNotifier.is_on_screen():
@@ -41,7 +41,7 @@ func update_maker_location():
     var ctrans = get_canvas_transform()
     var view_size = get_viewport_rect().size / ctrans.get_scale()
 
-    var bottom_left = -ctrans.get_origin() / ctrans.get_scale()
+    var bottom_left = - ctrans.get_origin() / ctrans.get_scale()
     var top_right = bottom_left + view_size
 
     var x = global_position.x

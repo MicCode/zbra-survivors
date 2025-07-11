@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b022lydfmv6ep"]
 
-[ext_resource type="Texture2D" uid="uid://mwe7k0d56v3j" path="res://sprites/ui/controls/keyboard/keyboard-A.png" id="1_d2mbv"]
+[ext_resource type="Texture2D" uid="uid://mwe7k0d56v3j" path="res://assets/sprites/ui/controls/keyboard/keyboard-A.png" id="1_d2mbv"]
 [ext_resource type="Script" uid="uid://c5sncsho3fhj1" path="res://ui/controls/button_icon.gd" id="2_bw52e"]
 
 [node name="ButtonIcon" type="TextureRect"]

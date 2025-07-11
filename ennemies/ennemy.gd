@@ -86,6 +86,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     if anim_name == "fade_away":
         queue_free()
 
+#region Burn
 ###############################################################################################
 ## Burn
 ###############################################################################################
@@ -110,3 +111,4 @@ func _on_fire_animation_animation_finished(anim_name: StringName) -> void:
     if anim_name == "fadeout":
         %FireAnimation.stop()
         %FireLight.hide()
+#endregion

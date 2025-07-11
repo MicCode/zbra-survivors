@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=4 uid="uid://cf6i5afx50h3"]
 
 [ext_resource type="Script" uid="uid://bg7on8ssfugqj" path="res://scenes/test/test_boss_scene.gd" id="1_b33x6"]
-[ext_resource type="Texture2D" uid="uid://lwsx1yqgw1tt" path="res://sprites/environment/floor.png" id="1_slep5"]
+[ext_resource type="Texture2D" uid="uid://lwsx1yqgw1tt" path="res://assets/sprites/environment/floor.png" id="1_slep5"]
 [ext_resource type="PackedScene" uid="uid://brp1lqe74y0on" path="res://environment/tree.tscn" id="2_5o2pg"]
 [ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/in-game/game_ui.tscn" id="2_t4igd"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="3_gx567"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://n8mqdn0tb65" path="res://equipment/guns/rifle/rifle_collectible.tscn" id="6_fsmji"]
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://equipment/guns/pistol/pistol_collectible.tscn" id="7_ct2rc"]
 [ext_resource type="PackedScene" uid="uid://bjac33uc3ygca" path="res://equipment/guns/flamethrower/flamethrower_collectible.tscn" id="8_gm5sp"]
-[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="9_t1f5j"]
+[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="9_t1f5j"]
 [ext_resource type="PackedScene" uid="uid://c7a5lypeg0cyt" path="res://globals/music_player.tscn" id="11_fuchu"]
 [ext_resource type="PackedScene" uid="uid://cal4x5wbe2maf" path="res://ui/in-game/boss_ui.tscn" id="13_t3osn"]
 
