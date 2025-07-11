@@ -8,7 +8,7 @@ var health: int = 5
 
 # === XP ===
 var xp: float = 0.0
-var xp_collect_radius: float = 100.0
+var xp_collect_radius: float = 50.0
 var level: int = 1
 var next_level_xp: float = 10.0
 
