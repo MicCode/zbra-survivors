@@ -12,6 +12,9 @@ func click():
 func player_hit():
     SoundPlayer.play_sfx("ouch.wav", {pitch = 1.7, volume = -7.0})
 
+func player_die():
+    SoundPlayer.play_sfx("die.wav", {pitch = 1.4})
+
 func dash():
     SoundPlayer.play_sfx("lazercannon.mp3", {pitch = 2.0, volume = -16.0})
 

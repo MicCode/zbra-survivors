@@ -191,7 +191,8 @@ func die():
     if equiped_gun != null:
         equiped_gun.queue_free()
     %Sprite.play("dead")
-    GameService.is_game_over = true
+    Sounds.player_die()
+    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): GameService.set_game_over(true))
 
 
 func block_pickup():

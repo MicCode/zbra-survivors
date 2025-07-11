@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bh0tpbtkpmuga"]
+
+[ext_resource type="Shader" uid="uid://7n1pltl6qwgc" path="res://shaders/dissolve.gdshader" id="1_5hr3y"]
+[ext_resource type="Texture2D" uid="uid://dhdjvi6flg1kg" path="res://effects/gore_death_noise_texture.tres" id="2_ys4oq"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_5hr3y")
+shader_parameter/progress = -2.0
+shader_parameter/noiseForce = 1.0
+shader_parameter/noiseTexture = ExtResource("2_ys4oq")
+shader_parameter/burnColor = Color(1, 0, 0, 1)
+shader_parameter/borderWidth = 0.35
+shader_parameter/direction = 270.0

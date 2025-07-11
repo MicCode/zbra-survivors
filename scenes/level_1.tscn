@@ -180,7 +180,6 @@ one_shot = true
 wait_time = 0.5
 autostart = true
 
-[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]
 [connection signal="timeout" from="RemainingTimeInterval" to="." method="_on_remaining_time_interval_timeout"]

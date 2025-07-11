@@ -67,13 +67,9 @@ func _on_health_depleted():
         %Sprite.play("dead")
         set_collision_layer_value(2, false)
         set_collision_layer_value(8, false)
-        %DeathTimer.start(1.0)
+        VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
         remove_child(%Health)
         GameService.register_ennemy_death(self)
-
-func _on_death_timer_timeout():
-    %AnimationPlayer.play("fade_away")
-
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
     if area is Bullet:
