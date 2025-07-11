@@ -9,6 +9,7 @@ var guns_catalog = [
         .with_bang_pitch_shift(-0.2)
         .with_bullet_damage(10)
         .with_bullet_speed(1000)
+        .with_fire_range(300)
         .with_shots_per_s(1),
     GunInfo.new()
         .with_name("rifle")
@@ -16,6 +17,7 @@ var guns_catalog = [
         .with_bullet_damage(3)
         .with_bullet_speed(1750)
         .with_bullets_spread_angle_deg(15)
+        .with_fire_range(500)
         .with_shots_per_s(10),
     GunInfo.new()
         .with_name("shotgun")
@@ -26,6 +28,7 @@ var guns_catalog = [
         .with_bullets_per_shot(10)
         .with_bullets_speed_delta(0.25)
         .with_bullets_spread_angle_deg(90)
+        .with_fire_range(150)
         .with_shots_per_s(0.8),
     GunInfo.new()
         .with_name("flamethrower")
@@ -40,7 +43,7 @@ var guns_catalog = [
         .with_bullet_size(2.0)
         .with_bullet_size_delta(0.25)
         .with_eject_cartridges(false)
-        .with_fire_range(100)
+        .with_fire_range(200)
         .with_inflict_fire(true)
         .with_shots_per_s(50),
     GunInfo.new()
