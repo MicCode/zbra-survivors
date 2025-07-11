@@ -1,4 +1,14 @@
 - - -
+## 1.0.1 - 2025-07-11
+#### Bug Fixes
+- Reworked sounds & music handling - (1b7a9bb) - Mic
+#### Refactoring
+- reorganized assets in a dedicated folder - (f32f373) - Mic
+#### Style
+- use spaces indent - (f22ea37) - Mic
+
+- - -
+
 ## 1.0.0 - 2025-07-11
 #### Bug Fixes
 - make boss disapear after death - (66fb35c) - Mic
