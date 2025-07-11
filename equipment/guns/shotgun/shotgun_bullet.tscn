@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfu1edsxhx8a"]
 
 [ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/bullet.tscn" id="1_ds0t4"]
-[ext_resource type="Texture2D" uid="uid://dq7fqbyouksd5" path="res://sprites/items/shotgun-bullet.png" id="2_bbcm7"]
+[ext_resource type="Texture2D" uid="uid://dq7fqbyouksd5" path="res://assets/sprites/items/shotgun-bullet.png" id="2_bbcm7"]
 [ext_resource type="Script" uid="uid://b8lrycxnx7gpv" path="res://equipment/guns/shotgun/shotgun_bullet.gd" id="2_ls4is"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ie7jj"]

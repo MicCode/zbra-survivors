@@ -16,8 +16,8 @@ run/main_scene="res://ui/menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/fullsize=false
-boot_splash/image="res://icon.png"
-config/icon="res://sprites/player/player-icon.png"
+boot_splash/image="res://assets/icon.png"
+config/icon="res://assets/sprites/player/player-icon.png"
 
 [autoload]
 
@@ -38,11 +38,13 @@ window/stretch/scale_mode="integer"
 [file_customization]
 
 folder_colors={
+"res://assets/": "gray",
+"res://assets/sounds/": "blue",
+"res://assets/sprites/": "blue",
 "res://export/": "gray",
+"res://globals/": "orange",
 "res://scenes/": "teal",
-"res://scenes/test/": "green",
-"res://sounds/": "blue",
-"res://sprites/": "blue"
+"res://scenes/test/": "green"
 }
 
 [input]

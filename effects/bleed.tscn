@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://dtx68anb1bv5m"]
 
-[ext_resource type="Texture2D" uid="uid://csamxdklif5bt" path="res://sprites/effects/blood-drop-side.png" id="1_lj8ph"]
-[ext_resource type="Texture2D" uid="uid://b5ddnwpiqdll2" path="res://sprites/effects/blood-drop-below.png" id="2_tb2wo"]
+[ext_resource type="Texture2D" uid="uid://csamxdklif5bt" path="res://assets/sprites/effects/blood-drop-side.png" id="1_lj8ph"]
+[ext_resource type="Texture2D" uid="uid://b5ddnwpiqdll2" path="res://assets/sprites/effects/blood-drop-below.png" id="2_tb2wo"]
 [ext_resource type="Script" uid="uid://k7ssqosel1f4" path="res://effects/bleed.gd" id="2_ttjvm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jv44t"]

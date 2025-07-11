@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_xj5id"]
 [ext_resource type="Script" uid="uid://7b11drjdo1jn" path="res://equipment/items/timewrap_clock.gd" id="2_hle3m"]
-[ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://sprites/items/clock.png" id="3_lunev"]
+[ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://assets/sprites/items/clock.png" id="3_lunev"]
 
 [node name="Collectible" instance=ExtResource("1_xj5id")]
 script = ExtResource("2_hle3m")

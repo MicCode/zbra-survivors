@@ -1,12 +1,12 @@
 [gd_scene load_steps=38 format=3 uid="uid://brp1lqe74y0on"]
 
 [ext_resource type="Script" uid="uid://b48t8wj5qs1fk" path="res://environment/tree.gd" id="1_g11to"]
-[ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://sprites/environment/tree-idle.png" id="1_lq71w"]
-[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://sprites/shadow.png" id="1_xbm4e"]
-[ext_resource type="Texture2D" uid="uid://b0i4faxik8fu7" path="res://sprites/environment/tree-exploding.png" id="3_0odta"]
-[ext_resource type="Texture2D" uid="uid://c4xqqh6nhvb" path="res://sprites/environment/tree-burning.png" id="3_4brj3"]
-[ext_resource type="AudioStream" uid="uid://c8mmey6t4sqyj" path="res://sounds/falling-leaves.wav" id="5_he00s"]
-[ext_resource type="Texture2D" uid="uid://das4vccwbvswv" path="res://sprites/environment/tree-wither.png" id="6_nenqp"]
+[ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://assets/sprites/environment/tree-idle.png" id="1_lq71w"]
+[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="1_xbm4e"]
+[ext_resource type="Texture2D" uid="uid://b0i4faxik8fu7" path="res://assets/sprites/environment/tree-exploding.png" id="3_0odta"]
+[ext_resource type="Texture2D" uid="uid://c4xqqh6nhvb" path="res://assets/sprites/environment/tree-burning.png" id="3_4brj3"]
+[ext_resource type="AudioStream" uid="uid://c8mmey6t4sqyj" path="res://assets/sounds/falling-leaves.wav" id="5_he00s"]
+[ext_resource type="Texture2D" uid="uid://das4vccwbvswv" path="res://assets/sprites/environment/tree-wither.png" id="6_nenqp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gs0qu"]
 atlas = ExtResource("3_4brj3")

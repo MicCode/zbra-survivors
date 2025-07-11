@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/gun.tscn" id="1_dkguj"]
 [ext_resource type="Script" uid="uid://qiva5ni4ogec" path="res://equipment/guns/flamethrower/flamethrower.gd" id="2_lx138"]
-[ext_resource type="Texture2D" uid="uid://c61ac5omplqtf" path="res://sprites/items/flame-thrower-firing.png" id="3_rrim6"]
-[ext_resource type="Texture2D" uid="uid://b238i3ui3m2up" path="res://sprites/items/flame-thrower.png" id="4_igkfx"]
+[ext_resource type="Texture2D" uid="uid://c61ac5omplqtf" path="res://assets/sprites/items/flame-thrower-firing.png" id="3_rrim6"]
+[ext_resource type="Texture2D" uid="uid://b238i3ui3m2up" path="res://assets/sprites/items/flame-thrower.png" id="4_igkfx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fitj5"]
 atlas = ExtResource("3_rrim6")

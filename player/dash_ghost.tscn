@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmpptq7tkl6lb"]
 
-[ext_resource type="Texture2D" uid="uid://cbo8m4jeqh14k" path="res://sprites/player/player.png" id="1_1bxwh"]
+[ext_resource type="Texture2D" uid="uid://cbo8m4jeqh14k" path="res://assets/sprites/player/player.png" id="1_1bxwh"]
 [ext_resource type="Script" uid="uid://katkjjpolh7f" path="res://player/dash_ghost.gd" id="2_mcjv5"]
 
 [sub_resource type="Animation" id="Animation_8cc4j"]

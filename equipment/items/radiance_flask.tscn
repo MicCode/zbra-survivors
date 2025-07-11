@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_ww0rg"]
 [ext_resource type="Script" uid="uid://bdk37dlfe0tl" path="res://equipment/items/radiance_flask.gd" id="2_4gnvr"]
-[ext_resource type="Texture2D" uid="uid://u2e7y217wlle" path="res://sprites/items/radiance-flask.png" id="3_tnpjv"]
+[ext_resource type="Texture2D" uid="uid://u2e7y217wlle" path="res://assets/sprites/items/radiance-flask.png" id="3_tnpjv"]
 
 [node name="RadianceFlask" instance=ExtResource("1_ww0rg")]
 script = ExtResource("2_4gnvr")
