@@ -22,9 +22,6 @@ func spawn_ennemy():
 func _on_mob_spawn_timer_timeout():
     spawn_ennemy()
 
-func _on_player_health_depleted():
-    GameService.show_game_over()
-
 func _on_remaining_time_interval_timeout() -> void:
     %GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
 

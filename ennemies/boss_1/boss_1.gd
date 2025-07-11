@@ -88,8 +88,9 @@ func bleed(hit_position: Vector2):
 func die():
     is_dead = true
     %Sprite.play("die")
-    Sounds.boss_1_death()
+    Sounds.death_boss_1()
     %AnimationPlayer.play("die")
+    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
     set_collision_layer_value(2, false)
     set_collision_layer_value(8, false)
 
@@ -113,7 +114,3 @@ func _on_wither_radius_body_entered(body: Node2D) -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
     if area is Bullet:
         handle_bullet_hit(area as Bullet)
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-    if anim_name == "die":
-        queue_free()

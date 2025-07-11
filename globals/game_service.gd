@@ -32,6 +32,11 @@ func increment_score(i: int) -> void:
     score += i
     emit_score_change()
 
+func set_game_over(_is_game_over: bool):
+    is_game_over = _is_game_over
+    if is_game_over:
+        show_game_over()
+
 func gain_xp(xp: float) -> void:
     player_state.xp += xp
     if player_state.xp >= player_state.next_level_xp:

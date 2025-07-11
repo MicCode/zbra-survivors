@@ -29,6 +29,7 @@ GameService="*res://globals/game_service.gd"
 EventsService="*res://globals/events_service.gd"
 SoundPlayer="*res://globals/sound/sound_player.gd"
 Sounds="*res://globals/sound/sounds.gd"
+VisualEffects="*res://globals/visual_effects.gd"
 
 [display]
 
