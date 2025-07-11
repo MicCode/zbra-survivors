@@ -1,4 +1,11 @@
 - - -
+## 1.1.0 - 2025-07-11
+#### Features
+- improved flamethrower - (3f21d06) - Mic
+- better ennemy death visual effect - (369d086) - Mic
+
+- - -
+
 ## 1.0.1 - 2025-07-11
 #### Bug Fixes
 - Reworked sounds & music handling - (1b7a9bb) - Mic
