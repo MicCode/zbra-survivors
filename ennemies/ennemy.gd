@@ -6,7 +6,7 @@ class_name Ennemy
 @export var is_sprite_reversed = false
 
 var player: Player
-var ennemy_info: EnnemyInfo
+var stats: EnnemyStats
 var is_dead = false
 var is_burning = false
 
@@ -16,18 +16,17 @@ const BURN_TICK_S: float = 0.25
 const BURN_DAMAGE: float = 2
 
 func _ready():
-    ennemy_info = EnnemiesService.get_info(ennemy_name)
+    stats = EnnemiesService.get_stats(ennemy_name)
     player = GameService.player_instance
     %Sprite.connect("animation_finished", _on_animation_finished)
-    %Health.max_health = ennemy_info.max_health
-    %Health.current_health = ennemy_info.health
+    %Health.max_health = stats.max_health
+    %Health.current_health = stats.health
     %Health.update_display()
-    %DeathSound.pitch_scale = randf_range(0.8, 1.1)
 
 func _physics_process(delta):
     if !is_dead && is_chasing_player && player != null:
         var direction_to_player = global_position.direction_to(player.global_position)
-        velocity = direction_to_player * ennemy_info.speed
+        velocity = direction_to_player * stats.speed
         move_and_collide(velocity * delta)
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
@@ -41,8 +40,7 @@ func handle_bullet_hit(bullet: Bullet):
 
 func take_damage(damage: float):
     %Sprite.play("hurt")
-    %HitSound.pitch_scale = randf_range(0.5, 2)
-    %HitSound.play()
+    Sounds.hit()
     if %Health:
         %Health.take_damage(damage)
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
@@ -63,9 +61,9 @@ func _on_animation_finished():
         %Sprite.play("walk")
 
 func _on_health_depleted():
-    if ennemy_info.can_die:
+    if stats.can_die:
         is_dead = true
-        %DeathSound.play()
+        Sounds.death_mob_1()
         %Sprite.play("dead")
         set_collision_layer_value(2, false)
         set_collision_layer_value(8, false)

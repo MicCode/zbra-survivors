@@ -6,20 +6,20 @@ signal depleted
 @export var visible_bar = true
 
 func _ready():
-	current_health = max_health
-	update_display()
+    current_health = max_health
+    update_display()
 
 func update_display():
-	%Bar.max_value = max_health
-	%Bar.value = current_health
-	if visible_bar:
-		%Bar.show()
-	else:
-		%Bar.hide()
-	
+    %Bar.max_value = max_health
+    %Bar.value = current_health
+    if visible_bar:
+        %Bar.show()
+    else:
+        %Bar.hide()
+    
 func take_damage(damage: float):
-	current_health -= damage
-	%Bar.value = current_health
-	
-	if current_health <= 0:
-		depleted.emit()
+    current_health -= damage
+    %Bar.value = current_health
+    
+    if current_health <= 0:
+        depleted.emit()

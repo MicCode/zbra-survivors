@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b5mylgidrfjjl"]
+[gd_scene load_steps=42 format=3 uid="uid://b5mylgidrfjjl"]
 
 [ext_resource type="Script" uid="uid://bjetjnf5dr8j1" path="res://ennemies/boss_1/boss_1.gd" id="1_xtetr"]
 [ext_resource type="Texture2D" uid="uid://dljkt523lwy86" path="res://assets/sprites/ennemies/boss-1/boss-1-die.png" id="2_kcxf8"]
@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://deqkjg8jdkft3" path="res://assets/sprites/ennemies/boss-1/boss-1-shoot.png" id="3_qeer7"]
 [ext_resource type="Texture2D" uid="uid://clhb4lw3j3e2s" path="res://assets/sprites/ennemies/boss-1/boss-1-spawn.png" id="4_j3lod"]
 [ext_resource type="Texture2D" uid="uid://cxyfdklqky7lc" path="res://assets/sprites/ennemies/boss-1/boss-1-walk.png" id="5_sxbx4"]
-[ext_resource type="AudioStream" uid="uid://c5up7nttf3s6f" path="res://assets/sounds/hit2.wav" id="7_8b6ht"]
-[ext_resource type="AudioStream" uid="uid://cg8wrowa24f8s" path="res://assets/sounds/zap.wav" id="8_2q61d"]
-[ext_resource type="AudioStream" uid="uid://ced1qjggja3fy" path="res://assets/sounds/boss_death.wav" id="9_a8yaf"]
 [ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="10_ixrhd"]
 
 [sub_resource type="Gradient" id="Gradient_pjegc"]
@@ -392,29 +389,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_rwjtp")
 }
 autoplay = "spawn"
-
-[node name="Sounds" type="Node" parent="."]
-
-[node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("7_8b6ht")
-volume_db = 12.5
-pitch_scale = 0.65
-bus = &"Effects"
-
-[node name="ShootSound" type="AudioStreamPlayer2D" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("8_2q61d")
-volume_db = -12.0
-pitch_scale = 0.9
-bus = &"Effects"
-
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="Sounds"]
-unique_name_in_owner = true
-stream = ExtResource("9_a8yaf")
-volume_db = 1.0
-pitch_scale = 0.8
-bus = &"Effects"
 
 [node name="Timers" type="Node" parent="."]
 

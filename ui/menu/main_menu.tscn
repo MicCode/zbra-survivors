@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqy2tfinneg1r"]
+[gd_scene load_steps=2 format=3 uid="uid://cqy2tfinneg1r"]
 
 [ext_resource type="Script" uid="uid://b4iwto50fmuje" path="res://ui/menu/main_menu.gd" id="1_lbaws"]
-[ext_resource type="AudioStream" uid="uid://l15ytlqmk1ww" path="res://assets/sounds/hit.wav" id="2_s7nge"]
-[ext_resource type="AudioStream" uid="uid://doknagn7n2ebr" path="res://assets/sounds/reload.wav" id="3_oncms"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_lbaws")
@@ -54,16 +52,6 @@ scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 50
 text = "ZBRA SURVIVORZ"
 horizontal_alignment = 1
-
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("2_s7nge")
-pitch_scale = 3.5
-
-[node name="StartSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("3_oncms")
-pitch_scale = 0.68
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="MusicToggle" to="." method="_on_music_toggle_button_down"]

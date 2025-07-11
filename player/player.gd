@@ -69,7 +69,7 @@ func move(delta):
             %Sprite.play("idle")
 
 func start_dashing():
-    %DashSound.play()
+    Sounds.dash()
     %DashTimer.start(GameService.player_state.dash_duration_s)
     %DashCooldownTimer.start(GameService.player_state.dash_cooldown_s)
     GameService.player_state.is_dashing = true
@@ -96,7 +96,7 @@ func take_damage(damage: int = 1):
     can_be_damaged = false
     %DamageTimer.start(GameService.player_state.damage_cooldown_s)
     %Sprite.play("hurt")
-    %HitSound.play()
+    Sounds.player_hit()
     just_hurt = true
     %HurtBox.set_collision_mask_value(2, false) # ennemies
 
@@ -154,8 +154,7 @@ func collect_life_flask(flask: LifeFlask):
     if GameService.player_state.health < GameService.player_state.max_health:
         GameService.player_state.health = min(GameService.player_state.health + flask.life_amount, GameService.player_state.max_health)
         GameService.emit_player_change()
-        %HealSound.pitch_scale = randf_range(0.9, 1.1)
-        %HealSound.play()
+        Sounds.heal()
         %Effects.show()
         %Effects.play("heal")
         flask.queue_free()
@@ -169,7 +168,7 @@ func collect_radiance_flask(flask: RadianceFlask):
         %RadianceCollision.disabled = false
         %Effects.show()
         %Effects.play("radiance")
-        %BurnSound.play()
+        Sounds.start_burning()
         flask.queue_free()
 
 func collect_timewrap_clock(clock: TimewrapClock):
@@ -206,7 +205,7 @@ func _on_pick_up_timer_timeout():
 func _on_dash_cooldown_timer_timeout() -> void:
     if !GameService.player_state.can_dash:
         GameService.player_state.can_dash = true
-        %DashReadySound.play()
+        Sounds.dash_ready()
         GameService.emit_player_change()
 
 func _on_dash_timer_timeout() -> void:
@@ -252,12 +251,12 @@ func _on_player_level_gained(_new_level: int):
     %Effects.play("lvlup")
     %LvlUpEffectLight.show()
     %LvlUpEffectAnimation.play("burst")
-    %LvlUpSound.play()
+    Sounds.level_up()
 
 func _on_effects_animation_finished() -> void:
     if !is_radiating:
         %Effects.hide()
-        %BurnSound.stop()
+        Sounds.stop_burning()
     else:
         %Effects.play("radiance")
 

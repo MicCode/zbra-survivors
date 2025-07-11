@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=28 format=4 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" uid="uid://bl0616biw7sew" path="res://scenes/level_1.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://ox5qon8dsm1q" path="res://environment/grass2.tscn" id="13_nvq4k"]
 [ext_resource type="PackedScene" uid="uid://bwchgfk4bqi5g" path="res://environment/grass3.tscn" id="14_dvbc3"]
 [ext_resource type="PackedScene" uid="uid://bqif8yh3k1bty" path="res://environment/grass4.tscn" id="15_7foxv"]
-[ext_resource type="PackedScene" uid="uid://c7a5lypeg0cyt" path="res://globals/music_player.tscn" id="17_hw0e1"]
 [ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://equipment/guns/sniper/sniper_collectible.tscn" id="17_xm7rv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08k3h"]
@@ -171,9 +170,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWall4"]
 position = Vector2(4850, 1873)
 shape = SubResource("RectangleShape2D_jufic")
-
-[node name="MusicPlayer" parent="." instance=ExtResource("17_hw0e1")]
-unique_name_in_owner = true
 
 [node name="TimeBeforeBoss" type="Timer" parent="."]
 unique_name_in_owner = true

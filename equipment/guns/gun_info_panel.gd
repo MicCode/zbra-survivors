@@ -4,55 +4,55 @@ var gun_info: GunInfo
 var equipped_gun_info: GunInfo
 
 func _ready() -> void:
-	GameService.equipped_gun_changed.connect(_on_equipped_gun_changed)
+    GameService.equipped_gun_changed.connect(_on_equipped_gun_changed)
 
 func init(_gun_info: GunInfo):
-	gun_info = _gun_info
-	update_displayed_stats()
-	
+    gun_info = _gun_info
+    update_displayed_stats()
+    
 
 func _on_equipped_gun_changed(new_gun: Gun):
-	equipped_gun_info = GunService.get_info(new_gun.gun_name)
-	update_displayed_stats()
-	if equipped_gun_info && gun_info:
-		%GunName.text = gun_info.display_name.to_upper()
-		%Attack.modulate = get_modulation_color(gun_info.bullet_damage, equipped_gun_info.bullet_damage)
-		%DPS.modulate = get_modulation_color(get_dps(gun_info), get_dps(equipped_gun_info))
-		%Reload.modulate = get_modulation_color(gun_info.shots_per_s, equipped_gun_info.shots_per_s)
-		%BulletsCount.modulate = get_modulation_color(gun_info.bullets_per_shot, equipped_gun_info.bullets_per_shot)
-		%Angle.modulate = get_modulation_color(gun_info.bullets_spread_angle_deg, equipped_gun_info.bullets_spread_angle_deg, true)
-		
+    equipped_gun_info = GunService.get_info(new_gun.gun_name)
+    update_displayed_stats()
+    if equipped_gun_info && gun_info:
+        %GunName.text = gun_info.display_name.to_upper()
+        %Attack.modulate = get_modulation_color(gun_info.bullet_damage, equipped_gun_info.bullet_damage)
+        %DPS.modulate = get_modulation_color(get_dps(gun_info), get_dps(equipped_gun_info))
+        %Reload.modulate = get_modulation_color(gun_info.shots_per_s, equipped_gun_info.shots_per_s)
+        %BulletsCount.modulate = get_modulation_color(gun_info.bullets_per_shot, equipped_gun_info.bullets_per_shot)
+        %Angle.modulate = get_modulation_color(gun_info.bullets_spread_angle_deg, equipped_gun_info.bullets_spread_angle_deg, true)
+        
 func update_displayed_stats():
-	if gun_info:
-		%GunName.text = gun_info.display_name.to_upper()
-		%Attack.text = str(gun_info.bullet_damage)
-		%DPS.text = str(get_dps(gun_info))
-		%Reload.text = str(gun_info.shots_per_s)
-		%BulletsCount.text = str(gun_info.bullets_per_shot)
-		%Angle.text = str(gun_info.bullets_spread_angle_deg) + "°"
-		if equipped_gun_info:
-			%Attack.text += get_diff(gun_info.bullet_damage, equipped_gun_info.bullet_damage)
-			%DPS.text += get_diff(get_dps(gun_info), get_dps(equipped_gun_info))
-			%Reload.text += get_diff(gun_info.shots_per_s, equipped_gun_info.shots_per_s)
-			%BulletsCount.text += get_diff(gun_info.bullets_per_shot, equipped_gun_info.bullets_per_shot)
-			%Angle.text += get_diff(gun_info.bullets_spread_angle_deg, equipped_gun_info.bullets_spread_angle_deg)
+    if gun_info:
+        %GunName.text = gun_info.display_name.to_upper()
+        %Attack.text = str(gun_info.bullet_damage)
+        %DPS.text = str(get_dps(gun_info))
+        %Reload.text = str(gun_info.shots_per_s)
+        %BulletsCount.text = str(gun_info.bullets_per_shot)
+        %Angle.text = str(gun_info.bullets_spread_angle_deg) + "°"
+        if equipped_gun_info:
+            %Attack.text += get_diff(gun_info.bullet_damage, equipped_gun_info.bullet_damage)
+            %DPS.text += get_diff(get_dps(gun_info), get_dps(equipped_gun_info))
+            %Reload.text += get_diff(gun_info.shots_per_s, equipped_gun_info.shots_per_s)
+            %BulletsCount.text += get_diff(gun_info.bullets_per_shot, equipped_gun_info.bullets_per_shot)
+            %Angle.text += get_diff(gun_info.bullets_spread_angle_deg, equipped_gun_info.bullets_spread_angle_deg)
 
 func get_modulation_color(a: float, b: float, invert = false) -> Color:
-	if !invert && a > b || invert && a < b:
-		return Color("#00ff00")
-	elif !invert && a < b || invert && a > b:
-		return Color("#d90000")
-	else:
-		return Color("#000000")
+    if !invert && a > b || invert && a < b:
+        return Color("#00ff00")
+    elif !invert && a < b || invert && a > b:
+        return Color("#d90000")
+    else:
+        return Color("#000000")
 
 func get_diff(a: float, b: float) -> String:
-	var diff = a - b
-	if diff < 0:
-		return " (" + str(diff) + ")" # already has the - sign
-	elif diff > 0:
-		return " (+" + str(diff) + ")"
-	else:
-		return ""
+    var diff = a - b
+    if diff < 0:
+        return " (" + str(diff) + ")" # already has the - sign
+    elif diff > 0:
+        return " (+" + str(diff) + ")"
+    else:
+        return ""
 
 func get_dps(_gun_info: GunInfo) -> float:
-	return _gun_info.bullet_damage * _gun_info.bullets_per_shot * _gun_info.shots_per_s
+    return _gun_info.bullet_damage * _gun_info.bullets_per_shot * _gun_info.shots_per_s
