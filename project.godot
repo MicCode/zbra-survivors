@@ -30,6 +30,7 @@ SoundPlayer="*res://globals/sound/sound_player.gd"
 Sounds="*res://globals/sound/sounds.gd"
 VisualEffects="*res://globals/visual_effects.gd"
 GameSettings="*res://globals/game_settings.gd"
+Announcer="*res://globals/announcer.gd"
 
 [display]
 

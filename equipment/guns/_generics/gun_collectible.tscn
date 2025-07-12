@@ -9,6 +9,7 @@
 radius = 56.5022
 
 [node name="GunCollectible" instance=ExtResource("1_sdufc")]
+y_sort_enabled = true
 script = ExtResource("2_afsvs")
 gun_stats = null
 bullet_stats = null
@@ -22,6 +23,10 @@ debug_color = Color(0, 0.645903, 0.249673, 0.42)
 
 [node name="Sprite" parent="." index="2"]
 z_index = 4095
+y_sort_enabled = true
+
+[node name="Shadow" parent="." index="4"]
+y_sort_enabled = true
 
 [node name="GunInfoPanel" parent="." index="6" instance=ExtResource("3_mq4n0")]
 unique_name_in_owner = true

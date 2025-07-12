@@ -65,6 +65,7 @@ func change_equipped_gun(_new_gun: Gun) -> void:
     equipped_gun_changed.emit(equipped_gun)
 
 func register_ennemy_death(ennemy: Ennemy) -> void:
+    Announcer.ennemy_died()
     increment_score(1)
     drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.stats.xp_value), ennemy.global_position)
 

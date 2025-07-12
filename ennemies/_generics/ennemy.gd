@@ -27,7 +27,7 @@ func _ready():
     %Health.current_health = health
     %Health.update_display()
 
-func _physics_process(delta):
+func _physics_process(_delta):
     if !is_dead && is_chasing_player && player != null:
         var direction_to_player = global_position.direction_to(player.global_position)
         velocity = direction_to_player * stats.speed
@@ -69,7 +69,7 @@ func _on_health_depleted():
         set_collision_layer_value(8, false)
         VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
         remove_child(%Health)
-        GameService.register_ennemy_death(self)
+        Announcer.ennemy_died()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
     if area is Bullet:

@@ -63,3 +63,14 @@ func death_boss_1():
 func tree_destroyed():
     SoundPlayer.play_sfx("falling-leaves.wav", {volume = -6.0})
 #endregion
+
+#region Announcements
+func double_kill():
+    SoundPlayer.play_sfx("double_kill.ogg")
+
+func triple_kill():
+    SoundPlayer.play_sfx("triple_kill.ogg")
+
+func rampage():
+    SoundPlayer.play_sfx("rampage.ogg")
+#endregion

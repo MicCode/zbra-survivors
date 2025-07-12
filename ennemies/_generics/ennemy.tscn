@@ -244,6 +244,7 @@ _data = {
 }
 
 [node name="Ennemy" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 130
 collision_mask = 14
 script = ExtResource("1_qdj7r")
@@ -272,6 +273,7 @@ texture = ExtResource("2_hl8ed")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 material = ExtResource("3_i4bwu")
 position = Vector2(0, -16)
 scale = Vector2(1.5, 1.5)
