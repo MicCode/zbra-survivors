@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Ennemy
 
-@export var is_chasing_player = true
 @export var is_sprite_reversed = false
 @export var stats: EnnemyStats
 
@@ -28,7 +27,7 @@ func _ready():
     %Health.update_display()
 
 func _physics_process(_delta):
-    if !is_dead && is_chasing_player && player != null:
+    if !is_dead && stats.chase_player && player != null:
         var direction_to_player = global_position.direction_to(player.global_position)
         velocity = direction_to_player * stats.speed
         var distance_to_player = global_position.distance_to(player.global_position)
@@ -69,7 +68,7 @@ func _on_health_depleted():
         set_collision_layer_value(8, false)
         VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
         remove_child(%Health)
-        Announcer.ennemy_died()
+        GameService.register_ennemy_death(self)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
     if area is Bullet:

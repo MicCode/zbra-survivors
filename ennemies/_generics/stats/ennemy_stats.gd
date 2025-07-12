@@ -7,3 +7,4 @@ class_name EnnemyStats
 @export var speed: float = 200.0
 @export var xp_value: float = 1.0
 @export var can_die: bool = true
+@export var chase_player: bool = true
