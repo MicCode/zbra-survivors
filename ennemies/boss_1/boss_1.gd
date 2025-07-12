@@ -9,11 +9,9 @@ const MAXIMUM_TIME_BETWEEN_SHOTS_S: float = 5.0
 const SHOOT_START_DELAY_S: float = 0.3
 
 func _physics_process(delta):
+    is_sprite_reversed = true
     if is_ready && !is_dead && !is_shooting && player != null:
-        var direction_to_player = global_position.direction_to(player.global_position)
-        velocity = direction_to_player * stats.speed
-        move_and_collide(velocity * delta)
-        %Sprite.flip_h = direction_to_player.x > 0
+        super._physics_process(delta)
 
 
 func start_chase():

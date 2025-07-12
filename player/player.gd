@@ -61,7 +61,7 @@ func move(delta):
     else:
         velocity = direction * GameService.player_state.move_speed * GameService.player_state.dash_speed_multiplier
 
-    move_and_collide(velocity * delta)
+    move_and_slide()
     if !just_hurt:
         if velocity.length() > 0:
             %Sprite.play("walk")
