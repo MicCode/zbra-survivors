@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://ci36jx3vvoocj"]
 
-[ext_resource type="Script" uid="uid://dqlqlkjg6tqvc" path="res://ennemies/ennemy.gd" id="1_qdj7r"]
+[ext_resource type="Script" uid="uid://dqlqlkjg6tqvc" path="res://ennemies/_generics/ennemy.gd" id="1_qdj7r"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_hl8ed"]
 [ext_resource type="Material" uid="uid://bh0tpbtkpmuga" path="res://effects/gore_death_effect.tres" id="3_i4bwu"]
 [ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://assets/sprites/ennemies/mob-1-dead.png" id="3_qem7r"]

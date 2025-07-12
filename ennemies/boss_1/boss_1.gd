@@ -1,36 +1,17 @@
-extends CharacterBody2D
+extends Ennemy
 class_name Boss1
 
 var is_ready = false
-var is_dead = false
-var is_burning = false
-var boss_info: EnnemyStats
-var player: Player
 var is_shooting = false
 
 const MINIMUM_TIME_BETWEEN_SHOTS_S: float = 3.0
 const MAXIMUM_TIME_BETWEEN_SHOTS_S: float = 5.0
 const SHOOT_START_DELAY_S: float = 0.3
 
-# TODO there are many similarities with Ennemy class, there is probably a lot of refactoring to do
-
-func _init() -> void:
-    boss_info = EnnemyStats.new()
-    boss_info.name = "boss-1"
-    boss_info.nice_name = "ZBRA, Devourer Of Worlds"
-    boss_info.max_health = 1000
-    boss_info.health = boss_info.max_health
-    boss_info.speed = 150.0
-    boss_info.xp_value = 50.0
-    boss_info.can_die = true
-
-func _ready():
-    player = GameService.player_instance
-
 func _physics_process(delta):
     if is_ready && !is_dead && !is_shooting && player != null:
         var direction_to_player = global_position.direction_to(player.global_position)
-        velocity = direction_to_player * boss_info.speed
+        velocity = direction_to_player * stats.speed
         move_and_collide(velocity * delta)
         %Sprite.flip_h = direction_to_player.x > 0
 
@@ -56,15 +37,10 @@ func handle_bullet_hit(bullet: Bullet):
     if bullet is BossBullet:
         return
     if is_ready && !is_dead:
-        take_damage(bullet.bullet_stats.damage)
-        if bullet.bullet_stats.inflicts_fire:
-            #set_burning()
-            pass
-        else:
-            bleed(bullet.global_position)
+        super.handle_bullet_hit(bullet)
 
-func take_damage(damage: int):
-    boss_info.health -= damage
+func take_damage(damage: float):
+    health -= damage
     # TODO change sprite modulation on hit
     Sounds.hit()
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
@@ -72,19 +48,10 @@ func take_damage(damage: int):
     SceneManager.current_scene.add_child(damage_marker)
     %AnimationPlayer.play("hurt")
 
-    if boss_info.health <= 0:
+    if health <= 0:
         die()
 
-    GameService.boss_changed.emit(boss_info)
-
-func bleed(hit_position: Vector2):
-    var direction: Enums.Orientations
-    if hit_position.x < global_position.x:
-        direction = Enums.Orientations.RIGHT
-    else:
-        direction = Enums.Orientations.LEFT
-    var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(global_position, direction)
-    SceneManager.current_scene.add_child(bleed_effect)
+    GameService.boss_changed.emit(stats, health)
 
 func die():
     is_dead = true
@@ -99,7 +66,7 @@ func _on_sprite_animation_finished() -> void:
     if !is_ready:
         is_ready = true
         call_deferred("start_chase")
-        GameService.boss_changed.emit(boss_info)
+        GameService.boss_changed.emit(stats, health)
     elif !is_dead && is_shooting:
         is_shooting = false
         %Sprite.play("walk")
@@ -111,7 +78,3 @@ func _on_wither_radius_body_entered(body: Node2D) -> void:
     if body is EnvTree:
         if !body.is_destroyed:
             body.wither()
-
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-    if area is Bullet:
-        handle_bullet_hit(area as Bullet)

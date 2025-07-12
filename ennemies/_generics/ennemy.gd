@@ -1,26 +1,30 @@
 extends CharacterBody2D
 class_name Ennemy
 
-@export var ennemy_name: String
 @export var is_chasing_player = true
 @export var is_sprite_reversed = false
+@export var stats: EnnemyStats
 
 var player: Player
-var stats: EnnemyStats
-var is_dead = false
-var is_burning = false
+var health: float = 100
+var is_dead: bool = false
+var is_burning: bool = false
 
 # TODO make burning related stats variable
 const BURN_DURATION_S: float = 1.1
 const BURN_TICK_S: float = 0.25
 const BURN_DAMAGE: float = 2
 
+func _enter_tree() -> void:
+    if !stats:
+        push_error("ennemy has no stats defined") # TODO fallback on default ?
+
 func _ready():
-    stats = EnnemiesService.get_stats(ennemy_name)
+    health = stats.max_health
     player = GameService.player_instance
     %Sprite.connect("animation_finished", _on_animation_finished)
     %Health.max_health = stats.max_health
-    %Health.current_health = stats.health
+    %Health.current_health = health
     %Health.update_display()
 
 func _physics_process(delta):
@@ -36,7 +40,7 @@ func handle_bullet_hit(bullet: Bullet):
         if bullet.bullet_stats.inflicts_fire:
             set_burning()
         else:
-            bleed(bullet.global_position)
+            VisualEffects.bleed(global_position, bullet.position)
 
 func take_damage(damage: float):
     %Sprite.play("hurt")
@@ -46,15 +50,6 @@ func take_damage(damage: float):
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
     damage_marker.global_position = %DamageAnchor.global_position
     SceneManager.current_scene.add_child(damage_marker)
-
-func bleed(hit_position: Vector2):
-    var direction: Enums.Orientations
-    if hit_position.x < global_position.x:
-        direction = Enums.Orientations.RIGHT
-    else:
-        direction = Enums.Orientations.LEFT
-    var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(global_position, direction)
-    SceneManager.current_scene.add_child(bleed_effect)
 
 func _on_animation_finished():
     if !is_dead:

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnnemyStats" load_steps=2 format=3 uid="uid://fcied1l0c3ma"]
+
+[ext_resource type="Script" uid="uid://bupbqcfqlteib" path="res://ennemies/_generics/stats/ennemy_stats.gd" id="1_wg0f3"]
+
+[resource]
+script = ExtResource("1_wg0f3")
+name = "mob_2"
+nice_name = "Mob 2"
+max_health = 25
+speed = 150.0
+xp_value = 1.5
+can_die = true
+metadata/_custom_type_script = "uid://bupbqcfqlteib"

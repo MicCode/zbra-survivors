@@ -13,3 +13,12 @@ func gore_death(sprite: AnimatedSprite2D, delay: float = 0.0) -> PropertyTweener
     var tween = create_tween()
     tween.tween_interval(delay)
     return tween.tween_property(shader_material, "shader_parameter/progress", 2.0, 0.5)
+
+func bleed(node_position: Vector2, hit_position: Vector2):
+    var direction: Enums.Orientations
+    if hit_position.x < node_position.x:
+        direction = Enums.Orientations.RIGHT
+    else:
+        direction = Enums.Orientations.LEFT
+    var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(node_position, direction)
+    SceneManager.current_scene.add_child(bleed_effect)

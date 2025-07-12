@@ -37,6 +37,6 @@ func spawn_boss():
         SoundPlayer.play_music("boss.mp3")
         GameService.boss_changed.connect(on_boss_changed)
 
-func on_boss_changed(new_boss_info: EnnemyStats):
-    if new_boss_info.health <= 0:
+func on_boss_changed(_boss_stats: EnnemyStats, boss_health: float):
+    if boss_health <= 0:
         SoundPlayer.play_music("theme.mp3")

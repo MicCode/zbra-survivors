@@ -1,11 +1,13 @@
-[gd_scene load_steps=42 format=3 uid="uid://b5mylgidrfjjl"]
+[gd_scene load_steps=50 format=3 uid="uid://b5mylgidrfjjl"]
 
 [ext_resource type="Script" uid="uid://bjetjnf5dr8j1" path="res://ennemies/boss_1/boss_1.gd" id="1_xtetr"]
+[ext_resource type="Resource" uid="uid://clhbj0gsmiwi" path="res://ennemies/boss_1/boss_1_stats.tres" id="2_i8mgu"]
 [ext_resource type="Texture2D" uid="uid://dljkt523lwy86" path="res://assets/sprites/ennemies/boss-1/boss-1-die.png" id="2_kcxf8"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_prnhg"]
 [ext_resource type="Texture2D" uid="uid://deqkjg8jdkft3" path="res://assets/sprites/ennemies/boss-1/boss-1-shoot.png" id="3_qeer7"]
 [ext_resource type="Texture2D" uid="uid://clhb4lw3j3e2s" path="res://assets/sprites/ennemies/boss-1/boss-1-spawn.png" id="4_j3lod"]
 [ext_resource type="Texture2D" uid="uid://cxyfdklqky7lc" path="res://assets/sprites/ennemies/boss-1/boss-1-walk.png" id="5_sxbx4"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="9_0e5ht"]
 [ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="10_ixrhd"]
 
 [sub_resource type="Gradient" id="Gradient_pjegc"]
@@ -320,10 +322,75 @@ _data = {
 &"spawn": SubResource("Animation_gi6gu")
 }
 
+[sub_resource type="Gradient" id="Gradient_1op2o"]
+offsets = PackedFloat32Array(0, 0.357143, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.493506, 0.493506, 0.493506, 0.493506, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0e5ht"]
+gradient = SubResource("Gradient_1op2o")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
+
+[sub_resource type="Animation" id="Animation_57str"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="Animation" id="Animation_3lxlb"]
+resource_name = "emit"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.866667),
+"transitions": PackedFloat32Array(1, 2.63902, 1, 1.8025),
+"update": 0,
+"values": [5.0, 1.97, 6.87, 3.85]
+}
+
+[sub_resource type="Animation" id="Animation_pqwcw"]
+resource_name = "fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.392292),
+"update": 0,
+"values": [5.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wfebn"]
+_data = {
+&"RESET": SubResource("Animation_57str"),
+&"emit": SubResource("Animation_3lxlb"),
+&"fadeout": SubResource("Animation_pqwcw")
+}
+
 [node name="Boss1" type="CharacterBody2D"]
 collision_layer = 130
 collision_mask = 11
 script = ExtResource("1_xtetr")
+stats = ExtResource("2_i8mgu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -399,6 +466,14 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 one_shot = true
 
+[node name="BurnTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="BurnTickTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="DamageAnchor" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -55)
@@ -407,6 +482,31 @@ position = Vector2(0, -55)
 position = Vector2(0, -2)
 color = 2
 sprite_scale = 3.0
+
+[node name="Health" parent="." instance=ExtResource("9_0e5ht")]
+unique_name_in_owner = true
+visible = false
+light_mask = 0
+z_index = 4096
+position = Vector2(0, -46)
+max_health = 3.0
+current_health = 3.0
+
+[node name="FireLight" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -14)
+color = Color(0.934413, 0.399964, 0, 1)
+energy = 5.0
+texture = SubResource("GradientTexture2D_0e5ht")
+texture_scale = 3.0
+
+[node name="FireAnimation" type="AnimationPlayer" parent="FireLight"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_wfebn")
+}
+autoplay = "emit"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="WitherRadius" to="." method="_on_wither_radius_body_entered"]
