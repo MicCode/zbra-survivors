@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhmxaitsaqnl3"]
+
+[ext_resource type="Script" uid="uid://cpp0jn44y4qeo" path="res://environment/infinite_world.gd" id="1_fsck1"]
+
+[node name="InfiniteWorld" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_fsck1")

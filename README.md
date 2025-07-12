@@ -19,12 +19,12 @@
 ## TODO
 
 -   player level mechanics
--   random/procedural environment generation
 -   "power mode" (player move faster + hit harder during a short amount of time when catching a special item)
 -   explosives
 -   change player stats on lvl up
 -   menu to show current stats (player and equipped gun)
 -   change ennemies spawn frequencies and statistics during game
+-   visual and sound effects on multiple kill with one bullet
     ​
 
 ## TO BE FIXED

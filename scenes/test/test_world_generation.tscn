@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://crpd52a8sh57v"]
+
+[ext_resource type="Script" uid="uid://dma14wyxr6kqq" path="res://scenes/test/test_world_generation.gd" id="1_l0x37"]
+[ext_resource type="PackedScene" uid="uid://bhmxaitsaqnl3" path="res://environment/infinite_world.tscn" id="2_bjkx5"]
+[ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_h3ts4"]
+[ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/in-game/game_ui.tscn" id="3_kc2vn"]
+[ext_resource type="PackedScene" uid="uid://cal4x5wbe2maf" path="res://ui/in-game/boss_ui.tscn" id="4_bjkx5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc2vn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.983605, 0.323914, 0.0821288, 1)
+corner_radius_top_left = 100000
+corner_radius_top_right = 100000
+corner_radius_bottom_right = 100000
+corner_radius_bottom_left = 100000
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjkx5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.563842, 0.537951, 0.836726, 1)
+corner_radius_top_left = 100000
+corner_radius_top_right = 100000
+corner_radius_bottom_right = 100000
+corner_radius_bottom_left = 100000
+
+[node name="TestWorldGeneration" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_l0x37")
+
+[node name="InfiniteWorld" parent="." instance=ExtResource("2_bjkx5")]
+
+[node name="Player" parent="." instance=ExtResource("2_h3ts4")]
+unique_name_in_owner = true
+position = Vector2(578, 326)
+
+[node name="GameUI" parent="Player" instance=ExtResource("3_kc2vn")]
+unique_name_in_owner = true
+z_index = 4096
+z_as_relative = false
+custom_minimum_size = Vector2(1280, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -400.0
+offset_right = 640.0
+offset_bottom = 400.0
+
+[node name="BossUi" parent="Player/GameUI" instance=ExtResource("4_bjkx5")]
+z_index = 4096
+custom_minimum_size = Vector2(1280, 800)
+layout_mode = 1
+
+[node name="RenderDistanceCircle" type="Panel" parent="Player"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2500, 2500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kc2vn")
+
+[node name="DisapearDistanceCircle" type="Panel" parent="Player"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(4000, 4000)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bjkx5")

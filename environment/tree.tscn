@@ -297,6 +297,7 @@ _data = {
 polygon = PackedVector2Array(-4, -56, -13, -39, -13, -24, -8, -20, -3, -11, -4, -3, -5, 0, 4, -1, 6, -18, 11, -21, 15, -26, 13, -50, 5, -58)
 
 [node name="Tree" type="StaticBody2D"]
+y_sort_enabled = true
 collision_layer = 132
 collision_mask = 0
 script = ExtResource("1_g11to")
@@ -310,6 +311,7 @@ texture = ExtResource("1_xbm4e")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_yygov")
 position = Vector2(0, -26)
 scale = Vector2(2, 2)

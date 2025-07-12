@@ -3,7 +3,9 @@ signal player_state_changed
 signal score_changed
 signal player_gained_level
 signal equipped_gun_changed
+
 signal player_timewarping_changed(timewarping: bool)
+signal player_moved(position: Vector2)
 
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
 

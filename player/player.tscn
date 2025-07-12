@@ -483,6 +483,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_mask = 199
 script = ExtResource("1_teghp")
 
@@ -502,6 +503,7 @@ texture = ExtResource("2_hvbpw")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_pli0g")
 animation = &"idle"
@@ -521,7 +523,8 @@ frame_progress = 0.784924
 visible = false
 shape = SubResource("CircleShape2D_5pv4u")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Health" parent="." instance=ExtResource("5_yybqa")]
 unique_name_in_owner = true
