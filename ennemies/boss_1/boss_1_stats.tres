@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnnemyStats" load_steps=2 format=3 uid="uid://clhbj0gsmiwi"]
+
+[ext_resource type="Script" uid="uid://bupbqcfqlteib" path="res://ennemies/_generics/stats/ennemy_stats.gd" id="1_4m2ak"]
+
+[resource]
+script = ExtResource("1_4m2ak")
+name = "boss_1"
+nice_name = "ZBRA, Devourer Of Worlds"
+max_health = 1000
+speed = 150.0
+xp_value = 50.0
+can_die = true
+metadata/_custom_type_script = "uid://bupbqcfqlteib"
