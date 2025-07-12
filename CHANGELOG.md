@@ -1,5 +1,23 @@
 ---
 
+## 1.2.0 - 2025-07-12
+
+#### Bug Fixes
+
+-   fixed ennemy movements that were stuck between objects - (1f9506e) - Mic
+-   reworked UI to be more flexible - (3027787) - Mic
+
+#### Features
+
+-   visual and sound effects when timewarping - (c7ce92d) - Mic
+
+#### Refactoring
+
+-   simplified the way ennemies info are stored using resources - (4e45df0) - Mic
+-   simplified the way guns info are stored using resources - (deca9d0) - Mic
+
+---
+
 ## 1.1.0 - 2025-07-11
 
 #### Features
