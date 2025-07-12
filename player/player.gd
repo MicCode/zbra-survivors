@@ -54,7 +54,7 @@ func _physics_process(delta):
         collect_xp()
 
 
-func move(delta):
+func move(_delta):
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
     var h_direction = Input.get_axis("move_left", "move_right")
     if GameService.player_state.can_dash && Input.is_action_pressed("dash"):
