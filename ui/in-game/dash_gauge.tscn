@@ -1,107 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7wx4swx7fty4"]
+[gd_scene load_steps=6 format=3 uid="uid://c7wx4swx7fty4"]
 
 [ext_resource type="Script" uid="uid://cji0tqswdo0sb" path="res://ui/in-game/dash_gauge.gd" id="1_mppy0"]
 [ext_resource type="Texture2D" uid="uid://b2s6kmwjhct7y" path="res://assets/sprites/player/dash-gauge.png" id="2_8ntsr"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_6fws7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h55uc"]
-atlas = ExtResource("2_8ntsr")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s14ex"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hyy8b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s14ex"]
 atlas = ExtResource("2_8ntsr")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i6qfg"]
-atlas = ExtResource("2_8ntsr")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pwhia"]
-atlas = ExtResource("2_8ntsr")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2ttj"]
-atlas = ExtResource("2_8ntsr")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_elrvw"]
-atlas = ExtResource("2_8ntsr")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xepru"]
-atlas = ExtResource("2_8ntsr")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yp8q0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h55uc")
-}],
-"loop": false,
-"name": &"empty",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hyy8b")
-}],
-"loop": true,
-"name": &"full",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i6qfg")
-}],
-"loop": true,
-"name": &"loading_1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pwhia")
-}],
-"loop": true,
-"name": &"loading_2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u2ttj")
-}],
-"loop": true,
-"name": &"loading_3",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_elrvw")
-}],
-"loop": true,
-"name": &"loading_4",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xepru")
-}],
-"loop": true,
-"name": &"using",
-"speed": 5.0
-}]
-
-[node name="DashGauge" type="Node2D"]
+[node name="DashGauge" type="Panel"]
+custom_minimum_size = Vector2(75, 75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s14ex")
 script = ExtResource("1_mppy0")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Texture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_yp8q0")
-animation = &"full"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_s14ex")
 
 [node name="ButtonIcon" parent="." instance=ExtResource("3_6fws7")]
 unique_name_in_owner = true
+layout_mode = 1
 offset_left = 17.0
 offset_top = 18.0
 offset_right = 33.0

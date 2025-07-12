@@ -4,8 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ovb57"]
-line_spacing = 0.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goryb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sfyf6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d2uga"]
+
+[sub_resource type="FontVariation" id="FontVariation_ooxb5"]
+spacing_top = -20
+spacing_bottom = -10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooxb5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_png7d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huejc"]
 bg_color = Color(0.6, 0.6, 0.6, 0.180392)
@@ -13,232 +24,145 @@ bg_color = Color(0.6, 0.6, 0.6, 0.180392)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7xiq"]
 bg_color = Color(0.843137, 0.721569, 0, 1)
 
-[sub_resource type="Animation" id="Animation_n5s0o"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%LevelLabel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%LevelLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%XpLabel:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("%XpLabel:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.811765)]
-}
-
-[sub_resource type="Animation" id="Animation_upm1x"]
-resource_name = "lvlup"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%LevelLabel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.2), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%LevelLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.933333, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_4wuty"]
-resource_name = "xpgain"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%XpLabel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.2), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%XpLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.811765), Color(1, 0.933333, 0, 0.811765), Color(1, 1, 1, 0.811765)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2s7m"]
-_data = {
-&"RESET": SubResource("Animation_n5s0o"),
-&"lvlup": SubResource("Animation_upm1x"),
-&"xpgain": SubResource("Animation_4wuty")
-}
-
-[sub_resource type="LabelSettings" id="LabelSettings_vrht4"]
-font_size = 30
-
-[node name="GameUI" type="CanvasLayer"]
+[node name="GameUI" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_goryb")
 script = ExtResource("1_70thh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -74.0
-offset_right = 1063.0
-grow_vertical = 0
-size_flags_vertical = 4
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="DashGauge" parent="HBoxContainer" instance=ExtResource("2_3a147")]
-position = Vector2(45, 29)
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sfyf6")
 
-[node name="Hearts" type="CanvasGroup" parent="HBoxContainer"]
-unique_name_in_owner = true
-position = Vector2(0, -574)
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 83.0
+grow_horizontal = 2
 
-[node name="Heart" parent="HBoxContainer/Hearts" instance=ExtResource("3_g3ovh")]
-position = Vector2(120, 619)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
 
-[node name="ScoreLabel" type="Label" parent="."]
-offset_left = 13.0
-offset_right = 64.0
-offset_bottom = 23.0
-scale = Vector2(1.5, 1.5)
+[node name="ScoreLabel" type="Label" parent="MarginContainer/Panel/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "SCORE:"
-label_settings = SubResource("LabelSettings_ovb57")
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="Label" parent="MarginContainer/Panel/HBoxContainer2/HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 103.0
-offset_right = 603.0
-offset_bottom = 23.0
-scale = Vector2(1.5, 1.5)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "12345"
-label_settings = SubResource("LabelSettings_ovb57")
 
-[node name="XpBar" type="ProgressBar" parent="."]
+[node name="Spacer" type="Panel" parent="MarginContainer/Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_d2uga")
+
+[node name="RemainingTime" type="Label" parent="MarginContainer/Panel/HBoxContainer2"]
 unique_name_in_owner = true
-anchors_preset = 3
-anchor_left = 1.0
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ooxb5")
+theme_override_font_sizes/font_size = 60
+text = "12:34"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -767.0
-offset_top = -24.0
-offset_right = -591.0
-offset_bottom = -21.0
-grow_horizontal = 0
+offset_top = -75.0
+grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(4.27974, 3.47579)
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="DashGauge" parent="MarginContainer/Panel/HBoxContainer" instance=ExtResource("2_3a147")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Hearts" type="HBoxContainer" parent="MarginContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Heart" parent="MarginContainer/Panel/HBoxContainer/Hearts" instance=ExtResource("3_g3ovh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Heart2" parent="MarginContainer/Panel/HBoxContainer/Hearts" instance=ExtResource("3_g3ovh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Heart3" parent="MarginContainer/Panel/HBoxContainer/Hearts" instance=ExtResource("3_g3ovh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Spacer" type="Panel" parent="MarginContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="XpLabel" type="Label" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "123/4567"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Panel" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_png7d")
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Niv. 1"
+
+[node name="XpBar" type="ProgressBar" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_huejc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_u7xiq")
 max_value = 10.0
 step = 0.1
+value = 3.3
 show_percentage = false
-
-[node name="Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="XpLabel" type="Label" parent="Container"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.811765)
-layout_mode = 2
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1027.0
-offset_top = 557.0
-offset_right = 1098.0
-offset_bottom = 580.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(71, 23)
-text = "123/4567"
-horizontal_alignment = 2
-
-[node name="LevelLabel" type="Label" parent="Container"]
-unique_name_in_owner = true
-layout_mode = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 385.0
-offset_top = 557.0
-offset_right = 429.0
-offset_bottom = 580.0
-grow_vertical = 0
-pivot_offset = Vector2(0, 23)
-text = "Niv. 1"
-
-[node name="XpAnimationPlayer" type="AnimationPlayer" parent="Container"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_a2s7m")
-}
-speed_scale = 2.0
-
-[node name="RemainingTime" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 13.0
-offset_top = 23.0
-offset_right = 90.0
-offset_bottom = 65.0
-scale = Vector2(1.5, 1.5)
-text = "12:34"
-label_settings = SubResource("LabelSettings_vrht4")
