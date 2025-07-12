@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=13 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
+[ext_resource type="Material" uid="uid://btuabvmpbtjvk" path="res://effects/slow_down_effect_material.tres" id="2_sfyf6"]
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goryb"]
@@ -32,6 +33,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_goryb")
 script = ExtResource("1_70thh")
+
+[node name="SlowDownEffect" type="Panel" parent="."]
+unique_name_in_owner = true
+material = ExtResource("2_sfyf6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
