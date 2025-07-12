@@ -31,7 +31,7 @@ func _on_time_before_boss_timeout() -> void:
 func spawn_boss():
     if !is_boss_spawned:
         is_boss_spawned = true
-        var boss = preload("res://ennemies/boss_1/Boss1.tscn").instantiate()
+        var boss = preload("res://ennemies/boss_1/boss_1.tscn").instantiate()
         add_child(boss)
         boss.global_position = %BossSpawnPoint.global_position
         SoundPlayer.play_music("boss.mp3")

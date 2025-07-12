@@ -138,12 +138,12 @@ func equip_gun(collectible: GunCollectible):
         return
 
     if equiped_gun:
-        var collectible_to_drop = GunService.create_collectible(equiped_gun.gun_name)
+        var collectible_to_drop = GunService.create_collectible(equiped_gun.gun_stats.name)
         collectible_to_drop.global_position = global_position
         SceneManager.current_scene.add_child(collectible_to_drop)
         equiped_gun.queue_free()
 
-    var new_gun = GunService.create_gun(collectible.gun_name)
+    var new_gun = GunService.create_gun(collectible.gun_stats.name)
     equiped_gun = new_gun
     add_child(equiped_gun)
     GameService.change_equipped_gun(equiped_gun)

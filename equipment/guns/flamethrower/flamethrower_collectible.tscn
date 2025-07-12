@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjac33uc3ygca"]
+[gd_scene load_steps=5 format=3 uid="uid://bjac33uc3ygca"]
 
-[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/gun_collectible.tscn" id="1_mjqcg"]
-[ext_resource type="Script" uid="uid://rsdsughs1ct7" path="res://equipment/guns/flamethrower/flamethrower_collectible.gd" id="2_nbong"]
+[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/_generics/gun_collectible.tscn" id="1_mjqcg"]
+[ext_resource type="Resource" uid="uid://clnmkh01hduxb" path="res://equipment/guns/flamethrower/stats/flamethrower_stats.tres" id="2_p4q6n"]
 [ext_resource type="Texture2D" uid="uid://cgmaysyk0j8c3" path="res://assets/sprites/items/flame-thrower-icon.png" id="3_u2of1"]
+[ext_resource type="Resource" uid="uid://b3mm3v5a6g5md" path="res://equipment/guns/flamethrower/stats/flamethrower_bullet_stats.tres" id="3_we8ug"]
 
 [node name="FlamethrowerCollectible" instance=ExtResource("1_mjqcg")]
-script = ExtResource("2_nbong")
-gun_name = "flamethrower"
+gun_stats = ExtResource("2_p4q6n")
+bullet_stats = ExtResource("3_we8ug")
 
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource("3_u2of1")

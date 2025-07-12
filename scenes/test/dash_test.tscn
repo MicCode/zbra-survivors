@@ -48,6 +48,6 @@ position = Vector2(578, 324)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_dyv8v")
+&"": SubResource("AnimationLibrary_dyv8v")
 }
 autoplay = "move"

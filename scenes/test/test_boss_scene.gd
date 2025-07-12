@@ -8,7 +8,7 @@ func spawn_boss():
         is_boss_spawned = true
         %BossSpawnTrigger.modulate = Color(1, 1, 1, 0.25)
 
-        var boss = preload("res://ennemies/boss_1/Boss1.tscn").instantiate()
+        var boss = preload("res://ennemies/boss_1/boss_1.tscn").instantiate()
         add_child(boss)
         boss.global_position = %BossSpawnPoint.global_position
         if PLAY_MUSIC:

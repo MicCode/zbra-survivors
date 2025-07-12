@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=2 format=3 uid="uid://b6t0g4ye4ovww"]
+
+[ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://equipment/guns/_generics/stats/gun_stats.gd" id="1_surw8"]
+
+[resource]
+script = ExtResource("1_surw8")
+name = "pistol"
+display_name = "Pistol"
+shots_per_s = 1.0
+bang_pitch_shift = -0.2
+bang_volume = 0.0
+bullets_spread_angle_deg = 0
+bullets_per_shot = 1
+eject_cartridges = true
+metadata/_custom_type_script = "uid://hiuor4oyrxjg"

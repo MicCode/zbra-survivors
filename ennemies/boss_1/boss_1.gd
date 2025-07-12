@@ -46,7 +46,7 @@ func shoot():
         is_shooting = true
 
 func _on_shoot_delay_timer_timeout() -> void:
-    var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate().with_damage(1).with_speed(1000)
+    var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()
     get_tree().root.add_child(bullet)
     bullet.global_position = %ShootPoint.global_position
     bullet.look_at(player.global_position)
@@ -56,11 +56,12 @@ func handle_bullet_hit(bullet: Bullet):
     if bullet is BossBullet:
         return
     if is_ready && !is_dead:
-        take_damage(bullet.damage)
-        #if bullet.is_fire:
+        take_damage(bullet.bullet_stats.damage)
+        if bullet.bullet_stats.inflicts_fire:
             #set_burning()
-        #else:
-            #bleed(bullet.global_position)
+            pass
+        else:
+            bleed(bullet.global_position)
 
 func take_damage(damage: int):
     boss_info.health -= damage
