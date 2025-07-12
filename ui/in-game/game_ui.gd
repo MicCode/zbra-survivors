@@ -10,6 +10,7 @@ func _ready() -> void:
     %Score.text = str(GameService.score)
     GameService.score_changed.connect(_on_score_changed)
     GameService.player_state_changed.connect(_on_player_state_changed)
+    GameService.player_timewarping_changed.connect(_on_player_timewarping_changed)
     _on_player_state_changed(GameService.player_state)
 
 func _on_score_changed(new_score: int):
@@ -28,6 +29,8 @@ func _on_player_state_changed(player_state: PlayerState):
         player_xp = player_state.xp
         %XpLabel.text = str(floor(player_xp)) + " / " + str(floor(player_state.next_level_xp))
         VisualEffects.emphases(%XpLabel, 1.2, Color.YELLOW)
+        var tween = get_tree().create_tween()
+        tween.tween_property(%XpBar, "value", player_state.xp, 0.25)
 
     if player_state.level != player_level:
         player_level = player_state.level
@@ -35,7 +38,7 @@ func _on_player_state_changed(player_state: PlayerState):
         VisualEffects.emphases(%LevelLabel, 1.2, Color.YELLOW)
 
     %XpBar.max_value = player_state.next_level_xp
-    %XpBar.value = player_state.xp
+
 
 func redraw_hearts():
     var hearts = %Hearts.get_children()
@@ -63,3 +66,19 @@ func set_remaining_time(remaining_s: float):
 
 func format_time(minutes: int, seconds: int) -> String:
     return str("%02d:%02d" % [minutes, seconds])
+
+func _on_player_timewarping_changed(timewarping: bool):
+    if timewarping:
+        start_slow_down_effect()
+    else:
+        stop_slow_down_effect()
+
+func start_slow_down_effect():
+    var overlay_material = %SlowDownEffect.material as ShaderMaterial
+    var tween = get_tree().create_tween()
+    tween.tween_property(overlay_material, "shader_parameter/fire_alpha", 1.0, 0.2)
+
+func stop_slow_down_effect():
+    var overlay_material = %SlowDownEffect.material as ShaderMaterial
+    var tween = get_tree().create_tween()
+    tween.tween_property(overlay_material, "shader_parameter/fire_alpha", 0.0, 0.2)

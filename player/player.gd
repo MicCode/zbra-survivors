@@ -179,6 +179,16 @@ func collect_timewrap_clock(clock: TimewrapClock):
         time_scale_target = timewrap_time_scale
         GameService.player_state.move_speed /= (timewrap_time_scale * 1.5)
         clock.queue_free()
+        Sounds.start_timewarping()
+        GameService.player_timewarping_changed.emit(true)
+
+func _on_timewrap_timer_timeout() -> void:
+    Engine.time_scale = 1.0
+    is_timewrapping = false
+    time_scale_target = 1.0
+    GameService.player_state.move_speed *= (timewrap_time_scale * 1.5)
+    Sounds.stop_timewarping()
+    GameService.player_timewarping_changed.emit(false)
 
 func init_health():
     %Health.max_health = GameService.player_state.max_health
@@ -277,9 +287,3 @@ func _on_radiance_timer_timeout() -> void:
         is_radiating = false
         %RadianceEffectAnimation.play("fadeout")
         %RadianceCollision.disabled = true
-
-func _on_timewrap_timer_timeout() -> void:
-    Engine.time_scale = 1.0
-    is_timewrapping = false
-    time_scale_target = 1.0
-    GameService.player_state.move_speed *= (timewrap_time_scale * 1.5)

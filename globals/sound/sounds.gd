@@ -32,6 +32,12 @@ func start_burning():
 
 func stop_burning():
     SoundPlayer.stop_effect("burning.wav")
+
+func start_timewarping():
+    SoundPlayer.start_effect("clock.wav", { pitch = 10.0 }) # high pitch because when timewarping everything goes low
+
+func stop_timewarping():
+    SoundPlayer.stop_effect("clock.wav")
 #endregion
 
 #region Equipment
