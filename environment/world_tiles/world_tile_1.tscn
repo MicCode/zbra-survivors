@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccfmgokvqhqj0"]
+
+[ext_resource type="Script" uid="uid://xuxi2m0hhunh" path="res://environment/world_tiles/world_tile_1.gd" id="1_nbgbl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fe11"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.664691, 0.0964803, 0.312124, 1)
+
+[node name="WorldTile1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_nbgbl")
+
+[node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
+z_index = -1
+z_as_relative = false
+custom_minimum_size = Vector2(512, 512)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.501961, 0.662745, 0.4, 1)
+
+[node name="Boundaries" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 512)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4fe11")

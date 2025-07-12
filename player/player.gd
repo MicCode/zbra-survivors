@@ -3,6 +3,8 @@ class_name Player
 
 signal health_depleted
 
+var camera_zoom = 1.0 # for debug purpose set to 1.0 in normal condition
+
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
 const DASH_GHOST_INTERVAL_S = 0.01
@@ -23,7 +25,12 @@ var time_scale_target: float = 1.0
 var time_scale_change_interval: float = 0.01
 
 func _ready():
+    randomize()
     init_health()
+    if GameSettings.WORLD_GENERATION_DEBUG:
+        camera_zoom = 0.1
+        GameService.player_state.move_speed = 1000.0
+    %Camera.zoom = Vector2(camera_zoom, camera_zoom)
     GameService.register_player_instance(self)
     GameService.player_state_changed.connect(_on_player_state_changed)
     GameService.player_gained_level.connect(_on_player_level_gained)
@@ -62,6 +69,7 @@ func move(delta):
         velocity = direction * GameService.player_state.move_speed * GameService.player_state.dash_speed_multiplier
 
     move_and_slide()
+    GameService.player_moved.emit(position) # FIXME do not publish position each time ? set refresh interval ?
     if !just_hurt:
         if velocity.length() > 0:
             %Sprite.play("walk")

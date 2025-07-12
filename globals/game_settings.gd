@@ -1,5 +1,11 @@
 extends Node
 
+const WORLD_GENERATION_DEBUG = false
+const CHUNK_SIZE = 512
+const CHUNK_RENDER_DISTANCE = 3
+const CHUNK_UNLOAD_DISTANCE = 10
+const CHUNK_UNLOAD_TIME = 30.0
+
 var enable_music: bool = true
 var master_volume_db: float = 0.0
 var music_volume_db: float = -15.2
