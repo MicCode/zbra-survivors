@@ -39,21 +39,6 @@ tile_set = SubResource("TileSet_mblyq")
 [node name="Player" parent="." instance=ExtResource("2_cg6cr")]
 position = Vector2(588, 315)
 
-[node name="BasicGunCollectible" parent="." instance=ExtResource("3_lpvee")]
-position = Vector2(316, 142)
-
-[node name="RifleGunCollectible" parent="." instance=ExtResource("4_l68rk")]
-position = Vector2(509, 62)
-
-[node name="ShotGunCollectible" parent="." instance=ExtResource("6_0vx2c")]
-position = Vector2(492, 571)
-
-[node name="FlamethrowerCollectible" parent="." instance=ExtResource("8_w10lt")]
-position = Vector2(471, 347)
-
-[node name="SniperCollectible" parent="." instance=ExtResource("9_tvq1l")]
-position = Vector2(281, 289)
-
 [node name="XpDrop" parent="." instance=ExtResource("7_b7b57")]
 position = Vector2(956, 615)
 
@@ -125,3 +110,18 @@ position = Vector2(41, 110)
 
 [node name="Collectible2" parent="." instance=ExtResource("13_6k7wn")]
 position = Vector2(101, 65)
+
+[node name="FlamethrowerCollectible" parent="." instance=ExtResource("8_w10lt")]
+position = Vector2(473, 171)
+
+[node name="BasicGunCollectible" parent="." instance=ExtResource("3_lpvee")]
+position = Vector2(277, 328)
+
+[node name="RifleGunCollectible" parent="." instance=ExtResource("4_l68rk")]
+position = Vector2(362, 515)
+
+[node name="ShotGunCollectible" parent="." instance=ExtResource("6_0vx2c")]
+position = Vector2(608, 516)
+
+[node name="Collectible3" parent="." instance=ExtResource("9_tvq1l")]
+position = Vector2(779, 439)

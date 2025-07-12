@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ahrxr82mhqj"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ahrxr82mhqj"]
 
-[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/gun_collectible.tscn" id="1_tosty"]
-[ext_resource type="Script" uid="uid://mmrhnydemshd" path="res://equipment/guns/sniper/sniper_collectible.gd" id="2_wnq87"]
+[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://equipment/guns/_generics/gun_collectible.tscn" id="1_tosty"]
+[ext_resource type="Resource" uid="uid://d2mgtjti81jbf" path="res://equipment/guns/sniper/stats/sniper_stats.tres" id="2_hgvc1"]
 [ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://assets/sprites/items/sniper-idle.png" id="3_7ac6p"]
+[ext_resource type="Resource" uid="uid://cwur0vrd88nwp" path="res://equipment/guns/sniper/stats/sniper_bullet_stats.tres" id="3_xbns1"]
 
 [node name="Collectible" instance=ExtResource("1_tosty")]
-script = ExtResource("2_wnq87")
-gun_name = "sniper"
+gun_stats = ExtResource("2_hgvc1")
+bullet_stats = ExtResource("3_xbns1")
 
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource("3_7ac6p")

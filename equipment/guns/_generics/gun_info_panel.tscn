@@ -1,0 +1,154 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccgmshd6826dt"]
+
+[ext_resource type="Script" uid="uid://bd461xigmlt5c" path="res://equipment/guns/_generics/gun_info_panel.gd" id="1_m0kus"]
+[ext_resource type="LabelSettings" uid="uid://ykrbrp483rhl" path="res://ui/theme/small_black_label_settings.tres" id="2_qi3mi"]
+[ext_resource type="LabelSettings" uid="uid://cbqtn43hxrfti" path="res://ui/theme/black_label_settings.tres" id="3_nta82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48b3b"]
+bg_color = Color(1, 1, 1, 0.498039)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="GunInfoPanel" type="Node2D"]
+z_index = 4096
+script = ExtResource("1_m0kus")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -173.0
+offset_right = 173.0
+offset_bottom = -11.0
+grow_vertical = 0
+pivot_offset = Vector2(-1, 133)
+theme_override_styles/panel = SubResource("StyleBoxFlat_48b3b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GunName" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "GUN NAME"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Damage"
+label_settings = ExtResource("2_qi3mi")
+
+[node name="Attack" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "123.5"
+label_settings = ExtResource("3_nta82")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "DPS"
+label_settings = ExtResource("2_qi3mi")
+
+[node name="DPS" type="Label" parent="Panel/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "123.5"
+label_settings = ExtResource("3_nta82")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Shot/s"
+label_settings = ExtResource("2_qi3mi")
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Reload" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "123.5"
+label_settings = ExtResource("3_nta82")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Projectiles"
+label_settings = ExtResource("2_qi3mi")
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="BulletsCount" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "123.5"
+label_settings = ExtResource("3_nta82")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Dispersion"
+label_settings = ExtResource("2_qi3mi")
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Angle" type="Label" parent="Panel/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "123.5"
+label_settings = ExtResource("3_nta82")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2

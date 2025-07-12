@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://o5hlpjjgjiux"]
+[gd_scene load_steps=12 format=3 uid="uid://o5hlpjjgjiux"]
 
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/gun.tscn" id="1_832bl"]
-[ext_resource type="Script" uid="uid://d6gfodl085i5" path="res://equipment/guns/shotgun/shotgun.gd" id="2_f1kua"]
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/_generics/gun.tscn" id="1_832bl"]
+[ext_resource type="Resource" uid="uid://dbacoit2k8l8a" path="res://equipment/guns/shotgun/stats/shotgun_stats.tres" id="2_u3tb7"]
 [ext_resource type="Texture2D" uid="uid://ddhdxh1g08f7e" path="res://assets/sprites/items/shotgun-idle.png" id="3_3nkjs"]
+[ext_resource type="Resource" uid="uid://bm23ckg2wbh8o" path="res://equipment/guns/shotgun/stats/shotgun_bullet_stats.tres" id="3_tcxat"]
 [ext_resource type="Texture2D" uid="uid://csor85r20wqr7" path="res://assets/sprites/items/shotgun-reloading.png" id="3_vu413"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5bx8"]
@@ -54,8 +55,8 @@ animations = [{
 }]
 
 [node name="ShotGun" instance=ExtResource("1_832bl")]
-script = ExtResource("2_f1kua")
-gun_name = "shotgun"
+gun_stats = ExtResource("2_u3tb7")
+bullet_stats = ExtResource("3_tcxat")
 
 [node name="Sprite" parent="PivotPoint" index="0"]
 position = Vector2(25, 2)

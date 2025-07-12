@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhlvxe03hldlw"]
+[gd_scene load_steps=11 format=3 uid="uid://dhlvxe03hldlw"]
 
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/gun.tscn" id="1_dkguj"]
-[ext_resource type="Script" uid="uid://qiva5ni4ogec" path="res://equipment/guns/flamethrower/flamethrower.gd" id="2_lx138"]
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/_generics/gun.tscn" id="1_dkguj"]
+[ext_resource type="Resource" uid="uid://clnmkh01hduxb" path="res://equipment/guns/flamethrower/stats/flamethrower_stats.tres" id="2_3b1h1"]
+[ext_resource type="Resource" uid="uid://b3mm3v5a6g5md" path="res://equipment/guns/flamethrower/stats/flamethrower_bullet_stats.tres" id="3_8c51p"]
 [ext_resource type="Texture2D" uid="uid://c61ac5omplqtf" path="res://assets/sprites/items/flame-thrower-firing.png" id="3_rrim6"]
 [ext_resource type="Texture2D" uid="uid://b238i3ui3m2up" path="res://assets/sprites/items/flame-thrower.png" id="4_igkfx"]
 
@@ -46,9 +47,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Gun" instance=ExtResource("1_dkguj")]
-script = ExtResource("2_lx138")
-gun_name = "flamethrower"
+[node name="FlameThrower" instance=ExtResource("1_dkguj")]
+gun_stats = ExtResource("2_3b1h1")
+bullet_stats = ExtResource("3_8c51p")
 
 [node name="Sprite" parent="PivotPoint" index="0"]
 sprite_frames = SubResource("SpriteFrames_nj1vh")

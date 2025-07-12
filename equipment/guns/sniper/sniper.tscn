@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dm30dh6tpw4bg"]
+[gd_scene load_steps=12 format=3 uid="uid://dm30dh6tpw4bg"]
 
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/gun.tscn" id="1_sen5n"]
-[ext_resource type="Script" uid="uid://ck8eijxx3qtv3" path="res://equipment/guns/sniper/sniper.gd" id="2_doncw"]
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/_generics/gun.tscn" id="1_sen5n"]
+[ext_resource type="Resource" uid="uid://d2mgtjti81jbf" path="res://equipment/guns/sniper/stats/sniper_stats.tres" id="2_qvxhd"]
+[ext_resource type="Resource" uid="uid://cwur0vrd88nwp" path="res://equipment/guns/sniper/stats/sniper_bullet_stats.tres" id="3_2mu0f"]
 [ext_resource type="Texture2D" uid="uid://b8k7hvcm3pii5" path="res://assets/sprites/items/sniper.png" id="3_wilyu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_deoaq"]
@@ -59,9 +60,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Gun" instance=ExtResource("1_sen5n")]
-script = ExtResource("2_doncw")
-gun_name = "sniper"
+[node name="Sniper" instance=ExtResource("1_sen5n")]
+gun_stats = ExtResource("2_qvxhd")
+bullet_stats = ExtResource("3_2mu0f")
 
 [node name="Sprite" parent="PivotPoint" index="0"]
 position = Vector2(27, -3)

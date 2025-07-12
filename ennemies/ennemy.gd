@@ -32,8 +32,8 @@ func _physics_process(delta):
 
 func handle_bullet_hit(bullet: Bullet):
     if !is_dead:
-        take_damage(bullet.damage)
-        if bullet.is_fire:
+        take_damage(bullet.bullet_stats.damage)
+        if bullet.bullet_stats.inflicts_fire:
             set_burning()
         else:
             bleed(bullet.global_position)

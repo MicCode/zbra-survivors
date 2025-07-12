@@ -66,21 +66,6 @@ label_settings = SubResource("LabelSettings_bjwww")
 [node name="Player" parent="." instance=ExtResource("3_gx567")]
 position = Vector2(449, 316)
 
-[node name="Collectible" parent="." instance=ExtResource("4_d3rn1")]
-position = Vector2(118, 121)
-
-[node name="ShotGunCollectible" parent="." instance=ExtResource("5_j8i33")]
-position = Vector2(119, 215)
-
-[node name="RifleGunCollectible" parent="." instance=ExtResource("6_fsmji")]
-position = Vector2(116, 309)
-
-[node name="BasicGunCollectible" parent="." instance=ExtResource("7_ct2rc")]
-position = Vector2(120, 399)
-
-[node name="FlamethrowerCollectible" parent="." instance=ExtResource("8_gm5sp")]
-position = Vector2(120, 488)
-
 [node name="BossSpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(680, 369)
@@ -93,5 +78,20 @@ tile_map_data = PackedByteArray("AACz/xcAAAAAAAAAAQCz/1QAAAAAAAAAAQC0/9v/AAAAAAA
 tile_set = SubResource("TileSet_348k7")
 
 [node name="BossUi" parent="." instance=ExtResource("13_t3osn")]
+
+[node name="FlamethrowerCollectible" parent="." instance=ExtResource("8_gm5sp")]
+position = Vector2(252, 120)
+
+[node name="BasicGunCollectible" parent="." instance=ExtResource("7_ct2rc")]
+position = Vector2(164, 224)
+
+[node name="RifleGunCollectible" parent="." instance=ExtResource("6_fsmji")]
+position = Vector2(149, 358)
+
+[node name="ShotGunCollectible" parent="." instance=ExtResource("5_j8i33")]
+position = Vector2(203, 482)
+
+[node name="Collectible" parent="." instance=ExtResource("4_d3rn1")]
+position = Vector2(331, 539)
 
 [connection signal="body_entered" from="BossSpawnTrigger" to="." method="_on_boss_spawn_trigger_body_entered"]

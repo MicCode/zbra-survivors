@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=2 format=3 uid="uid://d2mgtjti81jbf"]
+
+[ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://equipment/guns/_generics/stats/gun_stats.gd" id="1_d6fmv"]
+
+[resource]
+script = ExtResource("1_d6fmv")
+name = "sniper"
+display_name = "Sniper Rifle"
+shots_per_s = 0.5
+bang_pitch_shift = -0.3
+bang_volume = 0.0
+bullets_spread_angle_deg = 0
+bullets_per_shot = 1
+eject_cartridges = true
+metadata/_custom_type_script = "uid://hiuor4oyrxjg"
