@@ -1,37 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://bucnbe7ki6q3u"]
+[gd_scene load_steps=5 format=3 uid="uid://bucnbe7ki6q3u"]
 
 [ext_resource type="Texture2D" uid="uid://cwid7q0qgx0pu" path="res://assets/sprites/player/heart-16-hollow.png" id="1_5h0ir"]
+[ext_resource type="Script" uid="uid://dq1jg03kmd7n5" path="res://ui/in-game/heart.gd" id="1_lngqu"]
 [ext_resource type="Texture2D" uid="uid://celhg4yv453kq" path="res://assets/sprites/player/heart-16.png" id="2_2hfrj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7vdrt"]
-atlas = ExtResource("1_5h0ir")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh4bl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nv7oh"]
-atlas = ExtResource("2_2hfrj")
-region = Rect2(0, 0, 16, 16)
+[node name="Heart" type="Panel"]
+custom_minimum_size = Vector2(45, 45)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eh4bl")
+script = ExtResource("1_lngqu")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7rxk8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7vdrt")
-}],
-"loop": false,
-"name": &"off",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nv7oh")
-}],
-"loop": false,
-"name": &"on",
-"speed": 5.0
-}]
+[node name="FullTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2hfrj")
 
-[node name="Heart" type="AnimatedSprite2D"]
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_7rxk8")
-animation = &"on"
-autoplay = "on"
+[node name="EmptyTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5h0ir")

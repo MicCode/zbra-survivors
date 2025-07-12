@@ -1,4 +1,4 @@
-extends Node2D
+extends Panel
 class_name DashGauge
 
 enum DashGaugeStates {
@@ -10,6 +10,7 @@ enum DashGaugeStates {
     FULL,
     USING
 }
+const TEXTURE_SIZE = 16
 
 var state: DashGaugeStates = DashGaugeStates.FULL
 
@@ -23,7 +24,7 @@ func _ready() -> void:
         %ButtonIcon.key_name = "SPACE"
         %ButtonIcon.controller_name = "keyboard"
     %ButtonIcon.update_texture()
-    
+
 func _update_gauge(new_player_state: PlayerState):
     var new_state = get_new_gauge_state(new_player_state)
     if new_state != state:
@@ -34,7 +35,7 @@ func _update_gauge(new_player_state: PlayerState):
         else:
             %ButtonIcon.animate = false
             %ButtonIcon.modulate = Color(1, 1, 1, 0.5)
-        update_animation()
+        update_texture()
 
 func get_new_gauge_state(new_player_state: PlayerState) -> DashGaugeStates:
     if new_player_state.is_dashing:
@@ -48,12 +49,17 @@ func get_new_gauge_state(new_player_state: PlayerState) -> DashGaugeStates:
             5: return DashGaugeStates.FULL
             _: return DashGaugeStates.EMPTY
 
-func update_animation():
-    match state:
-        DashGaugeStates.EMPTY: %Sprite.play("empty")
-        DashGaugeStates.LOADING_1: %Sprite.play("loading_1")
-        DashGaugeStates.LOADING_2: %Sprite.play("loading_2")
-        DashGaugeStates.LOADING_3: %Sprite.play("loading_3")
-        DashGaugeStates.LOADING_4: %Sprite.play("loading_4")
-        DashGaugeStates.FULL: %Sprite.play("full")
-        DashGaugeStates.USING: %Sprite.play("using")
+func update_texture():
+    var texture = %Texture.texture
+    if texture is AtlasTexture:
+        match state:
+            DashGaugeStates.EMPTY: texture.region = move_in_atlas(0, 0)
+            DashGaugeStates.LOADING_1: texture.region = move_in_atlas(1, 0)
+            DashGaugeStates.LOADING_2: texture.region = move_in_atlas(2, 0)
+            DashGaugeStates.LOADING_3: texture.region = move_in_atlas(0, 1)
+            DashGaugeStates.LOADING_4: texture.region = move_in_atlas(1, 1)
+            DashGaugeStates.USING: texture.region = move_in_atlas(2, 1)
+            DashGaugeStates.FULL: texture.region = move_in_atlas(0, 2)
+
+func move_in_atlas(x: int, y: int) -> Rect2:
+    return Rect2(x * TEXTURE_SIZE, y * TEXTURE_SIZE, TEXTURE_SIZE, TEXTURE_SIZE)

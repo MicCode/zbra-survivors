@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Panel
 
 func _ready() -> void:
     %BossLife.hide()

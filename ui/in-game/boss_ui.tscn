@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cal4x5wbe2maf"]
+[gd_scene load_steps=8 format=3 uid="uid://cal4x5wbe2maf"]
 
 [ext_resource type="Script" uid="uid://d0suiptxjf6w3" path="res://ui/in-game/boss_ui.gd" id="1_8kv4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qcgsh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4ngm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13r8g"]
 bg_color = Color(0.374, 0.374, 0.374, 0.459)
@@ -15,20 +19,40 @@ font_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_ehqj0"]
 font_size = 20
 
-[node name="BossUi" type="CanvasLayer"]
+[node name="BossUi" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qcgsh")
 script = ExtResource("1_8kv4s")
 
-[node name="BossLife" type="ProgressBar" parent="."]
-unique_name_in_owner = true
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -478.0
-offset_top = -102.0
-offset_right = 480.0
-offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e4ngm")
+
+[node name="BossLife" type="ProgressBar" parent="MarginContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_13r8g")
@@ -36,7 +60,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sn4tq")
 value = 70.0
 show_percentage = false
 
-[node name="BossLifeLabel" type="Label" parent="BossLife"]
+[node name="BossLifeLabel" type="Label" parent="MarginContainer/Panel/BossLife"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
@@ -45,8 +69,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -77.0
-offset_top = -36.0
-offset_bottom = -8.0
+offset_top = -50.0
+offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "123/456"
@@ -54,16 +78,21 @@ label_settings = SubResource("LabelSettings_meu1g")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BossNameLabel" type="Label" parent="BossLife"]
+[node name="BossNameLabel" type="Label" parent="MarginContainer/Panel/BossLife"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
-offset_top = -39.0
+offset_top = -50.0
 offset_right = 128.0
-offset_bottom = -11.0
+offset_bottom = -22.0
 grow_vertical = 0
 text = "Nom du boss"
 label_settings = SubResource("LabelSettings_ehqj0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

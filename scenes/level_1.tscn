@@ -36,7 +36,7 @@ sources/4 = SubResource("TileSetScenesCollectionSource_8ncpc")
 
 [sub_resource type="Curve2D" id="Curve2D_rf5nu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -306, -185, 0, 0, 0, 0, 302.5, -190, 0, 0, 0, 0, 305, 178, 0, 0, 0, 0, -306, 180, 0, 0, 0, 0, -307.5, -183)
+"points": PackedVector2Array(0, 0, 0, 0, -712.154, -431, 0, 0, 0, 0, 712.154, -429, 0, 0, 0, 0, 728.145, 429, 0, 0, 0, 0, -720.682, 436, 0, 0, 0, 0, -719.616, -429)
 }
 point_count = 5
 
@@ -87,18 +87,38 @@ unique_name_in_owner = true
 position = Vector2(578, 326)
 
 [node name="SpawnPath" type="Path2D" parent="Player"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(0.938, 1)
 curve = SubResource("Curve2D_rf5nu")
 
 [node name="SpawnPoint" type="PathFollow2D" parent="Player/SpawnPath"]
 unique_name_in_owner = true
-position = Vector2(-77.6009, -186.877)
-rotation = -0.00821674
+position = Vector2(-483.747, -430.679)
+rotation = 0.00140419
 progress = 228.408
 
 [node name="BossSpawnPoint" type="Marker2D" parent="Player"]
 unique_name_in_owner = true
 position = Vector2(234, 0)
+
+[node name="GameUI" parent="Player" instance=ExtResource("4_yuug0")]
+unique_name_in_owner = true
+z_index = 4096
+z_as_relative = false
+custom_minimum_size = Vector2(1280, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -400.0
+offset_right = 640.0
+offset_bottom = 400.0
+
+[node name="BossUi" parent="Player/GameUI" instance=ExtResource("10_q8l1h")]
+z_index = 4096
+custom_minimum_size = Vector2(1280, 800)
+layout_mode = 1
 
 [node name="Trees" type="TileMapLayer" parent="."]
 light_mask = 5
@@ -111,11 +131,6 @@ tile_set = SubResource("TileSet_goox5")
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
-
-[node name="GameUI" parent="." instance=ExtResource("4_yuug0")]
-unique_name_in_owner = true
-
-[node name="BossUi" parent="." instance=ExtResource("10_q8l1h")]
 
 [node name="Pause-menu" parent="." instance=ExtResource("4_u3m6b")]
 visible = false
