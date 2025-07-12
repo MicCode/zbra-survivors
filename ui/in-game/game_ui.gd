@@ -11,6 +11,7 @@ func _ready() -> void:
     GameService.score_changed.connect(_on_score_changed)
     GameService.player_state_changed.connect(_on_player_state_changed)
     GameService.player_timewarping_changed.connect(_on_player_timewarping_changed)
+    GameService.player_gained_level.connect(play_lvl_up_effect)
     _on_player_state_changed(GameService.player_state)
 
 func _on_score_changed(new_score: int):
@@ -60,7 +61,7 @@ func update_hearts_filling():
                 heart.change_state(Enums.HeartStates.Full)
 
 func set_remaining_time(remaining_s: float):
-    var remaining_minutes = floor(remaining_s / 60 )
+    var remaining_minutes = floor(remaining_s / 60)
     var remaining_seconds = floor(remaining_s - remaining_minutes * 60)
     %RemainingTime.text = format_time(remaining_minutes, remaining_seconds)
 
@@ -82,3 +83,14 @@ func stop_slow_down_effect():
     var overlay_material = %SlowDownEffect.material as ShaderMaterial
     var tween = get_tree().create_tween()
     tween.tween_property(overlay_material, "shader_parameter/fire_alpha", 0.0, 0.2)
+
+func play_lvl_up_effect(_new_level: int):
+    print("play lvl up !")
+    var overlay_material = %LvlUpEffect.material as ShaderMaterial
+    var tween = get_tree().create_tween()
+    tween.set_ease(Tween.EASE_OUT)
+    %LvlUpEffect.show()
+    %LvlUpEffect.modulate = Color.TRANSPARENT
+    overlay_material.set_shader_parameter("size", -10)
+    tween.tween_property(overlay_material, "shader_parameter/size", 0, 0.25).connect("finished", func(): %LvlUpEffect.hide())
+    get_tree().create_tween().tween_property(%LvlUpEffect, "modulate", Color.WHITE, 0.05)
