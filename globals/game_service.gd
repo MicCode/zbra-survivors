@@ -65,9 +65,9 @@ func change_equipped_gun(_new_gun: Gun) -> void:
     equipped_gun_changed.emit(equipped_gun)
 
 func register_ennemy_death(ennemy: Ennemy) -> void:
-    Announcer.ennemy_died()
     increment_score(1)
     drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.stats.xp_value), ennemy.global_position)
+    Announcer.ennemy_died()
 
     if randf() <= GameService.player_state.life_drop_chance:
         drop_item(preload("res://equipment/items/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)

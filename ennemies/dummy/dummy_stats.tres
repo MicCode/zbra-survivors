@@ -10,4 +10,5 @@ max_health = 30
 speed = 200.0
 xp_value = 1.0
 can_die = false
+chase_player = false
 metadata/_custom_type_script = "uid://bupbqcfqlteib"
