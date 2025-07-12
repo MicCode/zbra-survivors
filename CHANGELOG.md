@@ -1,5 +1,19 @@
 ---
 
+## 1.3.0 - 2025-07-12
+
+#### Bug Fixes
+
+-   better lvl up effect - (6628b0f) - Mic
+-   fixed ennemies not dropping xp on death - (528c6e2) - Mic
+
+#### Features
+
+-   added announcement on multiple kill in one shot - (7ec9166) - Mic
+-   infinite world generation - (ae1617b) - Mic
+
+---
+
 ## 1.2.0 - 2025-07-12
 
 #### Bug Fixes
