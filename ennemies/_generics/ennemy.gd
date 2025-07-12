@@ -31,7 +31,12 @@ func _physics_process(delta):
     if !is_dead && is_chasing_player && player != null:
         var direction_to_player = global_position.direction_to(player.global_position)
         velocity = direction_to_player * stats.speed
-        move_and_collide(velocity * delta)
+        var distance_to_player = global_position.distance_to(player.global_position)
+        if distance_to_player < 10.0:
+            var push_away = global_position.direction_to(player.global_position) * -1
+            velocity += push_away * 20.0
+        move_and_slide()
+
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
 func handle_bullet_hit(bullet: Bullet):
