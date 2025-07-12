@@ -1,7 +1,7 @@
 extends Node
 signal player_state_changed
 signal score_changed
-signal player_gained_level
+signal player_gained_level(new_level: int)
 signal equipped_gun_changed
 
 signal player_timewarping_changed(timewarping: bool)

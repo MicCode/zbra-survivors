@@ -1,11 +1,32 @@
-[gd_scene load_steps=13 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=17 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
 [ext_resource type="Material" uid="uid://btuabvmpbtjvk" path="res://effects/slow_down_effect_material.tres" id="2_sfyf6"]
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
+[ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goryb"]
+
+[sub_resource type="Gradient" id="Gradient_png7d"]
+colors = PackedColorArray(0.462289, 0.863967, 0.988594, 1, 0.949493, 0.825498, 0.150811, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d2uga"]
+gradient = SubResource("Gradient_png7d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d2uga"]
+shader = ExtResource("3_png7d")
+shader_parameter/gradient = SubResource("GradientTexture2D_d2uga")
+shader_parameter/spread = 0.495
+shader_parameter/cutoff = 0.545
+shader_parameter/size = -10.055
+shader_parameter/speed = 5.0
+shader_parameter/ray1_density = 3.645
+shader_parameter/ray2_density = 30.53
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/core_intensity = -3.05
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sfyf6"]
 
@@ -37,6 +58,17 @@ script = ExtResource("1_70thh")
 [node name="SlowDownEffect" type="Panel" parent="."]
 unique_name_in_owner = true
 material = ExtResource("2_sfyf6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LvlUpEffect" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_d2uga")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
