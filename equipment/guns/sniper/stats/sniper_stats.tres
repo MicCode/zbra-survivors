@@ -10,6 +10,7 @@ pitch_variation = 0.0
 volume = 0.0
 start_delay_ms = 0.0
 start_delay_variation_ms = 0.0
+max_per_s = 10.0
 metadata/_custom_type_script = "uid://cf4neewdadfmv"
 
 [resource]
@@ -17,10 +18,9 @@ script = ExtResource("1_d6fmv")
 name = "sniper"
 display_name = "Sniper Rifle"
 shots_per_s = 0.5
-bang_pitch_shift = -0.3
-bang_volume = 0.0
 bullets_spread_angle_deg = 0
 bullets_per_shot = 1
 eject_cartridges = true
+shoot_sound = "shoot.wav"
 shoot_sfx_options = SubResource("Resource_08bt1")
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"
