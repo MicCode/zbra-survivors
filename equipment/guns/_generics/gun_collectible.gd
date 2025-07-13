@@ -13,6 +13,7 @@ func _enter_tree() -> void:
         bullet_stats = load("res://equipment/guns/_generics/stats/default_bullet_stats.tres")
 
 func _ready() -> void:
+    Minimap.track(self, Minimap.ObjectType.GUN)
     %GunInfoPanel.init(gun_stats, bullet_stats)
     var joypads = Input.get_connected_joypads()
     if joypads.size() > 0:
@@ -33,3 +34,6 @@ func _on_info_display_zone_body_exited(_body: Node2D) -> void:
         get_node("GunInfoPanel").hide()
     if has_node("ButtonIcon"):
         get_node("ButtonIcon").hide()
+
+func _exit_tree() -> void:
+    Minimap.untrack(self)

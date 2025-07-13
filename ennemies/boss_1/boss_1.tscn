@@ -1,10 +1,11 @@
-[gd_scene load_steps=50 format=3 uid="uid://b5mylgidrfjjl"]
+[gd_scene load_steps=51 format=3 uid="uid://b5mylgidrfjjl"]
 
 [ext_resource type="Script" uid="uid://bjetjnf5dr8j1" path="res://ennemies/boss_1/boss_1.gd" id="1_xtetr"]
 [ext_resource type="Resource" uid="uid://clhbj0gsmiwi" path="res://ennemies/boss_1/boss_1_stats.tres" id="2_i8mgu"]
 [ext_resource type="Texture2D" uid="uid://dljkt523lwy86" path="res://assets/sprites/ennemies/boss-1/boss-1-die.png" id="2_kcxf8"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_prnhg"]
 [ext_resource type="Texture2D" uid="uid://deqkjg8jdkft3" path="res://assets/sprites/ennemies/boss-1/boss-1-shoot.png" id="3_qeer7"]
+[ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="3_v7rg8"]
 [ext_resource type="Texture2D" uid="uid://clhb4lw3j3e2s" path="res://assets/sprites/ennemies/boss-1/boss-1-spawn.png" id="4_j3lod"]
 [ext_resource type="Texture2D" uid="uid://cxyfdklqky7lc" path="res://assets/sprites/ennemies/boss-1/boss-1-walk.png" id="5_sxbx4"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="9_0e5ht"]
@@ -391,6 +392,9 @@ collision_layer = 130
 collision_mask = 11
 script = ExtResource("1_xtetr")
 stats = ExtResource("2_i8mgu")
+
+[node name="Effects" parent="." instance=ExtResource("3_v7rg8")]
+unique_name_in_owner = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

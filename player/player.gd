@@ -34,6 +34,7 @@ func _ready():
     GameService.register_player_instance(self)
     GameService.player_state_changed.connect(_on_player_state_changed)
     GameService.player_gained_level.connect(_on_player_level_gained)
+    Minimap.track(self, Minimap.ObjectType.PLAYER)
 
 func _process(_delta: float) -> void:
     if actual_time_scale != time_scale_target:
@@ -69,6 +70,7 @@ func move(_delta):
         velocity = direction * GameService.player_state.move_speed * GameService.player_state.dash_speed_multiplier
 
     move_and_slide()
+    Minimap.moved(self, position)
     GameService.player_moved.emit(position) # FIXME do not publish position each time ? set refresh interval ?
     if !just_hurt:
         if velocity.length() > 0:

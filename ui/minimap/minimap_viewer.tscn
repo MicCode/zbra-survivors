@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0qrymdsv0ins"]
+
+[ext_resource type="Script" uid="uid://be222bcveouym" path="res://ui/minimap/minimap_viewer.gd" id="1_npdcq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npdcq"]
+bg_color = Color(0, 0, 0, 0.211765)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="MinimapViewer" type="Panel"]
+clip_contents = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 200.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_npdcq")
+script = ExtResource("1_npdcq")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 200.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+unique_name_in_owner = true
+disable_3d = true
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(300, 200)
+render_target_update_mode = 4
+
+[node name="MinimapCamera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+
+[node name="Miniworld" type="Node2D" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
