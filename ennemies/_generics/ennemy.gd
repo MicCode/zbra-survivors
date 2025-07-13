@@ -8,6 +8,7 @@ var player: Player
 var health: float = 100
 var is_dead: bool = false
 var is_burning: bool = false
+var object_type = Minimap.ObjectType.ENNEMY
 
 # TODO make burning related stats variable
 const BURN_DURATION_S: float = 1.1
@@ -25,6 +26,7 @@ func _ready():
     %Health.max_health = stats.max_health
     %Health.current_health = health
     %Health.update_display()
+    Minimap.track(self, object_type)
 
 func _physics_process(_delta):
     if !is_dead && stats.chase_player && player != null:
@@ -35,7 +37,7 @@ func _physics_process(_delta):
             var push_away = global_position.direction_to(player.global_position) * -1
             velocity += push_away * 20.0
         move_and_slide()
-
+        Minimap.moved(self, global_position)
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
 func handle_bullet_hit(bullet: Bullet):
@@ -69,6 +71,7 @@ func _on_health_depleted():
         VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
         remove_child(%Health)
         GameService.register_ennemy_death(self)
+        Minimap.untrack(self)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
     if area is Bullet:

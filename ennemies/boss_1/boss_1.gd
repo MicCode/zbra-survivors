@@ -8,6 +8,10 @@ const MINIMUM_TIME_BETWEEN_SHOTS_S: float = 3.0
 const MAXIMUM_TIME_BETWEEN_SHOTS_S: float = 5.0
 const SHOOT_START_DELAY_S: float = 0.3
 
+func _ready() -> void:
+    object_type = Minimap.ObjectType.BOSS
+    super._ready()
+
 func _physics_process(delta):
     is_sprite_reversed = true
     if is_ready && !is_dead && !is_shooting && player != null:
@@ -76,3 +80,6 @@ func _on_wither_radius_body_entered(body: Node2D) -> void:
     if body is EnvTree:
         if !body.is_destroyed:
             body.wither()
+
+func _exit_tree() -> void:
+    Minimap.untrack(self)
