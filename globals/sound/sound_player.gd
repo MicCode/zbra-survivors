@@ -78,13 +78,7 @@ func _load_music_stream(file_name: String) -> AudioStream:
     push_error("Music file not found: " + path)
     return null
 
-func start_effect(file_name: String, options: Dictionary = {
-    pitch = 1.0,
-    pitch_variation = 0.0,
-    volume = 0.0,
-    start_delay_ms = 0.0,
-    start_delay_variation_ms = 0.0
-}):
+func start_effect(file_name: String, options: SfxOptions = SfxOptions.new()):
     if effects_players.has(file_name):
         return
 
@@ -112,13 +106,7 @@ func stop_effect(file_name: String):
         if is_instance_valid(existing_player):
             existing_player.queue_free()
 
-func play_sfx(file_name: String, options: Dictionary = {
-    pitch = 1.0,
-    pitch_variation = 0.0,
-    volume = 0.0,
-    start_delay_ms = 0.0,
-    start_delay_variation_ms = 0.0
-}):
+func play_sfx(file_name: String, options: SfxOptions = SfxOptions.new()):
     var stream = _load_sfx_stream(file_name)
     if stream == null:
         return
@@ -138,29 +126,18 @@ func _on_sfx_finished(player: AudioStreamPlayer):
     if is_instance_valid(player):
         player.queue_free()
 
-func _play_sound(stream: AudioStream, bus: String, options: Dictionary = {
-    pitch = 1.0,
-    pitch_variation = 0.0,
-    volume = 0.0,
-    start_delay_ms = 0.0,
-    start_delay_variation_ms = 0.0
-}) -> AudioStreamPlayer:
-    var pitch: float = options.get("pitch", 1.0)
-    var pitch_variation: float = options.get("pitch_variation", 0.0)
-    var volume: float = options.get("volume", 0.0)
-    var start_delay_ms: float = options.get("start_delay_ms", 0.0)
-    var start_delay_variation_ms: float = options.get("start_delay_variation_ms", 0.0)
+func _play_sound(stream: AudioStream, bus: String, options: SfxOptions) -> AudioStreamPlayer:
 
     var player = AudioStreamPlayer.new()
     player.stream = stream
     player.bus = bus
-    player.volume_db = volume
-    player.pitch_scale = randf_range(pitch - pitch_variation, pitch + pitch_variation)
+    player.volume_db = options.volume
+    player.pitch_scale = max(0.01, randf_range(options.pitch - options.pitch_variation, options.pitch + options.pitch_variation))
     player.name = bus + "_" + str(Time.get_ticks_msec())
 
     add_child(player)
-    if start_delay_ms + start_delay_variation_ms > 0:
-        await get_tree().create_timer(max(0.01, start_delay_ms + randf_range(0.0, start_delay_variation_ms)) / 1000.0).timeout
+    if options.start_delay_ms + options.start_delay_variation_ms > 0:
+        await get_tree().create_timer(max(0.01, options.start_delay_ms + randf_range(0.0, options.start_delay_variation_ms)) / 1000.0).timeout
     player.play()
 
     return player

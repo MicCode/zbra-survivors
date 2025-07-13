@@ -16,7 +16,7 @@ script = ExtResource("1_nbgbl")
 
 [node name="Background" type="ColorRect" parent="."]
 unique_name_in_owner = true
-z_index = -1
+visible = false
 z_as_relative = false
 custom_minimum_size = Vector2(512, 512)
 offset_right = 40.0
@@ -26,6 +26,6 @@ color = Color(0.501961, 0.662745, 0.4, 1)
 [node name="Boundaries" type="Panel" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 512)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 512.0
+offset_bottom = 512.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4fe11")

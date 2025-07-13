@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SfxOptions" load_steps=2 format=3 uid="uid://dkv3e80l5trup"]
+
+[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/sound/sfx_options.gd" id="1_knxmo"]
+
+[resource]
+script = ExtResource("1_knxmo")
+pitch = 1.0
+pitch_variation = 0.0
+volume = 0.0
+start_delay_ms = 0.0
+start_delay_variation_ms = 0.0
+metadata/_custom_type_script = "uid://cf4neewdadfmv"

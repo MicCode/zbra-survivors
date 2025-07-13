@@ -6,12 +6,14 @@ const CHUNK_UNLOAD_DISTANCE = GameSettings.CHUNK_UNLOAD_DISTANCE
 const CHUNK_UNLOAD_TIME = GameSettings.CHUNK_UNLOAD_TIME
 
 var loaded_chunks := {}
+var is_init = true
 
 func _init() -> void:
     GameService.player_moved.connect(_on_player_moved)
 
 func _on_player_moved(player_position: Vector2):
     update_chunks(player_position)
+    is_init = false
 
 func get_chunk_coords(player_position: Vector2) -> Vector2i:
     return Vector2i(floor(player_position.x / CHUNK_SIZE ), floor(player_position.y / CHUNK_SIZE))
@@ -25,7 +27,7 @@ func update_chunks(player_position: Vector2):
             var distance_to_player = player_chunk.distance_to(chunk_key)
             if distance_to_player <= CHUNK_RENDER_DISTANCE:
                 if not loaded_chunks.has(chunk_key):
-                    loaded_chunks[chunk_key] = generate_chunk(chunk_key)
+                    loaded_chunks[chunk_key] = generate_chunk(chunk_key, chunk_key == player_chunk)
                 new_chunks[chunk_key] = true
 
     var chunks_to_keep = {}
@@ -42,10 +44,12 @@ func update_chunks(player_position: Vector2):
             unload_chunk(chunk_key)
 
 
-func generate_chunk(chunk_coords: Vector2i) -> Node2D:
+func generate_chunk(chunk_coords: Vector2i, is_same_as_player = false) -> Node2D:
     var world_pos = Vector2(chunk_coords.x * CHUNK_SIZE, chunk_coords.y * CHUNK_SIZE)
     var chunk_node = preload("res://environment/world_tiles/world_tile_1.tscn").instantiate()
     chunk_node.position = world_pos
+    if is_init and is_same_as_player:
+        chunk_node.is_spawn_zone = true
     add_child(chunk_node)
 
     return chunk_node
