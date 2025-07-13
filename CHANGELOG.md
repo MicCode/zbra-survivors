@@ -1,4 +1,13 @@
 - - -
+## 1.4.0 - 2025-07-13
+#### Documentation
+- created TODO file - (27fe86d) - Mic
+#### Features
+- added a minimap - (51f0020) - Mic
+- improved fire effect - (51cbacf) - Mic
+
+- - -
+
 ## 1.3.0 - 2025-07-12
 #### Bug Fixes
 - better lvl up effect - (6628b0f) - Mic
