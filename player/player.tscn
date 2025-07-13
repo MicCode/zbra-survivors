@@ -416,12 +416,11 @@ collision_mask = 199
 script = ExtResource("1_teghp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = -669.0
-offset_top = -425.0
-offset_right = 754.0
-offset_bottom = 416.0
-color = Color(0.316154, 0.483476, 0.332573, 1)
+offset_left = -1776.0
+offset_top = -1114.0
+offset_right = 1784.0
+offset_bottom = 1109.0
+color = Color(0.501961, 0.662745, 0.4, 1)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)

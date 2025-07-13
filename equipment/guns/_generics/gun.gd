@@ -6,6 +6,7 @@ class_name Gun
 
 var flipped = false
 var cooling_down = false
+var sound_cooldown = false
 
 func _enter_tree() -> void:
     if !gun_stats:
@@ -51,7 +52,11 @@ func shoot():
         if gun_stats.eject_cartridges:
             eject_cartridge()
         %Sprite.play("firing")
-        Sounds.shoot(gun_stats.bang_volume, gun_stats.bang_pitch_shift)
+        if !sound_cooldown:
+            Sounds.shoot(gun_stats.shoot_sfx_options, gun_stats.shoot_sound)
+            sound_cooldown = true
+            var cooldown_s = 1 / max(0.01, gun_stats.shoot_sfx_options.max_per_s)
+            get_tree().create_timer(cooldown_s).connect("timeout", func(): sound_cooldown = false)
         %MuzzleFlash.play("flash")
         start_cooldown_timer()
 

@@ -1,6 +1,7 @@
 extends Node2D
 
 var CHUNK_SIZE = GameSettings.CHUNK_SIZE
+var is_spawn_zone = false
 
 func _ready() -> void:
     %Background.custom_minimum_size = Vector2(CHUNK_SIZE, CHUNK_SIZE)
@@ -10,7 +11,8 @@ func _ready() -> void:
     else:
         %Boundaries.hide()
 
-    place_random(preload("res://environment/tree.tscn"), 10)
+    if !is_spawn_zone:
+        place_random(preload("res://environment/tree.tscn"), 10)
     place_random(preload("res://environment/grass1.tscn"), 20)
     place_random(preload("res://environment/grass2.tscn"), 20)
     place_random(preload("res://environment/grass3.tscn"), 20)

@@ -1,15 +1,26 @@
-[gd_resource type="Resource" script_class="GunStats" load_steps=2 format=3 uid="uid://clnmkh01hduxb"]
+[gd_resource type="Resource" script_class="GunStats" load_steps=4 format=3 uid="uid://clnmkh01hduxb"]
 
 [ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://equipment/guns/_generics/stats/gun_stats.gd" id="1_xhuse"]
+[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/sound/sfx_options.gd" id="2_6g6t8"]
+
+[sub_resource type="Resource" id="Resource_31cey"]
+script = ExtResource("2_6g6t8")
+pitch = 0.8
+pitch_variation = 0.05
+volume = -12.0
+start_delay_ms = 0.0
+start_delay_variation_ms = 0.0
+max_per_s = 10.0
+metadata/_custom_type_script = "uid://cf4neewdadfmv"
 
 [resource]
 script = ExtResource("1_xhuse")
 name = "flamethrower"
 display_name = "Flame Thrower"
-shots_per_s = 50.0
-bang_pitch_shift = -0.8
-bang_volume = -12.0
-bullets_spread_angle_deg = 50
-bullets_per_shot = 1
+shots_per_s = 40.0
+bullets_spread_angle_deg = 20
+bullets_per_shot = 2
 eject_cartridges = false
+shoot_sound = "flame.ogg"
+shoot_sfx_options = SubResource("Resource_31cey")
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"

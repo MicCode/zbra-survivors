@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://ci36jx3vvoocj"]
+[gd_scene load_steps=21 format=3 uid="uid://ci36jx3vvoocj"]
 
 [ext_resource type="Script" uid="uid://dqlqlkjg6tqvc" path="res://ennemies/_generics/ennemy.gd" id="1_qdj7r"]
+[ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_ce5i1"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_hl8ed"]
 [ext_resource type="Material" uid="uid://bh0tpbtkpmuga" path="res://effects/gore_death_effect.tres" id="3_i4bwu"]
 [ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://assets/sprites/ennemies/mob-1-dead.png" id="3_qem7r"]
@@ -8,70 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://assets/sprites/ennemies/mob-1-walk.png" id="5_grokr"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="6_o0wmw"]
 [ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="9_elh1f"]
-
-[sub_resource type="Gradient" id="Gradient_1op2o"]
-offsets = PackedFloat32Array(0, 0.357143, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.493506, 0.493506, 0.493506, 0.493506, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_myxdi"]
-gradient = SubResource("Gradient_1op2o")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.9, 0.9)
-
-[sub_resource type="Animation" id="Animation_57str"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [5.0]
-}
-
-[sub_resource type="Animation" id="Animation_3lxlb"]
-resource_name = "emit"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.866667),
-"transitions": PackedFloat32Array(1, 2.63902, 1, 1.8025),
-"update": 0,
-"values": [5.0, 1.97, 6.87, 3.85]
-}
-
-[sub_resource type="Animation" id="Animation_pqwcw"]
-resource_name = "fadeout"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 0.392292),
-"update": 0,
-"values": [5.0, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wfebn"]
-_data = {
-&"RESET": SubResource("Animation_57str"),
-&"emit": SubResource("Animation_3lxlb"),
-&"fadeout": SubResource("Animation_pqwcw")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45qg2"]
 atlas = ExtResource("3_qem7r")
@@ -249,21 +186,8 @@ collision_layer = 130
 collision_mask = 14
 script = ExtResource("1_qdj7r")
 
-[node name="FireLight" type="PointLight2D" parent="."]
+[node name="Effects" parent="." instance=ExtResource("2_ce5i1")]
 unique_name_in_owner = true
-visible = false
-position = Vector2(0, -14)
-color = Color(0.934413, 0.399964, 0, 1)
-energy = 5.0
-texture = SubResource("GradientTexture2D_myxdi")
-texture_scale = 3.0
-
-[node name="FireAnimation" type="AnimationPlayer" parent="FireLight"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_wfebn")
-}
-autoplay = "emit"
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)
@@ -300,7 +224,7 @@ current_health = 3.0
 position = Vector2(0, 5.5)
 color = 2
 opacity = 0.5
-sprite_scale = 0.75
+sprite_scale = 2.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false
@@ -332,7 +256,6 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
-[connection signal="animation_finished" from="FireLight/FireAnimation" to="." method="_on_fire_animation_animation_finished"]
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

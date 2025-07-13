@@ -13,6 +13,7 @@ uniform float ray2_intensity = 0.3;
 uniform float core_intensity = 2.0;
 uniform bool hdr = false;
 uniform float seed = 5.0;
+uniform float alpha = 1.0;
 
 float random(vec2 _uv) {
     return fract(sin(dot(_uv.xy, vec2(12.9898, 78.233))) * 43758.5453123);
@@ -61,5 +62,5 @@ void fragment() {
     vec4 blurred = texture(SCREEN_TEXTURE, blur_uv);
     shine = screen(blurred, vec4(shine, rays)).rgb;
     
-    COLOR = vec4(shine, rays * gradient_color.a);
+    COLOR = vec4(shine, rays * gradient_color.a * alpha);
 }

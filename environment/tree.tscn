@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://brp1lqe74y0on"]
+[gd_scene load_steps=36 format=3 uid="uid://brp1lqe74y0on"]
 
 [ext_resource type="Script" uid="uid://b48t8wj5qs1fk" path="res://environment/tree.gd" id="1_g11to"]
 [ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://assets/sprites/environment/tree-idle.png" id="1_lq71w"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="1_xbm4e"]
+[ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_yygov"]
 [ext_resource type="Texture2D" uid="uid://b0i4faxik8fu7" path="res://assets/sprites/environment/tree-exploding.png" id="3_0odta"]
 [ext_resource type="Texture2D" uid="uid://c4xqqh6nhvb" path="res://assets/sprites/environment/tree-burning.png" id="3_4brj3"]
 [ext_resource type="Shader" uid="uid://ccwoudg2xuhu2" path="res://shaders/tree_wind.gdshader" id="3_l6shd"]
@@ -198,101 +199,6 @@ height = 14.0
 radius = 5.5
 height = 57.0
 
-[sub_resource type="Gradient" id="Gradient_huq6e"]
-offsets = PackedFloat32Array(0, 0.461039, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.402597, 0.402597, 0.402597, 0.402597, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e011p"]
-gradient = SubResource("Gradient_huq6e")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.9, 0.9)
-
-[sub_resource type="Animation" id="Animation_w25hu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%FireLight/../LightOccluder2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%FireLight/../LightOccluder2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_28u6k"]
-resource_name = "fadeout"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.233333, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%FireLight/../LightOccluder2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 0.0743255),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%FireLight/../LightOccluder2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 0.0824694),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -25)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1efgm"]
-_data = {
-&"RESET": SubResource("Animation_w25hu"),
-&"fadeout": SubResource("Animation_28u6k")
-}
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eigig"]
 polygon = PackedVector2Array(-4, -56, -13, -39, -13, -24, -8, -20, -3, -11, -4, -3, -5, 0, 4, -1, 6, -18, 11, -21, 15, -26, 13, -50, 5, -58)
 
@@ -301,6 +207,9 @@ y_sort_enabled = true
 collision_layer = 132
 collision_mask = 0
 script = ExtResource("1_g11to")
+
+[node name="Effects" parent="." instance=ExtResource("2_yygov")]
+unique_name_in_owner = true
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -334,21 +243,6 @@ collision_mask = 10
 position = Vector2(1, -27.5)
 shape = SubResource("CapsuleShape2D_3bgjm")
 debug_color = Color(0.874474, 0.459713, 0.525191, 0.42)
-
-[node name="FireLight" type="PointLight2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0.5, -33.5)
-color = Color(1, 0.372914, 0.00442822, 1)
-energy = 2.0
-texture = SubResource("GradientTexture2D_e011p")
-texture_scale = 4.0
-
-[node name="FireLightAnimation" type="AnimationPlayer" parent="FireLight"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_1efgm")
-}
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 unique_name_in_owner = true

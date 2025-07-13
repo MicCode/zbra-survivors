@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkh37y1i8fjjq"]
+
+[ext_resource type="Script" uid="uid://cxfguduk0ilvh" path="res://effects/visual_effects_holder.gd" id="1_s2pon"]
+
+[node name="Effects" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_s2pon")

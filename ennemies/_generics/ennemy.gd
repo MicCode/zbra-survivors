@@ -87,12 +87,11 @@ func set_burning():
     %BurnTimer.start(BURN_DURATION_S)
     %BurnTickTimer.start(BURN_TICK_S)
     if !is_burning:
-        %FireLight.show()
-        %FireAnimation.play("emit")
+        %Effects.start_effect("burn", preload("res://effects/burn_effect.tscn"), Vector2(0, -15))
         is_burning = true
 
 func _on_burn_timer_timeout() -> void:
-    %FireAnimation.play("fadeout")
+    %Effects.stop_effect("burn")
     is_burning = false
 
 func _on_burn_tick_timer_timeout() -> void:

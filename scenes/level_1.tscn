@@ -26,7 +26,7 @@ script = ExtResource("1_nconj")
 
 [node name="Player" parent="." instance=ExtResource("1_vgovh")]
 unique_name_in_owner = true
-position = Vector2(578, 326)
+position = Vector2(307, 197)
 
 [node name="SpawnPath" type="Path2D" parent="Player"]
 scale = Vector2(0.938, 1)
@@ -56,11 +56,13 @@ offset_left = -640.0
 offset_top = -400.0
 offset_right = 640.0
 offset_bottom = 400.0
+metadata/_edit_use_anchors_ = true
 
 [node name="BossUi" parent="Player/GameUI" instance=ExtResource("10_q8l1h")]
 z_index = 4096
 custom_minimum_size = Vector2(1280, 800)
 layout_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -79,19 +81,19 @@ wait_time = 0.5
 autostart = true
 
 [node name="BasicGunCollectible" parent="." instance=ExtResource("6_5n8pi")]
-position = Vector2(390, 201)
+position = Vector2(119, 72)
 
 [node name="RifleGunCollectible" parent="." instance=ExtResource("7_xct6d")]
-position = Vector2(297, 426)
+position = Vector2(26, 297)
 
 [node name="ShotGunCollectible" parent="." instance=ExtResource("9_o1vsu")]
-position = Vector2(591, 505)
+position = Vector2(320, 376)
 
 [node name="Collectible" parent="." instance=ExtResource("17_xm7rv")]
-position = Vector2(834, 406)
+position = Vector2(563, 277)
 
 [node name="FlamethrowerCollectible" parent="." instance=ExtResource("12_7ybou")]
-position = Vector2(638, 179)
+position = Vector2(367, 50)
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]
