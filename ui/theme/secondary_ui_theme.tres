@@ -1,0 +1,73 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ovugx2tb06c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlsop"]
+bg_color = Color(0.0574036, 0.248905, 0.474499, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h56hi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.870224, 0.643896, 0.169558, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka24h"]
+bg_color = Color(0.36435, 0.62066, 0.952097, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5xsj"]
+bg_color = Color(0.140829, 0.424203, 0.765036, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wx8a"]
+bg_color = Color(0.224177, 0.521158, 0.890555, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wbphj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udcj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ci2wx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swpru"]
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_dlsop")
+Button/styles/focus = SubResource("StyleBoxFlat_h56hi")
+Button/styles/hover = SubResource("StyleBoxFlat_ka24h")
+Button/styles/normal = SubResource("StyleBoxFlat_m5xsj")
+Button/styles/pressed = SubResource("StyleBoxFlat_8wx8a")
+CheckButton/colors/font_pressed_color = Color(0.561101, 0.741036, 0.978324, 1)
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_wbphj")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_udcj0")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_ci2wx")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_swpru")
