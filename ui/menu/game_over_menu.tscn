@@ -1,66 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://deyu38p7ie4ql"]
+[gd_scene load_steps=4 format=3 uid="uid://deyu38p7ie4ql"]
 
 [ext_resource type="Script" uid="uid://cr5ookdok43wt" path="res://ui/menu/game_over_menu.gd" id="1_73h2w"]
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="2_vibjm"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_fpejy"]
-line_spacing = 0.0
-font_size = 20
-font_color = Color(1, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ts586"]
 
 [node name="Game-over" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_73h2w")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.356863, 0.356863, 0.356863, 0.670588)
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -265.0
-offset_top = -202.0
-offset_right = -129.0
-offset_bottom = -131.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(8, 8)
-pivot_offset = Vector2(39.6535, 17.0154)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 4
-text = "GAME OVER"
-label_settings = SubResource("LabelSettings_fpejy")
+theme_override_colors/font_color = Color(0.763591, 0.0259512, 2.88785e-07, 1)
+theme_override_font_sizes/font_size = 100
+text = "TITLE_GAME_OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
-[node name="RestartButton" type="Button" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -146.0
-offset_top = 415.0
-offset_right = 146.0
-offset_bottom = 478.0
-grow_horizontal = 2
+[node name="Spacer" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ts586")
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
-text = "RESTART"
+text = "BUTTON_RESTART"
 
-[node name="MenuButton" type="Button" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -146.0
-offset_top = 492.0
-offset_right = 146.0
-offset_bottom = 555.0
-grow_horizontal = 2
+[node name="MenuButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_vibjm")
 theme_override_font_sizes/font_size = 25
-text = "MAIN MENU"
+text = "BUTTON_MAIN_MENU"
 
-[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

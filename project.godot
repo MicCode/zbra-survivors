@@ -129,6 +129,10 @@ look_right={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/locales/locales.en.translation", "res://assets/locales/locales.fr.translation")
+
 [layer_names]
 
 2d_render/layer_2="muzzle_flash"

@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://equipment/items/life_flask.tscn" id="13_6k7wn"]
 
 [node name="TreeTestScene" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_sutrr")
 
 [node name="InfiniteWorld" parent="." instance=ExtResource("2_emh2j")]
@@ -84,18 +85,23 @@ position = Vector2(100, 99)
 xp_value = 10.0
 
 [node name="RadianceFlask" parent="." instance=ExtResource("12_vs4yp")]
+y_sort_enabled = true
 position = Vector2(199, 656)
 
 [node name="RadianceFlask2" parent="." instance=ExtResource("12_vs4yp")]
+y_sort_enabled = true
 position = Vector2(43, 638)
 
 [node name="RadianceFlask3" parent="." instance=ExtResource("12_vs4yp")]
+y_sort_enabled = true
 position = Vector2(-31, 537)
 
 [node name="Collectible" parent="." instance=ExtResource("13_6k7wn")]
+y_sort_enabled = true
 position = Vector2(41, 110)
 
 [node name="Collectible2" parent="." instance=ExtResource("13_6k7wn")]
+y_sort_enabled = true
 position = Vector2(101, 65)
 
 [node name="FlamethrowerCollectible" parent="." instance=ExtResource("8_w10lt")]

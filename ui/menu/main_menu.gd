@@ -9,6 +9,10 @@ func _ready() -> void:
     SoundPlayer.apply_audio_settings()
     Musics.main_menu()
 
+    match TranslationServer.get_locale(): # TODO get language from stored settings
+        "fr_FR": %LanguageSwitcher.select(1)
+        _: %LanguageSwitcher.select(0) # fallback on english
+
 func _on_start_button_pressed() -> void:
     Sounds.click()
     Sounds.start_game()
@@ -25,3 +29,9 @@ func _on_music_toggle_button_down() -> void:
 func _on_quit_button_pressed() -> void:
     Sounds.click()
     get_tree().quit()
+
+func _on_language_switcher_item_selected(index: int) -> void:
+    # TODO store selected language in settings and get it from there on next launch
+    match index:
+        0: TranslationServer.set_locale("en")
+        1: TranslationServer.set_locale("fr")
