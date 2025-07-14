@@ -32,6 +32,7 @@ VisualEffects="*res://globals/visual_effects.gd"
 GameSettings="*res://globals/game_settings.gd"
 Announcer="*res://globals/announcer.gd"
 Minimap="*res://globals/minimap.gd"
+Musics="*res://globals/sound/musics.gd"
 
 [display]
 

@@ -156,6 +156,7 @@ func equip_gun(collectible: GunCollectible):
     var new_gun = GunService.create_gun(collectible.gun_stats.name)
     equiped_gun = new_gun
     add_child(equiped_gun)
+    Sounds.reload()
     GameService.change_equipped_gun(equiped_gun)
     block_pickup()
     collectible.queue_free()

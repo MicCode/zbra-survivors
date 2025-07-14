@@ -8,9 +8,8 @@ func _ready():
     %GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
     GameService.reset()
     get_tree().paused = false
-    SoundPlayer.apply_audio_settings()
     %MobSpawnTimer.wait_time = GameService.spawn_time_s
-    SoundPlayer.play_music("theme.mp3")
+    Musics.lvl_1()
 
 func spawn_ennemy():
     var new_ennemy = EnnemiesService.spawn_random()
@@ -34,9 +33,9 @@ func spawn_boss():
         var boss = preload("res://ennemies/boss_1/boss_1.tscn").instantiate()
         add_child(boss)
         boss.global_position = %BossSpawnPoint.global_position
-        SoundPlayer.play_music("boss.mp3")
+        Musics.boss_battle_1()
         GameService.boss_changed.connect(on_boss_changed)
 
 func on_boss_changed(_boss_stats: EnnemyStats, boss_health: float):
     if boss_health <= 0:
-        SoundPlayer.play_music("theme.mp3")
+        Musics.lvl_1()
