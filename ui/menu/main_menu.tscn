@@ -20,18 +20,14 @@ shader_parameter/is_rotating = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37pjl"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_lbaws")
+
+[node name="Modulator" type="CanvasModulate" parent="."]
+unique_name_in_owner = true
 
 [node name="Panel" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_gvx18")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,7 +36,6 @@ grow_vertical = 2
 color = Color(0.616362, 0.728754, 0.858695, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

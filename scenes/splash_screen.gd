@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var fade_in_time: float = 0.5
 var fade_out_time: float = 1.0

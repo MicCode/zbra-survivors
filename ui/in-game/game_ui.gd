@@ -1,4 +1,4 @@
-extends Panel
+extends CanvasLayer
 
 var player_health: int = -1
 var player_max_health: int = -1

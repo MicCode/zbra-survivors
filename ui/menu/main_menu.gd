@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 func _ready() -> void:
     %MusicToggle.button_pressed = SoundPlayer.settings.enable_music

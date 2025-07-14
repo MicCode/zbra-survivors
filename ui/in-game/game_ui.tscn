@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=16 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 [ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 [ext_resource type="PackedScene" uid="uid://c0qrymdsv0ins" path="res://ui/minimap/minimap_viewer.tscn" id="4_d2uga"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goryb"]
 
 [sub_resource type="Gradient" id="Gradient_png7d"]
 colors = PackedColorArray(0.462289, 0.863967, 0.988594, 1, 0.949493, 0.825498, 0.150811, 1)
@@ -46,19 +44,12 @@ bg_color = Color(0.6, 0.6, 0.6, 0.180392)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7xiq"]
 bg_color = Color(0.843137, 0.721569, 0, 1)
 
-[node name="GameUI" type="Panel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_goryb")
+[node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_70thh")
 
 [node name="SlowDownEffect" type="Panel" parent="."]
 unique_name_in_owner = true
 material = ExtResource("2_sfyf6")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,7 +60,6 @@ grow_vertical = 2
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_d2uga")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -77,7 +67,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
