@@ -1,4 +1,12 @@
 - - -
+## 1.6.0 - 2025-07-14
+#### Bug Fixes
+- zoomed in camera - (36be1f5) - Mic
+#### Features
+- added strings localization - (2a27b60) - Mic
+
+- - -
+
 ## 1.5.0 - 2025-07-14
 #### Build system
 - update export config - (5e84273) - Mic
