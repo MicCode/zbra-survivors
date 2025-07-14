@@ -52,7 +52,7 @@ void fragment() {
 
 	//final alpha
 	float alpha = noise_val * fire_alpha * mask;
-	
+
 	//color posterization
 	vec4 fire_color;
 	if (poster_color >= 1.0){
@@ -63,6 +63,6 @@ void fragment() {
 	else{
 		fire_color = mix(tip_color, root_color, n);
 	}
-	
+
 	COLOR = vec4(fire_color.rgb, alpha);
 }

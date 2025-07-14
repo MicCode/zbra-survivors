@@ -12,11 +12,11 @@ config_version=5
 
 config/name="Zbra Survivors"
 config/version="1.4.0"
-run/main_scene="res://ui/menu/main_menu.tscn"
+run/main_scene="uid://2xtcamofhxmf"
 config/features=PackedStringArray("4.4", "Forward Plus")
-boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 boot_splash/fullsize=false
-boot_splash/image="res://assets/icon.png"
 config/icon="uid://c8wsllrwex0bj"
 
 [autoload]
@@ -51,6 +51,10 @@ folder_colors={
 "res://scenes/": "teal",
 "res://scenes/test/": "green"
 }
+
+[gui]
+
+theme/custom="uid://dm0c0o8u70d1y"
 
 [input]
 

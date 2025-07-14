@@ -1,59 +1,102 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqy2tfinneg1r"]
+[gd_scene load_steps=6 format=3 uid="uid://cqy2tfinneg1r"]
 
 [ext_resource type="Script" uid="uid://b4iwto50fmuje" path="res://ui/menu/main_menu.gd" id="1_lbaws"]
+[ext_resource type="Shader" uid="uid://w2fv1ddnb8ag" path="res://shaders/balatro.gdshader" id="2_or6mk"]
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="3_gvx18"]
 
-[node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_lbaws")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvx18"]
+shader = ExtResource("2_or6mk")
+shader_parameter/spin_rotation_speed = 2.0
+shader_parameter/move_speed = 5.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.561101, 0.741036, 0.978324, 1)
+shader_parameter/colour_2 = Color(0.763591, 0.0259512, 2.88785e-07, 1)
+shader_parameter/colour_3 = Color(0.00516314, 0.0551381, 0.137087, 1)
+shader_parameter/contrast = 10.235
+shader_parameter/lighting = 0.335
+shader_parameter/spin_amount = 0.4
+shader_parameter/pixel_filter = 2000.0
+shader_parameter/is_rotating = false
 
-[node name="StartButton" type="Button" parent="."]
-unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -188.0
-offset_top = -46.0
-offset_right = 188.0
-offset_bottom = 31.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37pjl"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lbaws")
+
+[node name="Panel" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gvx18")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.616362, 0.728754, 0.858695, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GameTitle" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "ZBRA SURVIVORZ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_font_sizes/font_size = 35
+text = "Survive the Zbra !"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Panel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_37pjl")
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "START"
 
-[node name="MusicToggle" type="CheckButton" parent="."]
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_gvx18")
+theme_override_font_sizes/font_size = 25
+text = "Quit Game"
+
+[node name="MusicToggle" type="CheckButton" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = 47.0
-offset_right = 53.0
-offset_bottom = 83.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
+button_pressed = true
 text = "Music"
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -441.0
-offset_top = 106.0
-offset_right = 1.0
-offset_bottom = 175.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-theme_override_font_sizes/font_size = 50
-text = "ZBRA SURVIVORZ"
-horizontal_alignment = 1
-
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="button_down" from="MusicToggle" to="." method="_on_music_toggle_button_down"]
-[connection signal="pressed" from="MusicToggle" to="." method="_on_music_toggle_pressed"]
-[connection signal="toggled" from="MusicToggle" to="." method="_on_music_toggle_toggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/MusicToggle" to="." method="_on_music_toggle_button_down"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/MusicToggle" to="." method="_on_music_toggle_toggled"]
