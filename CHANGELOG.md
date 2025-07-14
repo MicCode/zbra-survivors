@@ -1,5 +1,23 @@
 ---
 
+## 1.5.0 - 2025-07-14
+
+#### Build system
+
+-   update export config - (5e84273) - Mic
+-   configured export for linux - (29e344c) - Mic
+
+#### Features
+
+-   added splashscreen + created game theme - (190ba7c) - Mic
+
+#### Refactoring
+
+-   reworked the way music is handled + added fade transition between scenes - (349eead) - Mic
+-   added groups in resources properties - (9665dc4) - Mic
+
+---
+
 ## 1.4.0 - 2025-07-13
 
 #### Documentation
