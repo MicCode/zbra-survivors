@@ -416,6 +416,7 @@ collision_mask = 199
 script = ExtResource("1_teghp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1000
 offset_left = -1776.0
 offset_top = -1114.0
 offset_right = 1784.0

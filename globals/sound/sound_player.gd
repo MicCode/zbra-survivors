@@ -6,10 +6,7 @@ const MUSIC_BASE_PATH := "res://assets/musics/"
 const MAX_SFX_PLAYERS := 16
 const MAX_EFFECTS_PLAYERS := 16
 
-var enable_music: bool = true
-var master_volume_db: float = 0.0
-var music_volume_db: float = -12.0
-var effects_volume_db: float = 0.0
+var settings: AudioSettings = AudioSettings.new()
 
 var music_player: AudioStreamPlayer
 var music_cache: Dictionary = {}
@@ -22,21 +19,22 @@ var effects_cache: Dictionary = {}
 
 func apply_audio_settings():
     var master_bus = AudioServer.get_bus_index("Master")
-    AudioServer.set_bus_volume_db(master_bus, master_volume_db)
+    AudioServer.set_bus_volume_db(master_bus, settings.master_volume_db)
 
     var music_bus = AudioServer.get_bus_index("Music")
-    if enable_music:
+    if settings.enable_music:
         AudioServer.set_bus_mute(music_bus, false)
-        AudioServer.set_bus_volume_db(music_bus, music_volume_db)
+        AudioServer.set_bus_volume_db(music_bus, settings.music_volume_db)
     else:
         AudioServer.set_bus_mute(music_bus, true)
 
     var effects_bus = AudioServer.get_bus_index("Effects")
-    AudioServer.set_bus_volume_db(effects_bus, effects_volume_db)
+    AudioServer.set_bus_volume_db(effects_bus, settings.effects_volume_db)
     var sfx_bus = AudioServer.get_bus_index("SFX")
-    AudioServer.set_bus_volume_db(sfx_bus, effects_volume_db)
+    AudioServer.set_bus_volume_db(sfx_bus, settings.effects_volume_db)
 
 func _ready():
+    process_mode = Node.PROCESS_MODE_ALWAYS
     music_player = AudioStreamPlayer.new()
     add_child(music_player)
     music_player.name = "MusicPlayer"
@@ -146,6 +144,14 @@ func play_music(file_name: String, volume: float = 0.0, loop: bool = true):
     var stream = _load_music_stream(file_name)
     if stream == null:
         return
+
+    var current_stream = music_player.stream
+    if current_stream is AudioStream:
+        var file_path: String = current_stream.resource_path
+        if file_path != "":
+            var playing_file_name := file_path.get_file()
+            if playing_file_name == file_name:
+                return
 
     music_player.stop()
     music_player.stream = stream

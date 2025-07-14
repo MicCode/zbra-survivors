@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3rym5f07tq1c"]
+[gd_scene load_steps=4 format=3 uid="uid://b3rym5f07tq1c"]
 
 [ext_resource type="Script" uid="uid://sh000knuasji" path="res://ui/menu/pause_menu.gd" id="1_4ffn6"]
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="2_bygbl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5you"]
 
@@ -37,9 +38,10 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_m5you")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("2_bygbl")
 theme_override_font_sizes/font_size = 50
 text = "GIVE UP"
 

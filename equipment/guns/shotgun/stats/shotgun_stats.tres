@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_vk4mu"]
 script = ExtResource("2_kbcwk")
-pitch = 0.5
+pitch = 1.0
 pitch_variation = 0.0
-volume = 0.0
+volume = -5.0
 start_delay_ms = 0.0
 start_delay_variation_ms = 0.0
 max_per_s = 10.0
@@ -20,7 +20,7 @@ display_name = "Shotgun"
 shots_per_s = 0.8
 bullets_spread_angle_deg = 90
 bullets_per_shot = 10
-eject_cartridges = true
-shoot_sound = "shoot.wav"
+shoot_sound = "shoot_heavy.ogg"
 shoot_sfx_options = SubResource("Resource_vk4mu")
+eject_cartridges = true
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"

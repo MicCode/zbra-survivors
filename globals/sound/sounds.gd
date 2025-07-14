@@ -46,6 +46,9 @@ func zap():
 
 func shoot(options: SfxOptions, file_name: String = "shoot.wav"):
     SoundPlayer.play_sfx(file_name, options)
+
+func reload():
+    SoundPlayer.play_sfx("reload.wav", SfxOptions.from_dict({pitch = 0.9}))
 #endregion
 
 #region Ennemies

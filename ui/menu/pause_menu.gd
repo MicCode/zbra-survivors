@@ -12,5 +12,6 @@ func _input(event):
             hide()
 
 func _on_quit_button_pressed() -> void:
+    Sounds.click()
     get_tree().paused = false
     SceneManager.switch_to("res://ui/menu/main_menu.tscn")
