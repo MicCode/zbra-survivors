@@ -3,7 +3,7 @@ extends Control
 var fade_in_time: float = 0.5
 var fade_out_time: float = 1.0
 var splash_duration: float = 5.0
-var skip_splash: bool = OS.is_debug_build()
+var skip_splash: bool = !OS.is_debug_build()
 
 func _ready() -> void:
     SoundPlayer.apply_audio_settings()

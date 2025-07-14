@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var equipped_gun: Gun
 var gun_stats: GunStats

@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://cf4neewdadfmv"
 [resource]
 script = ExtResource("1_xhuse")
 name = "flamethrower"
-display_name = "Flame Thrower"
+display_name = "GUN_FLAME_THROWER"
 shots_per_s = 40.0
 bullets_spread_angle_deg = 20
 bullets_per_shot = 2

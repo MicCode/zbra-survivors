@@ -43,6 +43,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_bygbl")
 theme_override_font_sizes/font_size = 50
-text = "GIVE UP"
+text = "BUTTON_GIVE_UP"
 
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

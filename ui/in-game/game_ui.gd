@@ -35,7 +35,7 @@ func _on_player_state_changed(player_state: PlayerState):
 
     if player_state.level != player_level:
         player_level = player_state.level
-        %LevelLabel.text = "Niv. " + str(player_state.level)
+        %LevelLabel.text = str(player_state.level)
         VisualEffects.emphases(%LevelLabel, 1.2, Color.YELLOW)
 
     %XpBar.max_value = player_state.next_level_xp

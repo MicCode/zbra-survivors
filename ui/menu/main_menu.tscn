@@ -63,7 +63,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "Survive the Zbra !"
+text = "MAIN_MENU_SUBTITLE"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Panel" parent="CenterContainer/VBoxContainer"]
@@ -77,7 +77,7 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "START"
+text = "BUTTON_START"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
@@ -85,7 +85,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_gvx18")
 theme_override_font_sizes/font_size = 25
-text = "Quit Game"
+text = "BUTTON_QUIT"
 
 [node name="MusicToggle" type="CheckButton" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -94,9 +94,22 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 button_pressed = true
-text = "Music"
+text = "SETTINGS_MUSIC"
+
+[node name="LanguageSwitcher" type="OptionButton" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+flat = true
+selected = 0
+item_count = 2
+popup/item_0/text = "LANGUAGE_EN"
+popup/item_0/id = 0
+popup/item_1/text = "LANGUAGE_FR"
+popup/item_1/id = 1
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="button_down" from="CenterContainer/VBoxContainer/MusicToggle" to="." method="_on_music_toggle_button_down"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/MusicToggle" to="." method="_on_music_toggle_toggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/LanguageSwitcher" to="." method="_on_language_switcher_item_selected"]

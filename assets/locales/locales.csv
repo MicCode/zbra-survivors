@@ -1,0 +1,27 @@
+key,en,fr
+BUTTON_GIVE_UP,Give Up,Abandonner
+BUTTON_MAIN_MENU,Main Menu,Menu Principal
+BUTTON_QUIT,Quit Game,Quitter le Jeu
+BUTTON_RESTART,Restart,Recommencer
+BUTTON_START,Start,Commencer
+ENNEMY_MOB_1,Mob 1,Truc 1
+ENNEMY_MOB_2,Mob 2,Truc 2
+ENNEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
+GUN_FLAMETHROWER,Flame Thrower,Lance-Flammes
+GUN_PISTOL,Pistol,Pistolet
+GUN_RIFLE,Rifle,Fusil Automatique
+GUN_SHOTGUN,Shotgun,Fusil à Pompe
+GUN_SNIPER,Sniper Rifle,Fusil de Sniper
+LABEL_DAMAGE,Damage,Dégâts
+LABEL_DISPERSION,Dispersion,Dispersion
+LABEL_DPS,DPS,DPS
+LABEL_LEVEL,Level,Niveau
+LABEL_PROJECTILES,Projectiles,Projectiles
+LABEL_SCORE,Score,Score
+LABEL_SHOT_S,Shot/s,Tir/s
+MAIN_MENU_SUBTITLE,Survive the ZBRA!,Survivez au ZBRA !
+SETTINGS_MUSIC,Music,Musique
+SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
+TITLE_GAME_OVER,You Died,Vous Êtes Mort
+LANGUAGE_EN,English,Anglais
+LANGUAGE_FR,French,Français

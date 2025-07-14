@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://cf4neewdadfmv"
 [resource]
 script = ExtResource("1_d6fmv")
 name = "sniper"
-display_name = "Sniper Rifle"
+display_name = "GUN_SNIPER"
 shots_per_s = 0.5
 bullets_spread_angle_deg = 0
 bullets_per_shot = 1
