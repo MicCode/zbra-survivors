@@ -3,7 +3,7 @@ class_name Player
 
 signal health_depleted
 
-var camera_zoom = 1.0 # for debug purpose set to 1.0 in normal condition
+var camera_zoom = 1.3 # for debug purpose set to 1.0 in normal condition TODO set this in game settings ?
 
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
