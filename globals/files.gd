@@ -37,3 +37,26 @@ func _write_file(file_path: String, data):
         file.close()
     else:
         push_error("Unable to write data in file [" + file_path + "]")
+
+func get_random_from_folder(folder_path: String) -> String:
+    var dir = DirAccess.open(folder_path)
+    if dir == null:
+        push_error("Cannot find folder %s" % folder_path)
+        return ""
+
+    var files := []
+
+    dir.list_dir_begin()
+    var file_name = dir.get_next()
+    while file_name != "":
+        if not dir.current_is_dir() and not file_name.ends_with(".import"):
+            files.append(file_name)
+        file_name = dir.get_next()
+    dir.list_dir_end()
+
+    if files.is_empty():
+        push_error("No file found in folder %s" % folder_path)
+        return ""
+
+    var random_index = randi() % files.size()
+    return folder_path + "/" + files[random_index]
