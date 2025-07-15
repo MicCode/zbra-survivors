@@ -1,9 +1,9 @@
 extends Node2D
 
-const CHUNK_SIZE = GameSettings.CHUNK_SIZE
-const CHUNK_RENDER_DISTANCE = GameSettings.CHUNK_RENDER_DISTANCE
-const CHUNK_UNLOAD_DISTANCE = GameSettings.CHUNK_UNLOAD_DISTANCE
-const CHUNK_UNLOAD_TIME = GameSettings.CHUNK_UNLOAD_TIME
+const CHUNK_SIZE = Settings.CHUNK_SIZE
+const CHUNK_RENDER_DISTANCE = Settings.CHUNK_RENDER_DISTANCE
+const CHUNK_UNLOAD_DISTANCE = Settings.CHUNK_UNLOAD_DISTANCE
+const CHUNK_UNLOAD_TIME = Settings.CHUNK_UNLOAD_TIME
 
 var loaded_chunks := {}
 var is_init = true
@@ -16,7 +16,7 @@ func _on_player_moved(player_position: Vector2):
     is_init = false
 
 func get_chunk_coords(player_position: Vector2) -> Vector2i:
-    return Vector2i(floor(player_position.x / CHUNK_SIZE ), floor(player_position.y / CHUNK_SIZE))
+    return Vector2i(floor(player_position.x / CHUNK_SIZE), floor(player_position.y / CHUNK_SIZE))
 
 func update_chunks(player_position: Vector2):
     var player_chunk = get_chunk_coords(player_position)

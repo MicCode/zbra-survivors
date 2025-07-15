@@ -1,26 +1,17 @@
-extends Node
+extends Resource
+class_name GameSettings
 
-const WORLD_GENERATION_DEBUG = false
-const CHUNK_SIZE = 512
-const CHUNK_RENDER_DISTANCE = 3
-const CHUNK_UNLOAD_DISTANCE = 10
-const CHUNK_UNLOAD_TIME = 30.0
+@export var language: String = TranslationServer.get_locale()
 
-var enable_music: bool = true
-var master_volume_db: float = 0.0
-var music_volume_db: float = -15.2
-var effects_volume_db: float = 3.4
+func to_dict() -> Dictionary:
+    var dict: Dictionary = {
+        "language": TranslationServer.get_locale()
+    }
+    return dict
 
-func apply_audio_settings():
-    var master_bus = AudioServer.get_bus_index("Master")
-    AudioServer.set_bus_volume_db(master_bus, master_volume_db)
-
-    var music_bus = AudioServer.get_bus_index("Music")
-    if enable_music:
-        AudioServer.set_bus_mute(music_bus, false)
-        AudioServer.set_bus_volume_db(music_bus, music_volume_db)
-    else:
-        AudioServer.set_bus_mute(music_bus, true)
-
-    var effects_bus = AudioServer.get_bus_index("Effects")
-    AudioServer.set_bus_volume_db(effects_bus, effects_volume_db)
+static func from_dict(dict: Dictionary) -> GameSettings:
+    var settings: GameSettings = GameSettings.new()
+    if dict.has("language"):
+        settings.language = dict.get("language")
+        TranslationServer.set_locale(settings.language)
+    return settings

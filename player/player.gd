@@ -27,7 +27,7 @@ var time_scale_change_interval: float = 0.01
 func _ready():
     randomize()
     init_health()
-    if GameSettings.WORLD_GENERATION_DEBUG:
+    if Settings.WORLD_GENERATION_DEBUG:
         camera_zoom = 0.1
         GameService.player_state.move_speed = 1000.0
     %Camera.zoom = Vector2(camera_zoom, camera_zoom)

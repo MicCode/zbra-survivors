@@ -1,12 +1,12 @@
 extends Node2D
 
-var CHUNK_SIZE = GameSettings.CHUNK_SIZE
+var CHUNK_SIZE = Settings.CHUNK_SIZE
 var is_spawn_zone = false
 
 func _ready() -> void:
     %Background.custom_minimum_size = Vector2(CHUNK_SIZE, CHUNK_SIZE)
     %Boundaries.custom_minimum_size = Vector2(CHUNK_SIZE, CHUNK_SIZE)
-    if GameSettings.WORLD_GENERATION_DEBUG:
+    if Settings.WORLD_GENERATION_DEBUG:
         %Boundaries.show()
     else:
         %Boundaries.hide()
