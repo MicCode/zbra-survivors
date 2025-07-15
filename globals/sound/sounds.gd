@@ -55,6 +55,9 @@ func reload():
 func hit():
     SoundPlayer.play_sfx("hit2.wav", SfxOptions.from_dict({pitch = 0.65, pitch_variation = 0.5, volume = 12.5}))
 
+func burn_hit():
+    SoundPlayer.play_sfx(Files.get_random_from_folder("res://assets/sounds/burn"), SfxOptions.from_dict({pitch = 0.5}))
+
 func death_mob_1():
     SoundPlayer.play_sfx("meow.mp3", SfxOptions.from_dict({pitch = 0.8, pitch_variation = 0.1, volume = 15.0}))
 

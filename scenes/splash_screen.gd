@@ -5,8 +5,10 @@ var fade_out_time: float = 1.0
 var splash_duration: float = 5.0
 var skip_splash: bool = OS.is_debug_build()
 
-func _ready() -> void:
+func _init() -> void:
     SoundPlayer.apply_audio_settings()
+
+func _ready() -> void:
     if skip_splash:
         SceneManager.switch_to("res://ui/menu/main_menu.tscn")
 

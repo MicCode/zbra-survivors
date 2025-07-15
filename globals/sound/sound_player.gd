@@ -42,7 +42,9 @@ func _load_sfx_stream(file_name: String) -> AudioStream:
     if sfx_cache.has(file_name):
         return sfx_cache[file_name]
 
-    var path = SFX_BASE_PATH + file_name
+    var path = file_name
+    if !path.begins_with(SFX_BASE_PATH):
+        path = SFX_BASE_PATH + path
     var stream = load(path)
     if stream is AudioStream:
         sfx_cache[file_name] = stream
@@ -54,7 +56,9 @@ func _load_effect_stream(file_name: String) -> AudioStream:
     if effects_cache.has(file_name):
         return effects_cache[file_name]
 
-    var path = SFX_BASE_PATH + file_name
+    var path = file_name
+    if !path.begins_with(SFX_BASE_PATH):
+        path = SFX_BASE_PATH + path
     var stream = load(path)
     if stream is AudioStream:
         effects_cache[file_name] = stream

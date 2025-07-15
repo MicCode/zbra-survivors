@@ -44,13 +44,14 @@ func handle_bullet_hit(bullet: Bullet):
     if !is_dead:
         take_damage(bullet.bullet_stats.damage)
         if bullet.bullet_stats.inflicts_fire:
+            Sounds.burn_hit()
             set_burning()
         else:
+            Sounds.hit()
             VisualEffects.bleed(global_position, bullet.position)
 
 func take_damage(damage: float):
     %Sprite.play("hurt")
-    Sounds.hit()
     if %Health:
         %Health.take_damage(damage)
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
