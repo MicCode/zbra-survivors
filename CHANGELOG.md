@@ -1,5 +1,17 @@
 ---
 
+## 1.7.0 - 2025-07-15
+
+#### Bug Fixes
+
+-   better gun sounds - (268dffd) - Mic
+
+#### Features
+
+-   save settings in json file and load it at startup - (206c09b) - Mic
+
+---
+
 ## 1.6.0 - 2025-07-14
 
 #### Bug Fixes
