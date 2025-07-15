@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready() -> void:
-    %MusicToggle.button_pressed = SoundPlayer.settings.enable_music
+    %MusicToggle.button_pressed = Settings.audio_settings.enable_music
     %SubTitle.visible_ratio = 0.0
     create_tween().tween_property(%SubTitle, "visible_ratio", 1.0, 0.5)
     %SubTitle.modulate = Color.RED
@@ -9,7 +9,7 @@ func _ready() -> void:
     SoundPlayer.apply_audio_settings()
     Musics.main_menu()
 
-    match TranslationServer.get_locale(): # TODO get language from stored settings
+    match Settings.game_settings.language:
         "fr_FR": %LanguageSwitcher.select(1)
         _: %LanguageSwitcher.select(0) # fallback on english
 
@@ -19,8 +19,9 @@ func _on_start_button_pressed() -> void:
     SceneManager.switch_to("res://scenes/level_1.tscn")
 
 func _on_music_toggle_toggled(toggled_on: bool) -> void:
-    SoundPlayer.settings.enable_music = toggled_on
+    Settings.audio_settings.enable_music = toggled_on
     SoundPlayer.apply_audio_settings()
+    Settings.save_to_file()
 
 func _on_music_toggle_button_down() -> void:
     Sounds.click()
@@ -31,7 +32,8 @@ func _on_quit_button_pressed() -> void:
     get_tree().quit()
 
 func _on_language_switcher_item_selected(index: int) -> void:
-    # TODO store selected language in settings and get it from there on next launch
     match index:
-        0: TranslationServer.set_locale("en")
-        1: TranslationServer.set_locale("fr")
+        0: TranslationServer.set_locale("en_US")
+        1: TranslationServer.set_locale("fr_FR")
+    Settings.game_settings.language = TranslationServer.get_locale()
+    Settings.save_to_file()

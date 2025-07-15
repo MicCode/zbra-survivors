@@ -6,8 +6,6 @@ const MUSIC_BASE_PATH := "res://assets/musics/"
 const MAX_SFX_PLAYERS := 16
 const MAX_EFFECTS_PLAYERS := 16
 
-var settings: AudioSettings = AudioSettings.new()
-
 var music_player: AudioStreamPlayer
 var music_cache: Dictionary = {}
 
@@ -19,19 +17,19 @@ var effects_cache: Dictionary = {}
 
 func apply_audio_settings():
     var master_bus = AudioServer.get_bus_index("Master")
-    AudioServer.set_bus_volume_db(master_bus, settings.master_volume_db)
+    AudioServer.set_bus_volume_db(master_bus, Settings.audio_settings.master_volume_db)
 
     var music_bus = AudioServer.get_bus_index("Music")
-    if settings.enable_music:
+    if Settings.audio_settings.enable_music:
         AudioServer.set_bus_mute(music_bus, false)
-        AudioServer.set_bus_volume_db(music_bus, settings.music_volume_db)
+        AudioServer.set_bus_volume_db(music_bus, Settings.audio_settings.music_volume_db)
     else:
         AudioServer.set_bus_mute(music_bus, true)
 
     var effects_bus = AudioServer.get_bus_index("Effects")
-    AudioServer.set_bus_volume_db(effects_bus, settings.effects_volume_db)
+    AudioServer.set_bus_volume_db(effects_bus, Settings.audio_settings.effects_volume_db)
     var sfx_bus = AudioServer.get_bus_index("SFX")
-    AudioServer.set_bus_volume_db(sfx_bus, settings.effects_volume_db)
+    AudioServer.set_bus_volume_db(sfx_bus, Settings.audio_settings.effects_volume_db)
 
 func _ready():
     process_mode = Node.PROCESS_MODE_ALWAYS
