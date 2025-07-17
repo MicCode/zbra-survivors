@@ -35,12 +35,20 @@ Minimap="*res://globals/minimap.gd"
 Musics="*res://globals/sound/musics.gd"
 Files="*res://globals/files.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
 
 [file_customization]
 
@@ -53,6 +61,10 @@ folder_colors={
 "res://scenes/": "teal",
 "res://scenes/test/": "green"
 }
+
+[godot_resource_groups]
+
+auto_rebuild=true
 
 [gui]
 

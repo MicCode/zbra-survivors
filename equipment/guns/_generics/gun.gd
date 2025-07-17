@@ -53,10 +53,7 @@ func shoot():
             eject_cartridge()
         %Sprite.play("firing")
         if !sound_cooldown:
-            if gun_stats.is_sound_folder:
-                SoundPlayer.play_sfx(Files.get_random_from_folder("res://assets/sounds/" + gun_stats.shoot_sound), gun_stats.shoot_sfx_options)
-            else:
-                Sounds.shoot(gun_stats.shoot_sfx_options, gun_stats.shoot_sound)
+            Sounds.shoot(gun_stats.shoot_sfx_options, gun_stats.shoot_sound)
             sound_cooldown = true
             var cooldown_s = 1 / max(0.01, gun_stats.shoot_sfx_options.max_per_s)
             get_tree().create_timer(cooldown_s).connect("timeout", func(): sound_cooldown = false)

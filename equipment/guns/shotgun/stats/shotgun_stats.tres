@@ -21,6 +21,7 @@ shots_per_s = 0.8
 bullets_spread_angle_deg = 90
 bullets_per_shot = 10
 shoot_sound = "shoot_heavy.ogg"
+is_sound_folder = false
 shoot_sfx_options = SubResource("Resource_vk4mu")
 eject_cartridges = true
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"
