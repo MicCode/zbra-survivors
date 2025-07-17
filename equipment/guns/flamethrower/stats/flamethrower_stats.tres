@@ -21,6 +21,7 @@ shots_per_s = 40.0
 bullets_spread_angle_deg = 20
 bullets_per_shot = 2
 shoot_sound = "flame.ogg"
+is_sound_folder = false
 shoot_sfx_options = SubResource("Resource_31cey")
 eject_cartridges = false
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"
