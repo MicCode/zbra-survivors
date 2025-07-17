@@ -11,6 +11,6 @@ disapear_delay = 0.0
 fly_range = 750.0
 size = 1.0
 size_variation = 0.0
-pierce_count = 3
+pierce_count = 10
 inflicts_fire = false
 metadata/_custom_type_script = "uid://krig45trd2r0"
