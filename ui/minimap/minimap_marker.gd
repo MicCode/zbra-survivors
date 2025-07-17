@@ -32,3 +32,12 @@ func set_marker_type(type: Minimap.ObjectType):
         Minimap.ObjectType.XP:
             modulate = Color.GOLD
             set_size(5)
+
+func set_texture(texture: Texture = null):
+    if texture:
+        %Sprite.texture = texture
+        %Panel.hide()
+        %Sprite.show()
+    else:
+        %Panel.show()
+        %Sprite.hide()

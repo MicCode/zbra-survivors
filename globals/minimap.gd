@@ -13,8 +13,14 @@ var tracked_objects: Dictionary = {} # key = object instance id, value = object 
 
 func track(object: Node2D, type: ObjectType):
     var object_id = object.get_instance_id()
+    var texture: Texture = null
     if !tracked_objects.has(object_id):
-        tracked_objects.set(object_id, MinimapTrackedObject.build(object.global_position, type))
+        if [ObjectType.GUN, ObjectType.COLLECTIBLE].has(type) and object:
+            var sprite = object.get_node("Sprite")
+            if sprite and sprite is Sprite2D:
+                texture = (sprite as Sprite2D).texture
+
+        tracked_objects.set(object_id, MinimapTrackedObject.build(object.global_position, type, texture))
     else:
         push_warning("Object with id [%d] is already tracked by minimap" % object_id)
 
