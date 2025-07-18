@@ -14,5 +14,11 @@ func _input(event):
 
 func _on_quit_button_pressed() -> void:
     Sounds.click()
-    get_tree().paused = false
+    reset_effects()
     SceneManager.switch_to("res://ui/menu/main_menu.tscn")
+
+func reset_effects():
+    get_tree().paused = false
+    Engine.time_scale = 1.0
+    AudioServer.playback_speed_scale = 1.0
+    SoundPlayer.stop_all_effects()

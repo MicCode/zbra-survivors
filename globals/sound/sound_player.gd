@@ -106,6 +106,11 @@ func stop_effect(file_name: String):
         if is_instance_valid(existing_player):
             existing_player.queue_free()
 
+func stop_all_effects():
+    for player in effects_players:
+        effects_players.get(player).queue_free()
+    effects_players = {}
+
 func play_sfx(file_name: String, options: SfxOptions = SfxOptions.new()):
     var stream = _load_sfx_stream(file_name)
     if stream == null:
