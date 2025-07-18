@@ -1,5 +1,22 @@
 ---
 
+## 1.8.0 - 2025-07-18
+
+#### Bug Fixes
+
+-   fixed time scale issues when restarting or leaving a game while timewarping - (96da4fb) - Mic
+-   fixed restart button not working in game over menu - (307d61b) - Mic
+-   clear minimap on game reset + refresh minimap display at a given rate - (4bd193d) - Mic
+-   fixed sound issues - (d5e2a68) - Mic
+
+#### Features
+
+-   added a red dot sight line for some guns - (a642ac2) - Mic
+-   collectible items vanish after a certain amount of time - (f7f4360) - Mic
+-   display real guns and collectibles sprites in minimap - (190906b) - Mic
+
+---
+
 ## 1.7.0 - 2025-07-15
 
 #### Bug Fixes
