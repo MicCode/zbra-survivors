@@ -3,6 +3,9 @@ extends Node2D
 var is_boss_spawned = false
 const TIME_BEFORE_BOSS_S: float = 180.0
 
+func _enter_tree() -> void:
+    Minimap.clear()
+
 func _ready():
     %TimeBeforeBoss.start(TIME_BEFORE_BOSS_S)
     %GameUI.set_remaining_time(%TimeBeforeBoss.time_left)

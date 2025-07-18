@@ -1,11 +1,15 @@
 extends Control
 
+const REFRESH_FPS = 25
+const REFRESH_TIME = 1.0 / (REFRESH_FPS as float)
+
 var map_size = Vector2(200, 150)
 var map_scale_factor: float = 0.1
 var map_opacity = 0.75
 var map_zoom = Vector2(1.0, 1.0)
 
 var known_objects_positions: Dictionary = {}
+var refresh_timer: SceneTreeTimer
 
 func _ready():
     modulate = Color(1, 1, 1, map_opacity)
@@ -16,6 +20,11 @@ func _ready():
     %SubViewport.size = map_size
 
 func _process(_delta: float) -> void:
+    if !refresh_timer:
+        refresh_timer = get_tree().create_timer(REFRESH_TIME)
+    elif refresh_timer.time_left > 0:
+        return
+
     var tracked_objects = Minimap.tracked_objects
     for key in tracked_objects.keys():
         var obj = tracked_objects[key]
@@ -42,6 +51,7 @@ func _process(_delta: float) -> void:
                         if obj.type == Minimap.ObjectType.PLAYER:
                             move_camera_to(marker_instance.position)
     clean_untracked()
+    refresh_timer = get_tree().create_timer(REFRESH_TIME)
 
 func clean_untracked():
     for object_id in known_objects_positions.keys():
