@@ -5,6 +5,7 @@ var paused = false
 func _input(event):
     if event.is_action_pressed("pause_game") && !GameService.is_game_over:
         paused = !paused
+        Sounds.click()
         get_tree().paused = paused
         if paused:
             show()

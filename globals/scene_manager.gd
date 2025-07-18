@@ -12,7 +12,7 @@ func switch_to(scene_path: String) -> void:
 
     var modulator = get_modulator(current_scene)
     var modulator_property = get_modulator_property(current_scene)
-    if modulator and modulator_property:
+    if modulator and modulator_property and modulator[modulator_property]:
         var tween: Tween = get_tree().create_tween()
         modulator[modulator_property] = Color.WHITE
         tween.tween_property(modulator, modulator_property, Color.BLACK, transition_time / 2).connect("finished", func():
