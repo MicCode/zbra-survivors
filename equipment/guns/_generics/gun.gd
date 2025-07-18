@@ -7,6 +7,7 @@ class_name Gun
 var flipped = false
 var cooling_down = false
 var sound_cooldown = false
+var draw_aim_line = true
 
 func _enter_tree() -> void:
     if !gun_stats:
@@ -19,6 +20,10 @@ func _enter_tree() -> void:
 func _ready():
     if Input.get_connected_joypads().size() > 0:
         %Crosshair.show()
+    if gun_stats.has_laser_dot:
+        %AimLine.show()
+    else:
+        %AimLine.hide()
 
 func _process(_delta):
     %CooldownProgress.value = %CooldownTimer.time_left

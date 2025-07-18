@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdr8rck7r5wts"]
+[gd_scene load_steps=15 format=3 uid="uid://cdr8rck7r5wts"]
 
 [ext_resource type="Script" uid="uid://5arw325siv8x" path="res://equipment/guns/_generics/gun.gd" id="1_wwnuv"]
 [ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://assets/sprites/items/gun-firing.png" id="2_aj33k"]
@@ -85,6 +85,9 @@ _data = {
 &"flash": SubResource("Animation_ocvq5")
 }
 
+[sub_resource type="Gradient" id="Gradient_sbo7a"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_wwnuv")
 
@@ -146,6 +149,14 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_30b3j")
 }
+
+[node name="AimLine" type="Line2D" parent="PivotPoint/Sprite/ShootingPoint"]
+unique_name_in_owner = true
+y_sort_enabled = true
+points = PackedVector2Array(0, 0, 500, 0)
+width = 0.8
+default_color = Color(1, 0, 0, 0.458824)
+gradient = SubResource("Gradient_sbo7a")
 
 [node name="ShellEjectPoint" type="Marker2D" parent="PivotPoint/Sprite"]
 unique_name_in_owner = true

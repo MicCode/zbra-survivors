@@ -24,4 +24,5 @@ shoot_sound = "rifle"
 is_sound_folder = true
 shoot_sfx_options = SubResource("Resource_08bt1")
 eject_cartridges = true
+has_laser_dot = true
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"
