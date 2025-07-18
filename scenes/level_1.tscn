@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=14 format=3 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" uid="uid://bl0616biw7sew" path="res://scenes/level_1.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://upsgg7tvmfqf" path="res://equipment/guns/shotgun/shotgun_collectible.tscn" id="9_o1vsu"]
 [ext_resource type="PackedScene" uid="uid://cal4x5wbe2maf" path="res://ui/in-game/boss_ui.tscn" id="10_q8l1h"]
 [ext_resource type="PackedScene" uid="uid://bjac33uc3ygca" path="res://equipment/guns/flamethrower/flamethrower_collectible.tscn" id="12_7ybou"]
+[ext_resource type="PackedScene" uid="uid://dx58nvbmorlfh" path="res://equipment/items/timewrap_clock.tscn" id="12_go7sj"]
 [ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://equipment/guns/sniper/sniper_collectible.tscn" id="17_xm7rv"]
 
 [sub_resource type="Curve2D" id="Curve2D_rf5nu"]
@@ -81,6 +82,9 @@ position = Vector2(563, 277)
 
 [node name="FlamethrowerCollectible" parent="." instance=ExtResource("12_7ybou")]
 position = Vector2(367, 50)
+
+[node name="Collectible2" parent="." instance=ExtResource("12_go7sj")]
+position = Vector2(160, 225)
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]

@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 func _ready() -> void:
+    AudioServer.playback_speed_scale = 1.0
+    Engine.time_scale = 1.0
+
     %MusicToggle.button_pressed = Settings.audio_settings.enable_music
     %SubTitle.visible_ratio = 0.0
     create_tween().tween_property(%SubTitle, "visible_ratio", 1.0, 0.5)

@@ -7,6 +7,7 @@ func _enter_tree() -> void:
     Minimap.clear()
 
 func _ready():
+    Engine.time_scale = 1.0
     %TimeBeforeBoss.start(TIME_BEFORE_BOSS_S)
     %GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
     GameService.reset()
