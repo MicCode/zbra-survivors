@@ -1,11 +1,11 @@
 extends StaticBody2D
-class_name CollectibleItem
+class_name ConsumableItem
 
-@export var show_time = 20.0
+@export var stats: ConsumableItemStats
 
 func _ready() -> void:
     Minimap.track(self, Minimap.ObjectType.COLLECTIBLE)
-    get_tree().create_timer(show_time).connect("timeout", _on_show_time_timeout)
+    get_tree().create_timer(stats.show_time).connect("timeout", _on_show_time_timeout)
 
 func _exit_tree() -> void:
     Minimap.untrack(self)

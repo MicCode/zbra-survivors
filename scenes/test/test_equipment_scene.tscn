@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bjac33uc3ygca" path="res://equipment/guns/flamethrower/flamethrower_collectible.tscn" id="8_w10lt"]
 [ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://equipment/guns/sniper/sniper_collectible.tscn" id="9_tvq1l"]
 [ext_resource type="PackedScene" uid="uid://drkykj0r3c1kh" path="res://ennemies/dummy/dummy.tscn" id="10_juk4v"]
-[ext_resource type="PackedScene" uid="uid://diqxvqy6dowgw" path="res://equipment/items/radiance_flask.tscn" id="12_vs4yp"]
-[ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://equipment/items/life_flask.tscn" id="13_6k7wn"]
+[ext_resource type="PackedScene" uid="uid://diqxvqy6dowgw" path="res://equipment/items/consumables/radiance_flask/radiance_flask.tscn" id="12_vs4yp"]
+[ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://equipment/items/consumables/life_flask/life_flask.tscn" id="13_6k7wn"]
 
 [node name="TreeTestScene" type="Node2D"]
 y_sort_enabled = true

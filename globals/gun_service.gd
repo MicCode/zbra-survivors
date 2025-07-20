@@ -13,7 +13,7 @@ func create_gun(gun_name: String) -> Gun:
     instance.bullet_stats.resource_local_to_scene = true
     return instance
 
-func create_collectible(gun_name: String) -> CollectibleItem:
+func create_collectible(gun_name: String) -> ConsumableItem:
     var scene_path = _get_gun_path(gun_name) + "_collectible.tscn"
     var scene = load(scene_path)
     if !scene:

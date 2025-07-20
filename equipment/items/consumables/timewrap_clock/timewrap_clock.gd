@@ -1,2 +1,2 @@
-extends CollectibleItem
+extends ConsumableItem
 class_name TimewrapClock

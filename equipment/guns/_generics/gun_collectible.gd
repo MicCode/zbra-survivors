@@ -1,4 +1,4 @@
-extends CollectibleItem
+extends ConsumableItem
 class_name GunCollectible
 
 @export var gun_stats: GunStats
@@ -15,14 +15,6 @@ func _enter_tree() -> void:
 func _ready() -> void:
     Minimap.track(self, Minimap.ObjectType.GUN)
     %GunInfoPanel.init(gun_stats, bullet_stats)
-    var joypads = Input.get_connected_joypads()
-    if joypads.size() > 0:
-        %ButtonIcon.key_name = "A"
-        %ButtonIcon.controller_name = "xbox"
-    else:
-        %ButtonIcon.key_name = "E"
-        %ButtonIcon.controller_name = "keyboard"
-    %ButtonIcon.update_texture()
 
 func _on_info_display_zone_body_entered(_body: Node2D) -> void:
     if %GunInfoPanel:

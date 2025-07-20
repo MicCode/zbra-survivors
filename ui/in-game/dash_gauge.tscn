@@ -40,4 +40,3 @@ offset_top = 18.0
 offset_right = 33.0
 offset_bottom = 34.0
 scale = Vector2(1.5, 1.5)
-key_name = "SPACE"

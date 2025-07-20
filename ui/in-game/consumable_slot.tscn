@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://5dhmrbtdnbhg"]
+
+[ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_cc8y4"]
+[ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://assets/sprites/items/clock.png" id="2_mtpq0"]
+[ext_resource type="Script" uid="uid://dgttg4b11yvj2" path="res://ui/in-game/consumable_slot.gd" id="2_nussi"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_nussi"]
+
+[node name="Consumable" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 80)
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("1_cc8y4")
+script = ExtResource("2_nussi")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="ConsumableSprite" type="TextureRect" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+texture = ExtResource("2_mtpq0")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="ConsumableButton" parent="CenterContainer/ConsumableSprite" instance=ExtResource("3_nussi")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -24.0
+offset_right = -3.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+action = 3

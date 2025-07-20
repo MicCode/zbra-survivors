@@ -37,6 +37,7 @@ func _ready():
     Minimap.track(self, Minimap.ObjectType.PLAYER)
 
 func _process(_delta: float) -> void:
+    execute_player_commands()
     if actual_time_scale != time_scale_target:
         if actual_time_scale < time_scale_target:
             actual_time_scale += time_scale_change_interval
@@ -54,12 +55,9 @@ func _physics_process(delta):
         update_dash_gauge()
         collect_xp()
 
-
 func move(_delta):
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
     var h_direction = Input.get_axis("move_left", "move_right")
-    if GameService.player_state.can_dash && Input.is_action_pressed("dash"):
-        start_dashing()
 
     if h_direction != 0:
         %Sprite.flip_h = (h_direction != 1)
@@ -77,6 +75,20 @@ func move(_delta):
             %Sprite.play("walk")
         else:
             %Sprite.play("idle")
+
+func execute_player_commands():
+    if GameService.player_state.can_dash and Controls.is_pressed(Controls.PlayerAction.DASH):
+        start_dashing()
+    if GameService.consumable and Controls.is_pressed(Controls.PlayerAction.USE):
+        var used_item = false
+        if GameService.consumable is RadianceFlask:
+            used_item = use_radiance_flask(GameService.consumable)
+        elif GameService.consumable is TimewrapClock:
+            used_item = use_timewrap_clock(GameService.consumable)
+        else:
+            push_warning("Unknown consumable [%s]" % str(GameService.consumable))
+        if used_item:
+            GameService.change_consumable(null)
 
 func start_dashing():
     Sounds.dash()
@@ -120,12 +132,17 @@ func check_for_collectibles():
             if collectible is GunCollectible:
                 if Input.is_action_pressed("grab") || !equiped_gun:
                     equip_gun(collectible as GunCollectible)
-            elif collectible is LifeFlask:
-                collect_life_flask(collectible as LifeFlask)
-            elif collectible is RadianceFlask:
-                collect_radiance_flask(collectible as RadianceFlask)
-            elif collectible is TimewrapClock:
-                collect_timewrap_clock(collectible as TimewrapClock)
+            elif collectible is ConsumableItem:
+                handle_consumable(collectible as ConsumableItem)
+
+func handle_consumable(consumable: ConsumableItem):
+    if consumable.stats.immediate_use:
+        if consumable is LifeFlask:
+            collect_life_flask(consumable as LifeFlask)
+    else:
+        if !GameService.consumable:
+            GameService.change_consumable(consumable)
+            consumable.queue_free()
 
 func burn_things():
     var bodies_in_radiance = %RadianceRadius.get_overlapping_bodies()
@@ -170,28 +187,34 @@ func collect_life_flask(flask: LifeFlask):
         %Effects.play("heal")
         flask.queue_free()
 
-func collect_radiance_flask(flask: RadianceFlask):
-    if !is_radiating:
-        is_radiating = true
-        %RadianceEffectAnimation.play("fadein")
-        %RadianceEffect.show()
-        %RadianceTimer.start(radiance_duration_s)
-        %RadianceCollision.disabled = false
-        %Effects.show()
-        %Effects.play("radiance")
-        Sounds.start_burning()
-        flask.queue_free()
+## Returns true if the item has been used
+func use_radiance_flask(flask: RadianceFlask) -> bool:
+    if is_radiating:
+        return false
+    is_radiating = true
+    %RadianceEffectAnimation.play("fadein")
+    %RadianceEffect.show()
+    %RadianceTimer.start(radiance_duration_s)
+    %RadianceCollision.disabled = false
+    %Effects.show()
+    %Effects.play("radiance")
+    Sounds.start_burning()
+    flask.queue_free()
+    return true
 
-func collect_timewrap_clock(clock: TimewrapClock):
-    if !is_timewrapping:
-        is_timewrapping = true
-        %TimewrapTimer.start(timewrap_duration_s * timewrap_time_scale)
-        Engine.time_scale = timewrap_time_scale
-        time_scale_target = timewrap_time_scale
-        GameService.player_state.move_speed /= (timewrap_time_scale * 1.5)
-        clock.queue_free()
-        Sounds.start_timewarping()
-        GameService.player_timewarping_changed.emit(true)
+## Returns true if the item has been used
+func use_timewrap_clock(clock: TimewrapClock) -> bool:
+    if is_timewrapping:
+        return false
+    is_timewrapping = true
+    %TimewrapTimer.start(timewrap_duration_s * timewrap_time_scale)
+    Engine.time_scale = timewrap_time_scale
+    time_scale_target = timewrap_time_scale
+    GameService.player_state.move_speed /= (timewrap_time_scale * 1.5)
+    clock.queue_free()
+    Sounds.start_timewarping()
+    GameService.player_timewarping_changed.emit(true)
+    return true
 
 func _on_timewrap_timer_timeout() -> void:
     Engine.time_scale = 1.0

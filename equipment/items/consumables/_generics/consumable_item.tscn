@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpqk78rbe30jr"]
 
-[ext_resource type="Script" uid="uid://cjw4a7s0dmyeb" path="res://equipment/collectible_item.gd" id="1_pakd1"]
+[ext_resource type="Script" uid="uid://cjw4a7s0dmyeb" path="res://equipment/items/consumables/_generics/consumable_item.gd" id="1_pakd1"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_l5uqt"]
 [ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="3_1l5bh"]
 

@@ -30,7 +30,7 @@ func _ready():
 func _process(_delta):
     %CooldownProgress.value = %CooldownTimer.time_left
     move_target()
-    if Input.is_action_pressed("fire"):
+    if Controls.is_pressed(Controls.PlayerAction.SHOOT):
         shoot()
 
 func _physics_process(_delta):
@@ -107,6 +107,6 @@ func _on_sprite_animation_finished():
 
 func _on_cooldown_timer_timeout():
     if cooling_down:
-        if !Input.is_action_pressed("fire"):
+        if !Controls.is_pressed(Controls.PlayerAction.SHOOT):
             %Sprite.play("idle")
         cooling_down = false

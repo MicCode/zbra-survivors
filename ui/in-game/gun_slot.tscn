@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://docilhxvfaqod"]
+
+[ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_w43r3"]
+[ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://assets/sprites/items/sniper-idle.png" id="2_5dpiw"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_75gk6"]
+
+[node name="EquippedGun" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 80)
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("1_w43r3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="GunSprite" type="TextureRect" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 75)
+layout_mode = 2
+texture = ExtResource("2_5dpiw")
+stretch_mode = 5
+
+[node name="ButtonIcon" parent="CenterContainer/GunSprite" instance=ExtResource("3_75gk6")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -27.0
+offset_right = -7.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)

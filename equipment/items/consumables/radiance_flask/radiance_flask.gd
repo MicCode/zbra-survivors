@@ -1,2 +1,2 @@
-extends StaticBody2D
+extends ConsumableItem
 class_name RadianceFlask

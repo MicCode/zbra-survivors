@@ -3,6 +3,7 @@ signal player_state_changed
 signal score_changed
 signal player_gained_level(new_level: int)
 signal equipped_gun_changed
+signal consumable_changed(new_consumable: ConsumableItem)
 
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
@@ -14,8 +15,10 @@ var player_instance: Player
 
 var score: int = 0
 var spawn_time_s: float = 3.0
-var equipped_gun: Gun
 var is_game_over = false
+
+var equipped_gun: Gun
+var consumable: ConsumableItem
 
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
@@ -64,17 +67,25 @@ func change_equipped_gun(_new_gun: Gun) -> void:
     equipped_gun = _new_gun
     equipped_gun_changed.emit(equipped_gun)
 
+func change_consumable(_new_consumable: ConsumableItem) -> void:
+    if _new_consumable:
+        consumable = _new_consumable.duplicate()
+    else:
+        consumable = null
+    print("should emit new consumable: " + str(_new_consumable))
+    consumable_changed.emit(consumable)
+
 func register_ennemy_death(ennemy: Ennemy) -> void:
     increment_score(1)
     drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.stats.xp_value), ennemy.global_position)
     Announcer.ennemy_died()
 
     if randf() <= GameService.player_state.life_drop_chance:
-        drop_item(preload("res://equipment/items/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
+        drop_item(preload("res://equipment/items/consumables/life_flask/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
     elif randf() <= GameService.player_state.radiance_drop_chance:
-        drop_item(preload("res://equipment/items/radiance_flask.tscn").instantiate(), ennemy.global_position)
+        drop_item(preload("res://equipment/items/consumables/radiance_flask/radiance_flask.tscn").instantiate(), ennemy.global_position)
     elif randf() <= GameService.player_state.timewrap_drop_change:
-        drop_item(preload("res://equipment/items/timewrap_clock.tscn").instantiate(), ennemy.global_position)
+        drop_item(preload("res://equipment/items/consumables/timewrap_clock/timewrap_clock.tscn").instantiate(), ennemy.global_position)
 
 func drop_item(item: Node2D, position: Vector2) -> void:
     item.global_position = position

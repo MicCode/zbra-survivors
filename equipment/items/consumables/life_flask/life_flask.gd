@@ -1,4 +1,4 @@
-extends CollectibleItem
+extends ConsumableItem
 class_name LifeFlask
 
 var life_amount: int = 1

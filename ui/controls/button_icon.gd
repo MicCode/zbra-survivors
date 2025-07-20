@@ -1,8 +1,7 @@
 extends TextureRect
 class_name ControllerButtonIcon
 
-@export var key_name: String = "A"
-@export var controller_name: String = "keyboard"
+@export var action: Controls.PlayerAction
 @export var pressed: bool = false
 @export var animate: bool = false
 
@@ -10,11 +9,17 @@ class_name ControllerButtonIcon
 func _ready() -> void:
     update_texture()
 
+func change_action(_action: Controls.PlayerAction):
+    action = _action
+    update_texture()
+
 func update_texture():
-    if pressed:
-        texture = load("res://assets/sprites/ui/controls/" + controller_name + "/" + controller_name + "-" + key_name + "-p.png")
-    else:
-        texture = load("res://assets/sprites/ui/controls/" + controller_name + "/" + controller_name + "-" + key_name + ".png")
+    var control = Controls.get_input_control(action)
+    if control:
+        if pressed:
+            texture = load(control.get_pressed_sprite())
+        else:
+            texture = load(control.get_idle_sprite())
 
 func _on_timer_timeout() -> void:
     if animate:

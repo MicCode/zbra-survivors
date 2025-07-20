@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvu2hswqayla6"]
 
-[ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/collectible_item.tscn" id="1_sdufc"]
+[ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://equipment/items/consumables/_generics/consumable_item.tscn" id="1_sdufc"]
 [ext_resource type="Script" uid="uid://2mhr1pb8ovwo" path="res://equipment/guns/_generics/gun_collectible.gd" id="2_afsvs"]
 [ext_resource type="PackedScene" uid="uid://ccgmshd6826dt" path="res://equipment/guns/_generics/gun_info_panel.tscn" id="3_mq4n0"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="4_4y1ga"]
@@ -31,9 +31,8 @@ y_sort_enabled = true
 [node name="GunInfoPanel" parent="." index="6" instance=ExtResource("3_mq4n0")]
 unique_name_in_owner = true
 visible = false
-z_index = 4000
-position = Vector2(-0.5, 0.5)
 scale = Vector2(0.75, 0.75)
+transform = Transform2D(0.75, 0, 0, 0.75, 0, 0)
 
 [node name="ButtonIcon" parent="." index="7" instance=ExtResource("4_4y1ga")]
 unique_name_in_owner = true
@@ -43,7 +42,7 @@ offset_top = 7.5
 offset_right = 22.5
 offset_bottom = 23.5
 scale = Vector2(0.75, 0.75)
-key_name = "E"
+action = 1
 animate = true
 
 [connection signal="body_entered" from="InfoDisplayZone" to="." method="_on_info_display_zone_body_entered"]
