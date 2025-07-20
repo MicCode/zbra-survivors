@@ -1,3 +1,12 @@
+- - -
+## 0.9.0 - 2025-07-20
+#### Features
+- display current equipped gun in game UI - (0101dc1) - Mic
+- consumable items can now be used when player stroke the use button - (2af70ed) - Mic
+- added aim guides to show gun dispersion angle - (b58a953) - Mic
+
+- - -
+
 ## 0.8.0 - 2025-07-20
 #### Bug Fixes
 - fixed time scale issues when restarting or leaving a game while timewarping - (7e2c3f4) - Mic
@@ -12,6 +21,7 @@
 - **(version)** 0.8.0 - (0d1da76) - Mic
 
 - - -
+
 
 ## 0.7.0 - 2025-07-20
 #### Bug Fixes
