@@ -24,4 +24,5 @@ shoot_sound = "flame.ogg"
 is_sound_folder = false
 shoot_sfx_options = SubResource("Resource_31cey")
 eject_cartridges = false
+has_laser_dot = false
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"

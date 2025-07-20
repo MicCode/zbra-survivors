@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dokccb0wthmtb"]
+
+[ext_resource type="Script" uid="uid://ye2pwxe7gdo4" path="res://equipment/guns/_generics/aim_guides.gd" id="1_k4jqs"]
+
+[node name="AimGuides" type="Node2D"]
+script = ExtResource("1_k4jqs")
+
+[node name="Bound1" type="Node2D" parent="."]
+unique_name_in_owner = true
+rotation = -0.261799
+
+[node name="Line" type="Line2D" parent="Bound1"]
+points = PackedVector2Array(100, 0, 130, 0)
+width = 1.0
+default_color = Color(1, 1, 1, 0.741176)
+
+[node name="Bound2" type="Node2D" parent="."]
+unique_name_in_owner = true
+rotation = 0.261799
+
+[node name="Line" type="Line2D" parent="Bound2"]
+points = PackedVector2Array(100, 0, 130, 0)
+width = 1.0
+default_color = Color(1, 1, 1, 0.741176)
+
+[node name="CenterLine" type="Line2D" parent="."]
+points = PackedVector2Array(100, 0, 130, 0)
+width = 2.0
+default_color = Color(1, 1, 0, 1)

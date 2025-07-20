@@ -18,12 +18,14 @@ func _enter_tree() -> void:
         bullet_stats = load("res://equipment/guns/_generics/stats/default_bullet_stats.tres")
 
 func _ready():
-    if Input.get_connected_joypads().size() > 0:
-        %Crosshair.show()
+    var guides = %AimGuides as AimGuides
+    guides.set_dispersion_angle(gun_stats.bullets_spread_angle_deg)
     if gun_stats.has_laser_dot:
-        %AimLine.show()
+        %RedDot.show()
+        guides.hide()
     else:
-        %AimLine.hide()
+        %RedDot.hide()
+        guides.show()
 
 func _process(_delta):
     %CooldownProgress.value = %CooldownTimer.time_left
@@ -49,7 +51,6 @@ func move_target():
         look_at(look_point)
     else:
         look_at(get_global_mouse_position())
-    %Crosshair.global_rotation = 0.0
 
 func shoot():
     if !cooling_down:

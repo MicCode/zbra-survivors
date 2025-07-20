@@ -24,4 +24,5 @@ shoot_sound = "machine-gun"
 is_sound_folder = true
 shoot_sfx_options = SubResource("Resource_q61uc")
 eject_cartridges = true
+has_laser_dot = false
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"

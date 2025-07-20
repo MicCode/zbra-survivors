@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://5arw325siv8x" path="res://equipment/guns/_generics/gun.gd" id="1_wwnuv"]
 [ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://assets/sprites/items/gun-firing.png" id="2_aj33k"]
 [ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://assets/sprites/items/gun.png" id="3_0sfdt"]
-[ext_resource type="Texture2D" uid="uid://dofuk7jiind1d" path="res://assets/sprites/items/crosshair.png" id="5_0c04k"]
+[ext_resource type="PackedScene" uid="uid://dokccb0wthmtb" path="res://equipment/guns/_generics/aim_guides.tscn" id="5_unooq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6oin"]
 atlas = ExtResource("2_aj33k")
@@ -112,12 +112,6 @@ autoplay = "idle"
 unique_name_in_owner = true
 position = Vector2(8, -3)
 
-[node name="Crosshair" type="Sprite2D" parent="PivotPoint/Sprite/ShootingPoint"]
-unique_name_in_owner = true
-visible = false
-position = Vector2(40, 0)
-texture = ExtResource("5_0c04k")
-
 [node name="PointLight2D" type="PointLight2D" parent="PivotPoint/Sprite/ShootingPoint"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(2, 0)
@@ -150,13 +144,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_30b3j")
 }
 
-[node name="AimLine" type="Line2D" parent="PivotPoint/Sprite/ShootingPoint"]
+[node name="RedDot" type="Line2D" parent="PivotPoint/Sprite/ShootingPoint"]
 unique_name_in_owner = true
 y_sort_enabled = true
 points = PackedVector2Array(0, 0, 500, 0)
 width = 0.8
 default_color = Color(1, 0, 0, 0.458824)
 gradient = SubResource("Gradient_sbo7a")
+
+[node name="AimGuides" parent="PivotPoint/Sprite/ShootingPoint" instance=ExtResource("5_unooq")]
+unique_name_in_owner = true
 
 [node name="ShellEjectPoint" type="Marker2D" parent="PivotPoint/Sprite"]
 unique_name_in_owner = true
