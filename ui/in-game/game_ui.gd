@@ -48,7 +48,7 @@ func redraw_hearts():
     for i in range(0, player_max_health, 1):
         var new_heart = preload("res://ui/in-game/heart.tscn").instantiate()
         new_heart.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-        new_heart.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+        new_heart.size_flags_vertical = Control.SIZE_SHRINK_END
         %Hearts.add_child(new_heart)
 
 func update_hearts_filling():
@@ -85,7 +85,7 @@ func stop_slow_down_effect():
     tween.tween_property(overlay_material, "shader_parameter/fire_alpha", 0.0, 0.2)
 
 func play_lvl_up_effect(_new_level: int):
-    print("play lvl up !")
+    # print("play lvl up !")
     var overlay_material = %LvlUpEffect.material as ShaderMaterial
     var tween = get_tree().create_tween()
     tween.set_ease(Tween.EASE_OUT)

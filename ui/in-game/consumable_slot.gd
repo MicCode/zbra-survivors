@@ -5,7 +5,7 @@ func _ready() -> void:
     _update_slot(GameService.consumable)
 
 func _update_slot(new_consumable: ConsumableItem):
-    print("New consumable : " + str(new_consumable))
+    # print("New consumable : " + str(new_consumable))
     if new_consumable == null:
         %ConsumableSprite.texture = null
         %ConsumableButton.hide()

@@ -19,6 +19,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_eh4bl")
 script = ExtResource("1_lngqu")
 

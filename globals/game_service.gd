@@ -2,7 +2,7 @@ extends Node
 signal player_state_changed
 signal score_changed
 signal player_gained_level(new_level: int)
-signal equipped_gun_changed
+signal equipped_gun_changed(new_gun: Gun)
 signal consumable_changed(new_consumable: ConsumableItem)
 
 signal player_timewarping_changed(timewarping: bool)
@@ -25,7 +25,7 @@ func reset() -> void:
     player_state = PlayerState.new()
     score = 0
     spawn_time_s = 3.0
-    equipped_gun = null
+    change_equipped_gun(null)
     is_game_over = false
     emit_player_change()
     emit_score_change()
@@ -72,7 +72,7 @@ func change_consumable(_new_consumable: ConsumableItem) -> void:
         consumable = _new_consumable.duplicate()
     else:
         consumable = null
-    print("should emit new consumable: " + str(_new_consumable))
+    # print("should emit new consumable: " + str(_new_consumable))
     consumable_changed.emit(consumable)
 
 func register_ennemy_death(ennemy: Ennemy) -> void:

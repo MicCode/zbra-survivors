@@ -39,7 +39,7 @@ func _write_file(file_path: String, data):
         push_error("Unable to write data in file [" + file_path + "]")
 
 func get_random_from_folder(folder_path: String) -> String:
-    print("Getting files in folder [%s]" % folder_path)
+    # print("Getting files in folder [%s]" % folder_path)
     var dir = DirAccess.open(folder_path)
     if dir == null:
         push_error("Cannot find folder %s" % folder_path)
@@ -50,7 +50,7 @@ func get_random_from_folder(folder_path: String) -> String:
     dir.list_dir_begin()
     var file_name = dir.get_next()
     while file_name != "":
-        print(" - file: [%s]" % file_name)
+        # print(" - file: [%s]" % file_name)
         if not dir.current_is_dir() and not file_name.ends_with(".import"):
             files.append(file_name)
         file_name = dir.get_next()
@@ -60,9 +60,9 @@ func get_random_from_folder(folder_path: String) -> String:
         push_error("No file found in folder %s" % folder_path)
         return ""
 
-    print("Found %d files" % files.size())
+    # print("Found %d files" % files.size())
 
     var random_index = randi() % files.size()
     var file_path = folder_path + "/" + files[random_index]
-    print("Picked file [%s]" % file_path)
+    # print("Picked file [%s]" % file_path)
     return file_path

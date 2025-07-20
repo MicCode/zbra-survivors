@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=18 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 [ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 [ext_resource type="PackedScene" uid="uid://c0qrymdsv0ins" path="res://ui/minimap/minimap_viewer.tscn" id="4_d2uga"]
-[ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="7_8rxai"]
-[ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://assets/sprites/items/sniper-idle.png" id="8_ooeft"]
-[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="9_ooeft"]
+[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/equipped_gun_slot.tscn" id="7_il6w2"]
 [ext_resource type="PackedScene" uid="uid://5dhmrbtdnbhg" path="res://ui/in-game/consumable_slot.tscn" id="10_ooeft"]
 
 [sub_resource type="Gradient" id="Gradient_png7d"]
@@ -190,27 +188,25 @@ theme_override_constants/separation = 15
 [node name="DashGauge" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("2_3a147")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 
 [node name="Hearts" type="HBoxContainer" parent="MarginContainer/MainArea/BottomContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="Heart" parent="MarginContainer/MainArea/BottomContainer/Hearts" instance=ExtResource("3_g3ovh")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Heart2" parent="MarginContainer/MainArea/BottomContainer/Hearts" instance=ExtResource("3_g3ovh")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Heart3" parent="MarginContainer/MainArea/BottomContainer/Hearts" instance=ExtResource("3_g3ovh")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Spacer" type="Panel" parent="MarginContainer/MainArea/BottomContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -218,37 +214,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
 
-[node name="EquippedGun" type="PanelContainer" parent="MarginContainer/MainArea/BottomContainer"]
-custom_minimum_size = Vector2(300, 80)
+[node name="EquippedGun" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("7_il6w2")]
 layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = ExtResource("7_8rxai")
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/MainArea/BottomContainer/EquippedGun"]
-layout_mode = 2
-
-[node name="GunSprite" type="TextureRect" parent="MarginContainer/MainArea/BottomContainer/EquippedGun/CenterContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(280, 75)
-layout_mode = 2
-texture = ExtResource("8_ooeft")
-stretch_mode = 5
-
-[node name="ButtonIcon" parent="MarginContainer/MainArea/BottomContainer/EquippedGun/CenterContainer/GunSprite" instance=ExtResource("9_ooeft")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -27.0
-offset_right = -7.0
-offset_bottom = -11.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-action = 2
 
 [node name="Consumable" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("10_ooeft")]
 layout_mode = 2
