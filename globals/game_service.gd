@@ -4,11 +4,10 @@ signal score_changed
 signal player_gained_level(new_level: int)
 signal equipped_gun_changed(new_gun: Gun)
 signal consumable_changed(new_consumable: ConsumableItem)
-
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
-
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
+signal game_paused_changed(is_game_paused: bool)
 
 var player_state: PlayerState
 var player_instance: Player
@@ -16,6 +15,7 @@ var player_instance: Player
 var score: int = 0
 var spawn_time_s: float = 3.0
 var is_game_over = false
+var is_game_paused = false
 
 var equipped_gun: Gun
 var consumable: ConsumableItem
@@ -27,16 +27,28 @@ func reset() -> void:
     spawn_time_s = 3.0
     change_equipped_gun(null)
     is_game_over = false
+    is_game_paused = false
     emit_player_change()
     emit_score_change()
     boss_changed.emit(null, 0.0)
 
 func _init() -> void:
+    process_mode = Node.PROCESS_MODE_ALWAYS
     player_state = PlayerState.new()
+
+func _input(event):
+    if event.is_action_pressed("pause_game") && !is_game_over:
+        Sounds.click()
+        set_game_paused(!is_game_paused)
 
 func increment_score(i: int) -> void:
     score += i
     emit_score_change()
+
+func set_game_paused(_is_game_paused: bool):
+    is_game_paused = _is_game_paused
+    get_tree().paused = is_game_paused
+    game_paused_changed.emit(is_game_paused)
 
 func set_game_over(_is_game_over: bool):
     is_game_over = _is_game_over

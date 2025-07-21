@@ -19,6 +19,9 @@ corner_radius_bottom_left = 5
 [node name="GunInfoPanel" type="CanvasLayer"]
 script = ExtResource("1_m0kus")
 
+[node name="Modulator" type="CanvasModulate" parent="."]
+unique_name_in_owner = true
+
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(300, 300)
 anchors_preset = 3
@@ -30,6 +33,7 @@ offset_left = -300.0
 offset_top = -300.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_48b3b")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
@@ -39,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -46,6 +51,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="GunName" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -58,6 +64,7 @@ clip_text = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -68,6 +75,7 @@ text = "LABEL_DAMAGE"
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ht4pk")
 
 [node name="Attack" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -80,6 +88,7 @@ text = "123.5"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
@@ -90,6 +99,7 @@ text = "LABEL_DPS"
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ht4pk")
 
 [node name="DPS" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
@@ -102,6 +112,7 @@ text = "123.5"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -114,6 +125,7 @@ vertical_alignment = 3
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ht4pk")
 
 [node name="Reload" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -125,6 +137,7 @@ text = "123.5"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -137,6 +150,7 @@ vertical_alignment = 3
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ht4pk")
 
 [node name="BulletsCount" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -148,6 +162,7 @@ text = "123.5"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
@@ -160,6 +175,7 @@ vertical_alignment = 3
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ht4pk")
 
 [node name="Angle" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]

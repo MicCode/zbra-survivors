@@ -47,10 +47,15 @@ bg_color = Color(0.843137, 0.721569, 0, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooxb5"]
 
 [node name="GameUI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_70thh")
+
+[node name="Modulate" type="CanvasModulate" parent="."]
+unique_name_in_owner = true
 
 [node name="SlowDownEffect" type="Panel" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 material = ExtResource("2_sfyf6")
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +65,7 @@ grow_vertical = 2
 
 [node name="LvlUpEffect" type="Panel" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 material = SubResource("ShaderMaterial_d2uga")
 anchors_preset = 15
@@ -69,6 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -80,14 +87,16 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="MainArea" type="Panel" parent="MarginContainer"]
+process_mode = 3
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sfyf6")
 
 [node name="TopContainer" type="HBoxContainer" parent="MarginContainer/MainArea"]
+unique_name_in_owner = true
+process_mode = 3
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 92.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
@@ -173,13 +182,14 @@ custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
 
 [node name="BottomContainer" type="HBoxContainer" parent="MarginContainer/MainArea"]
+unique_name_in_owner = true
+process_mode = 3
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -75.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4

@@ -1,18 +1,42 @@
 extends CanvasLayer
+class_name GameUI
+
+const ANIMATION_TIME: float = 0.25
 
 var player_health: int = -1
 var player_max_health: int = -1
 var player_xp: float = -1
 var player_level: int = -1
 
-
 func _ready() -> void:
-    %Score.text = str(GameService.score)
     GameService.score_changed.connect(_on_score_changed)
     GameService.player_state_changed.connect(_on_player_state_changed)
     GameService.player_timewarping_changed.connect(_on_player_timewarping_changed)
     GameService.player_gained_level.connect(play_lvl_up_effect)
+    GameService.game_paused_changed.connect(func(is_game_paused: bool):
+        if is_game_paused: slide_out()
+        else: slide_in()
+    )
+
     _on_player_state_changed(GameService.player_state)
+    %Score.text = str(GameService.score)
+    slide_in()
+
+func slide_in():
+    %TopContainer.offset_top = -220
+    create_tween().tween_property(%TopContainer, "offset_top", 0, ANIMATION_TIME)
+    %BottomContainer.offset_bottom = 100
+    create_tween().tween_property(%BottomContainer, "offset_bottom", 0, ANIMATION_TIME)
+    %Modulate.color = Color.TRANSPARENT
+    create_tween().tween_property(%Modulate, "color", Color.WHITE, ANIMATION_TIME)
+
+func slide_out():
+    %TopContainer.offset_top = 0
+    create_tween().tween_property(%TopContainer, "offset_top", -220, ANIMATION_TIME)
+    %BottomContainer.offset_bottom = 0
+    create_tween().tween_property(%BottomContainer, "offset_bottom", 100, ANIMATION_TIME)
+    %Modulate.color = Color.WHITE
+    create_tween().tween_property(%Modulate, "color", Color.TRANSPARENT, ANIMATION_TIME)
 
 func _on_score_changed(new_score: int):
     %Score.text = str(new_score)
