@@ -1,6 +1,7 @@
-[gd_scene load_steps=52 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=53 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
+[ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_hvbpw"]
 [ext_resource type="Texture2D" uid="uid://bgymw4l2oymtc" path="res://assets/sprites/player/player-dead.png" id="3_2bqqa"]
 [ext_resource type="Texture2D" uid="uid://si1biqu2tpxp" path="res://assets/sprites/player/player-hurt.png" id="3_b0r7w"]
@@ -422,6 +423,9 @@ offset_top = -1114.0
 offset_right = 1784.0
 offset_bottom = 1109.0
 color = Color(0.501961, 0.662745, 0.4, 1)
+
+[node name="VisualEffects" parent="." instance=ExtResource("2_2ieo8")]
+unique_name_in_owner = true
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)

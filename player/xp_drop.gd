@@ -20,7 +20,11 @@ func _physics_process(_delta: float) -> void:
         Minimap.moved(self, global_position)
         if abs((global_position - player_position).length()) < 10:
             GameService.gain_xp(xp_value)
+            Sounds.coin()
             queue_free()
 
 func _exit_tree() -> void:
     Minimap.untrack(self)
+
+func move_to_player():
+    chase_player = true

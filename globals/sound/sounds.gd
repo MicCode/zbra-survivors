@@ -69,6 +69,12 @@ func start_timewarping():
 
 func stop_timewarping():
     SoundPlayer.stop_effect("clock.ogg")
+
+func absorb():
+    SoundPlayer.play_sfx("absorb.ogg", SfxOptions.from_dict({volume = -3.0}))
+
+func coin():
+    SoundPlayer.play_sfx("coin.ogg", SfxOptions.from_dict({pitch = 1.2, pitch_variation = 0.2, volume = -1.0}))
 #endregion
 
 #region Equipment

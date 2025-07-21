@@ -92,12 +92,15 @@ func register_ennemy_death(ennemy: Ennemy) -> void:
     drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.stats.xp_value), ennemy.global_position)
     Announcer.ennemy_died()
 
+    # TODO implement a better random loot system
     if randf() <= GameService.player_state.life_drop_chance:
         drop_item(preload("res://equipment/items/consumables/life_flask/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
-    elif randf() <= GameService.player_state.radiance_drop_chance:
+    if randf() <= GameService.player_state.radiance_drop_chance:
         drop_item(preload("res://equipment/items/consumables/radiance_flask/radiance_flask.tscn").instantiate(), ennemy.global_position)
-    elif randf() <= GameService.player_state.timewrap_drop_change:
+    if randf() <= GameService.player_state.timewrap_drop_change:
         drop_item(preload("res://equipment/items/consumables/timewrap_clock/timewrap_clock.tscn").instantiate(), ennemy.global_position)
+    if randf() <= GameService.player_state.xp_collector_drop_chance:
+        drop_item(preload("res://equipment/items/consumables/xp_collector/xp_collector.tscn").instantiate(), ennemy.global_position)
 
 func drop_item(item: Node2D, position: Vector2) -> void:
     item.global_position = position

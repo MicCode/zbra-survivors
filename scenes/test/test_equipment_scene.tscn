@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=15 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" uid="uid://defjyi8hd43wt" path="res://scenes/test/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_cg6cr"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://drkykj0r3c1kh" path="res://ennemies/dummy/dummy.tscn" id="10_juk4v"]
 [ext_resource type="PackedScene" uid="uid://diqxvqy6dowgw" path="res://equipment/items/consumables/radiance_flask/radiance_flask.tscn" id="12_vs4yp"]
 [ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://equipment/items/consumables/life_flask/life_flask.tscn" id="13_6k7wn"]
+[ext_resource type="PackedScene" uid="uid://drdb0e64568up" path="res://equipment/items/consumables/xp_collector/xp_collector.tscn" id="14_wrh14"]
 
 [node name="TreeTestScene" type="Node2D"]
 y_sort_enabled = true
@@ -123,3 +124,6 @@ xp_value = 10.0
 y_sort_enabled = true
 position = Vector2(218, 70)
 xp_value = 10.0
+
+[node name="Collectible4" parent="." instance=ExtResource("14_wrh14")]
+position = Vector2(468, 610)

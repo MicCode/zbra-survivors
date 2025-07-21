@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://5khwauh5ri07"]
+
+[ext_resource type="PackedScene" uid="uid://bd2ty1gk448yx" path="res://effects/generic_effect.tscn" id="1_edsml"]
+[ext_resource type="Script" uid="uid://5mmbopb5j5qw" path="res://effects/absorb_xp.gd" id="2_lacs2"]
+[ext_resource type="Shader" uid="uid://bnuvgpsnbwf2j" path="res://shaders/vortex.gdshader" id="3_8hbaq"]
+
+[sub_resource type="Gradient" id="Gradient_mmfly"]
+offsets = PackedFloat32Array(0, 0.618834, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.766857, 0.563932, 0.208403, 0.784753, 0.977195, 0.718611, 0.265565, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gfvlh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eh17w"]
+seamless = true
+color_ramp = SubResource("Gradient_mmfly")
+noise = SubResource("FastNoiseLite_gfvlh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w8f2"]
+shader = ExtResource("3_8hbaq")
+shader_parameter/portal_texture = SubResource("NoiseTexture2D_eh17w")
+shader_parameter/portal_tint = Color(1, 1, 1, 1)
+shader_parameter/vortex_effect_radius = 0.43
+shader_parameter/twist_strength = 5.4
+shader_parameter/pulsation_speed = 5.0
+shader_parameter/breath_magnitude = -0.1
+shader_parameter/overall_rotation_speed = 0.25
+shader_parameter/texture_scroll_speed_x = 0.99
+shader_parameter/texture_scroll_speed_y = 1.0
+shader_parameter/edge_softness = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lacs2"]
+bg_color = Color(0.424422, 0.510502, 0.196468, 1)
+
+[node name="GenericEffect" instance=ExtResource("1_edsml")]
+script = ExtResource("2_lacs2")
+
+[node name="ShaderPanel" type="Panel" parent="." index="0"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_2w8f2")
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lacs2")

@@ -37,7 +37,7 @@ func untrack(object: Node2D):
     if tracked_objects.has(object_id):
         tracked_objects.erase(object_id)
     else:
-        push_warning("Object with id [%d] is not tracked by minimap, unable to untrack it" % object_id)
+        push_warning("Object [%s] is not tracked by minimap, unable to untrack it" % str(object))
 
 func clear():
     tracked_objects = {}

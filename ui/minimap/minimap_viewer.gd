@@ -14,10 +14,10 @@ var refresh_timer: SceneTreeTimer
 func _ready():
     modulate = Color(1, 1, 1, map_opacity)
     %MinimapCamera.zoom = map_zoom
-    size = map_size
-    position = Vector2(-map_size.x,0)
-    %SubViewportContainer.size = map_size
-    %SubViewport.size = map_size
+    #size = map_size
+    #position = Vector2(-map_size.x,0)
+    #%SubViewportContainer.size = map_size
+    #%SubViewport.size = map_size
 
 func _process(_delta: float) -> void:
     if !refresh_timer:

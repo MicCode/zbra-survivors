@@ -8,6 +8,7 @@ var camera_zoom = 1.3 # for debug purpose set to 1.0 in normal condition TODO se
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
 const DASH_GHOST_INTERVAL_S = 0.01
+const XP_COLLECT_TIME = 3.0
 
 var is_pickup_blocked = false
 var equiped_gun: Gun
@@ -139,9 +140,12 @@ func handle_consumable(consumable: ConsumableItem):
     if consumable.stats.immediate_use:
         if consumable is LifeFlask:
             collect_life_flask(consumable as LifeFlask)
+        elif consumable is XpCollector:
+            collect_all_xp_on_map(consumable)
     else:
         if !GameService.consumable:
             GameService.change_consumable(consumable)
+            Sounds.reload()
             consumable.queue_free()
 
 func burn_things():
@@ -177,6 +181,20 @@ func equip_gun(collectible: GunCollectible):
     GameService.change_equipped_gun(equiped_gun)
     block_pickup()
     collectible.queue_free()
+
+func collect_all_xp_on_map(collector: XpCollector):
+    Sounds.absorb()
+    %VisualEffects.start_effect("absorb_xp", preload("res://effects/absorb_xp.tscn"))
+    collector.queue_free()
+    get_tree().create_timer(XP_COLLECT_TIME).connect("timeout", func():
+        %VisualEffects.stop_effect("absorb_xp")
+    )
+    var children = SceneManager.current_scene.get_children()
+    for child in children:
+        if child is XpDrop:
+            child.move_to_player()
+
+
 
 func collect_life_flask(flask: LifeFlask):
     if GameService.player_state.health < GameService.player_state.max_health:
