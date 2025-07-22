@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpqk78rbe30jr"]
+[gd_scene load_steps=11 format=3 uid="uid://dpqk78rbe30jr"]
 
 [ext_resource type="Script" uid="uid://cjw4a7s0dmyeb" path="res://equipment/items/consumables/_generics/consumable_item.gd" id="1_pakd1"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_l5uqt"]
 [ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="3_1l5bh"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="4_sm5vi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qasv"]
 radius = 16.0
@@ -41,6 +42,19 @@ _data = {
 &"float": SubResource("Animation_r6h18")
 }
 
+[sub_resource type="Gradient" id="Gradient_bnjk0"]
+offsets = PackedFloat32Array(0, 0.188312, 1)
+colors = PackedColorArray(0.998639, 0.607871, 0.549292, 1, 0.684947, 0.314703, 0.229896, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67kka"]
+gradient = SubResource("Gradient_bnjk0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sm5vi"]
+radius = 17.0
+
 [node name="Collectible" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
@@ -70,3 +84,26 @@ texture = ExtResource("2_l5uqt")
 
 [node name="LocationMarker" parent="." instance=ExtResource("3_1l5bh")]
 sprite_scale = 3.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.5
+texture = SubResource("GradientTexture2D_67kka")
+
+[node name="ButtonIcon" parent="." instance=ExtResource("4_sm5vi")]
+unique_name_in_owner = true
+visible = false
+offset_left = 6.5
+offset_top = 7.5
+offset_right = 22.5
+offset_bottom = 23.5
+scale = Vector2(0.75, 0.75)
+action = 1
+animate = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sm5vi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
