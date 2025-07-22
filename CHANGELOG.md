@@ -1,4 +1,16 @@
 - - -
+## 0.10.0 - 2025-07-22
+#### Bug Fixes
+- slightly increased ennemy spawn frequency - (4ccdfae) - Mic
+- increased trees density in map - (3bf6275) - Mic
+- player can change equipped consumable item even if not used - (1e20cd6) - Mic
+#### Features
+- added land mines - (7b111e2) - Mic
+- added a xp collector item - (64fb117) - Mic
+- animate main UI - (f28263c) - Mic
+
+- - -
+
 ## 0.9.0 - 2025-07-20
 #### Features
 - display current equipped gun in game UI - (0101dc1) - Mic
