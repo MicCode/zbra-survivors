@@ -12,7 +12,7 @@ func _ready() -> void:
         %Boundaries.hide()
 
     if !is_spawn_zone:
-        place_random(preload("res://environment/tree.tscn"), 10)
+        place_random(preload("res://environment/tree.tscn"), 20)
     place_random(preload("res://environment/grass1.tscn"), 20)
     place_random(preload("res://environment/grass2.tscn"), 20)
     place_random(preload("res://environment/grass3.tscn"), 20)
