@@ -14,7 +14,7 @@ var player_state: PlayerState
 var player_instance: Player
 
 var score: int = 0
-var spawn_time_s: float = 3.0
+var spawn_time_s: float = 2.0 # TODO this has to be reworked to be set accordingly to the game progression
 var is_game_over = false
 var is_game_paused = false
 
@@ -25,7 +25,7 @@ var consumable: ConsumableItem
 func reset() -> void:
     player_state = PlayerState.new()
     score = 0
-    spawn_time_s = 3.0
+    spawn_time_s = 2.0
     change_equipped_gun(null)
     is_game_over = false
     is_game_paused = false

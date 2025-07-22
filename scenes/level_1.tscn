@@ -53,6 +53,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 0.5
 autostart = true
 
 [node name="Pause-menu" parent="." instance=ExtResource("4_u3m6b")]
