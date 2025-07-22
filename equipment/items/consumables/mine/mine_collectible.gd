@@ -1,0 +1,2 @@
+extends ConsumableItem
+class_name Mine

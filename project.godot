@@ -164,6 +164,7 @@ locale/translations=PackedStringArray("res://assets/locales/locales.en.translati
 2d_physics/layer_6="xp"
 2d_physics/layer_7="invisible_walls"
 2d_physics/layer_8="radiance"
+2d_physics/layer_9="mines"
 
 [physics]
 

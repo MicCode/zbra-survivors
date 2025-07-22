@@ -16,16 +16,15 @@ func _ready() -> void:
     Minimap.track(self, Minimap.ObjectType.GUN)
     %GunInfoPanel.init(gun_stats, bullet_stats)
 
-func _on_info_display_zone_body_entered(_body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
     if %GunInfoPanel:
         %GunInfoPanel.show()
-        %ButtonIcon.show()
+    super._on_area_2d_body_entered(_body)
 
-func _on_info_display_zone_body_exited(_body: Node2D) -> void:
+func _on_area_2d_body_exited(_body: Node2D) -> void:
     if has_node("GunInfoPanel"):
         get_node("GunInfoPanel").hide()
-    if has_node("ButtonIcon"):
-        get_node("ButtonIcon").hide()
+    super._on_area_2d_body_exited(_body)
 
 func _exit_tree() -> void:
     Minimap.untrack(self)

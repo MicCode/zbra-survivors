@@ -37,6 +37,9 @@ func start_game():
 
 func click():
     SoundPlayer.play_sfx("click.ogg", SfxOptions.from_dict({pitch = 3.5}))
+
+func toggle():
+    SoundPlayer.play_sfx("toggle.ogg", SfxOptions.from_dict({pitch = 0.9, volume = -6.0 }))
 #endregion
 
 #region Player
@@ -105,6 +108,12 @@ func death_boss_1():
 #region Environment
 func tree_destroyed():
     SoundPlayer.play_sfx("falling-leaves.ogg", SfxOptions.from_dict({volume = -6.0}))
+
+func explosion():
+    SoundPlayer.play_sfx(pick_random("explosions"), SfxOptions.from_dict({volume = -9.0}))
+
+func drop():
+    SoundPlayer.play_sfx(pick_random("drops"), SfxOptions.from_dict({volume = -3.0}))
 #endregion
 
 #region Announcements

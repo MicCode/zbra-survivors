@@ -4,6 +4,7 @@ signal score_changed
 signal player_gained_level(new_level: int)
 signal equipped_gun_changed(new_gun: Gun)
 signal consumable_changed(new_consumable: ConsumableItem)
+signal consumable_use_changed(use: int)
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
@@ -101,6 +102,8 @@ func register_ennemy_death(ennemy: Ennemy) -> void:
         drop_item(preload("res://equipment/items/consumables/timewrap_clock/timewrap_clock.tscn").instantiate(), ennemy.global_position)
     if randf() <= GameService.player_state.xp_collector_drop_chance:
         drop_item(preload("res://equipment/items/consumables/xp_collector/xp_collector.tscn").instantiate(), ennemy.global_position)
+    if randf() <= GameService.player_state.land_mine_chance:
+        drop_item(preload("res://equipment/items/consumables/mine/mine_collectible.tscn").instantiate(), ennemy.global_position)
 
 func drop_item(item: Node2D, position: Vector2) -> void:
     item.global_position = position

@@ -28,6 +28,7 @@ var dash_gauge_value: int = 5 # [0..5] where 0 = empty and 5 = full
 
 # === DROP CHANCES ===
 var life_drop_chance: float = 0.1
-var radiance_drop_chance: float = 0.05
-var timewrap_drop_change: float = 0.05
+var radiance_drop_chance: float = 0.075
+var timewrap_drop_change: float = 0.075
 var xp_collector_drop_chance: float = 0.1
+var land_mine_chance: float = 0.075

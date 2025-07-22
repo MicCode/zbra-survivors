@@ -25,6 +25,9 @@ var actual_time_scale: float = 1.0
 var time_scale_target: float = 1.0
 var time_scale_change_interval: float = 0.01
 
+var time_between_item_use = 0.5
+var block_item_use = false
+
 func _ready():
     randomize()
     init_health()
@@ -80,16 +83,21 @@ func move(_delta):
 func execute_player_commands():
     if GameService.player_state.can_dash and Controls.is_pressed(Controls.PlayerAction.DASH):
         start_dashing()
-    if GameService.consumable and Controls.is_pressed(Controls.PlayerAction.USE):
+    if !block_item_use and GameService.consumable and Controls.is_pressed(Controls.PlayerAction.USE):
         var used_item = false
         if GameService.consumable is RadianceFlask:
             used_item = use_radiance_flask(GameService.consumable)
         elif GameService.consumable is TimewrapClock:
             used_item = use_timewrap_clock(GameService.consumable)
+        elif GameService.consumable is Mine:
+            used_item = use_mine(GameService.consumable)
         else:
             push_warning("Unknown consumable [%s]" % str(GameService.consumable))
         if used_item:
             GameService.change_consumable(null)
+        get_tree().create_timer(time_between_item_use).timeout.connect(func():
+            block_item_use = false
+        )
 
 func start_dashing():
     Sounds.dash()
@@ -143,10 +151,13 @@ func handle_consumable(consumable: ConsumableItem):
         elif consumable is XpCollector:
             collect_all_xp_on_map(consumable)
     else:
-        if !GameService.consumable:
+        if !GameService.consumable or Controls.is_pressed(Controls.PlayerAction.GRAB):
+            if is_pickup_blocked:
+                return
             GameService.change_consumable(consumable)
             Sounds.reload()
             consumable.queue_free()
+            block_pickup()
 
 func burn_things():
     var bodies_in_radiance = %RadianceRadius.get_overlapping_bodies()
@@ -163,6 +174,7 @@ func collect_xp():
     for xp in overlapping_xp:
         if xp is XpDrop && !xp.chase_player:
             xp.chase_player = true
+
 
 func equip_gun(collectible: GunCollectible):
     if is_pickup_blocked:
@@ -193,7 +205,6 @@ func collect_all_xp_on_map(collector: XpCollector):
     for child in children:
         if child is XpDrop:
             child.move_to_player()
-
 
 
 func collect_life_flask(flask: LifeFlask):
@@ -233,6 +244,19 @@ func use_timewrap_clock(clock: TimewrapClock) -> bool:
     Sounds.start_timewarping()
     GameService.player_timewarping_changed.emit(true)
     return true
+
+func use_mine(mine: Mine) -> bool:
+    if !mine.can_be_used:
+        return false
+
+    mine.increment_use()
+    GameService.consumable_use_changed.emit(mine.time_used)
+    var new_mine = preload("res://equipment/items/droppables/land_mine.tscn").instantiate()
+    new_mine.global_position = global_position
+    SceneManager.current_scene.call_deferred("add_child", new_mine)
+    Sounds.drop()
+
+    return mine.time_used >= mine.stats.max_uses
 
 func _on_timewrap_timer_timeout() -> void:
     Engine.time_scale = 1.0
