@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://btuabvmpbtjvk"]
 
-[ext_resource type="Shader" uid="uid://bqmtq7tem66k5" path="res://shaders/radial_fire.gdshader" id="1_xv4ps"]
+[ext_resource type="Shader" uid="uid://ctb67ort3lp37" path="res://shaders/radial_fire.gdshader" id="1_xv4ps"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xv4ps"]
 frequency = 0.006

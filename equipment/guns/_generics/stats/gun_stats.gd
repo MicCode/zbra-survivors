@@ -20,3 +20,4 @@ class_name GunStats
 @export_group("Effects")
 @export var eject_cartridges: bool = true
 @export var has_laser_dot: bool = false
+@export var recoil_distance: float = 10.0
