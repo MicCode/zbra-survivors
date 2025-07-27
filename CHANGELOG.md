@@ -1,5 +1,15 @@
 
 - - -
+## 0.12.0 - 2025-07-27
+
+#### ➕ New features
+- **(gameplay)** some ennemies are randomly spawned as elites with better stats
+- **(ui)** added a settings menu
+- **(visual)** display ghost when timewarping
+- **(visual)** highlight ennemies on hit
+
+- - -
+
 ## 0.11.0 - 2025-07-27
 
 #### ➕ New features
