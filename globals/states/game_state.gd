@@ -22,6 +22,7 @@ var is_game_paused = false
 var equipped_gun: Gun
 var consumable: ConsumableItem
 
+
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
     player_state = PlayerState.new()
