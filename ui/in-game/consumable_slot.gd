@@ -27,4 +27,5 @@ func _update_slot(new_consumable: ConsumableItem):
     if new_consumable.stats.max_uses > 1:
         %UseLabel.text = str("%d" % (max_uses - new_consumable.time_used))
         %UseLabel.show()
-    # TODO display the use number
+    else:
+        %UseLabel.hide()
