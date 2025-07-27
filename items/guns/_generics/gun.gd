@@ -13,6 +13,7 @@ var initial_x_position: float
 var recoil_distance: float = 0.0
 var recoil_decay: float = 10.0
 
+
 func _enter_tree() -> void:
     if !gun_stats:
         push_warning("gun has no gun_stats defined, falling back to default")
