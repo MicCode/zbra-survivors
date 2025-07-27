@@ -58,7 +58,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 35
-text = "MAIN_MENU_SUBTITLE"
+text = "SUBTITLE_MAIN_MENU"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Panel" parent="CenterContainer/VBoxContainer"]
@@ -66,32 +66,31 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_37pjl")
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "BUTTON_START"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme = ExtResource("3_gvx18")
+theme_override_font_sizes/font_size = 25
+text = "BUTTON_SETTINGS"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("3_gvx18")
 theme_override_font_sizes/font_size = 25
 text = "BUTTON_QUIT"
 
-[node name="MusicToggle" type="CheckButton" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
-button_pressed = true
-text = "SETTINGS_MUSIC"
-
-[node name="LanguageSwitcher" type="OptionButton" parent="CenterContainer/VBoxContainer"]
+[node name="LanguageSwitcher" type="OptionButton" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -103,8 +102,7 @@ popup/item_0/id = 0
 popup/item_1/text = "LANGUAGE_FR"
 popup/item_1/id = 1
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="button_down" from="CenterContainer/VBoxContainer/MusicToggle" to="." method="_on_music_toggle_button_down"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/MusicToggle" to="." method="_on_music_toggle_toggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/LanguageSwitcher" to="." method="_on_language_switcher_item_selected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/LanguageSwitcher" to="." method="_on_language_switcher_item_selected"]

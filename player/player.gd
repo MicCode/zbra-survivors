@@ -3,8 +3,6 @@ class_name Player
 
 signal health_depleted
 
-var camera_zoom = 1.3 # for debug purpose set to 1.0 in normal condition TODO set this in game settings ?
-
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
 const XP_COLLECT_TIME = 3.0
@@ -29,9 +27,9 @@ func _ready():
     randomize()
     init_health()
     if Settings.WORLD_GENERATION_DEBUG:
-        camera_zoom = 0.1
+        Settings.game_settings.camera_zoom = 0.1
         GameState.player_state.move_speed = 1000.0
-    %Camera.zoom = Vector2(camera_zoom, camera_zoom)
+    %Camera.zoom = Vector2(Settings.game_settings.camera_zoom, Settings.game_settings.camera_zoom)
     GameState.register_player_instance(self)
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_gained_level.connect(_on_player_level_gained)

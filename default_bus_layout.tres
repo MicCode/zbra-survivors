@@ -1,6 +1,9 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://d17t22jgiq30a"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://d17t22jgiq30a"]
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_xhsvq"]
+resource_name = "Limiter"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_n8wo2"]
 resource_name = "Limiter"
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_5hcra"]
@@ -22,8 +25,10 @@ bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -7.63485
+bus/1/volume_db = -6.57885
 bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectLimiter_n8wo2")
+bus/1/effect/0/enabled = true
 bus/2/name = &"SFX"
 bus/2/solo = false
 bus/2/mute = false

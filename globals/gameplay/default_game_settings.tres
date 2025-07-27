@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameSettings" load_steps=2 format=3 uid="uid://r1kcvfh0lnco"]
+
+[ext_resource type="Script" uid="uid://d3ww15xrl38l8" path="res://globals/gameplay/game_settings.gd" id="1_wvx23"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wvx23")
+language = "en"
+camera_zoom = 1.3
+metadata/_custom_type_script = "uid://d3ww15xrl38l8"

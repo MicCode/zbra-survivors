@@ -1,8 +1,11 @@
 key,en,fr
+BUTTON_APPLY_DEFAULT_SETTINGS,Reset to default,Réinitialiser
 BUTTON_GIVE_UP,Give Up,Abandonner
 BUTTON_MAIN_MENU,Main Menu,Menu Principal
 BUTTON_QUIT,Quit Game,Quitter le Jeu
 BUTTON_RESTART,Restart,Recommencer
+BUTTON_SAVE_SETTINGS,Save settings,Sauvegarder
+BUTTON_SETTINGS,Settings,Paramètres
 BUTTON_START,Start,Commencer
 ENNEMY_MOB_1,Mob 1,Truc 1
 ENNEMY_MOB_2,Mob 2,Truc 2
@@ -12,16 +15,24 @@ GUN_PISTOL,Pistol,Pistolet
 GUN_RIFLE,Rifle,Fusil Automatique
 GUN_SHOTGUN,Shotgun,Fusil à Pompe
 GUN_SNIPER,Sniper Rifle,Fusil de Sniper
+LABEL_AUDIO_SETTINGS,Audio,Audio
 LABEL_DAMAGE,Damage,Dégâts
 LABEL_DISPERSION,Dispersion,Dispersion
 LABEL_DPS,DPS,DPS
+LABEL_GAME_SETTINGS,Gameplay,Jeu
+LABEL_LANGUAGE,Language,Langue
 LABEL_LEVEL,Level,Niveau
 LABEL_PROJECTILES,Projectiles,Projectiles
 LABEL_SCORE,Score,Score
 LABEL_SHOT_S,Shot/s,Tir/s
-MAIN_MENU_SUBTITLE,Survive the ZBRA!,Survivez au ZBRA !
-SETTINGS_MUSIC,Music,Musique
-SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
-TITLE_GAME_OVER,You Died,Vous Êtes Mort
 LANGUAGE_EN,English,Anglais
 LANGUAGE_FR,French,Français
+SETTING_AUDIO_FX,SFX volume,Volume des effets
+SETTING_AUDIO_MASTER,Master volume,Volume principal
+SETTING_AUDIO_MUSIC,Music volume,Volume de la musique
+SETTING_CAMERA_ZOOM,Camera zoom,Zoom de la caméra
+SETTINGS_MUSIC,Music,Musique
+SETTINGS_TITLE,Settings,Paramètres
+SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
+SUBTITLE_MAIN_MENU,Survive the ZBRA!,Survivez au ZBRA !
+TITLE_GAME_OVER,You Died,Vous Êtes Mort

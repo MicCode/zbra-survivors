@@ -1,0 +1,47 @@
+extends CanvasLayer
+
+func _ready() -> void:
+    apply_settings()
+
+func apply_settings():
+    var game = Settings.game_settings
+    match game.language:
+        "fr_FR": %Language.select(1)
+        _: %Language.select(0) # fallback on english
+    %CameraZoom.value = game.camera_zoom
+
+    var audio = Settings.audio_settings
+    %MasterVolume.value = to_linear(audio.master_volume_db)
+    %SFXVolume.value = to_linear(audio.effects_volume_db)
+    %MusicVolume.value = to_linear(audio.music_volume_db)
+
+func _on_language_item_selected(index: int) -> void:
+    Sounds.click()
+    match index:
+        0: TranslationServer.set_locale("en_US")
+        1: TranslationServer.set_locale("fr_FR")
+    Settings.game_settings.language = TranslationServer.get_locale()
+    Settings.save_to_file()
+
+func _on_save_button_pressed() -> void:
+    Sounds.click()
+    save_settings()
+
+func save_settings():
+    Settings.game_settings.camera_zoom = %CameraZoom.value
+
+    Settings.audio_settings.master_volume_db = to_db(%MasterVolume.value)
+    Settings.audio_settings.effects_volume_db = to_db(%SFXVolume.value)
+    Settings.audio_settings.music_volume_db = to_db(%MusicVolume.value)
+
+    Settings.save_to_file()
+    Settings.settings_changed.emit()
+    SceneManager.switch_to("res://ui/menu/main_menu.tscn") # TODO when settings menu is invoked from a game we will not want to return to main menu but only destroy this overlay
+
+func to_db(linear: float) -> float:
+    if linear < 0.0001:
+        return -80.0
+    return clamp(20.0 * log(linear) / log(10.0), -80.0, 0.0)
+
+func to_linear(db: float) -> float:
+    return clamp(pow(10.0, db / 20.0), 0.0, 1.0)

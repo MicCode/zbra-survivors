@@ -1,4 +1,5 @@
 extends Node
+signal settings_changed
 
 const WORLD_GENERATION_DEBUG = false
 const CHUNK_SIZE = 512
@@ -13,8 +14,14 @@ func load_from_file():
     var dict_from_file: Dictionary = Files.read_settings()
     if dict_from_file.has("audio_settings"):
         audio_settings = AudioSettings.from_dict(dict_from_file.get("audio_settings"))
+    else:
+        audio_settings = preload("res://globals/sound/default_audio_settings.tres").duplicate()
+
     if dict_from_file.has("game_settings"):
         game_settings = GameSettings.from_dict(dict_from_file.get("game_settings"))
+    else:
+        game_settings = preload("res://globals/gameplay/default_game_settings.tres").duplicate()
+    settings_changed.emit()
 
 func save_to_file():
     var dict = {

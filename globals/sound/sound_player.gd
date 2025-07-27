@@ -20,12 +20,7 @@ func apply_audio_settings():
     AudioServer.set_bus_volume_db(master_bus, Settings.audio_settings.master_volume_db)
 
     var music_bus = AudioServer.get_bus_index("Music")
-    if Settings.audio_settings.enable_music:
-        AudioServer.set_bus_mute(music_bus, false)
-        AudioServer.set_bus_volume_db(music_bus, Settings.audio_settings.music_volume_db)
-    else:
-        AudioServer.set_bus_mute(music_bus, true)
-
+    AudioServer.set_bus_volume_db(music_bus, Settings.audio_settings.music_volume_db - 6.0)
     var effects_bus = AudioServer.get_bus_index("Effects")
     AudioServer.set_bus_volume_db(effects_bus, Settings.audio_settings.effects_volume_db)
     var sfx_bus = AudioServer.get_bus_index("SFX")
