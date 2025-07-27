@@ -1,9 +1,9 @@
 extends PanelContainer
 
 func _ready() -> void:
-    GameService.equipped_gun_changed.connect(_update_slot)
-    if GameService.equipped_gun:
-        _update_slot(GameService.equipped_gun)
+    GameState.equipped_gun_changed.connect(_update_slot)
+    if GameState.equipped_gun:
+        _update_slot(GameState.equipped_gun)
     else:
         _update_slot(null)
 

@@ -9,17 +9,17 @@ var player_xp: float = -1
 var player_level: int = -1
 
 func _ready() -> void:
-    GameService.score_changed.connect(_on_score_changed)
-    GameService.player_state_changed.connect(_on_player_state_changed)
-    GameService.player_timewarping_changed.connect(_on_player_timewarping_changed)
-    GameService.player_gained_level.connect(play_lvl_up_effect)
-    GameService.game_paused_changed.connect(func(is_game_paused: bool):
+    GameState.score_changed.connect(_on_score_changed)
+    GameState.player_state_changed.connect(_on_player_state_changed)
+    GameState.player_timewarping_changed.connect(_on_player_timewarping_changed)
+    GameState.player_gained_level.connect(play_lvl_up_effect)
+    GameState.game_paused_changed.connect(func(is_game_paused: bool):
         if is_game_paused: slide_out()
         else: slide_in()
     )
 
-    _on_player_state_changed(GameService.player_state)
-    %Score.text = str(GameService.score)
+    _on_player_state_changed(GameState.player_state)
+    %Score.text = str(GameState.score)
     slide_in()
 
 func slide_in():

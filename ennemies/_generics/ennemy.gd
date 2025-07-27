@@ -21,7 +21,7 @@ func _enter_tree() -> void:
 
 func _ready():
     health = stats.max_health
-    player = GameService.player_instance
+    player = GameState.player_instance
     %Sprite.connect("animation_finished", _on_animation_finished)
     %Health.max_health = stats.max_health
     %Health.current_health = health
@@ -71,7 +71,7 @@ func _on_health_depleted():
         set_collision_layer_value(8, false)
         VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
         remove_child(%Health)
-        GameService.register_ennemy_death(self)
+        GameState.register_ennemy_death(self)
         Minimap.untrack(self)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

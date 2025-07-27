@@ -5,8 +5,8 @@ var gun_stats: GunStats
 var bullet_stats: BulletStats
 
 func _ready() -> void:
-    GameService.equipped_gun_changed.connect(_on_equipped_gun_changed)
-    GameService.game_paused_changed.connect(func(is_game_paused: bool):
+    GameState.equipped_gun_changed.connect(_on_equipped_gun_changed)
+    GameState.game_paused_changed.connect(func(is_game_paused: bool):
         if is_game_paused: %Modulator.color = Color.TRANSPARENT
         else: %Modulator.color = Color.WHITE
     )

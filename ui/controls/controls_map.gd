@@ -40,16 +40,16 @@ func _ready() -> void:
             var icon = ControllerButtonIcon.new()
             icon.key_name = key
             icon.animate = true
-            if key.contains(Enums.get_controller_name(Enums.Controllers.MOUSE)):
+            if key.contains(Controls.get_controller_name(Controls.Controllers.MOUSE)):
                 icon.key_name = key
-                icon.controller_name = Enums.get_controller_name(Enums.Controllers.MOUSE)
+                icon.controller_name = Controls.get_controller_name(Controls.Controllers.MOUSE)
             else:
                 if current_controller_combo == ControllerCombos.MOUSE_KEYBOARD:
-                    icon.key_name = Enums.get_controller_name(Enums.Controllers.KEYBOARD) + "-" + key
-                    icon.controller_name = Enums.get_controller_name(Enums.Controllers.KEYBOARD)
+                    icon.key_name = Controls.get_controller_name(Controls.Controllers.KEYBOARD) + "-" + key
+                    icon.controller_name = Controls.get_controller_name(Controls.Controllers.KEYBOARD)
                 elif current_controller_combo == ControllerCombos.XBOX_CONTROLLER:
-                    icon.key_name = Enums.get_controller_name(Enums.Controllers.XBOX) + "-" + key
-                    icon.controller_name = Enums.get_controller_name(Enums.Controllers.XBOX)
+                    icon.key_name = Controls.get_controller_name(Controls.Controllers.XBOX) + "-" + key
+                    icon.controller_name = Controls.get_controller_name(Controls.Controllers.XBOX)
 
             keys_container.add_child(icon)
 

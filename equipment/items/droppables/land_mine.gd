@@ -35,7 +35,7 @@ func trigger():
         get_tree().create_timer(time_to_explode).timeout.connect(explode)
 
 func explode():
-    GameService.shake_screen.emit(5.0)
+    GameState.shake_screen.emit(5.0)
     Sounds.explosion()
     var damage_radius = %DamageRadius.shape as CircleShape2D
     damage_radius.radius = 1.0

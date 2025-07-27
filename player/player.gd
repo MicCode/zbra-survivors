@@ -34,11 +34,11 @@ func _ready():
     init_health()
     if Settings.WORLD_GENERATION_DEBUG:
         camera_zoom = 0.1
-        GameService.player_state.move_speed = 1000.0
+        GameState.player_state.move_speed = 1000.0
     %Camera.zoom = Vector2(camera_zoom, camera_zoom)
-    GameService.register_player_instance(self)
-    GameService.player_state_changed.connect(_on_player_state_changed)
-    GameService.player_gained_level.connect(_on_player_level_gained)
+    GameState.register_player_instance(self)
+    GameState.player_state_changed.connect(_on_player_state_changed)
+    GameState.player_gained_level.connect(_on_player_level_gained)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
 
 func _process(_delta: float) -> void:
@@ -51,7 +51,7 @@ func _process(_delta: float) -> void:
         AudioServer.playback_speed_scale = actual_time_scale
 
 func _physics_process(delta):
-    if GameService.player_state.is_alive:
+    if GameState.player_state.is_alive:
         move(delta)
         check_for_ennemies(delta)
         check_for_items()
@@ -68,13 +68,13 @@ func move(_delta):
         %Sprite.flip_h = (h_direction != 1)
 
     if !%DashManager.is_dashing():
-        velocity = direction * GameService.player_state.move_speed
+        velocity = direction * GameState.player_state.move_speed
     else:
-        velocity = direction * GameService.player_state.move_speed * GameService.player_state.dash_speed_multiplier
+        velocity = direction * GameState.player_state.move_speed * GameState.player_state.dash_speed_multiplier
 
     move_and_slide()
     Minimap.moved(self, position)
-    GameService.player_moved.emit(position) # FIXME do not publish position each time ? set refresh interval ?
+    GameState.player_moved.emit(position) # FIXME do not publish position each time ? set refresh interval ?
     if !just_hurt:
         if velocity.length() > 0:
             %Sprite.play("walk")
@@ -84,18 +84,18 @@ func move(_delta):
 func process_player_controls():
     if %DashManager.can_dash() and Controls.is_pressed(Controls.PlayerAction.DASH):
         %DashManager.start_dashing()
-    if !block_item_use and GameService.consumable and Controls.is_pressed(Controls.PlayerAction.USE):
+    if !block_item_use and GameState.consumable and Controls.is_pressed(Controls.PlayerAction.USE):
         var used_item = false
-        if GameService.consumable is RadianceFlask:
-            used_item = use_radiance_flask(GameService.consumable)
-        elif GameService.consumable is TimewrapClock:
-            used_item = use_timewrap_clock(GameService.consumable)
-        elif GameService.consumable is Mine:
-            used_item = use_mine(GameService.consumable)
+        if GameState.consumable is RadianceFlask:
+            used_item = use_radiance_flask(GameState.consumable)
+        elif GameState.consumable is TimewrapClock:
+            used_item = use_timewrap_clock(GameState.consumable)
+        elif GameState.consumable is Mine:
+            used_item = use_mine(GameState.consumable)
         else:
-            push_warning("Unknown consumable [%s]" % str(GameService.consumable))
+            push_warning("Unknown consumable [%s]" % str(GameState.consumable))
         if used_item:
-            GameService.change_consumable(null)
+            GameState.change_consumable(null)
         get_tree().create_timer(time_between_item_use).timeout.connect(func():
             block_item_use = false
         )
@@ -105,10 +105,10 @@ func update_dash_gauge():
     var time_left = 0
     if %DashManager.dash_cooldown_timer:
         time_left = %DashManager.dash_cooldown_timer.time_left
-    var gauge_value = floor((1 - (time_left / GameService.player_state.dash_cooldown_s)) * 5)
-    if gauge_value != GameService.player_state.dash_gauge_value:
-        GameService.player_state.dash_gauge_value = gauge_value
-        GameService.emit_player_change()
+    var gauge_value = floor((1 - (time_left / GameState.player_state.dash_cooldown_s)) * 5)
+    if gauge_value != GameState.player_state.dash_gauge_value:
+        GameState.player_state.dash_gauge_value = gauge_value
+        GameState.emit_player_change()
 
 func _on_dash_manager_is_dashing_changed(is_dashing: bool) -> void:
     set_invincible(is_dashing)
@@ -121,18 +121,18 @@ func check_for_ennemies(_delta):
 
 #region Damage
 func take_damage(damage: int = 1):
-    GameService.shake_screen.emit(10)
-    GameService.player_state.health -= damage
-    %Health.current_health = GameService.player_state.health
-    GameService.emit_player_change()
+    GameState.shake_screen.emit(10)
+    GameState.player_state.health -= damage
+    %Health.current_health = GameState.player_state.health
+    GameState.emit_player_change()
     can_be_damaged = false
-    %DamageTimer.start(GameService.player_state.damage_cooldown_s)
+    %DamageTimer.start(GameState.player_state.damage_cooldown_s)
     %Sprite.play("hurt")
     Sounds.player_hit()
     just_hurt = true
     %HurtBox.set_collision_mask_value(2, false) # ennemies
 
-    if GameService.player_state.health <= 0:
+    if GameState.player_state.health <= 0:
         die()
 #endregion
 
@@ -161,7 +161,7 @@ func equip_gun(collectible: GunCollectible):
     equiped_gun = new_gun
     add_child(equiped_gun)
     Sounds.reload()
-    GameService.change_equipped_gun(equiped_gun)
+    GameState.change_equipped_gun(equiped_gun)
     block_pickup()
     collectible.queue_free()
 
@@ -172,10 +172,10 @@ func handle_collectible(consumable: ConsumableItem):
         elif consumable is XpCollector:
             attract_all_xp_on_map(consumable)
     else:
-        if !GameService.consumable or Controls.is_pressed(Controls.PlayerAction.GRAB):
+        if !GameState.consumable or Controls.is_pressed(Controls.PlayerAction.GRAB):
             if is_pickup_blocked:
                 return
-            GameService.change_consumable(consumable)
+            GameState.change_consumable(consumable)
             Sounds.reload()
             consumable.queue_free()
             block_pickup()
@@ -199,9 +199,9 @@ func attract_all_xp_on_map(collector: XpCollector):
             child.move_to_player()
 
 func use_life_flask(flask: LifeFlask):
-    if GameService.player_state.health < GameService.player_state.max_health:
-        GameService.player_state.health = min(GameService.player_state.health + flask.life_amount, GameService.player_state.max_health)
-        GameService.emit_player_change()
+    if GameState.player_state.health < GameState.player_state.max_health:
+        GameState.player_state.health = min(GameState.player_state.health + flask.life_amount, GameState.player_state.max_health)
+        GameState.emit_player_change()
         Sounds.heal()
         %Effects.show()
         %Effects.play("heal")
@@ -241,10 +241,10 @@ func use_timewrap_clock(clock: TimewrapClock) -> bool:
     %TimewrapTimer.start(timewrap_duration_s * timewrap_time_scale)
     Engine.time_scale = timewrap_time_scale
     time_scale_target = timewrap_time_scale
-    GameService.player_state.move_speed /= (timewrap_time_scale * 1.5)
+    GameState.player_state.move_speed /= (timewrap_time_scale * 1.5)
     clock.queue_free()
     Sounds.start_timewarping()
-    GameService.player_timewarping_changed.emit(true)
+    GameState.player_timewarping_changed.emit(true)
     return true
 
 func use_mine(mine: Mine) -> bool:
@@ -252,7 +252,7 @@ func use_mine(mine: Mine) -> bool:
         return false
 
     mine.increment_use()
-    GameService.consumable_use_changed.emit(mine.time_used)
+    GameState.consumable_use_changed.emit(mine.time_used)
     var new_mine = preload("res://equipment/items/droppables/land_mine.tscn").instantiate()
     new_mine.global_position = global_position
     SceneManager.current_scene.call_deferred("add_child", new_mine)
@@ -264,23 +264,23 @@ func _on_timewrap_timer_timeout() -> void:
     Engine.time_scale = 1.0
     is_timewrapping = false
     time_scale_target = 1.0
-    GameService.player_state.move_speed *= (timewrap_time_scale * 1.5)
+    GameState.player_state.move_speed *= (timewrap_time_scale * 1.5)
     Sounds.stop_timewarping()
-    GameService.player_timewarping_changed.emit(false)
+    GameState.player_timewarping_changed.emit(false)
 
 func init_health():
-    %Health.max_health = GameService.player_state.max_health
-    %Health.current_health = GameService.player_state.health
+    %Health.max_health = GameState.player_state.max_health
+    %Health.current_health = GameState.player_state.health
 
 func die():
     health_depleted.emit()
-    GameService.player_state.is_alive = false
-    GameService.emit_player_change()
+    GameState.player_state.is_alive = false
+    GameState.emit_player_change()
     if equiped_gun != null:
         equiped_gun.queue_free()
     %Sprite.play("dead")
     Sounds.player_die()
-    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): GameService.set_game_over(true))
+    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): GameState.set_game_over(true))
 
 
 func block_pickup():

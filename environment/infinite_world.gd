@@ -9,7 +9,7 @@ var loaded_chunks := {}
 var is_init = true
 
 func _init() -> void:
-    GameService.player_moved.connect(_on_player_moved)
+    GameState.player_moved.connect(_on_player_moved)
 
 func _on_player_moved(player_position: Vector2):
     update_chunks(player_position)

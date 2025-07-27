@@ -53,7 +53,7 @@ func take_damage(damage: float):
     if health <= 0:
         die()
 
-    GameService.boss_changed.emit(stats, health)
+    GameState.boss_changed.emit(stats, health)
 
 func die():
     is_dead = true
@@ -68,7 +68,7 @@ func _on_sprite_animation_finished() -> void:
     if !is_ready:
         is_ready = true
         call_deferred("start_chase")
-        GameService.boss_changed.emit(stats, health)
+        GameState.boss_changed.emit(stats, health)
     elif !is_dead && is_shooting:
         is_shooting = false
         %Sprite.play("walk")

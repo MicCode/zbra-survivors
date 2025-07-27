@@ -15,7 +15,7 @@ const TEXTURE_SIZE = 16
 var state: DashGaugeStates = DashGaugeStates.FULL
 
 func _ready() -> void:
-    GameService.player_state_changed.connect(_update_gauge)
+    GameState.player_state_changed.connect(_update_gauge)
 
 func _update_gauge(new_player_state: PlayerState):
     var new_state = get_new_gauge_state(new_player_state)

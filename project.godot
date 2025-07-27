@@ -21,19 +21,19 @@ config/icon="uid://c8wsllrwex0bj"
 
 [autoload]
 
-EnnemiesService="*res://globals/ennemies_service.gd"
+EnnemiesService="*res://globals/gameplay/ennemies_service.gd"
 Enums="*res://globals/enums.gd"
-SceneManager="*res://globals/scene_manager.gd"
-GunService="*res://globals/gun_service.gd"
-GameService="*res://globals/game_service.gd"
+SceneManager="*res://globals/utils/scene_manager.gd"
+GunService="*res://globals/gameplay/gun_service.gd"
+GameState="*res://globals/states/game_state.gd"
 SoundPlayer="*res://globals/sound/sound_player.gd"
 Sounds="*res://globals/sound/sounds.gd"
-VisualEffects="*res://globals/visual_effects.gd"
-Settings="*res://globals/settings.gd"
-Announcer="*res://globals/announcer.gd"
-Minimap="*res://globals/minimap.gd"
+VisualEffects="*res://globals/visual/visual_effects.gd"
+Settings="*res://globals/states/settings.gd"
+Announcer="*res://globals/sound/announcer.gd"
+Minimap="*res://globals/visual/minimap.gd"
 Musics="*res://globals/sound/musics.gd"
-Files="*res://globals/files.gd"
+Files="*res://globals/utils/files.gd"
 Controls="*res://globals/controls/controls.gd"
 
 [debug]

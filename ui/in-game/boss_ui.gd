@@ -2,7 +2,7 @@ extends Panel
 
 func _ready() -> void:
     %BossLife.hide()
-    GameService.boss_changed.connect(_on_boss_changed)
+    GameState.boss_changed.connect(_on_boss_changed)
 
 func _on_boss_changed(boss_stats: EnnemyStats, boss_health: float):
     if boss_stats != null && boss_health > 0:

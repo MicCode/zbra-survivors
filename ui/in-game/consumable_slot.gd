@@ -3,11 +3,11 @@ extends PanelContainer
 var max_uses = 0
 
 func _ready() -> void:
-    GameService.consumable_changed.connect(_update_slot)
-    GameService.consumable_use_changed.connect(func(time_used: int):
+    GameState.consumable_changed.connect(_update_slot)
+    GameState.consumable_use_changed.connect(func(time_used: int):
         %UseLabel.text = str("%d" % (max_uses - time_used))
     )
-    _update_slot(GameService.consumable)
+    _update_slot(GameState.consumable)
 
 func _update_slot(new_consumable: ConsumableItem):
     # print("New consumable : " + str(new_consumable))
