@@ -1,5 +1,5 @@
 from_latest_tag = false
-ignore_merge_commits = false
+ignore_merge_commits = true
 ignore_fixup_commits = true
 disable_changelog = false
 disable_bump_commit = false
@@ -19,9 +19,21 @@ post_package_bump_hooks = []
 [git_hooks]
 
 [commit_types]
+hotfix = { changelog_title = "🪲 Bug fixes" }
+fix = { changelog_title = "🪲 Bug fixes" }
+feat = { changelog_title = "➕ New features" }
+chore = { changelog_title = "", omit_from_changelog = true }
+ci = { changelog_title = "", omit_from_changelog = true }
+perf = { changelog_title = "", omit_from_changelog = true }
+test = { changelog_title = "", omit_from_changelog = true }
+refactor = { changelog_title = "", omit_from_changelog = true }
+refacto = { changelog_title = "", omit_from_changelog = true }
+build = { changelog_title = "", omit_from_changelog = true }
+
 
 [changelog]
 path = "CHANGELOG.md"
+template = "scripts/changelog.template"
 authors = []
 
 [bump_profiles]
