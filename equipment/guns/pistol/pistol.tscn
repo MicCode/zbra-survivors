@@ -1,9 +1,0 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6eulufrnjviy"]
-
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://equipment/guns/_generics/gun.tscn" id="1_ybp5n"]
-[ext_resource type="Resource" uid="uid://b6t0g4ye4ovww" path="res://equipment/guns/pistol/stats/pistol_stats.tres" id="2_tldsd"]
-[ext_resource type="Resource" uid="uid://8vmamp54w57d" path="res://equipment/guns/pistol/stats/pistol_bullet_stats.tres" id="3_273u8"]
-
-[node name="Pistol" instance=ExtResource("1_ybp5n")]
-gun_stats = ExtResource("2_tldsd")
-bullet_stats = ExtResource("3_273u8")

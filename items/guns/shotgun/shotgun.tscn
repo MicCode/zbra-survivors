@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://o5hlpjjgjiux"]
+
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/guns/_generics/gun.tscn" id="1_832bl"]
+[ext_resource type="Resource" uid="uid://dbacoit2k8l8a" path="res://items/guns/shotgun/stats/shotgun_stats.tres" id="2_u3tb7"]
+[ext_resource type="Texture2D" uid="uid://ddhdxh1g08f7e" path="res://assets/sprites/items/shotgun-idle.png" id="3_3nkjs"]
+[ext_resource type="Resource" uid="uid://bm23ckg2wbh8o" path="res://items/guns/shotgun/stats/shotgun_bullet_stats.tres" id="3_tcxat"]
+[ext_resource type="Texture2D" uid="uid://csor85r20wqr7" path="res://assets/sprites/items/shotgun-reloading.png" id="3_vu413"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5bx8"]
+atlas = ExtResource("3_vu413")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq6kc"]
+atlas = ExtResource("3_vu413")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyodn"]
+atlas = ExtResource("3_vu413")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnm4e"]
+atlas = ExtResource("3_vu413")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj53b"]
+atlas = ExtResource("3_3nkjs")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3s4s2"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_q5bx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq6kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyodn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnm4e")
+}],
+"loop": false,
+"name": &"firing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj53b")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="ShotGun" instance=ExtResource("1_832bl")]
+gun_stats = ExtResource("2_u3tb7")
+bullet_stats = ExtResource("3_tcxat")
+
+[node name="Sprite" parent="PivotPoint" index="0"]
+position = Vector2(25, 2)
+sprite_frames = SubResource("SpriteFrames_3s4s2")
+
+[node name="ShootingPoint" parent="PivotPoint/Sprite" index="0"]
+position = Vector2(16, -2.66667)
+
+[node name="ShellEjectPoint" parent="PivotPoint/Sprite" index="1"]
+position = Vector2(-7, -2)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://drdb0e64568up"]
+
+[ext_resource type="PackedScene" uid="uid://dpqk78rbe30jr" path="res://items/consumables/_generics/consumable_item.tscn" id="1_ike54"]
+[ext_resource type="Script" uid="uid://b3k2hg2kmx2fx" path="res://items/consumables/xp_collector/xp_collector.gd" id="2_ojx0f"]
+[ext_resource type="Resource" uid="uid://bh3m386bmmqw2" path="res://items/consumables/xp_collector/xp_collector_stats.tres" id="3_b3hq6"]
+[ext_resource type="Texture2D" uid="uid://dsdbanma8tdp0" path="res://assets/sprites/items/xp-collector.png" id="3_p8vmr"]
+
+[node name="Collectible" instance=ExtResource("1_ike54")]
+script = ExtResource("2_ojx0f")
+stats = ExtResource("3_b3hq6")
+
+[node name="Sprite" parent="." index="1"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_p8vmr")
+
+[node name="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true

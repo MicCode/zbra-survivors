@@ -253,7 +253,7 @@ func use_mine(mine: Mine) -> bool:
 
     mine.increment_use()
     GameState.consumable_use_changed.emit(mine.time_used)
-    var new_mine = preload("res://equipment/items/droppables/land_mine.tscn").instantiate()
+    var new_mine = preload("res://items/droppables/land_mine.tscn").instantiate()
     new_mine.global_position = global_position
     SceneManager.current_scene.call_deferred("add_child", new_mine)
     Sounds.drop()

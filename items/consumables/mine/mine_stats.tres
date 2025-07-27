@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ConsumableItemStats" load_steps=2 format=3 uid="uid://bj0jy3ygw6wy6"]
+
+[ext_resource type="Script" uid="uid://dn65u3ygp6kpg" path="res://items/consumables/_generics/consumable_item_stats.gd" id="1_424p2"]
+
+[resource]
+script = ExtResource("1_424p2")
+show_time = 20.0
+max_uses = 3.0
+immediate_use = false
+metadata/_custom_type_script = "uid://dn65u3ygp6kpg"

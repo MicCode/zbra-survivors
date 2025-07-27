@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://30je3w5iuv1b"]
-
-[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://equipment/guns/_generics/bullet.tscn" id="1_52pqe"]
-[ext_resource type="Resource" uid="uid://8vmamp54w57d" path="res://equipment/guns/pistol/stats/pistol_bullet_stats.tres" id="2_wn7q5"]
-
-[node name="PistolBullet" instance=ExtResource("1_52pqe")]
-bullet_stats = ExtResource("2_wn7q5")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfkoyinfbishd"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/guns/_generics/bullet.tscn" id="1_0meby"]
+[ext_resource type="Texture2D" uid="uid://bgot5v3svfkrv" path="res://assets/sprites/items/rifle-bullet.png" id="2_14nh3"]
+[ext_resource type="Resource" uid="uid://b4bnl3c82ljon" path="res://items/guns/rifle/stats/rifle_bullet_stats.tres" id="2_xb81r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb81r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_14nh3")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[node name="RifleBullet" instance=ExtResource("1_0meby")]
+bullet_stats = ExtResource("2_xb81r")
+
+[node name="BulletSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_xb81r")

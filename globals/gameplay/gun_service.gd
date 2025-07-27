@@ -1,5 +1,5 @@
 extends Node
-const EQUIPMENT_PATH = "res://equipment/"
+const EQUIPMENT_PATH = "res://items/"
 const GUNS_PATH = "guns/"
 
 func create_gun(gun_name: String) -> Gun:

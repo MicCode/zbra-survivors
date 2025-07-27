@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=4 format=3 uid="uid://dbacoit2k8l8a"]
+
+[ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://items/guns/_generics/stats/gun_stats.gd" id="1_0ymxq"]
+[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/sound/sfx_options.gd" id="2_kbcwk"]
+
+[sub_resource type="Resource" id="Resource_vk4mu"]
+script = ExtResource("2_kbcwk")
+pitch = 1.0
+pitch_variation = 0.0
+volume = -5.0
+start_delay_ms = 0.0
+start_delay_variation_ms = 0.0
+max_per_s = 10.0
+metadata/_custom_type_script = "uid://cf4neewdadfmv"
+
+[resource]
+script = ExtResource("1_0ymxq")
+name = "shotgun"
+display_name = "GUN_SHOTGUN"
+shots_per_s = 0.8
+bullets_spread_angle_deg = 90
+bullets_per_shot = 10
+shoot_sound = "shoot_heavy.ogg"
+is_sound_folder = false
+shoot_sfx_options = SubResource("Resource_vk4mu")
+eject_cartridges = true
+has_laser_dot = false
+recoil_distance = 30.0
+metadata/_custom_type_script = "uid://hiuor4oyrxjg"

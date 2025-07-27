@@ -97,15 +97,15 @@ func register_ennemy_death(ennemy: Ennemy) -> void:
 
     # TODO implement a better random loot system
     if randf() <= GameState.player_state.life_drop_chance:
-        drop_item(preload("res://equipment/items/consumables/life_flask/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
+        drop_item(preload("res://items/consumables/life_flask/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
     if randf() <= GameState.player_state.radiance_drop_chance:
-        drop_item(preload("res://equipment/items/consumables/radiance_flask/radiance_flask.tscn").instantiate(), ennemy.global_position)
+        drop_item(preload("res://items/consumables/radiance_flask/radiance_flask.tscn").instantiate(), ennemy.global_position)
     if randf() <= GameState.player_state.timewrap_drop_change:
-        drop_item(preload("res://equipment/items/consumables/timewrap_clock/timewrap_clock.tscn").instantiate(), ennemy.global_position)
+        drop_item(preload("res://items/consumables/timewrap_clock/timewrap_clock.tscn").instantiate(), ennemy.global_position)
     if randf() <= GameState.player_state.xp_collector_drop_chance:
-        drop_item(preload("res://equipment/items/consumables/xp_collector/xp_collector.tscn").instantiate(), ennemy.global_position)
+        drop_item(preload("res://items/consumables/xp_collector/xp_collector.tscn").instantiate(), ennemy.global_position)
     if randf() <= GameState.player_state.land_mine_chance:
-        drop_item(preload("res://equipment/items/consumables/mine/mine_collectible.tscn").instantiate(), ennemy.global_position)
+        drop_item(preload("res://items/consumables/mine/mine_collectible.tscn").instantiate(), ennemy.global_position)
 
 func drop_item(item: Node2D, position: Vector2) -> void:
     item.global_position = position

@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpqk78rbe30jr"]
+
+[ext_resource type="Script" uid="uid://cjw4a7s0dmyeb" path="res://items/consumables/_generics/consumable_item.gd" id="1_pakd1"]
+[ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_l5uqt"]
+[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="3_1l5bh"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="4_sm5vi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qasv"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_r6h18"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -3), Vector2(0, 0), Vector2(0, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.610865, -0.523599, -0.610865]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t43hf"]
+_data = {
+&"float": SubResource("Animation_r6h18")
+}
+
+[sub_resource type="Gradient" id="Gradient_bnjk0"]
+offsets = PackedFloat32Array(0, 0.188312, 1)
+colors = PackedColorArray(0.998639, 0.607871, 0.549292, 1, 0.684947, 0.314703, 0.229896, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67kka"]
+gradient = SubResource("Gradient_bnjk0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sm5vi"]
+radius = 17.0
+
+[node name="Collectible" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_pakd1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5qasv")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -3)
+rotation = -0.610865
+texture = ExtResource("2_l5uqt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t43hf")
+}
+autoplay = "float"
+speed_scale = 2.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(0.5, 10.5)
+scale = Vector2(1.21875, 0.75)
+texture = ExtResource("2_l5uqt")
+
+[node name="LocationMarker" parent="." instance=ExtResource("3_1l5bh")]
+sprite_scale = 3.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.5
+texture = SubResource("GradientTexture2D_67kka")
+
+[node name="ButtonIcon" parent="." instance=ExtResource("4_sm5vi")]
+unique_name_in_owner = true
+visible = false
+offset_left = 6.5
+offset_top = 7.5
+offset_right = 22.5
+offset_bottom = 23.5
+scale = Vector2(0.75, 0.75)
+action = 1
+animate = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sm5vi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

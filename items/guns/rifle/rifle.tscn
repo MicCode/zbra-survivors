@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyr7muf08kwe2"]
+
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/guns/_generics/gun.tscn" id="1_ynb55"]
+[ext_resource type="Resource" uid="uid://dgft85j7q8xv3" path="res://items/guns/rifle/stats/rifle_stats.tres" id="2_dfs27"]
+[ext_resource type="Texture2D" uid="uid://b2kcfg2omy42e" path="res://assets/sprites/items/Rifle-firing.png" id="2_tvf2g"]
+[ext_resource type="Texture2D" uid="uid://cp367k8prjif0" path="res://assets/sprites/items/Rifle.png" id="3_a5ebd"]
+[ext_resource type="Resource" uid="uid://b4bnl3c82ljon" path="res://items/guns/rifle/stats/rifle_bullet_stats.tres" id="3_exgb0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdn8v"]
+atlas = ExtResource("2_tvf2g")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwhle"]
+atlas = ExtResource("2_tvf2g")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0xlcn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdn8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwhle")
+}],
+"loop": true,
+"name": &"firing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a5ebd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Rifle" instance=ExtResource("1_ynb55")]
+gun_stats = ExtResource("2_dfs27")
+bullet_stats = ExtResource("3_exgb0")
+
+[node name="Sprite" parent="PivotPoint" index="0"]
+position = Vector2(26, 0)
+sprite_frames = SubResource("SpriteFrames_0xlcn")
+animation = &"idle"
+frame_progress = 0.136057
+
+[node name="ShootingPoint" parent="PivotPoint/Sprite" index="0"]
+position = Vector2(16, -2.66667)
+
+[node name="ShellEjectPoint" parent="PivotPoint/Sprite" index="1"]
+position = Vector2(-5, -4)
