@@ -6,7 +6,10 @@ const MUSIC_BASE_PATH := "res://assets/musics/"
 const MAX_SFX_PLAYERS := 16
 const MAX_EFFECTS_PLAYERS := 16
 
-var music_player: AudioStreamPlayer
+var music_player_1: AudioStreamPlayer
+var music_player_2: AudioStreamPlayer
+var current_music_player_id = 1
+
 var music_cache: Dictionary = {}
 
 var sfx_players: Array = []
@@ -14,6 +17,8 @@ var sfx_cache: Dictionary = {}
 
 var effects_players: Dictionary = {}
 var effects_cache: Dictionary = {}
+
+var music_fade_tween: Tween
 
 func apply_audio_settings():
     var master_bus = AudioServer.get_bus_index("Master")
@@ -28,10 +33,17 @@ func apply_audio_settings():
 
 func _ready():
     process_mode = Node.PROCESS_MODE_ALWAYS
-    music_player = AudioStreamPlayer.new()
-    add_child(music_player)
-    music_player.name = "MusicPlayer"
-    music_player.set_autoplay(false)
+    music_player_1 = AudioStreamPlayer.new()
+    add_child(music_player_1)
+    music_player_1.name = "MusicPlayer 1"
+    music_player_1.set_autoplay(false)
+
+    music_player_2 = AudioStreamPlayer.new()
+    add_child(music_player_2)
+    music_player_2.name = "MusicPlayer 2"
+    music_player_2.set_autoplay(false)
+
+    music_fade_tween = create_tween()
 
 func _load_sfx_stream(file_name: String) -> AudioStream:
     if sfx_cache.has(file_name):
@@ -142,33 +154,59 @@ func _play_sound(stream: AudioStream, bus: String, options: SfxOptions) -> Audio
 
     return player
 
-func play_music(file_name: String, volume: float = 0.0, loop: bool = true):
-    var stream = _load_music_stream(file_name)
-    if stream == null:
+func play_music(file_name: String, transition_duration: float = 1.0, loop: bool = true):
+    var new_stream = _load_music_stream(file_name)
+    if new_stream == null:
         return
 
-    var current_stream = music_player.stream
-    if current_stream is AudioStream:
-        var file_path: String = current_stream.resource_path
-        if file_path != "":
-            var playing_file_name := file_path.get_file()
-            if playing_file_name == file_name:
-                return
-
-    music_player.stop()
-    music_player.stream = stream
-    music_player.bus = "Music"
-    music_player.volume_db = volume
-    if loop:
-        if !music_player.finished.is_connected(_on_music_finished):
-            music_player.finished.connect(_on_music_finished)
+    var current_music_player: AudioStreamPlayer
+    if current_music_player_id == 1:
+        current_music_player = music_player_1
     else:
-        if music_player.finished.is_connected(_on_music_finished):
-            music_player.finished.disconnect(_on_music_finished)
-    music_player.play()
+        current_music_player = music_player_2
+
+    if current_music_player.stream and current_music_player.stream.resource_path.get_file() == file_name:
+        return
+
+    if music_fade_tween and music_fade_tween.is_running():
+        music_fade_tween.kill()
+
+    create_tween().tween_property(current_music_player, "volume_db", -40.0, transition_duration).finished.connect(func():
+        current_music_player.stop()
+    )
+    _fade_music_in(new_stream, 0.0, transition_duration, loop)
+
+func _fade_music_in(new_stream: AudioStream, target_volume: float, transition_duration: float, loop: bool):
+    var new_music_player: AudioStreamPlayer
+    if current_music_player_id == 1:
+        current_music_player_id = 2
+        new_music_player = music_player_2
+    else:
+        current_music_player_id = 1
+        new_music_player = music_player_1
+
+    new_music_player.stream = new_stream
+    new_music_player.bus = "Music"
+    new_music_player.volume_db = -40.0  # démarrage silencieux
+    new_music_player.play()
+
+    if loop:
+        if !new_music_player.finished.is_connected(_on_music_finished):
+            new_music_player.finished.connect(_on_music_finished)
+    else:
+        if new_music_player.finished.is_connected(_on_music_finished):
+            new_music_player.finished.disconnect(_on_music_finished)
+
+    create_tween().tween_property(new_music_player, "volume_db", target_volume, transition_duration)
 
 func _on_music_finished():
-    music_player.play()
+    if current_music_player_id == 1:
+        music_player_1.play()
+    else:
+        music_player_2.play()
 
 func stop_music():
-    music_player.stop()
+    if current_music_player_id == 1:
+        music_player_1.stop()
+    else:
+        music_player_2.stop()

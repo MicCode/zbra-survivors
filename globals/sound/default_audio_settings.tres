@@ -5,7 +5,6 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_k3x7l")
-enable_music = true
 master_volume_db = 0.0
 music_volume_db = -6.0
 effects_volume_db = 0.0
