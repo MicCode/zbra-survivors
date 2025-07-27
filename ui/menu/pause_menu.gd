@@ -2,8 +2,11 @@ extends CanvasLayer
 
 func _ready() -> void:
     GameState.state_changed.connect(func(new_state: GameState.State):
-        if new_state == GameState.State.PAUSED: show()
-        else: hide()
+        if new_state == GameState.State.PAUSED:
+            show()
+            %QuitButton.grab_focus()
+        else:
+            hide()
     )
 
 func _on_quit_button_pressed() -> void:

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 func _ready() -> void:
     apply_settings()
+    %Language.grab_focus()
 
 func apply_settings():
     var game = Settings.game_settings

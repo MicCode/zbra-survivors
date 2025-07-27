@@ -42,10 +42,13 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ts586")
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../MenuButton")
+focus_neighbor_bottom = NodePath("../MenuButton")
 theme_override_font_sizes/font_size = 40
 text = "BUTTON_RESTART"
 
@@ -54,6 +57,8 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
 theme = ExtResource("2_vibjm")
 theme_override_font_sizes/font_size = 25
 text = "BUTTON_MAIN_MENU"

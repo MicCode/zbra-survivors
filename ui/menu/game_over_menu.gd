@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _ready() -> void:
+    %RestartButton.grab_focus()
+
 func _on_restart_button_pressed() -> void:
     Sounds.click()
     reset_effects()

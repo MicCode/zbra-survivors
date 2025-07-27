@@ -14,6 +14,7 @@ func _ready() -> void:
     match Settings.game_settings.language:
         "fr_FR": %LanguageSwitcher.select(1)
         _: %LanguageSwitcher.select(0) # fallback on english
+    %StartButton.grab_focus()
 
 func _on_start_button_pressed() -> void:
     Sounds.click()
