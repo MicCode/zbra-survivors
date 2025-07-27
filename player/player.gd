@@ -22,6 +22,7 @@ var time_between_item_use = 0.5
 var block_item_use = false
 
 var dash_cooldown: SceneTreeTimer
+var timewarp_ghost_interval: float = 0.05
 
 func _ready():
     randomize()
@@ -75,6 +76,7 @@ func move(_delta):
             %Sprite.play("walk")
         else:
             %Sprite.play("idle")
+
 
 func process_player_controls():
     if %DashManager.can_dash() and Controls.is_pressed(Controls.PlayerAction.DASH):
@@ -249,7 +251,15 @@ func use_timewrap_clock(clock: TimewrapClock) -> bool:
     clock.queue_free()
     Sounds.start_timewarping()
     GameState.player_timewarping_changed.emit(true)
+    create_timewarp_ghost()
     return true
+
+func create_timewarp_ghost():
+    get_tree().create_timer(timewarp_ghost_interval).timeout.connect(func():
+        %DashManager.spawn_dash_ghost(1.0)
+        if %EffectsManager.has_effect(PlayerEffect.Effects.TIMEWARP):
+            create_timewarp_ghost()
+    )
 
 func use_mine(mine: Mine) -> bool:
     if !mine.can_be_used:

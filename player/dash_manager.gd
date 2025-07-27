@@ -6,6 +6,7 @@ signal is_dashing_changed(is_dashing: bool)
 var dash_duration: float = 1.0
 var dash_cooldown: float = 3.0
 var dash_ghost_interval: float = 0.01
+var timewarp_ghost_interval: float = 0.5
 var dash_cooldown_timer: SceneTreeTimer
 
 func _ready() -> void:
@@ -46,14 +47,17 @@ func start_dashing():
     )
     set_is_dashing(true)
     set_can_dash(false)
-    get_tree().create_timer(dash_ghost_interval).timeout.connect(spawn_dash_ghost)
+    get_tree().create_timer(dash_ghost_interval).timeout.connect(func():
+        spawn_dash_ghost()
+        if GameState.player_state.is_dashing:
+            get_tree().create_timer(dash_ghost_interval).timeout.connect(spawn_dash_ghost)
+    )
 
-func spawn_dash_ghost() -> void:
-    if GameState.player_state.is_dashing:
-        var ghost = preload("res://player/dash_ghost.tscn").instantiate()
-        ghost.global_position = global_position
-        ghost.global_rotation = global_rotation
-        ghost.global_scale = global_scale * 1.5 # because sprite is also internally scaled by 1.5
-        ghost.z_index = -1
-        SceneManager.current_scene.add_child(ghost)
-        get_tree().create_timer(dash_ghost_interval).timeout.connect(spawn_dash_ghost)
+func spawn_dash_ghost(speed_scale: float = 5.0) -> void:
+    var ghost: DashGhost = preload("res://player/dash_ghost.tscn").instantiate()
+    ghost.global_position = global_position
+    ghost.global_rotation = global_rotation
+    ghost.global_scale = global_scale * 1.5 # because sprite is also internally scaled by 1.5
+    ghost.z_index = -1
+    ghost.speed_scale = speed_scale
+    SceneManager.current_scene.add_child(ghost)

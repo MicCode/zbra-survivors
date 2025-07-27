@@ -2,7 +2,7 @@ extends Node2D
 
 var is_boss_spawned = false
 const TIME_BEFORE_BOSS_S: float = 180.0
-const ELITE_ENNEMY_SPAWN_CHANCE: float = 0.1 # TODO make this dynamic
+const ELITE_ENNEMY_SPAWN_CHANCE: float = 0.05 # TODO make this dynamic
 
 func _enter_tree() -> void:
     Minimap.clear()
