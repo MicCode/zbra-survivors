@@ -11,21 +11,21 @@ signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
 signal game_paused_changed(is_game_paused: bool)
 signal shake_screen(strength: float)
 
-var player_state: PlayerState
+
 var player_instance: Player
+var player_state: PlayerState
+var equipped_gun: Gun
+var consumable: ConsumableItem
 
 var score: int = 0
 var spawn_time_s: float = 2.0 # TODO this has to be reworked to be set accordingly to the game progression
 var is_game_over = false
 var is_game_paused = false
 
-var equipped_gun: Gun
-var consumable: ConsumableItem
-
 
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
-    player_state = PlayerState.new()
+    player_state = preload("res://player/state/default_player_state.tres").duplicate()
     score = 0
     spawn_time_s = 2.0
     is_game_over = false
@@ -38,7 +38,7 @@ func reset() -> void:
 
 func _init() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
-    player_state = PlayerState.new()
+    player_state = preload("res://player/state/default_player_state.tres").duplicate()
 
 func _input(event):
     if event.is_action_pressed("pause_game") && !is_game_over:

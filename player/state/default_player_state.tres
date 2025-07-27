@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="PlayerState" load_steps=2 format=3 uid="uid://bem77fxl0hf3g"]
+
+[ext_resource type="Script" uid="uid://cmm446mu4xuuv" path="res://player/state/player_state.gd" id="1_b4m1f"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_b4m1f")
+is_alive = true
+max_health = 5
+health = 5
+xp = 0.0
+xp_collect_radius = 50.0
+level = 1
+next_level_xp = 10.0
+move_speed = 200.0
+move_speed_factor = 1.0
+damage_cooldown_s = 1.0
+dash_duration_s = 0.25
+dash_cooldown_s = 3.0
+dash_speed_multiplier = 3.0
+is_dashing = false
+can_dash = true
+dash_gauge_value = 5
+life_drop_chance = 0.1
+radiance_drop_chance = 0.1
+timewrap_drop_change = 0.1
+xp_collector_drop_chance = 0.1
+land_mine_chance = 0.1
+metadata/_custom_type_script = "uid://cmm446mu4xuuv"

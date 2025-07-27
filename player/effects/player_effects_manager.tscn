@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5ywp5ksmmobp"]
+
+[ext_resource type="Script" uid="uid://7vgteiuqkr53" path="res://player/effects/player_effects_manager.gd" id="1_cpqr4"]
+
+[node name="PlayerEffectsManager" type="Node2D"]
+script = ExtResource("1_cpqr4")

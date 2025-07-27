@@ -14,12 +14,8 @@ var equiped_gun: Gun
 var can_be_damaged = true
 var just_hurt = false
 
-var is_radiating = false
-var radiance_duration_s: float = 5.0
+var effects_manager: PlayerEffectsManager
 
-var is_timewrapping = false
-var timewrap_duration_s: float = 5.0
-var timewrap_time_scale: float = 0.5
 var actual_time_scale: float = 1.0
 var time_scale_target: float = 1.0
 var time_scale_change_interval: float = 0.01
@@ -40,6 +36,7 @@ func _ready():
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_gained_level.connect(_on_player_level_gained)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
+    effects_manager = %EffectsManager
 
 func _process(_delta: float) -> void:
     process_player_controls()
@@ -57,7 +54,7 @@ func _physics_process(delta):
         check_for_items()
         update_dash_gauge()
         check_for_xp()
-        if is_radiating:
+        if effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):
             burn_things_in_radius()
 
 func move(_delta):
@@ -68,9 +65,9 @@ func move(_delta):
         %Sprite.flip_h = (h_direction != 1)
 
     if !%DashManager.is_dashing():
-        velocity = direction * GameState.player_state.move_speed
+        velocity = direction * GameState.player_state.move_speed * GameState.player_state.move_speed_factor
     else:
-        velocity = direction * GameState.player_state.move_speed * GameState.player_state.dash_speed_multiplier
+        velocity = direction * GameState.player_state.move_speed * GameState.player_state.move_speed_factor * GameState.player_state.dash_speed_multiplier
 
     move_and_slide()
     Minimap.moved(self, position)
@@ -126,7 +123,9 @@ func take_damage(damage: int = 1):
     %Health.current_health = GameState.player_state.health
     GameState.emit_player_change()
     can_be_damaged = false
-    %DamageTimer.start(GameState.player_state.damage_cooldown_s)
+    get_tree().create_timer(GameState.player_state.damage_cooldown_s).timeout.connect(func():
+        can_be_damaged = true
+    )
     %Sprite.play("hurt")
     Sounds.player_hit()
     just_hurt = true
@@ -220,12 +219,14 @@ func burn_things_in_radius():
 
 ## Returns true if the item has been used
 func use_radiance_flask(flask: RadianceFlask) -> bool:
-    if is_radiating:
+    if effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):
         return false
-    is_radiating = true
+    effects_manager.add_effect(PlayerEffect.Effects.FIRE_RADIATION, flask.radiance_duration).finished.connect(func():
+        %RadianceEffectAnimation.play("fadeout")
+        %RadianceCollision.disabled = true
+    )
     %RadianceEffectAnimation.play("fadein")
     %RadianceEffect.show()
-    %RadianceTimer.start(radiance_duration_s)
     %RadianceCollision.disabled = false
     %Effects.show()
     %Effects.play("radiance")
@@ -235,13 +236,18 @@ func use_radiance_flask(flask: RadianceFlask) -> bool:
 
 ## Returns true if the item has been used
 func use_timewrap_clock(clock: TimewrapClock) -> bool:
-    if is_timewrapping:
+    if effects_manager.has_effect(PlayerEffect.Effects.TIMEWARP):
         return false
-    is_timewrapping = true
-    %TimewrapTimer.start(timewrap_duration_s * timewrap_time_scale)
-    Engine.time_scale = timewrap_time_scale
-    time_scale_target = timewrap_time_scale
-    GameState.player_state.move_speed /= (timewrap_time_scale * 1.5)
+    effects_manager.add_effect(PlayerEffect.Effects.TIMEWARP, clock.timewarp_duration * clock.timewarp_factor).finished.connect(func():
+        Engine.time_scale = 1.0
+        time_scale_target = 1.0
+        Sounds.stop_timewarping()
+        GameState.player_state.move_speed_factor = 1.0
+        GameState.player_timewarping_changed.emit(false)
+    )
+    Engine.time_scale = clock.timewarp_factor
+    time_scale_target = clock.timewarp_factor
+    GameState.player_state.move_speed_factor = 1 / clock.timewarp_factor
     clock.queue_free()
     Sounds.start_timewarping()
     GameState.player_timewarping_changed.emit(true)
@@ -259,14 +265,6 @@ func use_mine(mine: Mine) -> bool:
     Sounds.drop()
 
     return mine.time_used >= mine.stats.max_uses
-
-func _on_timewrap_timer_timeout() -> void:
-    Engine.time_scale = 1.0
-    is_timewrapping = false
-    time_scale_target = 1.0
-    GameState.player_state.move_speed *= (timewrap_time_scale * 1.5)
-    Sounds.stop_timewarping()
-    GameState.player_timewarping_changed.emit(false)
 
 func init_health():
     %Health.max_health = GameState.player_state.max_health
@@ -288,9 +286,6 @@ func block_pickup():
     get_tree().create_timer(PICKUP_COOLDOWN_S).timeout.connect(func():
         is_pickup_blocked = false
     )
-
-func _on_damage_timer_timeout() -> void:
-    can_be_damaged = true
 
 func set_invincible(invincible: bool):
     set_collision_mask_value(2, !invincible) # ennemies layer
@@ -317,7 +312,7 @@ func _on_player_level_gained(_new_level: int):
     Sounds.level_up()
 
 func _on_effects_animation_finished() -> void:
-    if !is_radiating:
+    if !effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):
         %Effects.hide()
         Sounds.stop_burning()
     else:
@@ -326,16 +321,8 @@ func _on_effects_animation_finished() -> void:
 func _on_lvl_up_effect_animation_animation_finished(_anim_name: StringName) -> void:
     %LvlUpEffectLight.hide()
 
-
 func _on_radiance_effect_animation_animation_finished(anim_name: StringName) -> void:
-    if anim_name == "fadein" && is_radiating:
+    if anim_name == "fadein" && effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):
         %RadianceEffectAnimation.play("radiate")
     elif anim_name == "fadeout":
         %RadianceEffect.hide()
-
-
-func _on_radiance_timer_timeout() -> void:
-    if is_radiating:
-        is_radiating = false
-        %RadianceEffectAnimation.play("fadeout")
-        %RadianceCollision.disabled = true
