@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbmpngfanrajt"]
+
+[ext_resource type="Script" uid="uid://bfwbx8nlxlq4w" path="res://player/dash_manager.gd" id="1_3txfq"]
+
+[node name="DashManager" type="Node2D"]
+script = ExtResource("1_3txfq")

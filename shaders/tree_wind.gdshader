@@ -14,40 +14,40 @@ void vertex(){
 }
 
 vec2 get_sample_pos(vec2 pos, float scale, float offset) {
-	pos *= scale;
-	pos += offset;
-	return pos;
+    pos *= scale;
+    pos += offset;
+    return pos;
 }
 
 vec2 rotate_vec(vec2 vec, vec2 pivot, float rotation) {
-	float cosa = cos(rotation);
-	float sina = sin(rotation);
-	vec -= pivot;
-	return vec2(
-		cosa * vec.x - sina * vec.y,
-		cosa * vec.y + sina * vec.x
-	) + pivot;
+    float cosa = cos(rotation);
+    float sina = sin(rotation);
+    vec -= pivot;
+    return vec2(
+        cosa * vec.x - sina * vec.y,
+        cosa * vec.y + sina * vec.x
+    ) + pivot;
 }
 
 void fragment() {
-	// get noise from texture
-	vec2 noise_sample_pos = get_sample_pos(world_position, noise_scale, TIME * time_scale);
-	float noise_amount = texture(noise_texture, noise_sample_pos).r - 0.5f;
+    // get noise from texture
+    vec2 noise_sample_pos = get_sample_pos(world_position, noise_scale, TIME * time_scale);
+    float noise_amount = texture(noise_texture, noise_sample_pos).r - 0.5f;
 
-	// get rotation position around a pivot
-	float rotation = amplitude * noise_amount;
-	vec2 rotated_uvs = rotate_vec(UV, rotation_pivot, rotation);
+    // get rotation position around a pivot
+    float rotation = amplitude * noise_amount;
+    vec2 rotated_uvs = rotate_vec(UV, rotation_pivot, rotation);
 
-	// blend original uvs and rotated uvs based on distance to pivot
-	float dist = distance(UV, rotation_pivot) * rotation_strength;
-	vec2 result_uvs = mix(UV, rotated_uvs, dist);
+    // blend original uvs and rotated uvs based on distance to pivot
+    float dist = distance(UV, rotation_pivot) * rotation_strength;
+    vec2 result_uvs = mix(UV, rotated_uvs, dist);
 
-	// output color
-	COLOR = texture(TEXTURE, result_uvs);
+    // output color
+    COLOR = texture(TEXTURE, result_uvs);
 
-	// optional, preview noise texture for debugging
-	if (render_noise) {
-		vec4 noise_color = texture(noise_texture, noise_sample_pos);
-		COLOR = noise_color;
-	}
+    // optional, preview noise texture for debugging
+    if (render_noise) {
+        vec4 noise_color = texture(noise_texture, noise_sample_pos);
+        COLOR = noise_color;
+    }
 }

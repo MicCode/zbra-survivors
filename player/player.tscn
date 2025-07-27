@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=55 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_2ieo8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dymt52ugwiobd" path="res://assets/sprites/player/player-effects-heal.png" id="7_qp5db"]
 [ext_resource type="Texture2D" uid="uid://twi8lfwt883a" path="res://assets/sprites/player/player-effects-radiance.png" id="9_sing3"]
 [ext_resource type="PackedScene" uid="uid://c333xvlfxb3uo" path="res://player/player_camera.tscn" id="11_ebec5"]
+[ext_resource type="PackedScene" uid="uid://cbmpngfanrajt" path="res://player/dash_manager.tscn" id="13_yllr7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
 atlas = ExtResource("3_2bqqa")
@@ -511,24 +512,9 @@ debug_color = Color(0.729, 0.652, 0.101, 0.422)
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="PickUpTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
-
-[node name="DashCooldownTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="DashTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-
 [node name="DamageTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
-
-[node name="DashGhostTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
 
 [node name="RadianceTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
@@ -553,13 +539,13 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="DashManager" parent="." instance=ExtResource("13_yllr7")]
+unique_name_in_owner = true
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Effects" to="." method="_on_effects_animation_finished"]
-[connection signal="timeout" from="Timers/PickUpTimer" to="." method="_on_pick_up_timer_timeout"]
-[connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
-[connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="Timers/DashGhostTimer" to="." method="_on_dash_ghost_timer_timeout"]
 [connection signal="timeout" from="Timers/RadianceTimer" to="." method="_on_radiance_timer_timeout"]
 [connection signal="timeout" from="Timers/TimewrapTimer" to="." method="_on_timewrap_timer_timeout"]
 [connection signal="animation_finished" from="RadianceEffect/RadianceEffectAnimation" to="." method="_on_radiance_effect_animation_animation_finished"]
+[connection signal="is_dashing_changed" from="DashManager" to="." method="_on_dash_manager_is_dashing_changed"]
