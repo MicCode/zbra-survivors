@@ -187,9 +187,7 @@ func is_pressed(action: PlayerAction) -> bool:
     return pressed
 
 func is_joypad_connected() -> bool:
-    return false # FIXME it seems once a joypad has been connected to the PC, godot still counts it as connected even if not
     # TODO we should rather check from where was the last input sent and switch between joypad/keyboard+mouse automatically
     # TODO add a game setting for that ?
-
-    #var joypads = Input.get_connected_joypads()
-    #return joypads.size() > 0
+    var joypads = Input.get_connected_joypads()
+    return joypads.size() > 0
