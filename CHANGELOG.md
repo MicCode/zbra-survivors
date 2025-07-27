@@ -1,5 +1,16 @@
 
 - - -
+## 0.11.0 - 2025-07-27
+
+#### ➕ New features
+- **(visual)** added gun recoil
+- **(visual)** added camera shake effects on explosions and damage taken
+#### 🪲 Bug fixes
+- **(gameplay)** reset equipment on new game
+- **(ui)** fixed bad consumable item number in UI when picking up a new one
+
+- - -
+
 
 ## 0.10.0 - 2025-07-27
 
