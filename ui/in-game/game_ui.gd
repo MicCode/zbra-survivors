@@ -13,8 +13,8 @@ func _ready() -> void:
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_timewarping_changed.connect(_on_player_timewarping_changed)
     GameState.player_gained_level.connect(play_lvl_up_effect)
-    GameState.game_paused_changed.connect(func(is_game_paused: bool):
-        if is_game_paused: slide_out()
+    GameState.state_changed.connect(func(new_state: GameState.State):
+        if new_state == GameState.State.PAUSED: slide_out()
         else: slide_in()
     )
 

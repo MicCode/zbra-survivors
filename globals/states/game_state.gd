@@ -8,19 +8,24 @@ signal consumable_use_changed(use: int)
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
-signal game_paused_changed(is_game_paused: bool)
+signal state_changed(new_state: State)
 signal shake_screen(strength: float)
 
+enum State {
+    NOT_STARTED,
+    RUNNING,
+    PAUSED,
+    GAME_OVER
+}
 
 var player_instance: Player
 var player_state: PlayerState
 var equipped_gun: Gun
 var consumable: ConsumableItem
 
+var state: State = State.NOT_STARTED
 var score: int = 0
 var spawn_time_s: float = 2.0 # TODO this has to be reworked to be set accordingly to the game progression
-var is_game_over = false
-var is_game_paused = false
 
 
 ## Resets all game state info, like if the game was freshly started
@@ -28,36 +33,40 @@ func reset() -> void:
     player_state = preload("res://player/state/default_player_state.tres").duplicate()
     score = 0
     spawn_time_s = 2.0
-    is_game_over = false
-    is_game_paused = false
     change_equipped_gun(null)
     change_consumable(null)
     emit_player_change()
     emit_score_change()
     boss_changed.emit(null, 0.0)
+    change_state(State.RUNNING)
 
 func _init() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     player_state = preload("res://player/state/default_player_state.tres").duplicate()
+    change_state(State.RUNNING)
 
 func _input(event):
-    if event.is_action_pressed("pause_game") && !is_game_over:
+    if event.is_action_pressed("pause_game") && state != State.GAME_OVER:
         Sounds.click()
-        set_game_paused(!is_game_paused)
+        if state == State.PAUSED:
+            change_state(State.RUNNING)
+        else:
+            change_state(State.PAUSED)
+
+func change_state(new_state: State):
+    state = new_state
+    state_changed.emit(new_state)
+    if State.GAME_OVER == state:
+        show_game_over()
+    if is_inside_tree():
+        if [State.PAUSED, State.GAME_OVER].has(state):
+            get_tree().paused = true
+        else:
+            get_tree().paused = false
 
 func increment_score(i: int) -> void:
     score += i
     emit_score_change()
-
-func set_game_paused(_is_game_paused: bool):
-    is_game_paused = _is_game_paused
-    get_tree().paused = is_game_paused
-    game_paused_changed.emit(is_game_paused)
-
-func set_game_over(_is_game_over: bool):
-    is_game_over = _is_game_over
-    if is_game_over:
-        show_game_over()
 
 func gain_xp(xp: float) -> void:
     player_state.xp += xp
@@ -117,4 +126,3 @@ func show_game_over() -> void:
     if current_scene:
         var game_over_menu = preload("res://ui/menu/game_over_menu.tscn").instantiate()
         current_scene.add_child(game_over_menu)
-        current_scene.get_tree().paused = true

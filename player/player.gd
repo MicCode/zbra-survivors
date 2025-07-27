@@ -278,7 +278,9 @@ func die():
         equiped_gun.queue_free()
     %Sprite.play("dead")
     Sounds.player_die()
-    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): GameState.set_game_over(true))
+    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func():
+        GameState.change_state(GameState.State.GAME_OVER)
+    )
 
 
 func block_pickup():
