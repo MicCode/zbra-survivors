@@ -20,6 +20,12 @@ func _enter_tree() -> void:
         push_error("ennemy has no stats defined") # TODO fallback on default ?
 
 func _ready():
+    if stats.is_elite:
+        stats.max_health = stats.max_health * 1.5
+        stats.xp_value = stats.xp_value * 1.5
+        stats.speed = stats.speed * 1.25
+        scale = scale * 1.5
+
     health = stats.max_health
     player = GameState.player_instance
     %Sprite.connect("animation_finished", _on_animation_finished)
