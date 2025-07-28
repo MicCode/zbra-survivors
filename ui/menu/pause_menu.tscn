@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3rym5f07tq1c"]
+[gd_scene load_steps=5 format=3 uid="uid://b3rym5f07tq1c"]
 
 [ext_resource type="Script" uid="uid://sh000knuasji" path="res://ui/menu/pause_menu.gd" id="1_4ffn6"]
 [ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="2_bygbl"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5you"]
+[ext_resource type="PackedScene" uid="uid://dn2dtj2wmt7qb" path="res://ui/menu/statistics/player_statistics.tscn" id="2_wxqc1"]
+[ext_resource type="PackedScene" uid="uid://bdqu3ily4t8ix" path="res://ui/menu/statistics/equipped_gun_statistics.tscn" id="3_kk7rk"]
 
 [node name="Pause-menu" type="CanvasLayer"]
 process_mode = 3
@@ -19,36 +19,42 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.356863, 0.356863, 0.356863, 0.670588)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-z_index = 4096
-z_as_relative = false
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 150
-text = "Pause"
-uppercase = true
+theme_override_constants/separation = 20
 
-[node name="Spacer" type="Panel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_m5you")
+size_flags_vertical = 3
+theme_override_constants/separation = 20
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="PlayerStatistics" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_wxqc1")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EquippedGunStatistics" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_kk7rk")]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 z_index = 4096
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_bygbl")
 theme_override_font_sizes/font_size = 50
 text = "BUTTON_GIVE_UP"
 
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -16,25 +16,47 @@ GUN_RIFLE,Rifle,Fusil Automatique
 GUN_SHOTGUN,Shotgun,Fusil à Pompe
 GUN_SNIPER,Sniper Rifle,Fusil de Sniper
 LABEL_AUDIO_SETTINGS,Audio,Audio
+LABEL_BULLET_SPEED,Bullets speed,Vitesse des projectiles
+LABEL_BULLETS_PER_S,Fire rate,Cadence de tir
 LABEL_DAMAGE,Damage,Dégâts
+LABEL_DAMAGE_PER_S,Damage per s.,Dégâts par s.
+LABEL_DASH_COOLDOWN,Dash cooldown,Rechargement du dash
+LABEL_DASH_DURATION,Dash duration,Durée du dash
 LABEL_DISPERSION,Dispersion,Dispersion
 LABEL_DPS,DPS,DPS
 LABEL_GAME_SETTINGS,Gameplay,Jeu
+LABEL_HEALTH,Current health,Vie actuelle
 LABEL_LANGUAGE,Language,Langue
 LABEL_LEVEL,Level,Niveau
+LABEL_MAX_HEALTH,Maximum health,Vie maximum
+LABEL_MOVE_SPEED,Move speed,Vitesse de déplacement
+LABEL_NEXT_LVL_XP,Next level,Prochain niveau
+LABEL_NO_GUN_EQUIPPED,No gun equipped,Aucune arme équipée
+LABEL_PIERCE_COUNT,Pierce count,Perçage
 LABEL_PROJECTILES,Projectiles,Projectiles
+LABEL_RANGE,Range,Portée
 LABEL_SCORE,Score,Score
+LABEL_SHOT_PER_S,Shots per s.,Tirs par s.
 LABEL_SHOT_S,Shot/s,Tir/s
+LABEL_SPREAD_ANGLE,Dispersion,Dispersion
+LABEL_UNIT_BULLETS_PER_S,b/s,p/s
+LABEL_UNIT_DAMAGE_PER_S,d/s,d/s
+LABEL_UNIT_DEG,deg,deg
+LABEL_UNIT_S,s,s
+LABEL_UNIT_SHOT_PER_S,s/s,t/s
+LABEL_XP,Current XP,Expérience actuelle
 LANGUAGE_EN,English,Anglais
 LANGUAGE_FR,French,Français
+SETTING_AUDIO_ANNOUNCEMENTS,Announcements volume,Volume des annonces
 SETTING_AUDIO_FX,SFX volume,Volume des effets
 SETTING_AUDIO_MASTER,Master volume,Volume principal
 SETTING_AUDIO_MUSIC,Music volume,Volume de la musique
 SETTING_CAMERA_ZOOM,Camera zoom,Zoom de la caméra
+SETTING_GAMEPAD_VIBRATION,Gamepad vibrations,Vibrations de la manette
 SETTINGS_MUSIC,Music,Musique
 SETTINGS_TITLE,Settings,Paramètres
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
+SUBTITLE_EQUIPPED_GUN,Equipped gun,Arme équipée
 SUBTITLE_MAIN_MENU,Survive the ZBRA!,Survivez au ZBRA !
+SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
-SETTING_GAMEPAD_VIBRATION,Gamepad vibrations,Vibrations de la manette
-SETTING_AUDIO_ANNOUNCEMENTS,Announcements volume,Volume des annonces

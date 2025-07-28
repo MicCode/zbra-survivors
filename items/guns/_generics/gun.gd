@@ -140,3 +140,6 @@ func _on_cooldown_timer_timeout():
         if !Controls.is_pressed(Controls.PlayerAction.SHOOT):
             %Sprite.play("idle")
         cooling_down = false
+
+func get_dps() -> float:
+    return bullet_stats.damage * gun_stats.bullets_per_shot * gun_stats.shots_per_s

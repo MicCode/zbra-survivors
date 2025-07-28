@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn2dtj2wmt7qb"]
+
+[ext_resource type="LabelSettings" uid="uid://dv0jd0dniaerb" path="res://ui/theme/stats_subtitle.tres" id="1_5mvh0"]
+[ext_resource type="Script" uid="uid://co8r6wvrtia8c" path="res://ui/menu/statistics/player_statistics.gd" id="1_6c3wn"]
+[ext_resource type="StyleBox" uid="uid://dc686veoq5688" path="res://ui/theme/stats_panel.tres" id="1_51bnp"]
+[ext_resource type="PackedScene" uid="uid://ceg4excdpxjh3" path="res://ui/menu/statistics/statistic_line.tscn" id="1_y3elb"]
+
+[node name="PlayerStatistics" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_51bnp")
+script = ExtResource("1_6c3wn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SUBTITLE_PLAYER_STATISTICS"
+label_settings = ExtResource("1_5mvh0")
+
+[node name="Health" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_HEALTH"
+
+[node name="MaxHealth" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_MAX_HEALTH"
+
+[node name="Level" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_LEVEL"
+
+[node name="Xp" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_XP"
+
+[node name="NextLevelXp" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_NEXT_LVL_XP"
+
+[node name="MoveSpeed" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_MOVE_SPEED"
+
+[node name="DashDuration" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_DASH_DURATION"
+is_int = false
+unit = "LABEL_UNIT_S"
+
+[node name="DashCooldown" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_DASH_COOLDOWN"
+is_int = false
+unit = "LABEL_UNIT_S"

@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdqu3ily4t8ix"]
+
+[ext_resource type="StyleBox" uid="uid://dc686veoq5688" path="res://ui/theme/stats_panel.tres" id="1_2g0dk"]
+[ext_resource type="Script" uid="uid://t2atq45ni1j0" path="res://ui/menu/statistics/equipped_gun_statistics.gd" id="1_gfg3g"]
+[ext_resource type="LabelSettings" uid="uid://dv0jd0dniaerb" path="res://ui/theme/stats_subtitle.tres" id="2_kh4pp"]
+[ext_resource type="PackedScene" uid="uid://ceg4excdpxjh3" path="res://ui/menu/statistics/statistic_line.tscn" id="3_bbpoy"]
+[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/equipped_gun_slot.tscn" id="4_tl86u"]
+
+[node name="EquippedGunStatistics" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_2g0dk")
+script = ExtResource("1_gfg3g")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Stats" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Stats"]
+layout_mode = 2
+text = "SUBTITLE_EQUIPPED_GUN"
+label_settings = ExtResource("2_kh4pp")
+
+[node name="EquippedGun" parent="MarginContainer/Stats" instance=ExtResource("4_tl86u")]
+layout_mode = 2
+show_control = false
+
+[node name="GunName" type="Label" parent="MarginContainer/Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "GUN_NAME"
+horizontal_alignment = 1
+
+[node name="DamagePerS" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_DAMAGE_PER_S"
+is_int = false
+unit = "LABEL_UNIT_DAMAGE_PER_S"
+
+[node name="Damage" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_DAMAGE"
+is_int = false
+
+[node name="ShotPerS" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_SHOT_PER_S"
+is_int = false
+unit = "LABEL_UNIT_SHOT_PER_S"
+
+[node name="BulletsPerShot" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_BULLETS_PER_S"
+is_int = false
+unit = "LABEL_UNIT_BULLETS_PER_S"
+
+[node name="SpreadAngle" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_SPREAD_ANGLE"
+unit = "LABEL_UNIT_DEG"
+
+[node name="BulletSpeed" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_BULLET_SPEED"
+
+[node name="PierceCount" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_PIERCE_COUNT"
+
+[node name="Range" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_RANGE"
+
+[node name="NoGun" type="CenterContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/NoGun"]
+layout_mode = 2
+text = "LABEL_NO_GUN_EQUIPPED"

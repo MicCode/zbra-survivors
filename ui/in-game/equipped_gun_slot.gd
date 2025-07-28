@@ -1,5 +1,7 @@
 extends PanelContainer
 
+@export var show_control: bool = true
+
 func _ready() -> void:
     GameState.equipped_gun_changed.connect(_update_slot)
     if GameState.equipped_gun:
@@ -27,4 +29,5 @@ func _update_slot(new_gun: Gun):
         return
 
     %GunSprite.texture = idle_texture
-    %ShootButton.show()
+    if show_control:
+        %ShootButton.show()
