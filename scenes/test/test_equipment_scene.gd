@@ -1,1 +1,4 @@
 extends Node2D
+
+func _init() -> void:
+    Settings.load_from_file()

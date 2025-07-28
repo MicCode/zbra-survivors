@@ -9,6 +9,7 @@ nice_name = "ENNEMY_ZBRA"
 max_health = 1000
 xp_value = 50.0
 can_die = true
+is_elite = false
 speed = 150.0
 chase_player = true
 metadata/_custom_type_script = "uid://bupbqcfqlteib"

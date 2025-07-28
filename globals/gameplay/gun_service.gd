@@ -2,6 +2,13 @@ extends Node
 const EQUIPMENT_PATH = "res://items/"
 const GUNS_PATH = "guns/"
 
+enum HapticFeedback {
+    ONE_SHOT,
+    ONE_SHOT_HEAVY,
+    AUTOMATIC,
+    CONTINUOUS,
+}
+
 func create_gun(gun_name: String) -> Gun:
     var scene_path = _get_gun_path(gun_name) + ".tscn"
     var scene = load(scene_path)

@@ -115,6 +115,7 @@ func play_lvl_up_effect(_new_level: int):
     tween.set_ease(Tween.EASE_OUT)
     %LvlUpEffect.show()
     %LvlUpEffect.modulate = Color.TRANSPARENT
+    Controls.vibrate(0.5, 0.5, 1.0)
     overlay_material.set_shader_parameter("size", -10)
     tween.tween_property(overlay_material, "shader_parameter/size", 0, 0.25).connect("finished", func(): %LvlUpEffect.hide())
     get_tree().create_tween().tween_property(%LvlUpEffect, "modulate", Color.WHITE, 0.05)

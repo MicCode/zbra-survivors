@@ -79,14 +79,17 @@ xp_value = 10.0
 [node name="RadianceFlask" parent="." instance=ExtResource("12_vs4yp")]
 y_sort_enabled = true
 position = Vector2(199, 656)
+radiance_duration = 5.0
 
 [node name="RadianceFlask2" parent="." instance=ExtResource("12_vs4yp")]
 y_sort_enabled = true
 position = Vector2(43, 638)
+radiance_duration = 5.0
 
 [node name="RadianceFlask3" parent="." instance=ExtResource("12_vs4yp")]
 y_sort_enabled = true
 position = Vector2(-31, 537)
+radiance_duration = 5.0
 
 [node name="Collectible" parent="." instance=ExtResource("13_6k7wn")]
 y_sort_enabled = true

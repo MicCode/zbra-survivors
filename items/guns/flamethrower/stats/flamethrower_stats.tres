@@ -26,4 +26,5 @@ shoot_sfx_options = SubResource("Resource_31cey")
 eject_cartridges = false
 has_laser_dot = false
 recoil_distance = 0.0
+haptic_feedback = 3
 metadata/_custom_type_script = "uid://hiuor4oyrxjg"

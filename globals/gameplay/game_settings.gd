@@ -3,11 +3,13 @@ class_name GameSettings
 
 @export var language: String
 @export var camera_zoom: float
+@export var enable_vibrations: bool
 
 func to_dict() -> Dictionary:
     var dict: Dictionary = {
         "language": TranslationServer.get_locale(),
-        "camera_zoom": camera_zoom
+        "camera_zoom": camera_zoom,
+        "enable_vibrations": enable_vibrations
     }
     return dict
 
@@ -16,5 +18,6 @@ static func from_dict(dict: Dictionary) -> GameSettings:
     if dict.has("language"):
         settings.language = dict.get("language", "en")
         settings.camera_zoom = dict.get("camera_zoom", 1.3)
+        settings.enable_vibrations = dict.get("enable_vibrations", true)
         TranslationServer.set_locale(settings.language)
     return settings

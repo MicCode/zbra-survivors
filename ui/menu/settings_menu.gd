@@ -10,6 +10,7 @@ func apply_settings():
         "fr_FR": %Language.select(1)
         _: %Language.select(0) # fallback on english
     %CameraZoom.value = game.camera_zoom
+    %EnableVibrations.button_pressed = game.enable_vibrations
 
     var audio = Settings.audio_settings
     %MasterVolume.value = to_linear(audio.master_volume_db)
@@ -30,6 +31,7 @@ func _on_save_button_pressed() -> void:
 
 func save_settings():
     Settings.game_settings.camera_zoom = %CameraZoom.value
+    Settings.game_settings.enable_vibrations = %EnableVibrations.button_pressed
 
     Settings.audio_settings.master_volume_db = to_db(%MasterVolume.value)
     Settings.audio_settings.effects_volume_db = to_db(%SFXVolume.value)

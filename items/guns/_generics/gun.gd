@@ -43,7 +43,7 @@ func _process(_delta):
     else:
         %Sprite.position.x = initial_x_position
     move_target()
-        
+
 
 func _physics_process(_delta):
     if self.global_rotation_degrees > 90 || self.global_rotation_degrees < -90:
@@ -77,7 +77,21 @@ func shoot():
             var cooldown_s = 1 / max(0.01, gun_stats.shoot_sfx_options.max_per_s)
             get_tree().create_timer(cooldown_s).connect("timeout", func(): sound_cooldown = false)
         %MuzzleFlash.play("flash")
+        haptic_feedback()
         start_cooldown_timer()
+
+func haptic_feedback():
+    match gun_stats.haptic_feedback:
+        GunService.HapticFeedback.ONE_SHOT:
+            Controls.vibrate(0.1, 0.5, 0.0)
+        GunService.HapticFeedback.ONE_SHOT_HEAVY:
+            Controls.vibrate(0.2, 0.0, 1.0)
+        GunService.HapticFeedback.AUTOMATIC:
+            Controls.vibrate(0.02, 0.5, 1.0)
+        GunService.HapticFeedback.CONTINUOUS:
+            Controls.vibrate(0.02, 0.0, 0.5)
+        _:
+            push_warning("Unimplemented HapticFeedback with id [%d]" % gun_stats.haptic_feedback)
 
 func recoil():
     recoil_distance = gun_stats.recoil_distance

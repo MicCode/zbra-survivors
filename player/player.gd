@@ -128,6 +128,7 @@ func take_damage(damage: int = 1):
     )
     %Sprite.play("hurt")
     Sounds.player_hit()
+    Controls.vibrate(0.5, 0.5, 1.0)
     just_hurt = true
     %HurtBox.set_collision_mask_value(2, false) # ennemies
 
@@ -163,6 +164,10 @@ func equip_gun(collectible: GunCollectible):
     GameState.change_equipped_gun(equiped_gun)
     block_pickup()
     collectible.queue_free()
+    Controls.vibrate(0.1, 0.5, 1.0)
+    get_tree().create_timer(0.4).timeout.connect(func():
+        Controls.vibrate(0.1, 0.5, 0.8)
+    )
 
 func handle_collectible(consumable: ConsumableItem):
     if consumable.stats.immediate_use:

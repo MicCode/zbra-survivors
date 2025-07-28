@@ -191,3 +191,8 @@ func is_joypad_connected() -> bool:
     # TODO add a game setting for that ?
     var joypads = Input.get_connected_joypads()
     return joypads.size() > 0
+
+func vibrate(duration: float, weak: float = 0.1, strong: float = 1.0):
+    if !Settings.game_settings.enable_vibrations or !is_joypad_connected():
+        return
+    Input.start_joy_vibration(0, weak, strong, duration)
