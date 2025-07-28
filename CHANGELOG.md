@@ -1,5 +1,19 @@
 
 - - -
+## 0.13.0 - 2025-07-28
+
+#### ➕ New features
+- **(controls)** added gamepad vibrations
+- **(sound)** added a smooth transition between musics
+#### 🪲 Bug fixes
+- **(controls)** remapped gamepad controls to be more ergonomic
+- **(controls)** allow UI navigation with controller
+- **(gameplay)** made boss bigger and ennemy hit sounds less buggy
+- **(sound)** made announcements independent from SFX + added a dedicated volume setting
+- **(ui)** added missing xbox controls sprites
+
+- - -
+
 ## 0.12.0 - 2025-07-27
 
 #### ➕ New features
