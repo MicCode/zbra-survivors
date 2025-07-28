@@ -208,6 +208,30 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../AudioMaster/MasterVolume")
+focus_neighbor_bottom = NodePath("../../AudioAnnouncements/AnnouncementsVolume")
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="AudioAnnouncements" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioAnnouncements"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SETTING_AUDIO_ANNOUNCEMENTS"
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioAnnouncements"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_og1ta")
+
+[node name="AnnouncementsVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioAnnouncements"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../AudioFX/SFXVolume")
 focus_neighbor_bottom = NodePath("../../AudioMusic/MusicVolume")
 max_value = 1.0
 step = 0.05
@@ -231,7 +255,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../AudioFX/SFXVolume")
+focus_neighbor_top = NodePath("../../AudioAnnouncements/AnnouncementsVolume")
 focus_neighbor_bottom = NodePath("../../../../../Buttons/SaveButton")
 max_value = 1.0
 step = 0.05

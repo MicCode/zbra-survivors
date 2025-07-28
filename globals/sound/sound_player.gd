@@ -3,17 +3,18 @@ extends Node
 const SFX_BASE_PATH := "res://assets/sounds/"
 const MUSIC_BASE_PATH := "res://assets/musics/"
 
-const MAX_SFX_PLAYERS := 16
-const MAX_EFFECTS_PLAYERS := 16
+const MAX_SFX_PLAYERS := 32
+const MAX_EFFECTS_PLAYERS := 32
 
 var music_player_1: AudioStreamPlayer
 var music_player_2: AudioStreamPlayer
 var current_music_player_id = 1
-
 var music_cache: Dictionary = {}
 
 var sfx_players: Array = []
 var sfx_cache: Dictionary = {}
+
+var announcer_player: AudioStreamPlayer
 
 var effects_players: Dictionary = {}
 var effects_cache: Dictionary = {}
@@ -153,6 +154,12 @@ func _play_sound(stream: AudioStream, bus: String, options: SfxOptions) -> Audio
     player.play()
 
     return player
+
+func announce(file_name: String, options: SfxOptions = SfxOptions.new()):
+    var stream = _load_sfx_stream(file_name)
+    if stream == null:
+        return
+    announcer_player = await _play_sound(stream, "Announcements", options)
 
 func play_music(file_name: String, transition_duration: float = 1.0, loop: bool = true):
     var new_stream = _load_music_stream(file_name)

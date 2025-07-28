@@ -15,6 +15,7 @@ func apply_settings():
     var audio = Settings.audio_settings
     %MasterVolume.value = to_linear(audio.master_volume_db)
     %SFXVolume.value = to_linear(audio.effects_volume_db)
+    %AnnouncementsVolume.value = to_linear(audio.announcements_volume_db)
     %MusicVolume.value = to_linear(audio.music_volume_db)
 
 func _on_language_item_selected(index: int) -> void:
@@ -35,6 +36,7 @@ func save_settings():
 
     Settings.audio_settings.master_volume_db = to_db(%MasterVolume.value)
     Settings.audio_settings.effects_volume_db = to_db(%SFXVolume.value)
+    Settings.audio_settings.announcements_volume_db = to_db(%AnnouncementsVolume.value)
     Settings.audio_settings.music_volume_db = to_db(%MusicVolume.value)
 
     Settings.save_to_file()

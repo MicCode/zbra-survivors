@@ -118,11 +118,11 @@ func drop():
 
 #region Announcements
 func double_kill():
-    SoundPlayer.play_sfx("double_kill.ogg")
+    SoundPlayer.announce("double_kill.ogg")
 
 func triple_kill():
-    SoundPlayer.play_sfx("triple_kill.ogg")
+    SoundPlayer.announce("triple_kill.ogg")
 
 func rampage():
-    SoundPlayer.play_sfx("rampage.ogg")
+    SoundPlayer.announce("rampage.ogg")
 #endregion

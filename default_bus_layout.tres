@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://d17t22jgiq30a"]
+[gd_resource type="AudioBusLayout" load_steps=7 format=3 uid="uid://d17t22jgiq30a"]
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_xhsvq"]
 resource_name = "Limiter"
@@ -15,6 +15,9 @@ wet = 0.05
 resource_name = "Limiter"
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_g28q7"]
+resource_name = "Limiter"
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_5t1r3"]
 resource_name = "Limiter"
 
 [resource]
@@ -47,3 +50,11 @@ bus/3/volume_db = -4.003
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectLimiter_g28q7")
 bus/3/effect/0/enabled = true
+bus/4/name = &"Announcements"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = -3.11736
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectLimiter_5t1r3")
+bus/4/effect/0/enabled = true
