@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdqu3ily4t8ix"]
 
 [ext_resource type="StyleBox" uid="uid://dc686veoq5688" path="res://ui/theme/stats_panel.tres" id="1_2g0dk"]
-[ext_resource type="Script" uid="uid://t2atq45ni1j0" path="res://ui/menu/statistics/equipped_gun_statistics.gd" id="1_gfg3g"]
+[ext_resource type="Script" uid="uid://t2atq45ni1j0" path="res://ui/menu/statistics/gun_statistics.gd" id="1_gfg3g"]
 [ext_resource type="LabelSettings" uid="uid://dv0jd0dniaerb" path="res://ui/theme/stats_subtitle.tres" id="2_kh4pp"]
 [ext_resource type="PackedScene" uid="uid://ceg4excdpxjh3" path="res://ui/menu/statistics/statistic_line.tscn" id="3_bbpoy"]
-[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/equipped_gun_slot.tscn" id="4_tl86u"]
+[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/gun_slot.tscn" id="4_tl86u"]
 
-[node name="EquippedGunStatistics" type="PanelContainer"]
+[node name="GunStatistics" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,12 +28,14 @@ theme_override_constants/margin_bottom = 20
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Stats"]
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/Stats"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "SUBTITLE_EQUIPPED_GUN"
 label_settings = ExtResource("2_kh4pp")
 
-[node name="EquippedGun" parent="MarginContainer/Stats" instance=ExtResource("4_tl86u")]
+[node name="GunSlot" parent="MarginContainer/Stats" instance=ExtResource("4_tl86u")]
+unique_name_in_owner = true
 layout_mode = 2
 show_control = false
 

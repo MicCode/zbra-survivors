@@ -27,6 +27,8 @@ var state: State = State.NOT_STARTED
 var score: int = 0
 var spawn_time_s: float = 2.0 # TODO this has to be reworked to be set accordingly to the game progression
 
+var pause_menu: PauseMenu
+var gun_change_menu: GunChangeMenu
 
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
@@ -47,10 +49,17 @@ func _init() -> void:
 
 func _input(event):
     if event.is_action_pressed("pause_game") && state != State.GAME_OVER:
-        Sounds.click()
         if state == State.PAUSED:
-            change_state(State.RUNNING)
+            if pause_menu:
+                Sounds.click()
+                pause_menu.slide_out().finished.connect(func():
+                    pause_menu.queue_free()
+                    change_state(State.RUNNING)
+                )
         else:
+            Sounds.click()
+            pause_menu = preload("res://ui/menu/pause_menu.tscn").instantiate()
+            get_tree().root.add_child(pause_menu)
             change_state(State.PAUSED)
 
 func change_state(new_state: State):
@@ -88,9 +97,29 @@ func emit_score_change() -> void:
 func register_player_instance(_player) -> void:
     player_instance = _player
 
-func change_equipped_gun(_new_gun: Gun) -> void:
-    equipped_gun = _new_gun
-    equipped_gun_changed.emit(equipped_gun)
+func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
+    if !equipped_gun:
+        # do not display the gun swap menu the first time a gun is picked up
+        equipped_gun = _new_gun
+        equipped_gun_changed.emit(equipped_gun)
+        return null
+
+    gun_change_menu = preload("res://ui/menu/gun_change_menu.tscn").instantiate()
+    gun_change_menu.change_proposed_gun(_new_gun)
+    get_tree().root.add_child(gun_change_menu)
+    change_state(State.PAUSED)
+
+    gun_change_menu.take_pressed.connect(func():
+        equipped_gun = _new_gun
+        equipped_gun_changed.emit(equipped_gun)
+        gun_change_menu.call_deferred("queue_free")
+        change_state(State.RUNNING)
+    )
+    gun_change_menu.keep_pressed.connect(func():
+        gun_change_menu.queue_free()
+        change_state(State.RUNNING)
+    )
+    return gun_change_menu
 
 func change_consumable(_new_consumable: ConsumableItem) -> void:
     if _new_consumable:

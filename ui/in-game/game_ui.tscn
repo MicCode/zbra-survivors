@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 [ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 [ext_resource type="PackedScene" uid="uid://c0qrymdsv0ins" path="res://ui/minimap/minimap_viewer.tscn" id="4_d2uga"]
-[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/equipped_gun_slot.tscn" id="7_il6w2"]
+[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/gun_slot.tscn" id="7_il6w2"]
 [ext_resource type="PackedScene" uid="uid://5dhmrbtdnbhg" path="res://ui/in-game/consumable_slot.tscn" id="10_ooeft"]
 
 [sub_resource type="Gradient" id="Gradient_png7d"]
@@ -225,6 +225,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
 
 [node name="EquippedGun" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("7_il6w2")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Consumable" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("10_ooeft")]

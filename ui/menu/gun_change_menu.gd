@@ -1,23 +1,18 @@
 extends CanvasLayer
-class_name PauseMenu
+class_name GunChangeMenu
+
+signal take_pressed
+signal keep_pressed
 
 const ANIMATION_TIME: float = 0.1
 
+var gun: Gun
+
 func _ready() -> void:
-    slide_in().finished.connect(func():
-        %QuitButton.grab_focus()
-    )
-
-func _on_quit_button_pressed() -> void:
     Sounds.click()
-    reset_effects()
-    GameState.change_state(GameState.State.NOT_STARTED)
-    SceneManager.switch_to("res://ui/menu/main_menu.tscn")
-
-func reset_effects():
-    Engine.time_scale = 1.0
-    AudioServer.playback_speed_scale = 1.0
-    SoundPlayer.stop_all_effects()
+    slide_in().finished.connect(func():
+        %TakeButton.grab_focus()
+    )
 
 func slide_in() -> PropertyTweener:
     %MainContainer.position = Vector2(0.0, %MainContainer.size.y)
@@ -30,3 +25,19 @@ func slide_out() -> PropertyTweener:
     %MainContainer.scale = Vector2(1.0, 1.0)
     create_tween().tween_property(%MainContainer, "scale", Vector2(1.0, 0.0), ANIMATION_TIME)
     return create_tween().tween_property(%MainContainer, "position", Vector2(0.0, %MainContainer.size.y), ANIMATION_TIME)
+
+func change_proposed_gun(new_gun: Gun):
+    gun = new_gun
+    %NewGun.change_gun(gun)
+
+func _on_keep_button_pressed() -> void:
+    Sounds.click()
+    slide_out().finished.connect(func():
+        keep_pressed.emit()
+    )
+
+func _on_take_button_pressed() -> void:
+    Sounds.click()
+    slide_out().finished.connect(func():
+        take_pressed.emit()
+    )

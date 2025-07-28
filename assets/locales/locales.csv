@@ -58,5 +58,9 @@ SETTINGS_TITLE,Settings,Paramètres
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
 SUBTITLE_EQUIPPED_GUN,Equipped gun,Arme équipée
 SUBTITLE_MAIN_MENU,Survive the ZBRA!,Survivez au ZBRA !
+SUBTITLE_NEW_GUN,New gun,Nouvelle arme
 SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
+TITLE_GUN_CHANGE,Change gun,Changement d'arme
+BUTTON_KEEP,Keep current,Garder actuel
+BUTTON_TAKE,Take new,Prendre nouveau

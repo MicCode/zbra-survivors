@@ -24,7 +24,7 @@ func _enter_tree() -> void:
 
 func _ready():
     if stats.is_elite:
-        stats.max_health = stats.max_health * 1.5
+        stats.max_health = floor(stats.max_health * 1.5)
         stats.xp_value = stats.xp_value * 1.5
         stats.speed = stats.speed * 1.25
         scale = scale * 1.5

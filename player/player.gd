@@ -34,7 +34,9 @@ func _ready():
     GameState.register_player_instance(self)
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_gained_level.connect(_on_player_level_gained)
+    GameState.equipped_gun_changed.connect(equip_gun)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
+
     effects_manager = %EffectsManager
 
 func _process(_delta: float) -> void:
@@ -143,25 +145,34 @@ func check_for_items():
         for collectible in overlapping_collectibles:
             if collectible is GunCollectible:
                 if Input.is_action_pressed("grab") || !equiped_gun:
-                    equip_gun(collectible as GunCollectible)
+                    compare_gun(collectible as GunCollectible)
             elif collectible is ConsumableItem:
                 handle_collectible(collectible as ConsumableItem)
 
-func equip_gun(collectible: GunCollectible):
+func compare_gun(collectible: GunCollectible):
     if is_pickup_blocked:
         return
 
+    var change_menu = GameState.change_equipped_gun(GunService.create_gun(collectible.gun_stats.name))
+    if !change_menu:
+        free_collectible(collectible)
+        return
+    change_menu.take_pressed.connect(func():
+        free_collectible(collectible)
+    )
+
+func equip_gun(new_gun: Gun):
     if equiped_gun:
         var collectible_to_drop = GunService.create_collectible(equiped_gun.gun_stats.name)
         collectible_to_drop.global_position = global_position
         SceneManager.current_scene.add_child(collectible_to_drop)
         equiped_gun.queue_free()
-
-    var new_gun = GunService.create_gun(collectible.gun_stats.name)
     equiped_gun = new_gun
-    add_child(equiped_gun)
-    Sounds.reload()
-    GameState.change_equipped_gun(equiped_gun)
+    if new_gun:
+        add_child(equiped_gun)
+        Sounds.reload()
+
+func free_collectible(collectible: GunCollectible):
     block_pickup()
     collectible.queue_free()
     Controls.vibrate(0.1, 0.5, 1.0)

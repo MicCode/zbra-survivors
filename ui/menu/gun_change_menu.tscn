@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctpllqc8x6ai3"]
+
+[ext_resource type="LabelSettings" uid="uid://brpnehk8qo03s" path="res://ui/theme/title.tres" id="1_1p8as"]
+[ext_resource type="Script" uid="uid://bl34t5236bkf3" path="res://ui/menu/gun_change_menu.gd" id="1_tih6i"]
+[ext_resource type="PackedScene" uid="uid://bdqu3ily4t8ix" path="res://ui/menu/statistics/gun_statistics.tscn" id="2_x3lcr"]
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="3_x3lcr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tih6i"]
+bg_color = Color(0.356863, 0.356863, 0.356863, 0.670588)
+
+[node name="GunChangeMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_tih6i")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tih6i")
+
+[node name="MainContainer" type="MarginContainer" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/MainContainer/VBoxContainer"]
+layout_mode = 2
+text = "TITLE_GUN_CHANGE"
+label_settings = ExtResource("1_1p8as")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="EquippedGun" parent="Panel/MainContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_x3lcr")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewGun" parent="Panel/MainContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_x3lcr")]
+unique_name_in_owner = true
+layout_mode = 2
+subtitle_label = "SUBTITLE_NEW_GUN"
+is_current_gun = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="KeepButton" type="Button" parent="Panel/MainContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../TakeButton")
+focus_neighbor_right = NodePath("../TakeButton")
+theme = ExtResource("3_x3lcr")
+theme_override_font_sizes/font_size = 35
+text = "BUTTON_KEEP"
+
+[node name="TakeButton" type="Button" parent="Panel/MainContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../KeepButton")
+focus_neighbor_right = NodePath("../KeepButton")
+theme = ExtResource("3_x3lcr")
+theme_override_font_sizes/font_size = 35
+text = "BUTTON_TAKE"
+
+[connection signal="pressed" from="Panel/MainContainer/VBoxContainer/HBoxContainer2/KeepButton" to="." method="_on_keep_button_pressed"]
+[connection signal="pressed" from="Panel/MainContainer/VBoxContainer/HBoxContainer2/TakeButton" to="." method="_on_take_button_pressed"]

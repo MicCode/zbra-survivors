@@ -17,6 +17,9 @@ func _ready() -> void:
         if new_state == GameState.State.PAUSED: slide_out()
         else: slide_in()
     )
+    GameState.equipped_gun_changed.connect(func(new_gun: Gun):
+        %EquippedGun.change_gun(new_gun)
+    )
 
     _on_player_state_changed(GameState.player_state)
     %Score.text = str(GameState.score)

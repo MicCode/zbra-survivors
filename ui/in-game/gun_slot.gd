@@ -1,19 +1,17 @@
 extends PanelContainer
 
 @export var show_control: bool = true
+@export var gun: Gun
 
-func _ready() -> void:
-    GameState.equipped_gun_changed.connect(_update_slot)
-    if GameState.equipped_gun:
-        _update_slot(GameState.equipped_gun)
-    else:
-        _update_slot(null)
+func change_gun(new_gun: Gun):
+    gun = new_gun
+    _update_slot(gun)
 
 func _update_slot(new_gun: Gun):
     # print("New gun : " + str(new_gun))
     if new_gun == null:
         %GunSprite.texture = null
-        %ShootButton.hide()
+        %ButtonIcon.hide()
         return
 
     var gun_sprite = new_gun.get_node("PivotPoint/Sprite") as AnimatedSprite2D
@@ -30,4 +28,6 @@ func _update_slot(new_gun: Gun):
 
     %GunSprite.texture = idle_texture
     if show_control:
-        %ShootButton.show()
+        %ButtonIcon.show()
+    else:
+        %ButtonIcon.hide()
