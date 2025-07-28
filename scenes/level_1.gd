@@ -38,6 +38,7 @@ func spawn_boss():
     if !is_boss_spawned:
         is_boss_spawned = true
         var boss = preload("res://ennemies/boss_1/boss_1.tscn").instantiate()
+        boss.scale = Vector2(2.5, 2.5)
         add_child(boss)
         boss.global_position = %BossSpawnPoint.global_position
         Musics.boss_battle_1()

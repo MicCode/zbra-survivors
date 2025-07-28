@@ -10,6 +10,9 @@ var is_dead: bool = false
 var is_burning: bool = false
 var object_type = Minimap.ObjectType.ENNEMY
 
+const HIT_SOUND_REPETITION_DELAY: float = 0.5
+var hit_sound_repetition_timer: SceneTreeTimer
+
 # TODO make burning related stats variable
 const BURN_DURATION_S: float = 1.1
 const BURN_TICK_S: float = 0.25
@@ -58,12 +61,22 @@ func handle_bullet_hit(bullet: Bullet):
 
 func take_damage(damage: float):
     %Sprite.play("hurt")
+    play_hit_sound()
     VisualEffects.emphases(%Sprite, 1.3, Color.RED)
     if %Health:
         %Health.take_damage(damage)
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
     damage_marker.global_position = %DamageAnchor.global_position
     SceneManager.current_scene.add_child(damage_marker)
+
+func play_hit_sound():
+    if hit_sound_repetition_timer != null:
+        return
+    Sounds.hit()
+    hit_sound_repetition_timer = get_tree().create_timer(HIT_SOUND_REPETITION_DELAY)
+    hit_sound_repetition_timer.timeout.connect(func():
+        hit_sound_repetition_timer = null
+    )
 
 func _on_animation_finished():
     if !is_dead:

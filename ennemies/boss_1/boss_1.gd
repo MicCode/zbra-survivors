@@ -32,6 +32,7 @@ func _on_shoot_delay_timer_timeout() -> void:
     var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()
     get_tree().root.add_child(bullet)
     bullet.global_position = %ShootPoint.global_position
+    bullet.scale = scale * 1.5
     bullet.look_at(player.global_position)
     Sounds.zap()
 
@@ -44,7 +45,7 @@ func handle_bullet_hit(bullet: Bullet):
 func take_damage(damage: float):
     health -= damage
     # TODO change sprite modulation on hit
-    Sounds.hit()
+    play_hit_sound()
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
     damage_marker.global_position = %DamageAnchor.global_position
     SceneManager.current_scene.add_child(damage_marker)
