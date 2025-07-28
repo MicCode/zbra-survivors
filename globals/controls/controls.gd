@@ -145,7 +145,7 @@ func get_input_control(action: PlayerAction) -> InputControl:
     match action:
         PlayerAction.DASH:
             if is_joypad:
-                return get_joypad_control(JoypadButtons.B) # TODO use RB instead
+                return get_joypad_control(JoypadButtons.LT)
             else:
                 return get_keyboard_control(KeyboardButtons.SPACE)
         PlayerAction.SHOOT:
@@ -155,12 +155,12 @@ func get_input_control(action: PlayerAction) -> InputControl:
                 return get_mouse_control(MouseButtons.LEFT)
         PlayerAction.GRAB:
             if is_joypad:
-                return get_joypad_control(JoypadButtons.A)
+                return get_joypad_control(JoypadButtons.X)
             else:
                 return get_keyboard_control(KeyboardButtons.E)
         PlayerAction.USE:
             if is_joypad:
-                return get_joypad_control(JoypadButtons.LT)
+                return get_joypad_control(JoypadButtons.RB)
             else:
                 return get_mouse_control(MouseButtons.RIGHT)
         _:

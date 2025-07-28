@@ -47,10 +47,13 @@ func start_dashing():
     )
     set_is_dashing(true)
     set_can_dash(false)
+    loop_dash_ghost()
+
+func loop_dash_ghost():
     get_tree().create_timer(dash_ghost_interval).timeout.connect(func():
         spawn_dash_ghost()
         if GameState.player_state.is_dashing:
-            get_tree().create_timer(dash_ghost_interval).timeout.connect(spawn_dash_ghost)
+            get_tree().create_timer(dash_ghost_interval).timeout.connect(loop_dash_ghost)
     )
 
 func spawn_dash_ghost(speed_scale: float = 5.0) -> void:
