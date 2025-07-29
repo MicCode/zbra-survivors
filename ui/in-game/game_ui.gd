@@ -3,8 +3,6 @@ class_name GameUI
 
 const ANIMATION_TIME: float = 0.25
 
-var player_health: float = -1
-var player_max_health: float = -1
 var player_xp: float = -1
 var player_level: int = -1
 
@@ -45,13 +43,7 @@ func _on_score_changed(new_score: int):
     %Score.text = str(new_score)
 
 func _on_player_state_changed(player_state: PlayerState):
-    if player_state.max_health != player_max_health:
-        player_max_health = player_state.max_health
-        redraw_hearts()
-
-    if player_state.health != player_health:
-        player_health = player_state.health
-        update_hearts_filling()
+    update_health_bar()
 
     if player_state.xp != player_xp:
         player_xp = player_state.xp
@@ -68,24 +60,10 @@ func _on_player_state_changed(player_state: PlayerState):
     %XpBar.max_value = player_state.next_level_xp
 
 
-func redraw_hearts():
-    var hearts = %Hearts.get_children()
-    for heart in hearts:
-        heart.queue_free()
-    for i in range(0, player_max_health, 1):
-        var new_heart = preload("res://ui/in-game/heart.tscn").instantiate()
-        new_heart.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-        new_heart.size_flags_vertical = Control.SIZE_SHRINK_END
-        %Hearts.add_child(new_heart)
-
-func update_hearts_filling():
-    for i in range(0, player_max_health, 1):
-        var heart = %Hearts.get_children().get(i)
-        if heart and heart is HeartUI:
-            if i > player_health - 1:
-                heart.change_state(Enums.HeartStates.Empty)
-            else:
-                heart.change_state(Enums.HeartStates.Full)
+func update_health_bar():
+    %HealthBar.max_value = GameState.player_state.max_health
+    %HealthBar.value = GameState.player_state.health
+    %HealthBarLabel.text = str("%d / %d" % [GameState.player_state.health, GameState.player_state.max_health])
 
 func set_remaining_time(remaining_s: float):
     var remaining_minutes = floor(remaining_s / 60)

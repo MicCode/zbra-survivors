@@ -16,10 +16,10 @@ func update_display():
         %Bar.show()
     else:
         %Bar.hide()
-    
+
 func take_damage(damage: float):
     current_health -= damage
     %Bar.value = current_health
-    
+
     if current_health <= 0:
         depleted.emit()

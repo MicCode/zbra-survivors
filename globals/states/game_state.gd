@@ -107,11 +107,20 @@ func add_player_modifier(new_modifier: StatsModifier):
     else:
         existing_modifiers[0].modifier_value += new_modifier.modifier_value
         # TODO what if multiple matching modifiers are found ?
+    var current_health = player_state.health
     player_state = PlayerState.duplicate_with_modifiers(base_player_state, stats_modifiers)
+    print("Current health = %d" % current_health)
+    if new_modifier.modifier == Modifiers.Modifier.MAX_HEALTH:
+        player_state.health = current_health + new_modifier.modifier_value
+        print("Increased health to %d" % player_state.health)
+    else:
+        player_state.health = current_health
+        print("Kept health to %d" % player_state.health)
     emit_player_change()
 
 
 func emit_player_change() -> void:
+    print("Player health = %d" % player_state.health)
     player_state_changed.emit(player_state)
 
 func emit_score_change() -> void:

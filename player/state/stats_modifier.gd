@@ -18,6 +18,12 @@ static func create_relative(mod: Modifiers.Modifier, percentage: float) -> Stats
     new_modifier.is_absolute = false
     return new_modifier
 
+func deep_duplicate() -> StatsModifier:
+    if is_absolute:
+        return create_absolute(modifier, modifier_value)
+    else:
+        return create_relative(modifier, modifier_value)
+
 func get_stat_name() -> String:
     return Modifiers.get_stat_name(modifier)
 

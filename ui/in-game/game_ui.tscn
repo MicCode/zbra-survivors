@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=21 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
 [ext_resource type="Material" uid="uid://btuabvmpbtjvk" path="res://effects/slow_down_effect_material.tres" id="2_sfyf6"]
-[ext_resource type="PackedScene" uid="uid://bucnbe7ki6q3u" path="res://ui/in-game/heart.tscn" id="3_g3ovh"]
 [ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 [ext_resource type="PackedScene" uid="uid://c0qrymdsv0ins" path="res://ui/minimap/minimap_viewer.tscn" id="4_d2uga"]
 [ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/gun_slot.tscn" id="7_il6w2"]
@@ -43,6 +42,45 @@ bg_color = Color(0.6, 0.6, 0.6, 0.180392)
 bg_color = Color(0.843137, 0.721569, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_png7d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooxb5"]
+bg_color = Color(0, 0, 0, 0.313726)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6w2"]
+bg_color = Color(0.570047, 0.0135834, 2.40654e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rxai"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ooxb5"]
+font_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooxb5"]
 
@@ -200,28 +238,39 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Hearts" type="HBoxContainer" parent="MarginContainer/MainArea/BottomContainer"]
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/MainArea/BottomContainer"]
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Heart" parent="MarginContainer/MainArea/BottomContainer/Hearts" instance=ExtResource("3_g3ovh")]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Heart2" parent="MarginContainer/MainArea/BottomContainer/Hearts" instance=ExtResource("3_g3ovh")]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Heart3" parent="MarginContainer/MainArea/BottomContainer/Hearts" instance=ExtResource("3_g3ovh")]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/BottomContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_ooxb5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_il6w2")
+value = 30.78
+show_percentage = false
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MainArea/BottomContainer/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_8rxai")
+
+[node name="HealthBarLabel" type="Label" parent="MarginContainer/MainArea/BottomContainer/HealthBar/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12 / 23"
+label_settings = SubResource("LabelSettings_ooxb5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/BottomContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
 
 [node name="EquippedGun" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("7_il6w2")]

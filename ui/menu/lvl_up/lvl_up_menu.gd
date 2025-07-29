@@ -14,7 +14,7 @@ func _ready() -> void:
             if child is LvlUpChoice:
                 child.queue_free()
 
-        for modifier in pick(3):
+        for modifier in pick_random_modifiers(3):
             var choice: LvlUpChoice = preload("res://ui/menu/lvl_up/lvl_up_choice.tscn").instantiate()
             choice.set_stat_modifier(modifier)
             %Choices.add_child(choice)
@@ -33,18 +33,18 @@ func _on_choice_clicked(clicked_choice: LvlUpChoice, modifier: StatsModifier):
         picked_modifier.emit(modifier)
     )
 
-func pick(n: int) -> Array[StatsModifier]:
+func pick_random_modifiers(n: int) -> Array[StatsModifier]:
     # TODO implement a more context aware picking system ? like better modifiers as the player level increases
     var picked: Array[StatsModifier] = []
     for i in n:
-        var pickable = Modifiers.all_modifiers.filter(func(m: StatsModifier):
+        var pickable: Array[StatsModifier] = Modifiers.all_modifiers.filter(func(m: StatsModifier):
             return not picked.any(func(p: StatsModifier):
                 return p.modifier == m.modifier
             )
         )
         if not pickable.is_empty():
             var rnd = randi_range(0, pickable.size() - 1)
-            picked.append(pickable[rnd])
+            picked.append(pickable[rnd].deep_duplicate())
     return picked
 
 func slide_in() -> PropertyTweener:
