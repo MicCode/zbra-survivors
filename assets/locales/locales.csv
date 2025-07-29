@@ -1,12 +1,14 @@
 key,en,fr
 BUTTON_APPLY_DEFAULT_SETTINGS,Reset to default,Réinitialiser
 BUTTON_GIVE_UP,Give Up,Abandonner
+BUTTON_KEEP,Keep current,Garder actuel
 BUTTON_MAIN_MENU,Main Menu,Menu Principal
 BUTTON_QUIT,Quit Game,Quitter le Jeu
 BUTTON_RESTART,Restart,Recommencer
 BUTTON_SAVE_SETTINGS,Save settings,Sauvegarder
 BUTTON_SETTINGS,Settings,Paramètres
 BUTTON_START,Start,Commencer
+BUTTON_TAKE,Take new,Prendre nouveau
 ENNEMY_MOB_1,Mob 1,Truc 1
 ENNEMY_MOB_2,Mob 2,Truc 2
 ENNEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
@@ -18,10 +20,12 @@ GUN_SNIPER,Sniper Rifle,Fusil de Sniper
 LABEL_AUDIO_SETTINGS,Audio,Audio
 LABEL_BULLET_SPEED,Bullets speed,Vitesse des projectiles
 LABEL_BULLETS_PER_S,Fire rate,Cadence de tir
+LABEL_CHOOSE,Choose,Choisir
 LABEL_DAMAGE,Damage,Dégâts
 LABEL_DAMAGE_PER_S,Damage per s.,Dégâts par s.
 LABEL_DASH_COOLDOWN,Dash cooldown,Rechargement du dash
 LABEL_DASH_DURATION,Dash duration,Durée du dash
+LABEL_DASH_SPEED_MULTIPLIER,Dash speed,Vitesse du dash
 LABEL_DISPERSION,Dispersion,Dispersion
 LABEL_DPS,DPS,DPS
 LABEL_GAME_SETTINGS,Gameplay,Jeu
@@ -45,6 +49,7 @@ LABEL_UNIT_DEG,deg,deg
 LABEL_UNIT_S,s,s
 LABEL_UNIT_SHOT_PER_S,s/s,t/s
 LABEL_XP,Current XP,Expérience actuelle
+LABEL_XP_COLLECT_RADIUS,XP collect radius,Rayon de capture de l'XP
 LANGUAGE_EN,English,Anglais
 LANGUAGE_FR,French,Français
 SETTING_AUDIO_ANNOUNCEMENTS,Announcements volume,Volume des annonces
@@ -56,11 +61,11 @@ SETTING_GAMEPAD_VIBRATION,Gamepad vibrations,Vibrations de la manette
 SETTINGS_MUSIC,Music,Musique
 SETTINGS_TITLE,Settings,Paramètres
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
+SUBTITLE_CHOOSE_UPGRADE,Choose upgrade,Choisir une amélioration
 SUBTITLE_EQUIPPED_GUN,Equipped gun,Arme équipée
 SUBTITLE_MAIN_MENU,Survive the ZBRA!,Survivez au ZBRA !
 SUBTITLE_NEW_GUN,New gun,Nouvelle arme
 SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
 TITLE_GUN_CHANGE,Change gun,Changement d'arme
-BUTTON_KEEP,Keep current,Garder actuel
-BUTTON_TAKE,Take new,Prendre nouveau
+TITLE_LEVEL_UP,Level up!,Nouveau niveau !

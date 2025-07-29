@@ -10,11 +10,11 @@ var timewarp_ghost_interval: float = 0.5
 var dash_cooldown_timer: SceneTreeTimer
 
 func _ready() -> void:
-    dash_duration = GameState.player_state.dash_duration_s
-    dash_cooldown = GameState.player_state.dash_cooldown_s
+    dash_duration = GameState.player_state.dash_duration
+    dash_cooldown = GameState.player_state.dash_cooldown
     GameState.player_state_changed.connect(func(player_state: PlayerState):
-        dash_duration = player_state.dash_duration_s
-        dash_cooldown = player_state.dash_cooldown_s
+        dash_duration = player_state.dash_duration
+        dash_cooldown = player_state.dash_cooldown
     )
 
 func set_is_dashing(_is_dashing: bool):

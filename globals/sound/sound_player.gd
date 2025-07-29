@@ -19,8 +19,6 @@ var announcer_player: AudioStreamPlayer
 var effects_players: Dictionary = {}
 var effects_cache: Dictionary = {}
 
-var music_fade_tween: Tween
-
 func apply_audio_settings():
     var master_bus = AudioServer.get_bus_index("Master")
     AudioServer.set_bus_volume_db(master_bus, Settings.audio_settings.master_volume_db)
@@ -43,8 +41,6 @@ func _ready():
     add_child(music_player_2)
     music_player_2.name = "MusicPlayer 2"
     music_player_2.set_autoplay(false)
-
-    music_fade_tween = create_tween()
 
 func _load_sfx_stream(file_name: String) -> AudioStream:
     if sfx_cache.has(file_name):
@@ -174,9 +170,6 @@ func play_music(file_name: String, transition_duration: float = 1.0, loop: bool 
 
     if current_music_player.stream and current_music_player.stream.resource_path.get_file() == file_name:
         return
-
-    if music_fade_tween and music_fade_tween.is_running():
-        music_fade_tween.kill()
 
     create_tween().tween_property(current_music_player, "volume_db", -40.0, transition_duration).finished.connect(func():
         current_music_player.stop()

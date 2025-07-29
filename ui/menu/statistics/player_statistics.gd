@@ -11,5 +11,5 @@ func refresh_stats():
     %Xp.set_value(GameState.player_state.xp)
     %NextLevelXp.set_value(GameState.player_state.next_level_xp)
     %MoveSpeed.set_value(GameState.player_state.move_speed)
-    %DashDuration.set_value(GameState.player_state.dash_duration_s)
-    %DashCooldown.set_value(GameState.player_state.dash_cooldown_s)
+    %DashDuration.set_value(GameState.player_state.dash_duration)
+    %DashCooldown.set_value(GameState.player_state.dash_cooldown)

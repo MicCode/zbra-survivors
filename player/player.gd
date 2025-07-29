@@ -104,7 +104,7 @@ func update_dash_gauge():
     var time_left = 0
     if %DashManager.dash_cooldown_timer:
         time_left = %DashManager.dash_cooldown_timer.time_left
-    var gauge_value = floor((1 - (time_left / GameState.player_state.dash_cooldown_s)) * 5)
+    var gauge_value = floor((1 - (time_left / GameState.player_state.dash_cooldown)) * 5)
     if gauge_value != GameState.player_state.dash_gauge_value:
         GameState.player_state.dash_gauge_value = gauge_value
         GameState.emit_player_change()
@@ -125,7 +125,7 @@ func take_damage(damage: int = 1):
     %Health.current_health = GameState.player_state.health
     GameState.emit_player_change()
     can_be_damaged = false
-    get_tree().create_timer(GameState.player_state.damage_cooldown_s).timeout.connect(func():
+    get_tree().create_timer(GameState.player_state.damage_cooldown).timeout.connect(func():
         can_be_damaged = true
     )
     %Sprite.play("hurt")

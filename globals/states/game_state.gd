@@ -19,7 +19,11 @@ enum State {
 }
 
 var player_instance: Player
+
+var base_player_state: PlayerState
 var player_state: PlayerState
+var player_stats_modifiers: Array[PlayerStatModifier] = []
+
 var equipped_gun: Gun
 var consumable: ConsumableItem
 
@@ -32,7 +36,7 @@ var gun_change_menu: GunChangeMenu
 
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
-    player_state = preload("res://player/state/default_player_state.tres").duplicate()
+    _reset_player()
     score = 0
     spawn_time_s = 2.0
     change_equipped_gun(null)
@@ -44,8 +48,13 @@ func reset() -> void:
 
 func _init() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
-    player_state = preload("res://player/state/default_player_state.tres").duplicate()
+    _reset_player()
     change_state(State.RUNNING)
+
+func _reset_player():
+    player_stats_modifiers = []
+    base_player_state = preload("res://player/state/default_player_state.tres").duplicate()
+    player_state = base_player_state.duplicate(true)
 
 func _input(event):
     if event.is_action_pressed("pause_game") && state != State.GAME_OVER:
@@ -87,6 +96,17 @@ func gain_xp(xp: float) -> void:
         player_gained_level.emit(player_state.level)
 
     emit_player_change()
+
+func add_player_stat_modifier(new_modifier: PlayerStatModifier):
+    var existing_modifiers: Array[PlayerStatModifier] = player_stats_modifiers.filter(func(m: PlayerStatModifier): return m.stat_name == new_modifier.stat_name)
+    if existing_modifiers.is_empty():
+        player_stats_modifiers.append(new_modifier.duplicate(true))
+    else:
+        existing_modifiers[0].modifier_value += new_modifier.modifier_value
+        # TODO what if multiple matching modifiers are found ?
+    player_state = PlayerState.duplicate_with_modifiers(base_player_state, player_stats_modifiers)
+    emit_player_change()
+
 
 func emit_player_change() -> void:
     player_state_changed.emit(player_state)
