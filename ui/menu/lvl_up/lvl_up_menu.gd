@@ -1,18 +1,8 @@
 extends CanvasLayer
 
-signal picked_modifier(modifier: PlayerModifier)
+signal picked_modifier(modifier: StatsModifier)
 const CHOICE_DISAPPEAR_TIME: float = 0.25
 const ANIMATION_TIME: float = 0.1
-
-var pickable_modifiers: Array[PlayerModifier] = [
-    PlayerModifier.create_absolute("max_health", 1.0),
-    PlayerModifier.create_relative("xp_collect_radius", 5.0),
-    PlayerModifier.create_relative("move_speed", 5.0),
-    PlayerModifier.create_relative("dash_duration", 5.0),
-    PlayerModifier.create_relative("dash_cooldown", -5.0),
-    PlayerModifier.create_relative("dash_speed_multiplier", 5.0),
-    # TODO add drop chances ?
-]
 
 var choices: Array[LvlUpChoice] = []
 
@@ -34,21 +24,22 @@ func _ready() -> void:
         choices[0].force_focus()
     )
 
-func _on_choice_clicked(clicked_choice: LvlUpChoice, modifier: PlayerModifier):
+func _on_choice_clicked(clicked_choice: LvlUpChoice, modifier: StatsModifier):
     for choice in choices:
         choice.disable()
-        if choice == clicked_choice:
-            create_tween().tween_property(choice, "modulate", Color.TRANSPARENT, CHOICE_DISAPPEAR_TIME).finished.connect(func():
-                picked_modifier.emit(modifier)
-            )
+        if choice != clicked_choice:
+            create_tween().tween_property(choice, "modulate", Color.TRANSPARENT, CHOICE_DISAPPEAR_TIME)
+    get_tree().create_timer(CHOICE_DISAPPEAR_TIME).timeout.connect(func():
+        picked_modifier.emit(modifier)
+    )
 
-func pick(n: int) -> Array[PlayerModifier]:
+func pick(n: int) -> Array[StatsModifier]:
     # TODO implement a more context aware picking system ? like better modifiers as the player level increases
-    var picked: Array[PlayerModifier] = []
+    var picked: Array[StatsModifier] = []
     for i in n:
-        var pickable = pickable_modifiers.filter(func(m: PlayerModifier):
-            return not picked.any(func(p: PlayerModifier):
-                return p.stat_name == m.stat_name
+        var pickable = Modifiers.all_modifiers.filter(func(m: StatsModifier):
+            return not picked.any(func(p: StatsModifier):
+                return p.modifier == m.modifier
             )
         )
         if not pickable.is_empty():

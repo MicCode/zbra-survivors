@@ -7,7 +7,7 @@ const HOVER_ANIMATION_DURATION = 0.1
 var panel_style: StyleBoxFlat
 var has_been_clicked = false
 var block_focus = false
-var stat_modifier: PlayerModifier # TODO add a more generic class to also support GunStatModifiers ?
+var stat_modifier: StatsModifier # TODO add a more generic class to also support GunStatModifiers ?
 var is_hovered = false
 var prevent_init_mouse_click = false
 
@@ -32,9 +32,9 @@ func is_ui_accept() -> bool:
 func is_mouse_clicked() -> bool:
     return !prevent_init_mouse_click and is_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
-func set_stat_modifier(new_modifier: PlayerModifier):
-    stat_modifier = new_modifier.duplicate(true) as PlayerModifier
-    %StatName.text = tr(str("LABEL_%s" % new_modifier.stat_name).to_upper()) # TODO extract label building to a dedicated global function ?
+func set_stat_modifier(new_modifier: StatsModifier):
+    stat_modifier = new_modifier.duplicate(true) as StatsModifier
+    %StatName.text = new_modifier.get_label()
     var value_label = str(new_modifier.modifier_value)
     if value_label.ends_with(".0"):
         value_label = value_label.split(".")[0]
@@ -43,6 +43,7 @@ func set_stat_modifier(new_modifier: PlayerModifier):
     if not (value_label.begins_with("-") or value_label.begins_with("0")):
         value_label = "+" + value_label
     %ModifierValue.text = value_label
+    %Sprite.texture = Modifiers.get_texture(new_modifier.modifier)
     # TODO change displayed texture in %Sprite in function of the modifier. Extract this texture-modifier association in a global service ?
 
 func force_focus():
@@ -54,12 +55,12 @@ func disable():
     %PanelContainer.mouse_default_cursor_shape = CursorShape.CURSOR_ARROW
 
 func _on_panel_container_mouse_entered() -> void:
-    if !block_focus:
+    if !block_focus and has_node("%PanelContainer"):
         is_hovered = true
         %PanelContainer.grab_focus()
 
 func _on_panel_container_mouse_exited() -> void:
-    if !block_focus:
+    if !block_focus and has_node("%PanelContainer"):
         is_hovered = false
         %PanelContainer.release_focus()
 

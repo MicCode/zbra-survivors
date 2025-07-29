@@ -1,12 +1,14 @@
 extends Node
 signal player_state_changed
-signal score_changed
 signal player_gained_level(new_level: int)
+signal player_timewarping_changed(timewarping: bool)
+signal player_moved(position: Vector2)
+
 signal equipped_gun_changed(new_gun: Gun)
 signal consumable_changed(new_consumable: ConsumableItem)
 signal consumable_use_changed(use: int)
-signal player_timewarping_changed(timewarping: bool)
-signal player_moved(position: Vector2)
+
+signal score_changed
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
 signal state_changed(new_state: State)
 signal shake_screen(strength: float)
@@ -23,7 +25,7 @@ var player_instance: Player
 
 var base_player_state: PlayerState
 var player_state: PlayerState
-var player_stats_modifiers: Array[PlayerModifier] = []
+var stats_modifiers: Array[StatsModifier] = []
 
 var equipped_gun: Gun
 var consumable: ConsumableItem
@@ -53,7 +55,7 @@ func _init() -> void:
     change_state(State.RUNNING)
 
 func _reset_player():
-    player_stats_modifiers = []
+    stats_modifiers = []
     base_player_state = preload("res://player/state/default_player_state.tres").duplicate()
     player_state = base_player_state.duplicate(true)
 
@@ -98,14 +100,14 @@ func gain_xp(xp: float) -> void:
 
     emit_player_change()
 
-func add_player_modifier(new_modifier: PlayerModifier):
-    var existing_modifiers: Array[PlayerModifier] = player_stats_modifiers.filter(func(m: PlayerModifier): return m.stat_name == new_modifier.stat_name)
+func add_player_modifier(new_modifier: StatsModifier):
+    var existing_modifiers: Array[StatsModifier] = stats_modifiers.filter(func(m: StatsModifier): return m.modifier == new_modifier.modifier)
     if existing_modifiers.is_empty():
-        player_stats_modifiers.append(new_modifier)
+        stats_modifiers.append(new_modifier)
     else:
         existing_modifiers[0].modifier_value += new_modifier.modifier_value
         # TODO what if multiple matching modifiers are found ?
-    player_state = PlayerState.duplicate_with_modifiers(base_player_state, player_stats_modifiers)
+    player_state = PlayerState.duplicate_with_modifiers(base_player_state, stats_modifiers)
     emit_player_change()
 
 
