@@ -7,4 +7,5 @@ resource_local_to_scene = true
 script = ExtResource("1_wvx23")
 language = "en"
 camera_zoom = 1.3
+enable_vibrations = false
 metadata/_custom_type_script = "uid://d3ww15xrl38l8"
