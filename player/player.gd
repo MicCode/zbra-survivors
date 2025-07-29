@@ -335,7 +335,9 @@ func _on_player_state_changed(player_state: PlayerState) -> void:
 func _on_player_level_gained(_new_level: int):
     %Effects.show()
     %Effects.play("lvlup")
+    print("Level up !")
     Sounds.level_up()
+    %PlayerLevelManager.register_lvl_up()
 
 func _on_effects_animation_finished() -> void:
     if !effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):
@@ -344,8 +346,6 @@ func _on_effects_animation_finished() -> void:
     else:
         %Effects.play("radiance")
 
-func _on_lvl_up_effect_animation_animation_finished(_anim_name: StringName) -> void:
-    %LvlUpEffectLight.hide()
 
 func _on_radiance_effect_animation_animation_finished(anim_name: StringName) -> void:
     if anim_name == "fadein" && effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://jxii0ya3pin2"]
+
+[ext_resource type="Script" uid="uid://djn30b21xg8v7" path="res://player/player_level_manager.gd" id="1_xi0ni"]
+
+[node name="PlayerLevelManager" type="Node"]
+script = ExtResource("1_xi0ni")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

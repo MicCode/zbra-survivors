@@ -20,6 +20,7 @@ font_size = 25
 bg_color = Color(0.140829, 0.424203, 0.765036, 1)
 
 [node name="LvlUpChoice" type="Control"]
+process_mode = 3
 custom_minimum_size = Vector2(300, 450)
 layout_mode = 3
 anchors_preset = 0
@@ -27,6 +28,7 @@ script = ExtResource("1_q7o8g")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +40,7 @@ mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pk3ru")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+process_mode = 3
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -45,15 +48,18 @@ theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+process_mode = 3
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rltgd")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+process_mode = 3
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
@@ -62,12 +68,14 @@ theme_override_constants/margin_bottom = 30
 
 [node name="Sprite" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
 texture = ExtResource("1_rltgd")
 stretch_mode = 5
 
 [node name="StatName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
 text = "Stat name"
 label_settings = SubResource("LabelSettings_rltgd")
@@ -76,6 +84,7 @@ vertical_alignment = 1
 
 [node name="ModifierValue" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
 text = "+12.3"
 label_settings = SubResource("LabelSettings_q7o8g")
@@ -83,11 +92,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q7o8g")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel"]
+process_mode = 3
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -95,9 +106,11 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+process_mode = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/CenterContainer"]
+process_mode = 3
 layout_mode = 2
 text = "LABEL_CHOOSE"
 

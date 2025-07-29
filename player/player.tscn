@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=57 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_2ieo8"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c333xvlfxb3uo" path="res://player/player_camera.tscn" id="11_ebec5"]
 [ext_resource type="PackedScene" uid="uid://cbmpngfanrajt" path="res://player/dash_manager.tscn" id="13_yllr7"]
 [ext_resource type="PackedScene" uid="uid://5ywp5ksmmobp" path="res://player/effects/player_effects_manager.tscn" id="14_kb6p2"]
+[ext_resource type="PackedScene" uid="uid://jxii0ya3pin2" path="res://player/player_level_manager.tscn" id="15_wodsf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uir31"]
 atlas = ExtResource("3_2bqqa")
@@ -531,6 +532,9 @@ autoplay = "RESET"
 unique_name_in_owner = true
 
 [node name="EffectsManager" parent="." instance=ExtResource("14_kb6p2")]
+unique_name_in_owner = true
+
+[node name="PlayerLevelManager" parent="." instance=ExtResource("15_wodsf")]
 unique_name_in_owner = true
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

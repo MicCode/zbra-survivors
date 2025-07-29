@@ -3,8 +3,8 @@ class_name GameUI
 
 const ANIMATION_TIME: float = 0.25
 
-var player_health: int = -1
-var player_max_health: int = -1
+var player_health: float = -1
+var player_max_health: float = -1
 var player_xp: float = -1
 var player_level: int = -1
 

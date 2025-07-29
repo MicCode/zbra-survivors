@@ -3,8 +3,8 @@ class_name PlayerState
 
 @export_group("Health")
 @export var is_alive: bool
-@export var max_health: int
-@export var health: int
+@export var max_health: float
+@export var health: float
 
 @export_group("XP")
 @export var xp: float
@@ -34,7 +34,7 @@ class_name PlayerState
 @export var xp_collector_drop_chance: float
 @export var land_mine_chance: float
 
-static func duplicate_with_modifiers(source: PlayerState, modifiers: Array[PlayerStatModifier]) -> PlayerState:
+static func duplicate_with_modifiers(source: PlayerState, modifiers: Array[PlayerModifier]) -> PlayerState:
     var state: PlayerState = source.duplicate(true)
     for mod in modifiers:
         if state.get(mod.stat_name) == null:

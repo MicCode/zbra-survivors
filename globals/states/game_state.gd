@@ -15,6 +15,7 @@ enum State {
     NOT_STARTED,
     RUNNING,
     PAUSED,
+    CHOOSING_UPGRADE,
     GAME_OVER
 }
 
@@ -22,7 +23,7 @@ var player_instance: Player
 
 var base_player_state: PlayerState
 var player_state: PlayerState
-var player_stats_modifiers: Array[PlayerStatModifier] = []
+var player_stats_modifiers: Array[PlayerModifier] = []
 
 var equipped_gun: Gun
 var consumable: ConsumableItem
@@ -57,7 +58,7 @@ func _reset_player():
     player_state = base_player_state.duplicate(true)
 
 func _input(event):
-    if event.is_action_pressed("pause_game") && state != State.GAME_OVER:
+    if event.is_action_pressed("pause_game") and not [State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
         if state == State.PAUSED:
             if pause_menu:
                 Sounds.click()
@@ -77,7 +78,7 @@ func change_state(new_state: State):
     if State.GAME_OVER == state:
         show_game_over()
     if is_inside_tree():
-        if [State.PAUSED, State.GAME_OVER].has(state):
+        if [State.PAUSED, State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
             get_tree().paused = true
         else:
             get_tree().paused = false
@@ -97,10 +98,10 @@ func gain_xp(xp: float) -> void:
 
     emit_player_change()
 
-func add_player_stat_modifier(new_modifier: PlayerStatModifier):
-    var existing_modifiers: Array[PlayerStatModifier] = player_stats_modifiers.filter(func(m: PlayerStatModifier): return m.stat_name == new_modifier.stat_name)
+func add_player_modifier(new_modifier: PlayerModifier):
+    var existing_modifiers: Array[PlayerModifier] = player_stats_modifiers.filter(func(m: PlayerModifier): return m.stat_name == new_modifier.stat_name)
     if existing_modifiers.is_empty():
-        player_stats_modifiers.append(new_modifier.duplicate(true))
+        player_stats_modifiers.append(new_modifier)
     else:
         existing_modifiers[0].modifier_value += new_modifier.modifier_value
         # TODO what if multiple matching modifiers are found ?
