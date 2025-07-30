@@ -115,7 +115,6 @@ func add_player_modifier(new_modifier: StatsModifier):
 
 
 func emit_player_change() -> void:
-    print("Player health = %d" % player_state.health)
     player_state_changed.emit(player_state)
 
 func emit_score_change() -> void:

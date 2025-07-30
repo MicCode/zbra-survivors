@@ -335,7 +335,6 @@ func _on_player_state_changed(player_state: PlayerState) -> void:
 func _on_player_level_gained(_new_level: int):
     %Effects.show()
     %Effects.play("lvlup")
-    print("Level up !")
     Sounds.level_up()
     %PlayerLevelManager.register_lvl_up()
 

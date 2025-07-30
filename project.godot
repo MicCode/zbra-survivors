@@ -36,6 +36,7 @@ Musics="*res://globals/sound/musics.gd"
 Files="*res://globals/utils/files.gd"
 Controls="*res://globals/controls/controls.gd"
 Modifiers="*res://globals/gameplay/modifiers.gd"
+Conversions="*res://globals/utils/conversions.gd"
 
 [debug]
 

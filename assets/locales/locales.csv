@@ -19,10 +19,10 @@ GUN_SHOTGUN,Shotgun,Fusil à Pompe
 GUN_SNIPER,Sniper Rifle,Fusil de Sniper
 LABEL_AUDIO_SETTINGS,Audio,Audio
 LABEL_BULLET_SPEED,Bullets speed,Vitesse des projectiles
-LABEL_BULLETS_PER_S,Fire rate,Cadence de tir
+LABEL_BULLETS_PER_S,Bullets per shot,Projectiles par tir
 LABEL_CHOOSE,Choose,Choisir
 LABEL_DAMAGE,Damage,Dégâts
-LABEL_DAMAGE_PER_S,Damage per s.,Dégâts par s.
+LABEL_DAMAGE_PER_S,Damage/s,Dégâts/s
 LABEL_DASH_COOLDOWN,Dash cooldown,Rechargement du dash
 LABEL_DASH_DURATION,Dash duration,Durée du dash
 LABEL_DASH_SPEED_MULTIPLIER,Dash speed,Vitesse du dash
@@ -40,12 +40,14 @@ LABEL_PIERCE_COUNT,Pierce count,Perçage
 LABEL_PROJECTILES,Projectiles,Projectiles
 LABEL_RANGE,Range,Portée
 LABEL_SCORE,Score,Score
-LABEL_SHOT_PER_S,Shots per s.,Tirs par s.
+LABEL_SHOT_PER_S,Shots/s,Tirs/s
 LABEL_SHOT_S,Shot/s,Tir/s
 LABEL_SPREAD_ANGLE,Dispersion,Dispersion
 LABEL_UNIT_BULLETS_PER_S,b/s,p/s
 LABEL_UNIT_DAMAGE_PER_S,d/s,d/s
 LABEL_UNIT_DEG,deg,deg
+LABEL_UNIT_KM_H,km/h,km/h
+LABEL_UNIT_M,m,m
 LABEL_UNIT_S,s,s
 LABEL_UNIT_SHOT_PER_S,s/s,t/s
 LABEL_XP,Current XP,Expérience actuelle

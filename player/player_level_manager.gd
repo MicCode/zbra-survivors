@@ -17,7 +17,7 @@ func register_lvl_up():
         %Timer.start(MENU_OPENING_DELAY)
 
 func _show_lvl_up_menu(n_times: int):
-    print("Must show lvl_up menu %d times" % n_times)
+    #print("Must show lvl_up menu %d times" % n_times)
     n_times -= 1
     var lvl_up_menu = preload("res://ui/menu/lvl_up/lvl_up_menu.tscn").instantiate()
     get_tree().root.add_child(lvl_up_menu)
