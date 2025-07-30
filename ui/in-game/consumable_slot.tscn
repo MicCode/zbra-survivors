@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://5dhmrbtdnbhg"]
+[gd_scene load_steps=6 format=3 uid="uid://5dhmrbtdnbhg"]
 
 [ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_cc8y4"]
 [ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://assets/sprites/items/clock.png" id="2_mtpq0"]
 [ext_resource type="Script" uid="uid://dgttg4b11yvj2" path="res://ui/in-game/consumable_slot.gd" id="2_nussi"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_nussi"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_mtpq0"]
+line_spacing = 0.0
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Consumable" type="PanelContainer"]
-custom_minimum_size = Vector2(100, 80)
+custom_minimum_size = Vector2(80, 50)
+offset_right = 80.0
+offset_bottom = 50.0
 size_flags_vertical = 8
 theme_override_styles/panel = ExtResource("1_cc8y4")
 script = ExtResource("2_nussi")
@@ -16,35 +24,26 @@ layout_mode = 2
 
 [node name="ConsumableSprite" type="TextureRect" parent="CenterContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 texture = ExtResource("2_mtpq0")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="ConsumableButton" parent="CenterContainer/ConsumableSprite" instance=ExtResource("3_nussi")]
+[node name="UseLabel" type="Label" parent="CenterContainer/ConsumableSprite"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -19.0
-offset_top = -24.0
-offset_right = -3.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-action = 3
-
-[node name="UseLabel" type="Label" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
+offset_right = 14.0
+offset_bottom = 35.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 30
 text = "3"
+label_settings = SubResource("LabelSettings_mtpq0")
 horizontal_alignment = 2
+
+[node name="ConsumableButton" parent="." instance=ExtResource("3_nussi")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+action = 3

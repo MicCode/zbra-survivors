@@ -35,14 +35,6 @@ shader_parameter/alpha = 1.0
 spacing_top = -20
 spacing_bottom = -10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huejc"]
-bg_color = Color(0.6, 0.6, 0.6, 0.180392)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7xiq"]
-bg_color = Color(0.843137, 0.721569, 0, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_png7d"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooxb5"]
 bg_color = Color(0, 0, 0, 0.313726)
 border_width_left = 1
@@ -80,9 +72,34 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_ooxb5"]
-font_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooxb5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huejc"]
+bg_color = Color(0.6, 0.6, 0.6, 0.180392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7xiq"]
+bg_color = Color(0.843137, 0.721569, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_png7d"]
 
 [node name="GameUI" type="CanvasLayer"]
 process_mode = 3
@@ -129,6 +146,22 @@ process_mode = 3
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sfyf6")
 
+[node name="RemainingTime" type="Label" parent="MarginContainer/MainArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.0
+offset_right = 77.0
+offset_bottom = 53.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_ooxb5")
+theme_override_font_sizes/font_size = 60
+text = "12:34"
+horizontal_alignment = 1
+
 [node name="TopContainer" type="HBoxContainer" parent="MarginContainer/MainArea"]
 unique_name_in_owner = true
 process_mode = 3
@@ -138,118 +171,16 @@ anchor_right = 1.0
 grow_horizontal = 2
 theme_override_constants/separation = 30
 
-[node name="ScoreContainer" type="VBoxContainer" parent="MarginContainer/MainArea/TopContainer"]
-layout_mode = 2
-
-[node name="RemainingTime" type="Label" parent="MarginContainer/MainArea/TopContainer/ScoreContainer"]
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/MainArea/TopContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = SubResource("FontVariation_ooxb5")
-theme_override_font_sizes/font_size = 60
-text = "12:34"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainArea/TopContainer/ScoreContainer"]
-layout_mode = 2
-
-[node name="ScoreLabel" type="Label" parent="MarginContainer/MainArea/TopContainer/ScoreContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "LABEL_SCORE"
-
-[node name="Label" type="Label" parent="MarginContainer/MainArea/TopContainer/ScoreContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = ":"
-
-[node name="Score" type="Label" parent="MarginContainer/MainArea/TopContainer/ScoreContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "12345"
-
-[node name="XpContainer" type="VBoxContainer" parent="MarginContainer/MainArea/TopContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="XpBar" type="ProgressBar" parent="MarginContainer/MainArea/TopContainer/XpContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_huejc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_u7xiq")
-max_value = 10.0
-step = 0.1
-value = 3.3
-show_percentage = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainArea/TopContainer/XpContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="XpLabel" type="Label" parent="MarginContainer/MainArea/TopContainer/XpContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "123/4567"
-horizontal_alignment = 2
-
-[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/TopContainer/XpContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_png7d")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainArea/TopContainer/XpContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/MainArea/TopContainer/XpContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "LABEL_LEVEL"
-
-[node name="LevelLabel" type="Label" parent="MarginContainer/MainArea/TopContainer/XpContainer/HBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "123"
-
-[node name="MinimapViewer" parent="MarginContainer/MainArea/TopContainer" instance=ExtResource("4_d2uga")]
-custom_minimum_size = Vector2(250, 200)
-layout_mode = 2
-
-[node name="BottomContainer" type="HBoxContainer" parent="MarginContainer/MainArea"]
-unique_name_in_owner = true
-process_mode = 3
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-
-[node name="DashGauge" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("2_3a147")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer/MainArea/BottomContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_ooxb5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_il6w2")
 value = 30.78
 show_percentage = false
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MainArea/BottomContainer/HealthBar"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MainArea/TopContainer/HealthBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -260,7 +191,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_8rxai")
 
-[node name="HealthBarLabel" type="Label" parent="MarginContainer/MainArea/BottomContainer/HealthBar/PanelContainer"]
+[node name="HealthBarLabel" type="Label" parent="MarginContainer/MainArea/TopContainer/HealthBar/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "12 / 23"
@@ -268,14 +199,125 @@ label_settings = SubResource("LabelSettings_ooxb5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/BottomContainer"]
+[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/TopContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainArea/TopContainer"]
+layout_mode = 2
+
+[node name="MinimapViewer" parent="MarginContainer/MainArea/TopContainer/VBoxContainer" instance=ExtResource("4_d2uga")]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+
+[node name="BottomContainer" type="HBoxContainer" parent="MarginContainer/MainArea"]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
 
 [node name="EquippedGun" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("7_il6w2")]
 unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Consumable" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("10_ooeft")]
+custom_minimum_size = Vector2(60, 50)
 layout_mode = 2
+
+[node name="DashGauge" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("2_3a147")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/BottomContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
+
+[node name="ScoreContainer" type="VBoxContainer" parent="MarginContainer/MainArea/BottomContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "LABEL_SCORE"
+
+[node name="Label" type="Label" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = ":"
+
+[node name="Score" type="Label" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "12345"
+
+[node name="XpBar" type="ProgressBar" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_huejc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_u7xiq")
+max_value = 10.0
+step = 0.1
+value = 3.3
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="XpLabel" type="Label" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "123/4567"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Panel" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_png7d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "LABEL_LEVEL"
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/MainArea/BottomContainer/ScoreContainer/XpBar/MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "123"

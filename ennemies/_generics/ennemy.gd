@@ -62,7 +62,7 @@ func handle_bullet_hit(bullet: Bullet):
 func take_damage(damage: float):
     %Sprite.play("hurt")
     play_hit_sound()
-    VisualEffects.emphases(%Sprite, 1.3, Color.RED)
+    VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
     if %Health:
         %Health.take_damage(damage)
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)

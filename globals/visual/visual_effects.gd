@@ -23,12 +23,10 @@ func bleed(node_position: Vector2, hit_position: Vector2):
     var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(node_position, direction)
     SceneManager.current_scene.add_child(bleed_effect)
 
-func emphases(object: Node, to_scale: float, to_color: Color):
-    var initial_scale = object.scale
-    var tween = get_tree().create_tween()
-    tween.set_trans(Tween.TRANS_BACK)
-    tween.set_ease(Tween.EASE_OUT)
-    tween.tween_property(object, "scale", Vector2(to_scale, to_scale), 0.05)
-    tween.tween_property(object, "modulate", to_color, 0.05)
-    tween.tween_property(object, "scale", initial_scale, 0.25)
-    tween.tween_property(object, "modulate", Color.WHITE, 0.25)
+func emphases(object: Node, from_scale: float, to_scale: float, to_color: Color):
+    create_tween().tween_property(object, "scale", Vector2(to_scale, to_scale), 0.05).finished.connect(func():
+        create_tween().tween_property(object, "scale", Vector2(from_scale, from_scale), 0.2)
+    )
+    create_tween().tween_property(object, "modulate", to_color, 0.05).finished.connect(func():
+        create_tween().tween_property(object, "modulate", Color.WHITE, 0.2)
+    )

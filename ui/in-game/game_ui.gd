@@ -12,7 +12,7 @@ func _ready() -> void:
     GameState.player_timewarping_changed.connect(_on_player_timewarping_changed)
     GameState.player_gained_level.connect(play_lvl_up_effect)
     GameState.state_changed.connect(func(new_state: GameState.State):
-        if new_state == GameState.State.PAUSED: slide_out()
+        if [GameState.State.PAUSED, GameState.State.GAME_OVER, GameState.State.CHOOSING_UPGRADE].has(new_state): slide_out()
         else: slide_in()
     )
     GameState.equipped_gun_changed.connect(func(new_gun: Gun):
@@ -48,14 +48,14 @@ func _on_player_state_changed(player_state: PlayerState):
     if player_state.xp != player_xp:
         player_xp = player_state.xp
         %XpLabel.text = str(floor(player_xp)) + " / " + str(floor(player_state.next_level_xp))
-        VisualEffects.emphases(%XpLabel, 1.2, Color.YELLOW)
+        VisualEffects.emphases(%XpLabel, %XpLabel.scale.x, 1.2, Color.YELLOW)
         var tween = get_tree().create_tween()
         tween.tween_property(%XpBar, "value", player_state.xp, 0.25)
 
     if player_state.level != player_level:
         player_level = player_state.level
         %LevelLabel.text = str(player_state.level)
-        VisualEffects.emphases(%LevelLabel, 1.2, Color.YELLOW)
+        VisualEffects.emphases(%LevelLabel, %LevelLabel.scale.x, 1.2, Color.YELLOW)
 
     %XpBar.max_value = player_state.next_level_xp
 
