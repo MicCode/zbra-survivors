@@ -1,5 +1,24 @@
 
 - - -
+## 0.14.0 - 2025-07-30
+
+#### ➕ New features
+- **(gameplay)** allow player to choose among three upgrade options when level up
+- **(ui)** show more player and gun statistics
+- **(ui)** display player and gun statistics with real world units
+- **(ui)** added missing stats modifiers sprites
+- **(ui)** created a new level up stats upgrade menu
+- **(ui)** display stats diff in gun compare menu
+- **(ui)** created new menu to compare new gun with equipped one
+- **(ui)** display player and equipped gun statistics when pausing game
+#### 🪲 Bug fixes
+- **(gameplay)** fixed stats modifiers computing process
+- **(performances)** do not evaluate chunks generation each frame
+- **(ui)** reworked main UI to be more readable
+- **(ui)** fixed health not being well displayed + used a more simple progress bar to display current health
+
+- - -
+
 ## 0.13.0 - 2025-07-28
 
 #### ➕ New features
