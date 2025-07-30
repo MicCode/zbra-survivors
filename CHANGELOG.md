@@ -1,5 +1,13 @@
 
 - - -
+## 0.15.0 - 2025-07-30
+
+#### ➕ New features
+- **(gameplay)** randomly place one chest on the map at random interval
+- **(gameplay)** added chest that gives a random gun
+
+- - -
+
 ## 0.14.0 - 2025-07-30
 
 #### ➕ New features
