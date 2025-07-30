@@ -37,8 +37,12 @@ func get_stat_name(mod: Modifier) -> String:
 
 func get_texture(mod: Modifier) -> Texture2D:
     match mod:
-        Modifier.MAX_HEALTH: return load("res://assets/sprites/player/max-heath-up.png")
-        Modifier.XP_COLLECT_RADIUS: return load("res://assets/sprites/player/xp-collect-range-up.png")
+        Modifier.MAX_HEALTH: return load("res://assets/sprites/player/modifiers/max-heath-up.png")
+        Modifier.XP_COLLECT_RADIUS: return load("res://assets/sprites/player/modifiers/xp-collect-range-up.png")
+        Modifier.MOVE_SPEED: return load("res://assets/sprites/player/modifiers/speed-up.png")
+        Modifier.DASH_DURATION: return load("res://assets/sprites/player/modifiers/dash-duration-up.png")
+        Modifier.DASH_COOLDOWN: return load("res://assets/sprites/player/modifiers/dash-cooldown-down.png")
+        Modifier.DASH_SPEED_MULTIPLIER: return load("res://assets/sprites/player/modifiers/dash-speed-up.png")
         # TODO add other textures
         _: return load("res://assets/sprites/player/player.png")
 

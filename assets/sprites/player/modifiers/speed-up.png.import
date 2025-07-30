@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccdr4e1ov8g24"
-path="res://.godot/imported/xp-collect-range-up.png-dfaf98e1e2af092c279625f1e1818138.ctex"
+uid="uid://cpxobwb657pwc"
+path="res://.godot/imported/speed-up.png-261291fdb4a5c92ee5e401a30ffbd3f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/xp-collect-range-up.png"
-dest_files=["res://.godot/imported/xp-collect-range-up.png-dfaf98e1e2af092c279625f1e1818138.ctex"]
+source_file="res://assets/sprites/player/modifiers/speed-up.png"
+dest_files=["res://.godot/imported/speed-up.png-261291fdb4a5c92ee5e401a30ffbd3f1.ctex"]
 
 [params]
 
