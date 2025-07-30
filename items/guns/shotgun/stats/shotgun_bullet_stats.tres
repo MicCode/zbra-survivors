@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_17u6f")
 damage = 3
-speed = 750.0
+speed = 1200.0
 speed_variation = 0.5
 disapear_delay = 0.0
 fly_range = 150.0

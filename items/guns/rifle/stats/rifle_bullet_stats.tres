@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_iadp2")
 damage = 3
-speed = 1750.0
+speed = 3000.0
 speed_variation = 0.0
 disapear_delay = 0.0
 fly_range = 500.0

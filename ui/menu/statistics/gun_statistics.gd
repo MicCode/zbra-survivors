@@ -8,7 +8,7 @@ var compare_to: Gun
 
 func _ready() -> void:
     refresh_display()
-    if is_current_gun:
+    if is_current_gun and GameState.equipped_gun != null:
         change_gun(GameState.equipped_gun)
         GameState.equipped_gun_changed.connect(change_gun)
 
@@ -52,11 +52,11 @@ func refresh_display():
     %SpreadAngle.set_value(gun.gun_stats.bullets_spread_angle_deg)
     if compare_to: %SpreadAngle.set_compare_to(compare_to.gun_stats.bullets_spread_angle_deg)
 
-    %BulletSpeed.set_value(gun.bullet_stats.speed)
-    if compare_to: %BulletSpeed.set_compare_to(compare_to.bullet_stats.speed)
+    %BulletSpeed.set_value(Conversions.game_speed_to_kmh(gun.bullet_stats.speed))
+    if compare_to: %BulletSpeed.set_compare_to(Conversions.game_speed_to_kmh(compare_to.bullet_stats.speed))
 
     %PierceCount.set_value(gun.bullet_stats.pierce_count)
     if compare_to: %PierceCount.set_compare_to(compare_to.bullet_stats.pierce_count)
 
-    %Range.set_value(gun.bullet_stats.fly_range)
-    if compare_to: %Range.set_compare_to(compare_to.bullet_stats.fly_range)
+    %Range.set_value(Conversions.game_pixels_to_m(gun.bullet_stats.fly_range))
+    if compare_to: %Range.set_compare_to(Conversions.game_pixels_to_m(compare_to.bullet_stats.fly_range))

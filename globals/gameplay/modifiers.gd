@@ -16,11 +16,11 @@ enum ModifierType {
 
 var all_modifiers: Array[StatsModifier] = [
     StatsModifier.create_absolute(Modifier.MAX_HEALTH, 1.0),
-    StatsModifier.create_relative(Modifier.XP_COLLECT_RADIUS, 5.0),
-    StatsModifier.create_relative(Modifier.MOVE_SPEED, 5.0),
-    StatsModifier.create_relative(Modifier.DASH_DURATION, 5.0),
-    StatsModifier.create_relative(Modifier.DASH_COOLDOWN, -5.0),
-    StatsModifier.create_relative(Modifier.DASH_SPEED_MULTIPLIER, 5.0),
+    StatsModifier.create_percent(Modifier.XP_COLLECT_RADIUS, 10.0),
+    StatsModifier.create_percent(Modifier.MOVE_SPEED, 5.0),
+    StatsModifier.create_percent(Modifier.DASH_DURATION, 10.0),
+    StatsModifier.create_percent(Modifier.DASH_COOLDOWN, -10.0),
+    StatsModifier.create_percent(Modifier.DASH_SPEED_MULTIPLIER, 5.0),
 ]
 
 func get_stat_name(mod: Modifier) -> String:

@@ -46,18 +46,18 @@ theme_override_font_sizes/font_size = 20
 text = "GUN_NAME"
 horizontal_alignment = 1
 
+[node name="Damage" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_DAMAGE"
+is_int = false
+
 [node name="DamagePerS" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
 unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_DAMAGE_PER_S"
 is_int = false
 unit = "LABEL_UNIT_DAMAGE_PER_S"
-
-[node name="Damage" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
-unique_name_in_owner = true
-layout_mode = 2
-label = "LABEL_DAMAGE"
-is_int = false
 
 [node name="ShotPerS" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
 unique_name_in_owner = true
@@ -70,8 +70,6 @@ unit = "LABEL_UNIT_SHOT_PER_S"
 unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_BULLETS_PER_S"
-is_int = false
-unit = "LABEL_UNIT_BULLETS_PER_S"
 
 [node name="SpreadAngle" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
 unique_name_in_owner = true
@@ -83,6 +81,7 @@ unit = "LABEL_UNIT_DEG"
 unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_BULLET_SPEED"
+unit = "LABEL_UNIT_KM_H"
 
 [node name="PierceCount" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
 unique_name_in_owner = true
@@ -93,6 +92,7 @@ label = "LABEL_PIERCE_COUNT"
 unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_RANGE"
+unit = "LABEL_UNIT_M"
 
 [node name="NoGun" type="CenterContainer" parent="MarginContainer"]
 unique_name_in_owner = true

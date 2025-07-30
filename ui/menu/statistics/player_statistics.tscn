@@ -49,6 +49,12 @@ unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_XP"
 
+[node name="XpCollectRadius" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_XP_COLLECT_RADIUS"
+unit = "LABEL_UNIT_M"
+
 [node name="NextLevelXp" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -58,6 +64,8 @@ label = "LABEL_NEXT_LVL_XP"
 unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_MOVE_SPEED"
+is_int = false
+unit = "LABEL_UNIT_KM_H"
 
 [node name="DashDuration" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
 unique_name_in_owner = true
@@ -72,3 +80,10 @@ layout_mode = 2
 label = "LABEL_DASH_COOLDOWN"
 is_int = false
 unit = "LABEL_UNIT_S"
+
+[node name="DashSpeed" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_DASH_SPEED_MULTIPLIER"
+is_int = false
+unit = "LABEL_UNIT_KM_H"
