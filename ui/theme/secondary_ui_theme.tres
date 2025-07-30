@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ovugx2tb06c"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://ovugx2tb06c"]
+
+[ext_resource type="FontFile" uid="uid://cuysqbso0dh4t" path="res://assets/Kanit-Regular.ttf" id="1_2migk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlsop"]
 bg_color = Color(0.0574036, 0.248905, 0.474499, 1)
@@ -61,6 +63,7 @@ shadow_offset = Vector2(0, 2)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swpru"]
 
 [resource]
+default_font = ExtResource("1_2migk")
 Button/styles/disabled = SubResource("StyleBoxFlat_dlsop")
 Button/styles/focus = SubResource("StyleBoxFlat_h56hi")
 Button/styles/hover = SubResource("StyleBoxFlat_ka24h")
