@@ -34,19 +34,18 @@ class_name PlayerState
 @export var xp_collector_drop_chance: float
 @export var land_mine_chance: float
 
-static func duplicate_with_modifiers(source: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
-    var state: PlayerState = source.duplicate(true)
+static func apply_modifiers(current_state: PlayerState, base_state: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
     for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.ModifierType.PLAYER)):
-        if state.get(mod.get_stat_name()) == null:
+        if current_state.get(mod.get_stat_name()) == null:
             push_error("Unable to apply player stat modifier, stat name [%s] not found in class PlayerState" % mod.get_stat_name())
         else:
-            var value = state.get(mod.get_stat_name())
-            if typeof(value) != typeof(mod.modifier_value):
-                push_error("PlayerState property [%s] is expecting type [%d] but provided modifier is of type [%d]" % [mod.get_stat_name(), typeof(value), typeof(mod.modifier_value)])
+            var base_value = base_state.get(mod.get_stat_name())
+            if typeof(base_value) != typeof(mod.modifier_value):
+                push_error("PlayerState property [%s] is expecting type [%d] but provided modifier is of type [%d]" % [mod.get_stat_name(), typeof(base_value), typeof(mod.modifier_value)])
             else:
                 if mod.is_absolute:
-                    value += mod.modifier_value
+                    base_value += mod.modifier_value
                 else:
-                    value *= 1 + (mod.modifier_value / 100)
-            state.set(mod.get_stat_name(), value)
-    return state
+                    base_value *= 1 + (mod.modifier_value / 100)
+            current_state.set(mod.get_stat_name(), base_value)
+    return current_state
