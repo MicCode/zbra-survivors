@@ -3,16 +3,51 @@ extends Node2D
 var loaded_chunks := {}
 var is_init = true
 
+var is_one_chest_on_map = false
+var can_spawn_chest = false
+
 func _init() -> void:
     GameState.player_moved.connect(_on_player_moved)
+    GameState.player_openned_chest.connect(func():
+        is_one_chest_on_map = false # FIXME this may not be correct the day we spawn chests in other way (not in world generation)
+        restart_chest_spawn_timer()
+    )
+
+func _ready() -> void:
+    restart_chest_spawn_timer()
 
 func _on_player_moved(player_position: Vector2):
     if !%UpdateTimer.is_stopped():
         return
 
     update_chunks(player_position)
+    if !is_one_chest_on_map and can_spawn_chest:
+        create_chest_on_map(player_position)
+
     is_init = false
     %UpdateTimer.start(Settings.CHUNK_UPDATE_INTERVAL)
+
+func restart_chest_spawn_timer():
+    can_spawn_chest = false
+    %ChestSpawnTimer.start(randf_range(Settings.MINIMAL_TIME_BETWEEN_CHEST_SPAWN, Settings.MAXIMAL_TIME_BETWEEN_CHEST_SPAWN))
+
+func _on_chest_spawn_timer_timeout() -> void:
+    can_spawn_chest = true
+
+func create_chest_on_map(player_position: Vector2):
+    var random_position = _get_random_position_around_player(player_position)
+    var new_chest = preload("res://items/loot_chest.tscn").instantiate()
+    new_chest.global_position = random_position
+    add_child(new_chest)
+    Sounds.bell_ring()
+
+    is_one_chest_on_map = true
+
+func _get_random_position_around_player(player_position: Vector2) -> Vector2:
+    var angle = randf_range(0.0, TAU)
+    var distance = randf_range(Settings.MINIMAL_DISTANCE_FROM_CHEST, Settings.MAXIMAL_DISTANCE_FROM_CHEST)
+    var offset = Vector2.RIGHT.rotated(angle) * distance
+    return player_position + offset
 
 func get_chunk_coords(player_position: Vector2) -> Vector2i:
     return Vector2i(floor(player_position.x / Settings.CHUNK_SIZE), floor(player_position.y / Settings.CHUNK_SIZE))

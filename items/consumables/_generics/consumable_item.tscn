@@ -83,6 +83,7 @@ scale = Vector2(1.21875, 0.75)
 texture = ExtResource("2_l5uqt")
 
 [node name="LocationMarker" parent="." instance=ExtResource("3_1l5bh")]
+visible = false
 sprite_scale = 3.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

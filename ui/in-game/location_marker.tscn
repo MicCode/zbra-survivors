@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bbjtcm8fgwkmw" path="res://assets/sprites/arrow-blue.png" id="1_ubs04"]
 
 [node name="LocationMarker" type="Node2D"]
+z_index = 1
+z_as_relative = false
 position = Vector2(0, 22)
 script = ExtResource("1_l32qi")
 
@@ -15,4 +17,6 @@ position = Vector2(0, -22)
 [node name="LocationMarker" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 1
+z_as_relative = false
 texture = ExtResource("1_ubs04")

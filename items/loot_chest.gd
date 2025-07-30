@@ -9,6 +9,7 @@ func _ready() -> void:
     var rays_shader: ShaderMaterial = %Rays.material
     rays_shader.set_shader_parameter("edge_fade", 0.4)
     rays_shader.set_shader_parameter("ray_2_intensity", 0.0)
+    Minimap.track(self, Minimap.ObjectType.CHEST)
 
 func _process(_delta: float) -> void:
     var overlapping_env_element = %SafeArea.get_overlapping_bodies()
@@ -31,6 +32,7 @@ func _on_trigger_radius_body_entered(body: Node2D) -> void:
         get_tree().create_timer(DISAPPEAR_DELAY).timeout.connect(disappear)
 
 func disappear():
+    Minimap.untrack(self)
     var rays_shader: ShaderMaterial = %Rays.material
     create_tween().tween_property(rays_shader, "shader_parameter/edge_fade", 1.0, OPENING_TIME)
     create_tween().tween_property(rays_shader, "shader_parameter/ray_2_intensity", 0.0, OPENING_TIME)

@@ -8,6 +8,11 @@ const CHUNK_UNLOAD_DISTANCE: int = 10
 const CHUNK_UNLOAD_TIME: float = 30.0
 const CHUNK_UPDATE_INTERVAL: float = 0.5
 
+const MINIMAL_TIME_BETWEEN_CHEST_SPAWN: float = 10.0
+const MAXIMAL_TIME_BETWEEN_CHEST_SPAWN: float = 20.0
+const MINIMAL_DISTANCE_FROM_CHEST: float = 3_000
+const MAXIMAL_DISTANCE_FROM_CHEST: float = 4_000
+
 var audio_settings: AudioSettings = AudioSettings.new()
 var game_settings: GameSettings = GameSettings.new()
 

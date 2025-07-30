@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_rxej3")
-damage = 10
+damage = 15
 speed = 2000.0
 speed_variation = 0.0
 disapear_delay = 0.0

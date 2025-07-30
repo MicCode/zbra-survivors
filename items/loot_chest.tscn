@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bdtx1ty1p5o4x"]
+[gd_scene load_steps=21 format=3 uid="uid://bdtx1ty1p5o4x"]
 
 [ext_resource type="Script" uid="uid://fsk06xq5f563" path="res://items/loot_chest.gd" id="1_x8pkq"]
+[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="2_3nwmh"]
 [ext_resource type="PackedScene" uid="uid://clxlxqn7b6tph" path="res://effects/shadow.tscn" id="2_5b0rr"]
 [ext_resource type="Texture2D" uid="uid://5id1khmlrkd" path="res://assets/sprites/items/chest.png" id="2_opnel"]
 [ext_resource type="Shader" uid="uid://ff7uld38m82m" path="res://shaders/god_ray.gdshader" id="4_5b0rr"]
@@ -116,6 +117,12 @@ radius = 157.003
 [node name="LootChest" type="StaticBody2D"]
 collision_mask = 3
 script = ExtResource("1_x8pkq")
+
+[node name="LocationMarker" parent="." instance=ExtResource("2_3nwmh")]
+position = Vector2(0, 24)
+color = 3
+opacity = 0.5
+sprite_scale = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

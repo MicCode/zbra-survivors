@@ -48,14 +48,14 @@ func _on_player_state_changed(player_state: PlayerState):
     if player_state.xp != player_xp:
         player_xp = player_state.xp
         %XpLabel.text = str(floor(player_xp)) + " / " + str(floor(player_state.next_level_xp))
-        VisualEffects.emphases(%XpLabel, %XpLabel.scale.x, 1.2, Color.YELLOW)
+        #VisualEffects.emphases(%XpLabel, %XpLabel.scale.x, 1.2, Color.YELLOW)
         var tween = get_tree().create_tween()
         tween.tween_property(%XpBar, "value", player_state.xp, 0.25)
 
     if player_state.level != player_level:
         player_level = player_state.level
         %LevelLabel.text = str(player_state.level)
-        VisualEffects.emphases(%LevelLabel, %LevelLabel.scale.x, 1.2, Color.YELLOW)
+        #VisualEffects.emphases(%LevelLabel, %LevelLabel.scale.x, 1.2, Color.YELLOW)
 
     %XpBar.max_value = player_state.next_level_xp
 

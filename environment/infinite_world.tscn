@@ -9,3 +9,9 @@ script = ExtResource("1_fsck1")
 [node name="UpdateTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="ChestSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="ChestSpawnTimer" to="." method="_on_chest_spawn_timer_timeout"]

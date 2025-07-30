@@ -137,4 +137,4 @@ position = Vector2(468, 610)
 position = Vector2(478, 284)
 
 [node name="LootChest" parent="." instance=ExtResource("16_uihtm")]
-position = Vector2(119, 455)
+position = Vector2(813, -315)

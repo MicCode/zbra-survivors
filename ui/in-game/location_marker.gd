@@ -8,7 +8,8 @@ class_name LocationMarker
 enum MarkerColors {
     BLUE,
     GREEN,
-    RED
+    RED,
+    GOLD,
 }
 enum XDir {
     RIGHT,
@@ -20,7 +21,7 @@ enum YDir {
     CENTER_Y,
     BOTTOM
 }
-const MARKER_PADDING = 20.0 # distance from nearest screen border (inside screen)
+const MARKER_PADDING = 200.0 # distance from nearest screen border (inside screen)
 
 func _ready() -> void:
     %LocationMarker.modulate.a = opacity
@@ -28,6 +29,7 @@ func _ready() -> void:
     match color:
         MarkerColors.RED: %LocationMarker.texture = load("res://assets/sprites/arrow-red.png")
         MarkerColors.GREEN: %LocationMarker.texture = load("res://assets/sprites/arrow-green.png")
+        MarkerColors.GOLD: %LocationMarker.texture = load("res://assets/sprites/arrow-gold.png")
         _: %LocationMarker.texture = load("res://assets/sprites/arrow-blue.png")
 
 func _process(_delta: float) -> void:

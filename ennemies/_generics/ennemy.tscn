@@ -221,6 +221,7 @@ max_health = 3.0
 current_health = 3.0
 
 [node name="LocationMarker" parent="." instance=ExtResource("9_elh1f")]
+visible = false
 position = Vector2(0, 5.5)
 color = 2
 opacity = 0.5
