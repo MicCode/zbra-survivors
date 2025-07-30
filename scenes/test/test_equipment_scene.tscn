@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=17 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" uid="uid://defjyi8hd43wt" path="res://scenes/test/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_cg6cr"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://items/consumables/life_flask/life_flask.tscn" id="13_6k7wn"]
 [ext_resource type="PackedScene" uid="uid://drdb0e64568up" path="res://items/consumables/xp_collector/xp_collector.tscn" id="14_wrh14"]
 [ext_resource type="PackedScene" uid="uid://brdpew7cllnyf" path="res://items/consumables/mine/mine_collectible.tscn" id="15_ktnje"]
+[ext_resource type="PackedScene" uid="uid://bdtx1ty1p5o4x" path="res://items/loot_chest.tscn" id="16_uihtm"]
 
 [node name="TreeTestScene" type="Node2D"]
 y_sort_enabled = true
@@ -134,3 +135,6 @@ position = Vector2(468, 610)
 
 [node name="Collectible5" parent="." instance=ExtResource("15_ktnje")]
 position = Vector2(478, 284)
+
+[node name="LootChest" parent="." instance=ExtResource("16_uihtm")]
+position = Vector2(119, 455)

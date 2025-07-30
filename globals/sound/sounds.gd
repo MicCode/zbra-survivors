@@ -78,6 +78,9 @@ func absorb():
 
 func coin():
     SoundPlayer.play_sfx("coin.ogg", SfxOptions.from_dict({pitch = 1.2, pitch_variation = 0.2, volume = -1.0}))
+
+func chest_open():
+    SoundPlayer.play_sfx("chest-open.ogg")
 #endregion
 
 #region Equipment

@@ -1,0 +1,171 @@
+[gd_scene load_steps=20 format=3 uid="uid://bdtx1ty1p5o4x"]
+
+[ext_resource type="Script" uid="uid://fsk06xq5f563" path="res://items/loot_chest.gd" id="1_x8pkq"]
+[ext_resource type="PackedScene" uid="uid://clxlxqn7b6tph" path="res://effects/shadow.tscn" id="2_5b0rr"]
+[ext_resource type="Texture2D" uid="uid://5id1khmlrkd" path="res://assets/sprites/items/chest.png" id="2_opnel"]
+[ext_resource type="Shader" uid="uid://ff7uld38m82m" path="res://shaders/god_ray.gdshader" id="4_5b0rr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opnel"]
+radius = 18.0278
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b0rr"]
+atlas = ExtResource("2_opnel")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nwmh"]
+atlas = ExtResource("2_opnel")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0n2s"]
+atlas = ExtResource("2_opnel")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx8yf"]
+atlas = ExtResource("2_opnel")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v2hj"]
+atlas = ExtResource("2_opnel")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdmrk"]
+atlas = ExtResource("2_opnel")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id7cw"]
+atlas = ExtResource("2_opnel")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sedei"]
+atlas = ExtResource("2_opnel")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm37y"]
+atlas = ExtResource("2_opnel")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv2w4"]
+atlas = ExtResource("2_opnel")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obndx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b0rr")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nwmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0n2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx8yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v2hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdmrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id7cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sedei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm37y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv2w4")
+}],
+"loop": false,
+"name": &"open",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3nwmh"]
+shader = ExtResource("4_5b0rr")
+shader_parameter/angle = 0.135
+shader_parameter/position = 0.125
+shader_parameter/spread = 0.707
+shader_parameter/cutoff = 0.179
+shader_parameter/falloff = 1.0
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.7
+shader_parameter/color = Color(0.788541, 0.617527, 1.92523e-06, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qplx"]
+radius = 78.0577
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b0rr"]
+radius = 157.003
+
+[node name="LootChest" type="StaticBody2D"]
+collision_mask = 3
+script = ExtResource("1_x8pkq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_opnel")
+
+[node name="Shadow" parent="." instance=ExtResource("2_5b0rr")]
+position = Vector2(0, -1)
+scale = Vector2(4, 4)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_obndx")
+animation = &"open"
+autoplay = "idle"
+frame = 8
+frame_progress = 1.0
+
+[node name="Rays" type="Panel" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_3nwmh")
+custom_minimum_size = Vector2(100, 300)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -600.0
+offset_right = 50.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(50, 300)
+
+[node name="TriggerRadius" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerRadius"]
+shape = SubResource("CircleShape2D_4qplx")
+
+[node name="SafeArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeArea"]
+shape = SubResource("CircleShape2D_5b0rr")
+debug_color = Color(0.890196, 0.317647, 0.184314, 0.203922)
+
+[connection signal="body_entered" from="TriggerRadius" to="." method="_on_trigger_radius_body_entered"]

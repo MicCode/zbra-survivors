@@ -3,6 +3,7 @@ signal player_state_changed
 signal player_gained_level(new_level: int)
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
+signal player_openned_chest()
 
 signal equipped_gun_changed(new_gun: Gun)
 signal consumable_changed(new_consumable: ConsumableItem)
@@ -53,6 +54,10 @@ func _init() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     _reset_player()
     change_state(State.RUNNING)
+    player_openned_chest.connect(func():
+        var random_gun = LootGenerator.get_random_gun()
+        change_equipped_gun(random_gun)
+    )
 
 func _reset_player():
     stats_modifiers = []

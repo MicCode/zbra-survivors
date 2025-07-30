@@ -11,8 +11,12 @@ func _ready() -> void:
 func _on_quit_button_pressed() -> void:
     Sounds.click()
     reset_effects()
-    GameState.change_state(GameState.State.NOT_STARTED)
-    SceneManager.switch_to("res://ui/menu/main_menu.tscn")
+    slide_out().finished.connect(func():
+        GameState.change_state(GameState.State.NOT_STARTED)
+        SceneManager.switch_to("res://ui/menu/main_menu.tscn")
+        queue_free()
+    )
+
 
 func reset_effects():
     Engine.time_scale = 1.0

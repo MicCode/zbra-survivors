@@ -53,6 +53,7 @@ label = "LABEL_XP"
 unique_name_in_owner = true
 layout_mode = 2
 label = "LABEL_XP_COLLECT_RADIUS"
+is_int = false
 unit = "LABEL_UNIT_M"
 
 [node name="NextLevelXp" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]

@@ -16,6 +16,10 @@ func _ready() -> void:
         _: %LanguageSwitcher.select(0) # fallback on english
     %StartButton.grab_focus()
 
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed("debug_mode"):
+        SceneManager.switch_to("res://scenes/test/test_equipment_scene.tscn")
+
 func _on_start_button_pressed() -> void:
     Sounds.click()
     Sounds.start_game()
