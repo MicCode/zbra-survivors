@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://qw8ojo2htw8p"]
+
+[ext_resource type="Script" uid="uid://ci3f4nbuqwo6w" path="res://ui/in-game/annoucement_sticker.gd" id="1_mo7bm"]
+[ext_resource type="FontFile" uid="uid://c27fd1d2vwq7k" path="res://assets/fonts/RubikBurned-Regular.ttf" id="2_jifhi"]
+[ext_resource type="Shader" uid="uid://7n1pltl6qwgc" path="res://shaders/dissolve.gdshader" id="2_uddvy"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_616vk"]
+noise_type = 3
+frequency = 0.1343
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fxf1e"]
+seamless = true
+noise = SubResource("FastNoiseLite_616vk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q1uk6"]
+resource_local_to_scene = true
+shader = ExtResource("2_uddvy")
+shader_parameter/progress = 0.785
+shader_parameter/noiseForce = 0.2
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_fxf1e")
+shader_parameter/burnColor = Color(0.995046, 0.513321, 0, 1)
+shader_parameter/borderWidth = 0.135
+shader_parameter/direction = 90.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3lec"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jifhi"]
+resource_local_to_scene = true
+font = ExtResource("2_jifhi")
+font_size = 60
+font_color = Color(0.655928, 0.0185018, 2.40654e-07, 1)
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="AnnoucementSticker" type="Node2D"]
+z_index = 1000
+z_as_relative = false
+script = ExtResource("1_mo7bm")
+
+[node name="Panel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_q1uk6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y3lec")
+
+[node name="Label" type="Label" parent="Panel"]
+unique_name_in_owner = true
+use_parent_material = true
+layout_mode = 2
+text = "DOUBLE KILL"
+label_settings = SubResource("LabelSettings_jifhi")
+uppercase = true

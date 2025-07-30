@@ -155,6 +155,8 @@ func announce(file_name: String, options: SfxOptions = SfxOptions.new()):
     var stream = _load_sfx_stream(file_name)
     if stream == null:
         return
+    if announcer_player != null and announcer_player.playing:
+        announcer_player.stop()
     announcer_player = await _play_sound(stream, "Announcements", options)
 
 func play_music(file_name: String, transition_duration: float = 1.0, loop: bool = true):

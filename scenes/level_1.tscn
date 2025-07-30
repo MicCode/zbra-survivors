@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=9 format=3 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" uid="uid://bl0616biw7sew" path="res://scenes/level_1.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/in-game/game_ui.tscn" id="4_yuug0"]
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://items/guns/pistol/pistol_collectible.tscn" id="6_5n8pi"]
 [ext_resource type="PackedScene" uid="uid://cal4x5wbe2maf" path="res://ui/in-game/boss_ui.tscn" id="10_q8l1h"]
+[ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://items/guns/sniper/sniper_collectible.tscn" id="17_xm7rv"]
 
 [sub_resource type="Curve2D" id="Curve2D_rf5nu"]
 _data = {
@@ -62,6 +63,9 @@ autostart = true
 
 [node name="BasicGunCollectible" parent="." instance=ExtResource("6_5n8pi")]
 position = Vector2(418, 199)
+
+[node name="Collectible" parent="." instance=ExtResource("17_xm7rv")]
+position = Vector2(145, 273)
 
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]

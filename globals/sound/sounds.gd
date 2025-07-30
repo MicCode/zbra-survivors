@@ -94,7 +94,7 @@ func reload():
     SoundPlayer.play_sfx("reload.ogg", SfxOptions.from_dict({pitch = 0.9}))
 
 func bell_ring():
-    SoundPlayer.play_sfx("bell-ring.ogg")
+    SoundPlayer.play_sfx("bell-ring.ogg", SfxOptions.from_dict({volume = -6.0, pitch = 0.9}))
 #endregion
 
 #region Ennemies

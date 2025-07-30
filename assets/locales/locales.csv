@@ -71,3 +71,6 @@ SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
 TITLE_GUN_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
+LABEL_ANNOUNCEMENT_DOUBLE_KILL,Double kill!,Doublette !
+LABEL_ANNOUNCEMENT_TRIPLE_KILL,Triple kill!!,Triplette !!
+LABEL_ANNOUNCEMENT_RAMPAGE,Rampage!!!,Un massacre !!!

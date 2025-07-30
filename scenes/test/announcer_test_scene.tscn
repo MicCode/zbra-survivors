@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bho6tys2jjld0"]
+
+[ext_resource type="Script" uid="uid://bf4oji08j6vko" path="res://scenes/test/announcer_test_scene.gd" id="1_qne6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qne6u"]
+
+[node name="AnnouncerTestScene" type="CanvasLayer"]
+script = ExtResource("1_qne6u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qne6u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="DoubleKill" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Double kill"
+
+[node name="TripleKill" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Triple kill"
+
+[node name="Rampage" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Rampage"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DoubleKill" to="." method="_on_double_kill_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/TripleKill" to="." method="_on_triple_kill_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Rampage" to="." method="_on_rampage_pressed"]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cuysqbso0dh4t"
-path="res://.godot/imported/Kanit-Regular.ttf-8c4ae72620ddc56595ae42f3475d500b.fontdata"
+uid="uid://byqybm73bo1ss"
+path="res://.godot/imported/RubikDistressed-Regular.ttf-2ef5695bd86d8b296eab3dd1687bac70.fontdata"
 
 [deps]
 
-source_file="res://assets/Kanit-Regular.ttf"
-dest_files=["res://.godot/imported/Kanit-Regular.ttf-8c4ae72620ddc56595ae42f3475d500b.fontdata"]
+source_file="res://assets/fonts/RubikDistressed-Regular.ttf"
+dest_files=["res://.godot/imported/RubikDistressed-Regular.ttf-2ef5695bd86d8b296eab3dd1687bac70.fontdata"]
 
 [params]
 
