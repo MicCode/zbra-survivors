@@ -1,11 +1,12 @@
 extends Node
 signal settings_changed
 
-const WORLD_GENERATION_DEBUG = false
-const CHUNK_SIZE = 512
-const CHUNK_RENDER_DISTANCE = 3
-const CHUNK_UNLOAD_DISTANCE = 10
-const CHUNK_UNLOAD_TIME = 30.0
+const WORLD_GENERATION_DEBUG: bool = false
+const CHUNK_SIZE: int = 512
+const CHUNK_RENDER_DISTANCE: int = 3
+const CHUNK_UNLOAD_DISTANCE: int = 10
+const CHUNK_UNLOAD_TIME: float = 30.0
+const CHUNK_UPDATE_INTERVAL: float = 0.5
 
 var audio_settings: AudioSettings = AudioSettings.new()
 var game_settings: GameSettings = GameSettings.new()
