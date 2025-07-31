@@ -1,7 +1,7 @@
 extends Node
 
 const DELAY_BEFORE_KILL_ANNOUNCEMENT = 0.5
-const SCREEN_STICKERS_PADDING = 100
+const SCREEN_STICKERS_PADDING: float = 100.0
 
 var kill_in_one_shot: int = 0
 var kill_announcement_timer: SceneTreeTimer
@@ -32,8 +32,8 @@ func draw_announcement_sticker(text: String, size: int):
     else:
         var screen_size = get_window().get_size()
         sticker.global_position = Vector2(
-            randi_range(SCREEN_STICKERS_PADDING, screen_size.x - (SCREEN_STICKERS_PADDING * 2)),
-            randi_range(floor(float(SCREEN_STICKERS_PADDING) / 2), screen_size.y - SCREEN_STICKERS_PADDING),
+            randf_range(SCREEN_STICKERS_PADDING, screen_size.x - SCREEN_STICKERS_PADDING * 2),
+            randf_range(SCREEN_STICKERS_PADDING / 2, screen_size.y - SCREEN_STICKERS_PADDING),
         )
     get_tree().root.add_child(sticker)
 

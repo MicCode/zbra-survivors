@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw4p1iq5wlrg7"
-path="res://.godot/imported/dash-duration-up.png-bdbc9036f92d69ff63c428366fe6e543.ctex"
+uid="uid://dmt6a8mf6vdnd"
+path="res://.godot/imported/dash-cooldown-down.png-fac110612f09a499bd50f73e85fed62b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/modifiers/dash-duration-up.png"
-dest_files=["res://.godot/imported/dash-duration-up.png-bdbc9036f92d69ff63c428366fe6e543.ctex"]
+source_file="res://assets/sprites/modifiers/dash-cooldown-down.png"
+dest_files=["res://.godot/imported/dash-cooldown-down.png-fac110612f09a499bd50f73e85fed62b.ctex"]
 
 [params]
 

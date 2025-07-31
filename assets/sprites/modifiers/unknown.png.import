@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpxobwb657pwc"
-path="res://.godot/imported/speed-up.png-261291fdb4a5c92ee5e401a30ffbd3f1.ctex"
+uid="uid://c7sq4eo8wsmp7"
+path="res://.godot/imported/unknown.png-9b0d82557010bfdfa33aea870db1dad0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/modifiers/speed-up.png"
-dest_files=["res://.godot/imported/speed-up.png-261291fdb4a5c92ee5e401a30ffbd3f1.ctex"]
+source_file="res://assets/sprites/modifiers/unknown.png"
+dest_files=["res://.godot/imported/unknown.png-9b0d82557010bfdfa33aea870db1dad0.ctex"]
 
 [params]
 

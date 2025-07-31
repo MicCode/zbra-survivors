@@ -35,7 +35,7 @@ class_name PlayerState
 @export var land_mine_chance: float
 
 static func apply_modifiers(current_state: PlayerState, base_state: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
-    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.ModifierType.PLAYER)):
+    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.PLAYER)):
         if current_state.get(mod.get_stat_name()) == null:
             push_error("Unable to apply player stat modifier, stat name [%s] not found in class PlayerState" % mod.get_stat_name())
         else:

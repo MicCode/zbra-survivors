@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmt6a8mf6vdnd"
-path="res://.godot/imported/dash-cooldown-down.png-4402b9a83854a04a9965b1afb1a3bc67.ctex"
+uid="uid://cpxobwb657pwc"
+path="res://.godot/imported/speed-up.png-d3d06ffec2e1856b80c243e82250974b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/modifiers/dash-cooldown-down.png"
-dest_files=["res://.godot/imported/dash-cooldown-down.png-4402b9a83854a04a9965b1afb1a3bc67.ctex"]
+source_file="res://assets/sprites/modifiers/speed-up.png"
+dest_files=["res://.godot/imported/speed-up.png-d3d06ffec2e1856b80c243e82250974b.ctex"]
 
 [params]
 

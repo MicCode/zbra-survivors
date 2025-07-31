@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b55ctet56ho2d"
-path="res://.godot/imported/dash-speed-up.png-8cfa43e3bb7d6d5a8700af1dd2567d26.ctex"
+path="res://.godot/imported/dash-speed-up.png-83145191692b3f87acc1aec8a0540fca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/modifiers/dash-speed-up.png"
-dest_files=["res://.godot/imported/dash-speed-up.png-8cfa43e3bb7d6d5a8700af1dd2567d26.ctex"]
+source_file="res://assets/sprites/modifiers/dash-speed-up.png"
+dest_files=["res://.godot/imported/dash-speed-up.png-83145191692b3f87acc1aec8a0540fca.ctex"]
 
 [params]
 

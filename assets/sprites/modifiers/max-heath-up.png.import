@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccdr4e1ov8g24"
-path="res://.godot/imported/xp-collect-range-up.png-1d381ceacb649d0f8181e4d76ef2093b.ctex"
+uid="uid://diowo5ep22tmq"
+path="res://.godot/imported/max-heath-up.png-c4f6aa961607804cbb9a2880a3d8ac58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/modifiers/xp-collect-range-up.png"
-dest_files=["res://.godot/imported/xp-collect-range-up.png-1d381ceacb649d0f8181e4d76ef2093b.ctex"]
+source_file="res://assets/sprites/modifiers/max-heath-up.png"
+dest_files=["res://.godot/imported/max-heath-up.png-c4f6aa961607804cbb9a2880a3d8ac58.ctex"]
 
 [params]
 

@@ -105,17 +105,18 @@ func gain_xp(xp: float) -> void:
 
     emit_player_change()
 
-func add_player_modifier(new_modifier: StatsModifier):
-    var existing_modifiers: Array[StatsModifier] = stats_modifiers.filter(func(m: StatsModifier): return m.modifier == new_modifier.modifier)
+func add_player_modifier(new_mod: Modifiers.Mod):
+    var new_stats_modifier = new_mod.to_stats_modifier()
+    var existing_modifiers: Array[StatsModifier] = stats_modifiers.filter(func(m: StatsModifier): return m.modifier == new_stats_modifier.modifier)
     if existing_modifiers.is_empty():
-        stats_modifiers.append(new_modifier)
+        stats_modifiers.append(new_stats_modifier)
     else:
-        existing_modifiers[0].modifier_value += new_modifier.modifier_value
+        existing_modifiers[0].modifier_value += new_stats_modifier.modifier_value
         # TODO what if multiple matching modifiers are found ?
 
     player_state = PlayerState.apply_modifiers(player_state, base_player_state, stats_modifiers)
-    if new_modifier.modifier == Modifiers.Modifier.MAX_HEALTH:
-        player_state.health += new_modifier.modifier_value
+    if new_stats_modifier.modifier == Modifiers.Name.PLAYER_MAX_HEALTH:
+        player_state.health += new_stats_modifier.modifier_value
     emit_player_change()
 
 

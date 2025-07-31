@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diowo5ep22tmq"
-path="res://.godot/imported/max-heath-up.png-9ac4a630bcc21d2e9ce2a2b1f4ebc6ed.ctex"
+uid="uid://dw4p1iq5wlrg7"
+path="res://.godot/imported/dash-duration-up.png-0bcd92b5805f5e01119c882a7efa1cca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/modifiers/max-heath-up.png"
-dest_files=["res://.godot/imported/max-heath-up.png-9ac4a630bcc21d2e9ce2a2b1f4ebc6ed.ctex"]
+source_file="res://assets/sprites/modifiers/dash-duration-up.png"
+dest_files=["res://.godot/imported/dash-duration-up.png-0bcd92b5805f5e01119c882a7efa1cca.ctex"]
 
 [params]
 

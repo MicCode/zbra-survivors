@@ -7,7 +7,7 @@ const HOVER_ANIMATION_DURATION = 0.1
 var panel_style: StyleBoxFlat
 var has_been_clicked = false
 var block_focus = false
-var stat_modifier: StatsModifier # TODO add a more generic class to also support GunStatModifiers ?
+var stat_modifier: Modifiers.Mod
 var is_hovered = false
 var prevent_init_mouse_click = false
 
@@ -32,19 +32,18 @@ func is_ui_accept() -> bool:
 func is_mouse_clicked() -> bool:
     return !prevent_init_mouse_click and is_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
-func set_stat_modifier(new_modifier: StatsModifier):
-    stat_modifier = new_modifier.duplicate(true) as StatsModifier
-    %StatName.text = new_modifier.get_label()
-    var value_label = str(new_modifier.modifier_value)
+func set_stat_modifier(new_mod: Modifiers.Mod):
+    stat_modifier = new_mod
+    %StatName.text = new_mod.get_display_label()
+    var value_label = str(new_mod.modification_value)
     if value_label.ends_with(".0"):
         value_label = value_label.split(".")[0]
-    if !new_modifier.is_absolute:
+    if !new_mod.is_absolute:
         value_label += "%"
     if not (value_label.begins_with("-") or value_label.begins_with("0")):
         value_label = "+" + value_label
     %ModifierValue.text = value_label
-    %Sprite.texture = Modifiers.get_texture(new_modifier.modifier)
-    # TODO change displayed texture in %Sprite in function of the modifier. Extract this texture-modifier association in a global service ?
+    %Sprite.texture = new_mod.get_sprite()
 
 func force_focus():
     %PanelContainer.grab_focus()

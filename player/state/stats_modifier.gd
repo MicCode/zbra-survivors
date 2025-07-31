@@ -1,17 +1,17 @@
 extends Node
 class_name StatsModifier
 
-var modifier: Modifiers.Modifier
+var modifier: Modifiers.Name
 var modifier_value: float = 0.0
 var is_absolute = true
 
-static func create_absolute(mod: Modifiers.Modifier, value: float) -> StatsModifier:
+static func create_absolute(mod: Modifiers.Name, value: float) -> StatsModifier:
     var new_modifier = StatsModifier.new()
     new_modifier.modifier = mod
     new_modifier.modifier_value = value
     return new_modifier
 
-static func create_percent(mod: Modifiers.Modifier, percentage: float) -> StatsModifier:
+static func create_percent(mod: Modifiers.Name, percentage: float) -> StatsModifier:
     var new_modifier = StatsModifier.new()
     new_modifier.modifier = mod
     new_modifier.modifier_value = percentage
@@ -30,5 +30,5 @@ func get_stat_name() -> String:
 func get_label() -> String:
     return tr(str("LABEL_%s" % get_stat_name()).to_upper())
 
-func is_type(type: Modifiers.ModifierType) -> bool:
+func is_type(type: Modifiers.Type) -> bool:
     return Modifiers.get_type(modifier) == type

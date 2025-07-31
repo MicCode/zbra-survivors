@@ -32,8 +32,6 @@ font_color = Color(0.655928, 0.0185018, 2.40654e-07, 1)
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="AnnoucementSticker" type="Node2D"]
-z_index = 1000
-z_as_relative = false
 script = ExtResource("1_mo7bm")
 
 [node name="Panel" type="PanelContainer" parent="."]
