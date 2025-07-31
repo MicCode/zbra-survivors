@@ -24,6 +24,9 @@ func _on_kill_announcement_timer_finished():
     kill_in_one_shot = 0
 
 func draw_announcement_sticker(text: String, size: int):
+    if !Settings.game_settings.display_announcement_stickers:
+        return
+
     var sticker = preload("res://ui/in-game/annoucement_sticker.tscn").instantiate()
     sticker.set_text(text)
     sticker.set_size(size)

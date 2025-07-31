@@ -69,32 +69,32 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer"]
+[node name="GameSettingsList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
 layout_mode = 2
 text = "LABEL_GAME_SETTINGS"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer"]
+[node name="LanguageSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/LanguageSetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "LABEL_LANGUAGE"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/LanguageSetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
 
-[node name="Language" type="OptionButton" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Language" type="OptionButton" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/LanguageSetting"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../../../../../Buttons/DefaultButton")
-focus_neighbor_bottom = NodePath("../../HBoxContainer/CameraZoom")
+focus_neighbor_bottom = NodePath("../../CameraZoomSetting/CameraZoom")
 flat = true
 selected = 0
 item_count = 2
@@ -103,49 +103,113 @@ popup/item_0/id = 0
 popup/item_1/text = "LANGUAGE_FR"
 popup/item_1/id = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer"]
+[node name="CameraZoomSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/CameraZoomSetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SETTING_CAMERA_ZOOM"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/CameraZoomSetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
 
-[node name="CameraZoom" type="HSlider" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="CameraZoom" type="HSlider" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/CameraZoomSetting"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../HBoxContainer2/Language")
-focus_neighbor_bottom = NodePath("../../HBoxContainer3/EnableVibrations")
+focus_neighbor_top = NodePath("../../LanguageSetting/Language")
+focus_neighbor_bottom = NodePath("../../MapOpacitySetting/MapOpacity")
 min_value = 0.8
 max_value = 2.0
 step = 0.1
 value = 1.3
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer"]
+[node name="MapOpacitySetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/MapOpacitySetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "SETTING_GAMEPAD_VIBRATION"
+text = "SETTING_MAP_OPACITY"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/MapOpacitySetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
 
-[node name="EnableVibrations" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="MapOpacity" type="HSlider" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/MapOpacitySetting"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../CameraZoomSetting/CameraZoom")
+focus_neighbor_bottom = NodePath("../../EnableVibrationsSetting/EnableVibrations")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="EnableVibrationsSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableVibrationsSetting"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SETTING_GAMEPAD_VIBRATION"
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableVibrationsSetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
+
+[node name="EnableVibrations" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableVibrationsSetting"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../HBoxContainer/CameraZoom")
-focus_neighbor_bottom = NodePath("../../../../../AudioSettings/Panel/VBoxContainer/AudioMaster/MasterVolume")
+focus_neighbor_top = NodePath("../../MapOpacitySetting/MapOpacity")
+focus_neighbor_bottom = NodePath("../../EnableXpRadiusSetting/EnableXpRadius")
+flat = true
+
+[node name="EnableXpRadiusSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableXpRadiusSetting"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SETTING_DISPLAY_XP_RADIUS"
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableXpRadiusSetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
+
+[node name="EnableXpRadius" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableXpRadiusSetting"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../EnableVibrationsSetting/EnableVibrations")
+focus_neighbor_bottom = NodePath("../../EnableAnnouncementsStickersSetting/EnableAnnouncementStickers")
+flat = true
+
+[node name="EnableAnnouncementsStickersSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableAnnouncementsStickersSetting"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SETTING_ENABLE_ANNOUNCEMENT_STICKERS"
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableAnnouncementsStickersSetting"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
+
+[node name="EnableAnnouncementStickers" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableAnnouncementsStickersSetting"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../EnableXpRadiusSetting/EnableXpRadius")
+focus_neighbor_bottom = NodePath("../../../../../AudioSettings/Panel/AudioSettingsList/AudioMasterSetting/MasterVolume")
 flat = true
 
 [node name="AudioSettings" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
@@ -158,104 +222,104 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel"]
+[node name="AudioSettingsList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList"]
 layout_mode = 2
 text = "LABEL_AUDIO_SETTINGS"
 
-[node name="AudioMaster" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer"]
+[node name="AudioMasterSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioMaster"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioMasterSetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SETTING_AUDIO_MASTER"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioMaster"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioMasterSetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_og1ta")
 
-[node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioMaster"]
+[node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioMasterSetting"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../../../../GameSettings/PanelContainer/VBoxContainer/HBoxContainer3/EnableVibrations")
-focus_neighbor_bottom = NodePath("../../AudioFX/SFXVolume")
+focus_neighbor_top = NodePath("../../../../../GameSettings/PanelContainer/GameSettingsList/EnableAnnouncementsStickersSetting/EnableAnnouncementStickers")
+focus_neighbor_bottom = NodePath("../../AudioFXSetting/SFXVolume")
 max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="AudioFX" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer"]
+[node name="AudioFXSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioFX"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioFXSetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SETTING_AUDIO_FX"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioFX"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioFXSetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_og1ta")
 
-[node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioFX"]
+[node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioFXSetting"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../AudioMaster/MasterVolume")
-focus_neighbor_bottom = NodePath("../../AudioAnnouncements/AnnouncementsVolume")
+focus_neighbor_top = NodePath("../../AudioMasterSetting/MasterVolume")
+focus_neighbor_bottom = NodePath("../../AudioAnnouncementsSetting/AnnouncementsVolume")
 max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="AudioAnnouncements" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer"]
+[node name="AudioAnnouncementsSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioAnnouncements"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioAnnouncementsSetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SETTING_AUDIO_ANNOUNCEMENTS"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioAnnouncements"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioAnnouncementsSetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_og1ta")
 
-[node name="AnnouncementsVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioAnnouncements"]
+[node name="AnnouncementsVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioAnnouncementsSetting"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../AudioFX/SFXVolume")
-focus_neighbor_bottom = NodePath("../../AudioMusic/MusicVolume")
+focus_neighbor_top = NodePath("../../AudioFXSetting/SFXVolume")
+focus_neighbor_bottom = NodePath("../../AudioMusicSetting/MusicVolume")
 max_value = 1.0
 step = 0.05
 value = 0.5
 
-[node name="AudioMusic" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer"]
+[node name="AudioMusicSetting" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioMusic"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioMusicSetting"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SETTING_AUDIO_MUSIC"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioMusic"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioMusicSetting"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_og1ta")
 
-[node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/VBoxContainer/AudioMusic"]
+[node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioSettings/Panel/AudioSettingsList/AudioMusicSetting"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../../AudioAnnouncements/AnnouncementsVolume")
+focus_neighbor_top = NodePath("../../AudioAnnouncementsSetting/AnnouncementsVolume")
 focus_neighbor_bottom = NodePath("../../../../../Buttons/SaveButton")
 max_value = 1.0
 step = 0.05
@@ -269,7 +333,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-focus_neighbor_top = NodePath("../../AudioSettings/Panel/VBoxContainer/AudioMusic/MusicVolume")
+focus_neighbor_top = NodePath("../../AudioSettings/Panel/AudioSettingsList/AudioMusicSetting/MusicVolume")
 focus_neighbor_bottom = NodePath("../DefaultButton")
 theme_override_font_sizes/font_size = 35
 text = "BUTTON_SAVE_SETTINGS"
@@ -278,9 +342,9 @@ text = "BUTTON_SAVE_SETTINGS"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../SaveButton")
-focus_neighbor_bottom = NodePath("../../GameSettings/PanelContainer/VBoxContainer/HBoxContainer2/Language")
+focus_neighbor_bottom = NodePath("../../GameSettings/PanelContainer/GameSettingsList/LanguageSetting/Language")
 theme = ExtResource("3_og1ta")
 text = "BUTTON_APPLY_DEFAULT_SETTINGS"
 
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/GameSettings/PanelContainer/VBoxContainer/HBoxContainer2/Language" to="." method="_on_language_item_selected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/LanguageSetting/Language" to="." method="_on_language_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/SaveButton" to="." method="_on_save_button_pressed"]

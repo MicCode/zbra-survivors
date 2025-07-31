@@ -81,3 +81,6 @@ SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
 TITLE_GUN_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
+SETTING_DISPLAY_XP_RADIUS,Show XP capture radius,Montrer le rayon de capture de l'XP
+SETTING_ENABLE_ANNOUNCEMENT_STICKERS,Enable visual announcements,Activer les annonces visuelles
+SETTING_MAP_OPACITY,Minimap opacity,Opacité de la minimap
