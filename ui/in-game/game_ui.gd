@@ -8,6 +8,8 @@ var player_xp: float = -1
 var player_level: int = -1
 
 func _ready() -> void:
+    %MinimapViewer.modulate = Color(Color.WHITE, Settings.game_settings.map_opacity)
+
     GameState.score_changed.connect(_on_score_changed)
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_timewarping_changed.connect(_on_player_timewarping_changed)

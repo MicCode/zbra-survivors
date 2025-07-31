@@ -215,6 +215,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
 layout_mode = 2
 
 [node name="MinimapViewer" parent="MarginContainer/MainArea/TopContainer/VBoxContainer" instance=ExtResource("4_d2uga")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
 
