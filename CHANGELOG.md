@@ -1,5 +1,21 @@
 
 - - -
+## 0.16.0 - 2025-07-31
+
+#### ➕ New features
+- **(gameplay)** destroy trees when dashing into them
+- **(gameplay)** added explosions stats random modifiers
+- **(gameplay)** added guns and bullets random modifiers
+- **(settings)** added setting to show xp collect radius
+- **(settings)** added setting to change minimap opacity
+- **(settings)** added setting to disable visual announcements
+- **(ui)** display stickers on kill announcements
+#### 🪲 Bug fixes
+- **(gameplay)** accumulate new levels when getting a lot of xp at once, instead of giving only a single level
+- **(ui)** reduced ennemies hit marker display frequency
+
+- - -
+
 ## 0.15.0 - 2025-07-30
 
 #### ➕ New features
