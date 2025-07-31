@@ -257,6 +257,10 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
+[node name="DamageSpawnTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

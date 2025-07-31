@@ -1,6 +1,14 @@
 extends CharacterBody2D
 class_name Ennemy
 
+const DAMAGE_MARKER_DELAY: float = 0.25
+const HIT_SOUND_REPETITION_DELAY: float = 0.25
+
+# TODO make burning related stats variable
+const BURN_DURATION_S: float = 1.1
+const BURN_TICK_S: float = 0.25
+const BURN_DAMAGE: float = 2
+
 @export var is_sprite_reversed = false
 @export var stats: EnnemyStats
 
@@ -10,13 +18,11 @@ var is_dead: bool = false
 var is_burning: bool = false
 var object_type = Minimap.ObjectType.ENNEMY
 
-const HIT_SOUND_REPETITION_DELAY: float = 0.5
 var hit_sound_repetition_timer: SceneTreeTimer
 
-# TODO make burning related stats variable
-const BURN_DURATION_S: float = 1.1
-const BURN_TICK_S: float = 0.25
-const BURN_DAMAGE: float = 2
+var previous_damage_indicator: DamageIndicator
+var accumulated_damages: float = 0.0
+
 
 func _enter_tree() -> void:
     if !stats:
@@ -60,16 +66,22 @@ func handle_bullet_hit(bullet: Bullet):
             VisualEffects.bleed(global_position, bullet.position)
 
 func take_damage(damage: float):
-    %Sprite.play("hurt")
-    play_hit_sound()
-    VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
+    accumulated_damages += damage
     if %Health:
         %Health.take_damage(damage)
+    if %DamageSpawnTimer.is_stopped() or previous_damage_indicator == null:
+        %Sprite.play("hurt")
+        play_hit_sound()
+        VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
+        previous_damage_indicator = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(accumulated_damages)
+        previous_damage_indicator.global_position = %DamageAnchor.global_position
+        SceneManager.current_scene.add_child(previous_damage_indicator)
+        accumulated_damages = 0.0
+        %DamageSpawnTimer.start(DAMAGE_MARKER_DELAY)
+    else:
+        previous_damage_indicator.set_damage(accumulated_damages)
 
-    # TODO instead of displaying a marker each time a hit is taken, accumulate them and display markers at a given frequency ?
-    var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
-    damage_marker.global_position = %DamageAnchor.global_position
-    SceneManager.current_scene.add_child(damage_marker)
+
 
 func play_hit_sound():
     if hit_sound_repetition_timer != null:
