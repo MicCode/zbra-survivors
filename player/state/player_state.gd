@@ -27,13 +27,6 @@ class_name PlayerState
 @export var can_dash: bool
 @export var dash_gauge_value: int
 
-@export_group("Drop chances")
-@export var life_drop_chance: float
-@export var radiance_drop_chance: float
-@export var timewrap_drop_change: float
-@export var xp_collector_drop_chance: float
-@export var land_mine_chance: float
-
 static func apply_modifiers(base_state: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
     var new_state: PlayerState = base_state.duplicate(true)
     for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.PLAYER)):

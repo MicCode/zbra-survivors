@@ -2,7 +2,21 @@ extends StaticBody2D
 class_name EnvTree
 
 const BURN_DURATION_S: float = 1.1
+const DAMAGE_TICK_RATE: float = 0.5
+
 var is_destroyed = false
+var life: int = 6
+
+func _physics_process(_delta: float) -> void:
+    if !%DamageTimer.is_stopped():
+        return
+
+    var overlapping_bodies = %EnnemyDetector.get_overlapping_bodies()
+    if overlapping_bodies.size() > 0:
+        life -= 1
+        if life <= 0:
+            explode()
+        %DamageTimer.start(DAMAGE_TICK_RATE)
 
 func explode():
     if !is_destroyed:

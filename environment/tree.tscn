@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://brp1lqe74y0on"]
+[gd_scene load_steps=37 format=3 uid="uid://brp1lqe74y0on"]
 
 [ext_resource type="Script" uid="uid://b48t8wj5qs1fk" path="res://environment/tree.gd" id="1_g11to"]
 [ext_resource type="Texture2D" uid="uid://bvmtbfx0kym78" path="res://assets/sprites/environment/tree-idle.png" id="1_lq71w"]
@@ -202,6 +202,9 @@ height = 57.0
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eigig"]
 polygon = PackedVector2Array(-4, -56, -13, -39, -13, -24, -8, -20, -3, -11, -4, -3, -5, 0, 4, -1, 6, -18, 11, -21, 15, -26, 13, -50, 5, -58)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yygov"]
+radius = 38.0
+
 [node name="Tree" type="StaticBody2D"]
 y_sort_enabled = true
 collision_layer = 132
@@ -248,6 +251,20 @@ debug_color = Color(0.874474, 0.459713, 0.525191, 0.42)
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_eigig")
+
+[node name="EnnemyDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+light_mask = 0
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnnemyDetector"]
+position = Vector2(1, -13)
+shape = SubResource("CircleShape2D_yygov")
+
+[node name="DamageTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="area_entered" from="ExplodeZone" to="." method="_on_explode_zone_area_entered"]

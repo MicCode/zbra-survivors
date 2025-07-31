@@ -34,6 +34,8 @@ var explosions_damage: float = 100.0
 var base_explosions_damage: float = 100.0
 var explosions_radius: float = 100.0
 var base_explosions_radius: float = 100.0
+var loot_chances: LootChances
+
 var stats_modifiers: Array[StatsModifier] = []
 
 var equipped_gun: Gun
@@ -73,6 +75,7 @@ func _init() -> void:
 func _reset_player():
     stats_modifiers = []
     base_player_state = preload("res://player/state/default_player_state.tres").duplicate()
+    loot_chances = preload("res://player/state/default_loot_chances.tres").duplicate()
     player_state = base_player_state.duplicate(true)
 
 func _input(event):
@@ -116,7 +119,8 @@ func gain_xp(xp: float) -> void:
         player_state.level += 1
         new_level_gained += 1
 
-    player_gained_level.emit(new_level_gained)
+    if new_level_gained > 0:
+        player_gained_level.emit(new_level_gained)
     emit_player_change()
 
 func register_new_modifier(new_mod: Modifiers.Mod):
@@ -130,7 +134,14 @@ func register_new_modifier(new_mod: Modifiers.Mod):
     compute_modifiers(new_stats_modifier)
 
 func compute_modifiers(new_stats_modifier: StatsModifier = null):
+    var current_level = player_state.level
+    var current_xp = player_state.xp
+    var current_next_level_xp = player_state.next_level_xp
     player_state = PlayerState.apply_modifiers(base_player_state, stats_modifiers)
+    player_state.level = current_level
+    player_state.xp = current_xp
+    player_state.next_level_xp = current_next_level_xp
+
     if equipped_gun:
         equipped_gun.gun_stats = GunStats.apply_modifiers(base_equipped_gun_stats, stats_modifiers)
         gun_stats_changed.emit(equipped_gun.gun_stats)
@@ -221,15 +232,15 @@ func register_ennemy_death(ennemy: Ennemy) -> void:
     Announcer.ennemy_died()
 
     # TODO implement a better random loot system
-    if randf() <= GameState.player_state.life_drop_chance:
+    if randf() <= loot_chances.life_drop_chance:
         drop_item(preload("res://items/consumables/life_flask/life_flask.tscn").instantiate().with_life_amount(1), ennemy.global_position)
-    if randf() <= GameState.player_state.radiance_drop_chance:
+    if randf() <= loot_chances.radiance_drop_chance:
         drop_item(preload("res://items/consumables/radiance_flask/radiance_flask.tscn").instantiate(), ennemy.global_position)
-    if randf() <= GameState.player_state.timewrap_drop_change:
+    if randf() <= loot_chances.timewrap_drop_change:
         drop_item(preload("res://items/consumables/timewrap_clock/timewrap_clock.tscn").instantiate(), ennemy.global_position)
-    if randf() <= GameState.player_state.xp_collector_drop_chance:
+    if randf() <= loot_chances.xp_collector_drop_chance:
         drop_item(preload("res://items/consumables/xp_collector/xp_collector.tscn").instantiate(), ennemy.global_position)
-    if randf() <= GameState.player_state.land_mine_chance:
+    if randf() <= loot_chances.land_mine_chance:
         drop_item(preload("res://items/consumables/mine/mine_collectible.tscn").instantiate(), ennemy.global_position)
 
 func drop_item(item: Node2D, position: Vector2) -> void:

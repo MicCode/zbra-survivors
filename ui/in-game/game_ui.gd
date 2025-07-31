@@ -35,6 +35,14 @@ func _process(_delta: float) -> void:
     if debug_mode:
         %FPSCounter.text = str("%.1f fps" % Engine.get_frames_per_second())
 
+func _physics_process(_delta: float) -> void:
+    if Input.is_action_just_pressed("debug_mode"):
+        debug_mode = !debug_mode
+        if debug_mode:
+            %FPSCounter.show()
+        else:
+            %FPSCounter.hide()
+
 func slide_in():
     %TopContainer.offset_top = -220
     create_tween().tween_property(%TopContainer, "offset_top", 0, ANIMATION_TIME)

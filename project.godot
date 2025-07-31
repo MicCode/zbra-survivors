@@ -48,7 +48,7 @@ gdscript/warnings/unused_signal=0
 window/size/viewport_width=1280
 window/size/viewport_height=800
 window/stretch/mode="canvas_items"
-window/stretch/aspect="ignore"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -57,13 +57,15 @@ enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://assets/": "gray",
+"res://addons/": "gray",
+"res://assets/": "blue",
 "res://assets/sounds/": "blue",
 "res://assets/sprites/": "blue",
 "res://export/": "gray",
-"res://globals/": "orange",
+"res://globals/": "pink",
 "res://scenes/": "teal",
-"res://scenes/test/": "green"
+"res://scenes/test/": "green",
+"res://scripts/": "gray"
 }
 
 [godot_resource_groups]
@@ -197,7 +199,7 @@ locale/translations=PackedStringArray("res://assets/locales/locales.en.translati
 [physics]
 
 common/physics_ticks_per_second=144
-common/max_physics_steps_per_frame=25
+common/max_physics_steps_per_frame=16
 
 [rendering]
 

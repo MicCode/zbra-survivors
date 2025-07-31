@@ -4,7 +4,7 @@ signal settings_changed
 const WORLD_GENERATION_DEBUG: bool = false
 const CHUNK_SIZE: int = 512
 const CHUNK_RENDER_DISTANCE: int = 3
-const CHUNK_UNLOAD_DISTANCE: int = 10
+const CHUNK_UNLOAD_DISTANCE: int = 3
 const CHUNK_UNLOAD_TIME: float = 30.0
 const CHUNK_UPDATE_INTERVAL: float = 0.5
 
