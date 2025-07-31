@@ -5,7 +5,7 @@ const MODIFIERS_TEXTURES_FOLDER: String = "res://assets/sprites/modifiers"
 var all: Array[Mod] = [
     # PLAYER MODS
     Mod.create(Name.PLAYER_MAX_HEALTH, Type.PLAYER, "max_health", "max-heath-up", 1, true),
-    Mod.create(Name.PLAYER_XP_COLLECT_RADIUS, Type.PLAYER, "xp_collect_radius", "xp-collect-range-up", 20.0),
+    Mod.create(Name.PLAYER_XP_COLLECT_RADIUS, Type.PLAYER, "xp_collect_radius", "xp-collect-range-up", 50.0),
     Mod.create(Name.PLAYER_MOVE_SPEED, Type.PLAYER, "move_speed", "speed-up", 10.0),
     Mod.create(Name.PLAYER_DASH_DURATION, Type.PLAYER, "dash_duration", "dash-duration-up", 20.0),
     Mod.create(Name.PLAYER_DASH_COOLDOWN, Type.PLAYER, "dash_cooldown", "dash-cooldown-down", -20.0),

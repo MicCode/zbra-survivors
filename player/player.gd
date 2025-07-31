@@ -38,6 +38,12 @@ func _ready():
     GameState.notify_level_gain.connect(play_lvl_animation)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
 
+    if Settings.game_settings.display_xp_capture_radius:
+        %XpCollectRadiusDisplay.show()
+    else:
+        %XpCollectRadiusDisplay.hide()
+    update_xp_collect_radius(GameState.player_state.xp_collect_radius)
+
     effects_manager = %EffectsManager
 
 func _process(_delta: float) -> void:
@@ -333,7 +339,12 @@ func _on_sprite_animation_finished() -> void:
         %Sprite.play("idle")
 
 func _on_player_state_changed(player_state: PlayerState) -> void:
-    %XpCollectShape.shape.radius = player_state.xp_collect_radius
+    update_xp_collect_radius(player_state.xp_collect_radius)
+
+func update_xp_collect_radius(new_radius: float):
+    %XpCollectShape.shape.radius = new_radius
+    %XpCollectRadiusDisplay.size = Vector2(new_radius * 2, new_radius * 2)
+    %XpCollectRadiusDisplay.position = Vector2(-new_radius, -new_radius)
 
 func _on_player_level_gained(number_of_gained_levels: int):
     %PlayerLevelManager.register_lvl_up(number_of_gained_levels)

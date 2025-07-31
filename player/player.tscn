@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=59 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_2ieo8"]
@@ -250,13 +250,13 @@ animations = [{
 radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4us1"]
-radius = 10.6888
+radius = 18.0278
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12tvn"]
-radius = 35.5035
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4lpg2"]
-radius = 35.5035
+radius = 30.0666
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1s8oo"]
 
@@ -418,6 +418,18 @@ _data = {
 &"radiate": SubResource("Animation_ppjmx")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wodsf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.560784, 0.741176, 0.976471, 0.329412)
+corner_radius_top_left = 5000
+corner_radius_top_right = 5000
+corner_radius_bottom_right = 5000
+corner_radius_bottom_left = 5000
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_mask = 199
@@ -469,7 +481,6 @@ visible_bar = false
 [node name="HurtBox" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
 visible = false
-scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 2
 
@@ -481,7 +492,6 @@ debug_color = Color(0.998759, 0, 0.1334, 0.42)
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 0, 1)
-scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 32
 
@@ -492,7 +502,6 @@ shape = SubResource("CircleShape2D_12tvn")
 [node name="CollectRadius" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
 visible = false
-scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 16
 
@@ -502,6 +511,7 @@ debug_color = Color(0.190698, 0.631057, 0.345587, 0.42)
 
 [node name="RadianceRadius" type="Area2D" parent="Triggers"]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 128
 
@@ -512,6 +522,7 @@ disabled = true
 debug_color = Color(0.729, 0.652, 0.101, 0.422)
 
 [node name="EnvironmentCollider" type="Area2D" parent="Triggers"]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -542,6 +553,22 @@ unique_name_in_owner = true
 
 [node name="PlayerLevelManager" parent="." instance=ExtResource("15_wodsf")]
 unique_name_in_owner = true
+
+[node name="XpCollectRadiusDisplay" type="Panel" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wodsf")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Effects" to="." method="_on_effects_animation_finished"]
