@@ -15,7 +15,7 @@ func _ready() -> void:
         if [GameState.State.PAUSED, GameState.State.GAME_OVER, GameState.State.CHOOSING_UPGRADE].has(new_state): slide_out()
         else: slide_in()
     )
-    GameState.equipped_gun_changed.connect(func(new_gun: Gun):
+    GameState.equipped_gun_changed.connect(func(new_gun: Gun, _previous_gun_name: String):
         %EquippedGun.change_gun(new_gun)
     )
 

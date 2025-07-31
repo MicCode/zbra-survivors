@@ -4,25 +4,27 @@ const MODIFIERS_TEXTURES_FOLDER: String = "res://assets/sprites/modifiers"
 
 var all: Array[Mod] = [
     # PLAYER MODS
-    Mod.create(Name.PLAYER_MAX_HEALTH, Type.PLAYER, "max_health", "max-heath-up", 1.0, true),
-    Mod.create(Name.PLAYER_XP_COLLECT_RADIUS, Type.PLAYER, "xp_collect_radius", "xp-collect-range-up", 10.0),
-    Mod.create(Name.PLAYER_MOVE_SPEED, Type.PLAYER, "move_speed", "speed-up", 5.0),
-    Mod.create(Name.PLAYER_DASH_DURATION, Type.PLAYER, "dash_duration", "dash-duration-up", 10.0),
-    Mod.create(Name.PLAYER_DASH_COOLDOWN, Type.PLAYER, "dash_cooldown", "dash-cooldown-down", -10.0),
-    Mod.create(Name.PLAYER_DASH_SPEED_MULTIPLIER, Type.PLAYER, "dash_speed_multiplier", "dash-speed-up", 5.0),
+    Mod.create(Name.PLAYER_MAX_HEALTH, Type.PLAYER, "max_health", "max-heath-up", 1, true),
+    Mod.create(Name.PLAYER_XP_COLLECT_RADIUS, Type.PLAYER, "xp_collect_radius", "xp-collect-range-up", 20.0),
+    Mod.create(Name.PLAYER_MOVE_SPEED, Type.PLAYER, "move_speed", "speed-up", 10.0),
+    Mod.create(Name.PLAYER_DASH_DURATION, Type.PLAYER, "dash_duration", "dash-duration-up", 20.0),
+    Mod.create(Name.PLAYER_DASH_COOLDOWN, Type.PLAYER, "dash_cooldown", "dash-cooldown-down", -20.0),
+    Mod.create(Name.PLAYER_DASH_SPEED_MULTIPLIER, Type.PLAYER, "dash_speed_multiplier", "dash-speed-up", 10.0),
 
     # GUN MODS
-    # Mod.create(Name.GUN_COOLDOWN, Type.GUN, "stat_name", "", 0.0),
-    # Mod.create(Name.GUN_FIRE_RATE, Type.GUN, "stat_name", "", 0.0),
-    # Mod.create(Name.BULLET_DAMAGE, Type.GUN, "stat_name", "", 0.0),
-    # Mod.create(Name.BULLET_NUMBER, Type.GUN, "stat_name", "", 0.0),
-    # Mod.create(Name.BULLET_SPEED, Type.GUN, "stat_name", "", 0.0),
-    # Mod.create(Name.BULLET_SPREAD_ANGLE_MORE, Type.GUN, "stat_name", "", 0.0),
-    # Mod.create(Name.BULLET_SPREAD_ANGLE_LESS, Type.GUN, "stat_name", "", 0.0),
+    Mod.create(Name.GUN_FIRE_RATE, Type.GUN, "shots_per_s", "gun-fire-rate-up", 25.0),
+    Mod.create(Name.GUN_SPREAD_ANGLE_MORE, Type.GUN, "bullets_spread_angle_deg", "bullet-spread-angle-up", 30.0),
+    Mod.create(Name.GUN_SPREAD_ANGLE_LESS, Type.GUN, "bullets_spread_angle_deg", "bullet-spread-angle-down", -30.0),
+    Mod.create(Name.GUN_BULLET_NUMBER, Type.GUN, "bullets_per_shot", "bullet-per-shot-up", 2, true),
+
+    # BULLET MODS
+    Mod.create(Name.BULLET_DAMAGE, Type.BULLET, "damage", "damage-up", 10.0),
+    Mod.create(Name.BULLET_SPEED, Type.BULLET, "speed", "bullet-speed-up", 20.0),
+    Mod.create(Name.BULLET_RANGE, Type.BULLET, "fly_range", "bullet-range-up", 20.0),
 
     # EXPLOSION MODS
-    # Mod.create(Name.EXPLOSION_RADIUS, Type.EXPLOSION, "stat_name", "", 0.0),
-    # Mod.create(Name.EXPLOSION_DAMAGE, Type.EXPLOSION, "stat_name", "", 0.0),
+    Mod.create(Name.EXPLOSION_RADIUS, Type.EXPLOSION, "explosion_radius", "explosion-damage-radius-up", 25.0),
+    Mod.create(Name.EXPLOSION_DAMAGE, Type.EXPLOSION, "explosion_damage", "explosion-damage-up", 10.0),
 ]
 
 enum Name {
@@ -35,13 +37,15 @@ enum Name {
     PLAYER_DASH_SPEED_MULTIPLIER,
 
     # GUN MODIFIERS
-    GUN_COOLDOWN,
     GUN_FIRE_RATE,
+    GUN_SPREAD_ANGLE_MORE,
+    GUN_SPREAD_ANGLE_LESS,
+    GUN_BULLET_NUMBER,
+
+    # BULLET MODIFIERS
     BULLET_DAMAGE,
-    BULLET_NUMBER,
     BULLET_SPEED,
-    BULLET_SPREAD_ANGLE_MORE,
-    BULLET_SPREAD_ANGLE_LESS,
+    BULLET_RANGE,
 
     # EXPLOSION MODIFIERS
     EXPLOSION_RADIUS,
@@ -59,13 +63,15 @@ func get_name_label(mod_name: Name) -> String:
         Name.PLAYER_DASH_SPEED_MULTIPLIER: return "PLAYER_DASH_SPEED_MULTIPLIER"
 
         # GUN MODIFIERS
-        Name.GUN_COOLDOWN: return "GUN_COOLDOWN"
         Name.GUN_FIRE_RATE: return "GUN_FIRE_RATE"
+        Name.GUN_SPREAD_ANGLE_MORE: return "GUN_SPREAD_ANGLE_MORE"
+        Name.GUN_SPREAD_ANGLE_LESS: return "GUN_SPREAD_ANGLE_LESS"
+        Name.GUN_BULLET_NUMBER: return "GUN_BULLET_NUMBER"
+
+        # BULLET MODIFIERS
         Name.BULLET_DAMAGE: return "BULLET_DAMAGE"
-        Name.BULLET_NUMBER: return "BULLET_NUMBER"
         Name.BULLET_SPEED: return "BULLET_SPEED"
-        Name.BULLET_SPREAD_ANGLE_MORE: return "BULLET_SPREAD_ANGLE_MORE"
-        Name.BULLET_SPREAD_ANGLE_LESS: return "BULLET_SPREAD_ANGLE_LESS"
+        Name.BULLET_RANGE: return "BULLET_RANGE"
 
         # EXPLOSION MODIFIERS
         Name.EXPLOSION_RADIUS: return "EXPLOSION_RADIUS"
@@ -79,6 +85,7 @@ enum Type {
     UNKNOWN,
     PLAYER,
     GUN,
+    BULLET,
     EXPLOSION,
 }
 
@@ -86,6 +93,7 @@ func get_type_label(type: Type) -> String:
     match type:
         Type.PLAYER: return "PLAYER"
         Type.GUN: return "GUN"
+        Type.BULLET: return "BULLET"
         Type.EXPLOSION: return "EXPLOSION"
         _:
             push_warning("Unknown Modifiers.Type with index [%d]" % type)

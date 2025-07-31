@@ -5,7 +5,10 @@ signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
 signal player_openned_chest()
 
-signal equipped_gun_changed(new_gun: Gun)
+signal equipped_gun_changed(new_gun: Gun, previous_gun_name: String)
+signal gun_stats_changed(new_stats: GunStats)
+signal bullet_stats_changed(new_stats: BulletStats)
+
 signal consumable_changed(new_consumable: ConsumableItem)
 signal consumable_use_changed(use: int)
 
@@ -29,6 +32,9 @@ var player_state: PlayerState
 var stats_modifiers: Array[StatsModifier] = []
 
 var equipped_gun: Gun
+var base_equipped_gun_stats: GunStats
+var base_equipped_bullet_stats: BulletStats
+
 var consumable: ConsumableItem
 
 var state: State = State.NOT_STARTED
@@ -105,18 +111,27 @@ func gain_xp(xp: float) -> void:
 
     emit_player_change()
 
-func add_player_modifier(new_mod: Modifiers.Mod):
+func register_new_modifier(new_mod: Modifiers.Mod):
     var new_stats_modifier = new_mod.to_stats_modifier()
     var existing_modifiers: Array[StatsModifier] = stats_modifiers.filter(func(m: StatsModifier): return m.modifier == new_stats_modifier.modifier)
     if existing_modifiers.is_empty():
         stats_modifiers.append(new_stats_modifier)
     else:
         existing_modifiers[0].modifier_value += new_stats_modifier.modifier_value
-        # TODO what if multiple matching modifiers are found ?
 
-    player_state = PlayerState.apply_modifiers(player_state, base_player_state, stats_modifiers)
-    if new_stats_modifier.modifier == Modifiers.Name.PLAYER_MAX_HEALTH:
+    compute_modifiers(new_stats_modifier)
+
+func compute_modifiers(new_stats_modifier: StatsModifier = null):
+    player_state = PlayerState.apply_modifiers(base_player_state, stats_modifiers)
+    if equipped_gun:
+        equipped_gun.gun_stats = GunStats.apply_modifiers(base_equipped_gun_stats, stats_modifiers)
+        gun_stats_changed.emit(equipped_gun.gun_stats)
+        equipped_gun.bullet_stats = BulletStats.apply_modifiers(base_equipped_bullet_stats, stats_modifiers)
+        bullet_stats_changed.emit(equipped_gun.bullet_stats)
+
+    if new_stats_modifier and new_stats_modifier.modifier == Modifiers.Name.PLAYER_MAX_HEALTH:
         player_state.health += new_stats_modifier.modifier_value
+
     emit_player_change()
 
 
@@ -133,17 +148,34 @@ func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
     if !equipped_gun:
         # do not display the gun swap menu the first time a gun is picked up
         equipped_gun = _new_gun
-        equipped_gun_changed.emit(equipped_gun)
+        if _new_gun:
+            base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
+            base_equipped_bullet_stats = _new_gun.bullet_stats.duplicate(true)
+        else:
+            base_equipped_gun_stats = null
+            base_equipped_bullet_stats = null
+        compute_modifiers()
+        equipped_gun_changed.emit(equipped_gun, "")
         return null
 
+    _new_gun.gun_stats = GunStats.apply_modifiers(_new_gun.gun_stats, stats_modifiers)
+    _new_gun.bullet_stats = BulletStats.apply_modifiers(_new_gun.bullet_stats, stats_modifiers)
     gun_change_menu = preload("res://ui/menu/gun_change_menu.tscn").instantiate()
     gun_change_menu.change_proposed_gun(_new_gun)
     get_tree().root.add_child(gun_change_menu)
     change_state(State.PAUSED)
 
     gun_change_menu.take_pressed.connect(func():
+        var previous_gun_name = equipped_gun.gun_stats.name
         equipped_gun = _new_gun
-        equipped_gun_changed.emit(equipped_gun)
+        if _new_gun:
+            base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
+            base_equipped_bullet_stats = _new_gun.bullet_stats.duplicate(true)
+        else:
+            base_equipped_gun_stats = null
+            base_equipped_bullet_stats = null
+        compute_modifiers()
+        equipped_gun_changed.emit(equipped_gun, previous_gun_name)
         gun_change_menu.call_deferred("queue_free")
         change_state(State.RUNNING)
     )

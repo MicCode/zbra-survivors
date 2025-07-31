@@ -22,7 +22,7 @@ func _show_lvl_up_menu(n_times: int):
     var lvl_up_menu = preload("res://ui/menu/lvl_up/lvl_up_menu.tscn").instantiate()
     get_tree().root.add_child(lvl_up_menu)
     lvl_up_menu.picked_modifier.connect(func(mod: Modifiers.Mod):
-        GameState.add_player_modifier(mod)
+        GameState.register_new_modifier(mod)
         lvl_up_menu.slide_out().finished.connect(func():
             lvl_up_menu.queue_free()
             if n_times <= 0:

@@ -72,7 +72,7 @@ func move(_delta):
 
     move_and_slide()
     Minimap.moved(self, position)
-    GameState.player_moved.emit(position) # FIXME do not publish position each time ? set refresh interval ?
+    GameState.player_moved.emit(position)
     if !just_hurt:
         if velocity.length() > 0:
             %Sprite.play("walk")
@@ -161,13 +161,15 @@ func compare_gun(collectible: GunCollectible):
         free_collectible(collectible)
     )
 
-func equip_gun(new_gun: Gun):
+func equip_gun(new_gun: Gun, previous_gun_name: String):
     if equiped_gun:
-        var collectible_to_drop = GunService.create_collectible(equiped_gun.gun_stats.name)
+        equiped_gun.queue_free()
+    if previous_gun_name and !previous_gun_name.is_empty():
+        var collectible_to_drop = GunService.create_collectible(previous_gun_name)
         collectible_to_drop.global_position = global_position
         SceneManager.current_scene.add_child(collectible_to_drop)
-        equiped_gun.queue_free()
-    equiped_gun = new_gun
+
+    equiped_gun = new_gun.duplicate()
     if new_gun:
         add_child(equiped_gun)
         Sounds.reload()

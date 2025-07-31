@@ -34,9 +34,10 @@ class_name PlayerState
 @export var xp_collector_drop_chance: float
 @export var land_mine_chance: float
 
-static func apply_modifiers(current_state: PlayerState, base_state: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
+static func apply_modifiers(base_state: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
+    var new_state: PlayerState = base_state.duplicate(true)
     for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.PLAYER)):
-        if current_state.get(mod.get_stat_name()) == null:
+        if new_state.get(mod.get_stat_name()) == null:
             push_error("Unable to apply player stat modifier, stat name [%s] not found in class PlayerState" % mod.get_stat_name())
         else:
             var base_value = base_state.get(mod.get_stat_name())
@@ -47,5 +48,5 @@ static func apply_modifiers(current_state: PlayerState, base_state: PlayerState,
                     base_value += mod.modifier_value
                 else:
                     base_value *= 1 + (mod.modifier_value / 100)
-            current_state.set(mod.get_stat_name(), base_value)
-    return current_state
+            new_state.set(mod.get_stat_name(), base_value)
+    return new_state

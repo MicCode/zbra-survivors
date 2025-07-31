@@ -20,7 +20,7 @@ const BURN_DAMAGE: float = 2
 
 func _enter_tree() -> void:
     if !stats:
-        push_error("ennemy has no stats defined") # TODO fallback on default ?
+        push_error("ennemy has no stats defined")
 
 func _ready():
     if stats.is_elite:
@@ -65,6 +65,8 @@ func take_damage(damage: float):
     VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
     if %Health:
         %Health.take_damage(damage)
+
+    # TODO instead of displaying a marker each time a hit is taken, accumulate them and display markers at a given frequency ?
     var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
     damage_marker.global_position = %DamageAnchor.global_position
     SceneManager.current_scene.add_child(damage_marker)

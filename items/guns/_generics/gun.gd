@@ -13,7 +13,6 @@ var initial_x_position: float
 var recoil_distance: float = 0.0
 var recoil_decay: float = 10.0
 
-
 func _enter_tree() -> void:
     if !gun_stats:
         push_warning("gun has no gun_stats defined, falling back to default")
@@ -22,8 +21,20 @@ func _enter_tree() -> void:
         push_warning("gun has no bullet_stats defined, falling back to default")
         bullet_stats = load("res://items/guns/_generics/stats/default_bullet_stats.tres")
 
+
 func _ready():
+    GameState.gun_stats_changed.connect(func(new_stats: GunStats):
+        gun_stats = new_stats.duplicate(true)
+        update_from_stats()
+    )
+    GameState.bullet_stats_changed.connect(func(new_stats: BulletStats):
+        bullet_stats = new_stats.duplicate(true)
+        update_from_stats()
+    )
     initial_x_position = %Sprite.position.x
+    update_from_stats()
+
+func update_from_stats():
     var guides = %AimGuides as AimGuides
     guides.set_dispersion_angle(gun_stats.bullets_spread_angle_deg)
     if gun_stats.has_laser_dot:
@@ -32,6 +43,7 @@ func _ready():
     else:
         %RedDot.hide()
         guides.show()
+
 
 func _process(_delta):
     %CooldownProgress.value = %CooldownTimer.time_left
@@ -99,6 +111,7 @@ func recoil():
 func spawn_bullets():
     for i in range(0, gun_stats.bullets_per_shot):
         var new_bullet = GunService.create_projectile(gun_stats.name)
+        new_bullet.bullet_stats = bullet_stats.duplicate(true)
 
         var speed_offset = randf_range(
             1 - bullet_stats.speed_variation,
@@ -140,6 +153,3 @@ func _on_cooldown_timer_timeout():
         if !Controls.is_pressed(Controls.PlayerAction.SHOOT):
             %Sprite.play("idle")
         cooling_down = false
-
-func get_dps() -> float:
-    return bullet_stats.damage * gun_stats.bullets_per_shot * gun_stats.shots_per_s
