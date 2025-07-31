@@ -1,6 +1,7 @@
 extends Node
 signal player_state_changed
-signal player_gained_level(new_level: int)
+signal player_gained_level(number_of_gained_levels: int)
+signal notify_level_gain
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
 signal player_openned_chest()
@@ -106,13 +107,16 @@ func increment_score(i: int) -> void:
 
 func gain_xp(xp: float) -> void:
     player_state.xp += xp
-    if player_state.xp >= player_state.next_level_xp:
+
+    var new_level_gained = 0
+    while player_state.xp >= player_state.next_level_xp:
         var excess = player_state.xp - player_state.next_level_xp
         player_state.xp = excess
         player_state.next_level_xp += player_state.next_level_xp / 4
-        player_state.level += 1 # TODO we should test if excess is still superior to next_level_xp and add more level if necessary
-        player_gained_level.emit(player_state.level)
+        player_state.level += 1
+        new_level_gained += 1
 
+    player_gained_level.emit(new_level_gained)
     emit_player_change()
 
 func register_new_modifier(new_mod: Modifiers.Mod):

@@ -35,6 +35,7 @@ func _ready():
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_gained_level.connect(_on_player_level_gained)
     GameState.equipped_gun_changed.connect(equip_gun)
+    GameState.notify_level_gain.connect(play_lvl_animation)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
 
     effects_manager = %EffectsManager
@@ -336,11 +337,13 @@ func _on_sprite_animation_finished() -> void:
 func _on_player_state_changed(player_state: PlayerState) -> void:
     %XpCollectShape.shape.radius = player_state.xp_collect_radius
 
-func _on_player_level_gained(_new_level: int):
+func _on_player_level_gained(number_of_gained_levels: int):
+    %PlayerLevelManager.register_lvl_up(number_of_gained_levels)
+
+func play_lvl_animation():
     %Effects.show()
     %Effects.play("lvlup")
     Sounds.level_up()
-    %PlayerLevelManager.register_lvl_up()
 
 func _on_effects_animation_finished() -> void:
     if !effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):

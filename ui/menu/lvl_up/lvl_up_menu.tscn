@@ -45,10 +45,20 @@ layout_mode = 2
 process_mode = 3
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
 text = "TITLE_LEVEL_UP"
+label_settings = ExtResource("2_7m4ic")
+
+[node name="RemainingTimesLabel" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(1)"
 label_settings = ExtResource("2_7m4ic")
 
 [node name="Label2" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer"]

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal picked_modifier(mod: Modifiers.Mod)
+
 const CHOICE_DISAPPEAR_TIME: float = 0.25
 const ANIMATION_TIME: float = 0.1
 
@@ -23,6 +24,9 @@ func _ready() -> void:
 
         choices[0].force_focus()
     )
+
+func set_remaining_times(times: int):
+    %RemainingTimesLabel.text = str("(%d)" % times)
 
 func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Modifiers.Mod):
     for choice in choices:

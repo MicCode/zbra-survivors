@@ -10,7 +10,7 @@ func _ready() -> void:
     GameState.score_changed.connect(_on_score_changed)
     GameState.player_state_changed.connect(_on_player_state_changed)
     GameState.player_timewarping_changed.connect(_on_player_timewarping_changed)
-    GameState.player_gained_level.connect(play_lvl_up_effect)
+    GameState.notify_level_gain.connect(play_lvl_up_effect)
     GameState.state_changed.connect(func(new_state: GameState.State):
         if [GameState.State.PAUSED, GameState.State.GAME_OVER, GameState.State.CHOOSING_UPGRADE].has(new_state): slide_out()
         else: slide_in()
@@ -89,7 +89,7 @@ func stop_slow_down_effect():
     var tween = get_tree().create_tween()
     tween.tween_property(overlay_material, "shader_parameter/fire_alpha", 0.0, 0.2)
 
-func play_lvl_up_effect(_new_level: int):
+func play_lvl_up_effect():
     # print("play lvl up !")
     var overlay_material = %LvlUpEffect.material as ShaderMaterial
     var tween = get_tree().create_tween()

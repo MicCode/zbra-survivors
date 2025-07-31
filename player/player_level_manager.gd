@@ -1,7 +1,7 @@
 extends Node
 signal menu_displayed_changed(displayed: bool)
 
-const MENU_OPENING_DELAY = 1.0
+const MENU_OPENING_DELAY = 0.8
 var n_menu_to_display: int = 0
 
 func _ready() -> void:
@@ -11,15 +11,20 @@ func _ready() -> void:
             _show_lvl_up_menu(n_menu_to_display)
     )
 
-func register_lvl_up():
-    n_menu_to_display += 1
+func register_lvl_up(number_of_gained_levels: int):
+    if number_of_gained_levels > 0 and n_menu_to_display == 0:
+        # as we want to notify only once, the first time we knwow a new level will be gained
+        GameState.notify_level_gain.emit()
+
+    n_menu_to_display += number_of_gained_levels
     if %Timer.is_stopped():
         %Timer.start(MENU_OPENING_DELAY)
 
 func _show_lvl_up_menu(n_times: int):
     #print("Must show lvl_up menu %d times" % n_times)
-    n_times -= 1
     var lvl_up_menu = preload("res://ui/menu/lvl_up/lvl_up_menu.tscn").instantiate()
+    lvl_up_menu.set_remaining_times(n_times)
+    n_times -= 1
     get_tree().root.add_child(lvl_up_menu)
     lvl_up_menu.picked_modifier.connect(func(mod: Modifiers.Mod):
         GameState.register_new_modifier(mod)
