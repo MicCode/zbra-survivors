@@ -88,3 +88,19 @@ layout_mode = 2
 label = "LABEL_DASH_SPEED_MULTIPLIER"
 is_int = false
 unit = "LABEL_UNIT_KM_H"
+
+[node name="ExplosionsDamage" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_EXPLOSION_DAMAGE"
+value = 100.0
+is_int = false
+unit = "%"
+
+[node name="ExplosionsRadius" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_y3elb")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_EXPLOSION_RADIUS"
+value = 100.0
+is_int = false
+unit = "%"

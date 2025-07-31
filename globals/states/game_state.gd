@@ -29,6 +29,10 @@ var player_instance: Player
 
 var base_player_state: PlayerState
 var player_state: PlayerState
+var explosions_damage: float = 100.0
+var base_explosions_damage: float = 100.0
+var explosions_radius: float = 100.0
+var base_explosions_radius: float = 100.0
 var stats_modifiers: Array[StatsModifier] = []
 
 var equipped_gun: Gun
@@ -131,6 +135,16 @@ func compute_modifiers(new_stats_modifier: StatsModifier = null):
 
     if new_stats_modifier and new_stats_modifier.modifier == Modifiers.Name.PLAYER_MAX_HEALTH:
         player_state.health += new_stats_modifier.modifier_value
+
+    var explosions_modifiers: Array[StatsModifier] = stats_modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.EXPLOSION))
+    if !explosions_modifiers.is_empty():
+        explosions_damage = base_explosions_damage
+        explosions_radius = base_explosions_radius
+        for mod in explosions_modifiers:
+            if mod.modifier == Modifiers.Name.EXPLOSION_RADIUS:
+                explosions_radius += mod.modifier_value
+            elif mod.modifier == Modifiers.Name.EXPLOSION_DAMAGE:
+                explosions_damage += mod.modifier_value
 
     emit_player_change()
 

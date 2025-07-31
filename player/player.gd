@@ -169,10 +169,12 @@ func equip_gun(new_gun: Gun, previous_gun_name: String):
         collectible_to_drop.global_position = global_position
         SceneManager.current_scene.add_child(collectible_to_drop)
 
-    equiped_gun = new_gun.duplicate()
     if new_gun:
+        equiped_gun = new_gun.duplicate()
         add_child(equiped_gun)
         Sounds.reload()
+    else:
+        equiped_gun = null
 
 func free_collectible(collectible: GunCollectible):
     block_pickup()

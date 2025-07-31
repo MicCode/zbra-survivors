@@ -37,3 +37,11 @@ func refresh_stats():
     %DashSpeed.set_value(Conversions.game_speed_to_kmh(player_state.move_speed * player_state.dash_speed_multiplier))
     if player_state.dash_speed_multiplier != base_state.dash_speed_multiplier:
         %DashSpeed.set_compare_to(Conversions.game_speed_to_kmh(base_state.move_speed * base_state.dash_speed_multiplier), false, diff_color)
+
+    %ExplosionsDamage.set_value(GameState.explosions_damage)
+    if GameState.explosions_damage != GameState.base_explosions_damage:
+        %ExplosionsDamage.set_compare_to(GameState.base_explosions_damage, false, diff_color)
+
+    %ExplosionsRadius.set_value(GameState.explosions_radius)
+    if GameState.explosions_radius != GameState.base_explosions_radius:
+        %ExplosionsRadius.set_compare_to(GameState.base_explosions_radius, false, diff_color)
