@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name GameUI
 
 const ANIMATION_TIME: float = 0.25
+@export var debug_mode: bool = false
 
 var player_xp: float = -1
 var player_level: int = -1
@@ -19,9 +20,18 @@ func _ready() -> void:
         %EquippedGun.change_gun(new_gun)
     )
 
+    if debug_mode:
+        %FPSCounter.show()
+    else:
+        %FPSCounter.hide()
+
     _on_player_state_changed(GameState.player_state)
     %Score.text = str(GameState.score)
     slide_in()
+
+func _process(_delta: float) -> void:
+    if debug_mode:
+        %FPSCounter.text = str("%.1f fps" % Engine.get_frames_per_second())
 
 func slide_in():
     %TopContainer.offset_top = -220

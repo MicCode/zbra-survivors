@@ -102,9 +102,7 @@ func process_player_controls():
 
 #region Dash
 func update_dash_gauge():
-    var time_left = 0
-    if %DashManager.dash_cooldown_timer:
-        time_left = %DashManager.dash_cooldown_timer.time_left
+    var time_left = %DashManager.get_cooldown_remaining()
     var gauge_value = floor((1 - (time_left / GameState.player_state.dash_cooldown)) * 5)
     if gauge_value != GameState.player_state.dash_gauge_value:
         GameState.player_state.dash_gauge_value = gauge_value
@@ -358,3 +356,8 @@ func _on_radiance_effect_animation_animation_finished(anim_name: StringName) -> 
         %RadianceEffectAnimation.play("radiate")
     elif anim_name == "fadeout":
         %RadianceEffect.hide()
+
+
+func _on_environment_collider_area_entered(area: Area2D) -> void:
+    if %DashManager.is_dashing() and area.get_parent() is EnvTree:
+        area.get_parent().explode()

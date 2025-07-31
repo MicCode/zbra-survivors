@@ -27,6 +27,7 @@ script = ExtResource("1_sutrr")
 position = Vector2(588, 315)
 
 [node name="GameUI" parent="Player" instance=ExtResource("4_svdi0")]
+debug_mode = true
 
 [node name="XpDrop" parent="." instance=ExtResource("7_b7b57")]
 y_sort_enabled = true

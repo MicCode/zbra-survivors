@@ -7,7 +7,6 @@ var dash_duration: float = 1.0
 var dash_cooldown: float = 3.0
 var dash_ghost_interval: float = 0.01
 var timewarp_ghost_interval: float = 0.5
-var dash_cooldown_timer: SceneTreeTimer
 
 func _ready() -> void:
     dash_duration = GameState.player_state.dash_duration
@@ -16,6 +15,9 @@ func _ready() -> void:
         dash_duration = player_state.dash_duration
         dash_cooldown = player_state.dash_cooldown
     )
+
+func get_cooldown_remaining() -> float:
+    return %DashCooldown.time_left
 
 func set_is_dashing(_is_dashing: bool):
     GameState.player_state.is_dashing = _is_dashing
@@ -34,20 +36,16 @@ func can_dash() -> bool:
     return GameState.player_state.can_dash
 
 func start_dashing():
-    Sounds.dash()
-    get_tree().create_timer(dash_duration).timeout.connect(func():
-        if GameState.player_state.is_dashing:
-            set_is_dashing(false)
-    )
-    dash_cooldown_timer = get_tree().create_timer(dash_cooldown)
-    dash_cooldown_timer.timeout.connect(func():
-        if !GameState.player_state.can_dash:
-            Sounds.dash_ready()
-            set_can_dash(true)
-    )
-    set_is_dashing(true)
-    set_can_dash(false)
-    loop_dash_ghost()
+    if %DashCooldown.is_stopped():
+        Sounds.dash()
+        get_tree().create_timer(dash_duration).timeout.connect(func():
+            if GameState.player_state.is_dashing:
+                set_is_dashing(false)
+        )
+        %DashCooldown.start(dash_cooldown)
+        set_is_dashing(true)
+        set_can_dash(false)
+        loop_dash_ghost()
 
 func loop_dash_ghost():
     get_tree().create_timer(dash_ghost_interval).timeout.connect(func():
@@ -64,3 +62,9 @@ func spawn_dash_ghost(speed_scale: float = 5.0) -> void:
     ghost.z_index = -1
     ghost.speed_scale = speed_scale
     SceneManager.current_scene.add_child(ghost)
+
+
+func _on_dash_cooldown_timeout() -> void:
+    if !GameState.player_state.can_dash:
+        Sounds.dash_ready()
+        set_can_dash(true)

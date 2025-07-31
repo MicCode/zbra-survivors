@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://gdo7fmio88fn"]
+[gd_scene load_steps=58 format=3 uid="uid://gdo7fmio88fn"]
 
 [ext_resource type="Script" uid="uid://c1c216xron5rv" path="res://player/player.gd" id="1_teghp"]
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_2ieo8"]
@@ -260,6 +260,9 @@ radius = 35.5035
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1s8oo"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wodsf"]
+radius = 27.0
+
 [sub_resource type="Gradient" id="Gradient_r8qdj"]
 offsets = PackedFloat32Array(0, 0.00806452, 0.197581, 0.282258, 0.520161, 0.941558)
 colors = PackedColorArray(1, 1, 0.416, 0, 0.945, 0.981, 0.897, 1, 0.987621, 0.826147, 0.475665, 1, 0.991368, 0.812534, 0.438625, 1, 0.705937, 0.390961, 1.92523e-07, 1, 0, 0, 0, 0)
@@ -451,7 +454,6 @@ sprite_frames = SubResource("SpriteFrames_rj14w")
 animation = &"radiance"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_5pv4u")
 
 [node name="Camera" parent="." instance=ExtResource("11_ebec5")]
@@ -509,6 +511,13 @@ shape = SubResource("CircleShape2D_1s8oo")
 disabled = true
 debug_color = Color(0.729, 0.652, 0.101, 0.422)
 
+[node name="EnvironmentCollider" type="Area2D" parent="Triggers"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/EnvironmentCollider"]
+shape = SubResource("CircleShape2D_wodsf")
+
 [node name="RadianceEffect" type="PointLight2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(2, 2)
@@ -536,5 +545,6 @@ unique_name_in_owner = true
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="Effects" to="." method="_on_effects_animation_finished"]
+[connection signal="area_entered" from="Triggers/EnvironmentCollider" to="." method="_on_environment_collider_area_entered"]
 [connection signal="animation_finished" from="RadianceEffect/RadianceEffectAnimation" to="." method="_on_radiance_effect_animation_animation_finished"]
 [connection signal="is_dashing_changed" from="DashManager" to="." method="_on_dash_manager_is_dashing_changed"]

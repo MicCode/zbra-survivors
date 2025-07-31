@@ -7,6 +7,10 @@ const ANIMATION_TIME: float = 0.1
 
 var choices: Array[LvlUpChoice] = []
 
+func _enter_tree() -> void:
+    if Input.is_action_pressed("ui_accept"):
+        Input.action_release("ui_accept")
+
 func _ready() -> void:
     slide_in().finished.connect(func():
         var children = %Choices.get_children()

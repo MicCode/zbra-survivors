@@ -163,6 +163,10 @@ func register_player_instance(_player) -> void:
     player_instance = _player
 
 func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
+    if !_new_gun:
+        equipped_gun = null
+        return null
+
     if !equipped_gun:
         # do not display the gun swap menu the first time a gun is picked up
         equipped_gun = _new_gun

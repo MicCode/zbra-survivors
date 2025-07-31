@@ -199,8 +199,14 @@ label_settings = SubResource("LabelSettings_ooxb5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FPSCounter" type="Label" parent="MarginContainer/MainArea/TopContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+text = "123 fps"
+
 [node name="Spacer" type="Panel" parent="MarginContainer/MainArea/TopContainer"]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ooxb5")
