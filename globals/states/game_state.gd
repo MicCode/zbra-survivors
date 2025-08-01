@@ -27,6 +27,10 @@ enum State {
     GAME_OVER
 }
 
+const MAX_ELAPSED_TIME: float = 400.0
+const MAX_PLAYER_LEVEL: int = 100
+const MIN_SPAWN_TIME: float = 0.5
+
 var player_instance: Player
 
 var base_player_state: PlayerState
@@ -52,8 +56,11 @@ var ennemy_spawn_stats: EnnemySpawnStats = EnnemySpawnStats.new()
 var pause_menu: PauseMenu
 var gun_change_menu: GunChangeMenu
 
+var elapsed_time: float = 0.0
+
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
+    elapsed_time = 0.0
     _reset_player()
     score = 0
     ennemy_spawn_stats = EnnemySpawnStats.new()
@@ -65,6 +72,7 @@ func reset() -> void:
     change_state(State.RUNNING)
 
 func _init() -> void:
+    elapsed_time = 0.0
     process_mode = Node.PROCESS_MODE_ALWAYS
     _reset_player()
     change_state(State.RUNNING)
@@ -78,6 +86,10 @@ func _reset_player():
     base_player_state = preload("res://player/state/default_player_state.tres").duplicate()
     loot_chances = preload("res://player/state/default_loot_chances.tres").duplicate()
     player_state = base_player_state.duplicate(true)
+
+func _process(delta: float) -> void:
+    if !get_tree().paused:
+        elapsed_time += delta
 
 func _input(event):
     if event.is_action_pressed("pause_game") and not [State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
@@ -111,8 +123,22 @@ func increment_score(i: int) -> void:
 
 func increment_total_spawned(count: int = 1):
     ennemy_spawn_stats.total_spawned += count
-    # TODO change spawn time in function of game progression
+    ennemy_spawn_stats.spawn_time = calculate_spawn_time()
     ennemy_spawn_stats_changed.emit(ennemy_spawn_stats)
+
+## Calculates time between two ennemy spawns in function of the game state
+## see formula: https://docs.google.com/spreadsheets/d/1dy5hZ8k1o6ASQJi3BNGFULr96txgKhC1LiBq4exjh-w/edit?gid=0#gid=0
+func calculate_spawn_time() -> float:
+    # TODO extract this in dedicated global class ? ennemy spawner ?
+    var time_factor: float = clamp(elapsed_time / MAX_ELAPSED_TIME, 0.0, 1.0)
+    var level_factor: float = clamp(float(player_state.level) / MAX_PLAYER_LEVEL, 0.0, 1.0)
+    var progression: float = (time_factor + level_factor) / 2.0
+    var curve: float = pow(1.0 - progression, ennemy_spawn_stats.progression_steepness)
+    var spawn_time: float = MIN_SPAWN_TIME + (ennemy_spawn_stats.initial_spawn_time - MIN_SPAWN_TIME) * curve
+
+    #print("new spawn time: %.2fs (elapsed time: %.2fs)" % [spawn_time, elapsed_time])
+
+    return spawn_time
 
 func gain_xp(xp: float) -> void:
     player_state.xp += xp
