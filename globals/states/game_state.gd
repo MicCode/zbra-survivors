@@ -82,13 +82,13 @@ func _input(event):
     if event.is_action_pressed("pause_game") and not [State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
         if state == State.PAUSED:
             if pause_menu:
-                Sounds.click()
+                Sounds.button_press()
                 pause_menu.slide_out().finished.connect(func():
                     pause_menu.queue_free()
                     change_state(State.RUNNING)
                 )
         else:
-            Sounds.click()
+            Sounds.button_press()
             pause_menu = preload("res://ui/menu/pause_menu.tscn").instantiate()
             get_tree().root.add_child(pause_menu)
             change_state(State.PAUSED)

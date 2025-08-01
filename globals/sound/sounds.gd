@@ -38,8 +38,11 @@ func start_game():
 func click():
     SoundPlayer.play_sfx("click.ogg", SfxOptions.from_dict({pitch = 3.5}))
 
+func button_press():
+    SoundPlayer.play_sfx(pick_random("button-press"), SfxOptions.from_dict({pitch = 3.5}))
+
 func toggle():
-    SoundPlayer.play_sfx("toggle.ogg", SfxOptions.from_dict({pitch = 0.9, volume = -6.0 }))
+    SoundPlayer.play_sfx("toggle.ogg", SfxOptions.from_dict({pitch = 0.9, volume = -6.0}))
 #endregion
 
 #region Player
@@ -91,7 +94,10 @@ func shoot(options: SfxOptions, file_name: String = "shoot.ogg"):
     SoundPlayer.play_sfx(pick_random(file_name), options)
 
 func reload():
-    SoundPlayer.play_sfx("reload.ogg", SfxOptions.from_dict({pitch = 0.9}))
+    SoundPlayer.play_sfx(pick_random("reload"), SfxOptions.from_dict({volume = -3.0}))
+
+func take():
+    SoundPlayer.play_sfx(pick_random("object-take"), SfxOptions.from_dict({volume = 3.0}))
 
 func bell_ring():
     SoundPlayer.play_sfx("bell-ring.ogg", SfxOptions.from_dict({volume = -6.0, pitch = 0.9}))
@@ -99,13 +105,13 @@ func bell_ring():
 
 #region Ennemies
 func hit():
-    SoundPlayer.play_sfx("hits/hit.ogg", SfxOptions.from_dict({pitch = 0.65, pitch_variation = 0.5, volume = 12.5}))
+    SoundPlayer.play_sfx(pick_random("hits"), SfxOptions.from_dict({pitch = 0.9, pitch_variation = 0.1, volume = -12.0}))
 
 func burn_hit():
     SoundPlayer.play_sfx(pick_random("burn"), SfxOptions.from_dict({pitch = 0.5}))
 
-func death_mob_1():
-    SoundPlayer.play_sfx("meow.mp3", SfxOptions.from_dict({pitch = 0.8, pitch_variation = 0.1, volume = 15.0}))
+func death_mob_1(pitch: float = 2.0):
+    SoundPlayer.play_sfx(pick_random("ennemy-death-1"), SfxOptions.from_dict({pitch = pitch, pitch_variation = 0.1}))
 
 func death_boss_1():
     SoundPlayer.play_sfx("boss_death.ogg", SfxOptions.from_dict({pitch = 0.8}))

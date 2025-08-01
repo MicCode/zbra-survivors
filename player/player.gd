@@ -200,7 +200,7 @@ func handle_collectible(consumable: ConsumableItem):
             if is_pickup_blocked:
                 return
             GameState.change_consumable(consumable)
-            Sounds.reload()
+            Sounds.take()
             consumable.queue_free()
             block_pickup()
 

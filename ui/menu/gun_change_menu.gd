@@ -9,7 +9,7 @@ const ANIMATION_TIME: float = 0.1
 var gun: Gun
 
 func _ready() -> void:
-    Sounds.click()
+    Sounds.button_press()
     slide_in().finished.connect(func():
         %TakeButton.grab_focus()
     )
@@ -32,13 +32,13 @@ func change_proposed_gun(new_gun: Gun):
     %NewGun.change_compare_to(GameState.equipped_gun)
 
 func _on_keep_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     slide_out().finished.connect(func():
         keep_pressed.emit()
     )
 
 func _on_take_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     slide_out().finished.connect(func():
         take_pressed.emit()
     )

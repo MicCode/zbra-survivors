@@ -49,6 +49,10 @@ position = Vector2(1372, 470)
 y_sort_enabled = true
 position = Vector2(1136, 291)
 
+[node name="XpDrop10" parent="." instance=ExtResource("7_b7b57")]
+position = Vector2(1108, 488)
+xp_value = 1000.0
+
 [node name="Ennemy" parent="." instance=ExtResource("10_juk4v")]
 position = Vector2(795, 360)
 

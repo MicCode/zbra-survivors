@@ -9,7 +9,7 @@ func _ready() -> void:
     )
 
 func _on_quit_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     reset_effects()
     slide_out().finished.connect(func():
         GameState.change_state(GameState.State.NOT_STARTED)

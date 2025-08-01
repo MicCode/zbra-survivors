@@ -17,7 +17,7 @@ func _ready() -> void:
     get_tree().create_timer(time_to_set_up).timeout.connect(func():
         modulate = Color.WHITE
         ready_to_explode = true
-        Sounds.click()
+        Sounds.button_press()
     )
 
 func _on_detection_area_body_entered(_body: Node2D) -> void:

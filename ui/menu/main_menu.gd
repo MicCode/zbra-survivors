@@ -21,13 +21,13 @@ func _input(event: InputEvent) -> void:
         SceneManager.switch_to("res://scenes/test/test_equipment_scene.tscn")
 
 func _on_start_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     Sounds.start_game()
     SceneManager.switch_to("res://scenes/level_1.tscn")
 
 
 func _on_quit_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     get_tree().quit()
 
 func _on_language_switcher_item_selected(index: int) -> void:
@@ -39,5 +39,5 @@ func _on_language_switcher_item_selected(index: int) -> void:
 
 
 func _on_settings_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     SceneManager.switch_to("res://ui/menu/settings_menu.tscn")

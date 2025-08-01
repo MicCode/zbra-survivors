@@ -62,7 +62,7 @@ func handle_bullet_hit(bullet: Bullet):
             Sounds.burn_hit()
             set_burning()
         else:
-            Sounds.hit()
+            play_hit_sound()
             VisualEffects.bleed(global_position, bullet.position)
 
 func take_damage(damage: float):
@@ -82,11 +82,13 @@ func take_damage(damage: float):
         previous_damage_indicator.set_damage(accumulated_damages)
 
 
-
 func play_hit_sound():
     if hit_sound_repetition_timer != null:
         return
-    Sounds.hit()
+    if is_burning:
+        Sounds.burn_hit()
+    else:
+        Sounds.hit()
     hit_sound_repetition_timer = get_tree().create_timer(HIT_SOUND_REPETITION_DELAY)
     hit_sound_repetition_timer.timeout.connect(func():
         hit_sound_repetition_timer = null
@@ -99,7 +101,10 @@ func _on_animation_finished():
 func _on_health_depleted():
     if stats.can_die:
         is_dead = true
-        Sounds.death_mob_1()
+        if stats.is_elite:
+            Sounds.death_mob_1(1.2)
+        else:
+            Sounds.death_mob_1()
         %Sprite.play("dead")
         set_collision_layer_value(2, false)
         set_collision_layer_value(8, false)

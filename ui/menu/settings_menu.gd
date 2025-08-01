@@ -22,7 +22,7 @@ func apply_settings():
     %MusicVolume.value = to_linear(audio.music_volume_db)
 
 func _on_language_item_selected(index: int) -> void:
-    Sounds.click()
+    Sounds.button_press()
     match index:
         0: TranslationServer.set_locale("en_US")
         1: TranslationServer.set_locale("fr_FR")
@@ -30,7 +30,7 @@ func _on_language_item_selected(index: int) -> void:
     Settings.save_to_file()
 
 func _on_save_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     save_settings()
 
 func save_settings():

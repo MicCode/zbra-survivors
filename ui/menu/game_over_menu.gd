@@ -4,12 +4,12 @@ func _ready() -> void:
     %RestartButton.grab_focus()
 
 func _on_restart_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     reset_effects()
     SceneManager.switch_to("res://scenes/level_1.tscn")
 
 func _on_menu_button_pressed() -> void:
-    Sounds.click()
+    Sounds.button_press()
     reset_effects()
     SceneManager.switch_to("res://ui/menu/main_menu.tscn")
 

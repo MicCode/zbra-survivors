@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
     if block_focus or has_been_clicked:
         return
     if is_ui_accept() or is_mouse_clicked():
-        Sounds.coin()
+        Sounds.click()
         has_been_clicked = true
         clicked.emit()
 
@@ -65,7 +65,7 @@ func _on_panel_container_mouse_exited() -> void:
 
 func _on_panel_container_focus_entered() -> void:
     if !block_focus:
-        Sounds.click()
+        Sounds.button_press()
         tween_borders_width(4)
 
 func _on_panel_container_focus_exited() -> void:
