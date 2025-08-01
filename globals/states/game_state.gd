@@ -14,6 +14,7 @@ signal consumable_changed(new_consumable: ConsumableItem)
 signal consumable_use_changed(use: int)
 
 signal score_changed
+signal ennemy_spawn_stats_changed(new_stats: EnnemySpawnStats)
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
 signal state_changed(new_state: State)
 signal shake_screen(strength: float)
@@ -46,7 +47,7 @@ var consumable: ConsumableItem
 
 var state: State = State.NOT_STARTED
 var score: int = 0
-var spawn_time_s: float = 2.0 # TODO this has to be reworked to be set accordingly to the game progression
+var ennemy_spawn_stats: EnnemySpawnStats = EnnemySpawnStats.new()
 
 var pause_menu: PauseMenu
 var gun_change_menu: GunChangeMenu
@@ -55,7 +56,7 @@ var gun_change_menu: GunChangeMenu
 func reset() -> void:
     _reset_player()
     score = 0
-    spawn_time_s = 2.0
+    ennemy_spawn_stats = EnnemySpawnStats.new()
     change_equipped_gun(null)
     change_consumable(null)
     emit_player_change()
@@ -107,6 +108,11 @@ func change_state(new_state: State):
 func increment_score(i: int) -> void:
     score += i
     emit_score_change()
+
+func increment_total_spawned(count: int = 1):
+    ennemy_spawn_stats.total_spawned += count
+    # TODO change spawn time in function of game progression
+    ennemy_spawn_stats_changed.emit(ennemy_spawn_stats)
 
 func gain_xp(xp: float) -> void:
     player_state.xp += xp

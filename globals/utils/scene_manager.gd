@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var current_scene = null
+var current_scene: Node = null
 var transition_time = 0.5
 
 func _ready() -> void:

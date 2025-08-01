@@ -2,7 +2,6 @@ extends Node2D
 
 var is_boss_spawned = false
 const TIME_BEFORE_BOSS_S: float = 180.0
-const ELITE_ENNEMY_SPAWN_CHANCE: float = 0.03 # TODO make this dynamic
 
 func _enter_tree() -> void:
     Minimap.clear()
@@ -13,20 +12,7 @@ func _ready():
     %GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
     GameState.reset()
     get_tree().paused = false
-    %MobSpawnTimer.wait_time = GameState.spawn_time_s
     Musics.lvl_1()
-
-func spawn_ennemy():
-    var new_ennemy = EnnemiesService.spawn_random()
-    if randf() < ELITE_ENNEMY_SPAWN_CHANCE:
-        new_ennemy.stats.is_elite = true
-    if new_ennemy:
-        %SpawnPoint.progress_ratio = randf()
-        new_ennemy.global_position = %SpawnPoint.global_position
-        add_child(new_ennemy)
-
-func _on_mob_spawn_timer_timeout():
-    spawn_ennemy()
 
 func _on_remaining_time_interval_timeout() -> void:
     %GameUI.set_remaining_time(%TimeBeforeBoss.time_left)
