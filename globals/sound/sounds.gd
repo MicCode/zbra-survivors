@@ -110,7 +110,7 @@ func hit():
 func burn_hit():
     SoundPlayer.play_sfx(pick_random("burn"), SfxOptions.from_dict({pitch = 0.5}))
 
-func death_mob_1(pitch: float = 2.0):
+func death_mob_1(pitch: float = 3.0):
     SoundPlayer.play_sfx(pick_random("ennemy-death-1"), SfxOptions.from_dict({pitch = pitch, pitch_variation = 0.1}))
 
 func death_boss_1():

@@ -3,15 +3,10 @@
 [ext_resource type="Script" uid="uid://bl0616biw7sew" path="res://scenes/level_1.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
 [ext_resource type="PackedScene" uid="uid://bhmxaitsaqnl3" path="res://environment/infinite_world.tscn" id="2_2os1m"]
+[ext_resource type="PackedScene" uid="uid://duwn5vbe371b3" path="res://ennemies/ennemy_spawner.tscn" id="4_pa8r4"]
 [ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/in-game/game_ui.tscn" id="4_yuug0"]
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://items/guns/pistol/pistol_collectible.tscn" id="6_5n8pi"]
 [ext_resource type="PackedScene" uid="uid://cal4x5wbe2maf" path="res://ui/in-game/boss_ui.tscn" id="10_q8l1h"]
-
-[sub_resource type="Curve2D" id="Curve2D_rf5nu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -712.154, -431, 0, 0, 0, 0, 712.154, -429, 0, 0, 0, 0, 728.145, 429, 0, 0, 0, 0, -720.682, 436, 0, 0, 0, 0, -719.616, -429)
-}
-point_count = 5
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -23,19 +18,8 @@ script = ExtResource("1_nconj")
 unique_name_in_owner = true
 position = Vector2(307, 197)
 
-[node name="SpawnPath" type="Path2D" parent="Player"]
-scale = Vector2(0.938, 1)
-curve = SubResource("Curve2D_rf5nu")
-
-[node name="SpawnPoint" type="PathFollow2D" parent="Player/SpawnPath"]
+[node name="EnnemySpawner" parent="Player" instance=ExtResource("4_pa8r4")]
 unique_name_in_owner = true
-position = Vector2(-483.747, -430.679)
-rotation = 0.00140419
-progress = 228.408
-
-[node name="BossSpawnPoint" type="Marker2D" parent="Player"]
-unique_name_in_owner = true
-position = Vector2(234, 0)
 
 [node name="GameUI" parent="Player" instance=ExtResource("4_yuug0")]
 unique_name_in_owner = true
@@ -45,11 +29,6 @@ metadata/_edit_use_anchors_ = true
 z_index = 4096
 custom_minimum_size = Vector2(1280, 800)
 metadata/_edit_use_anchors_ = true
-
-[node name="MobSpawnTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.5
-autostart = true
 
 [node name="TimeBeforeBoss" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -63,6 +42,5 @@ autostart = true
 [node name="BasicGunCollectible" parent="." instance=ExtResource("6_5n8pi")]
 position = Vector2(418, 199)
 
-[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]
 [connection signal="timeout" from="RemainingTimeInterval" to="." method="_on_remaining_time_interval_timeout"]
