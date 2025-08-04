@@ -21,6 +21,8 @@ func _ready() -> void:
     GameState.equipped_gun_changed.connect(func(new_gun: Gun, _previous_gun_name: String):
         %EquippedGun.change_gun(new_gun)
     )
+    GameState.remaining_time_changed.connect(set_remaining_time)
+    set_remaining_time(GameState.ennemy_spawn_stats.boss_spawn_time)
 
     if debug_mode:
         %FPSCounter.show()

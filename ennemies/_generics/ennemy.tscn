@@ -181,6 +181,7 @@ _data = {
 }
 
 [node name="Ennemy" type="CharacterBody2D"]
+z_as_relative = false
 y_sort_enabled = true
 collision_layer = 130
 collision_mask = 14
@@ -188,15 +189,19 @@ script = ExtResource("1_qdj7r")
 
 [node name="Effects" parent="." instance=ExtResource("2_ce5i1")]
 unique_name_in_owner = true
+z_as_relative = false
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.196078)
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(0, -10)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_hl8ed")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+z_as_relative = false
 y_sort_enabled = true
 material = ExtResource("3_i4bwu")
 position = Vector2(0, -16)

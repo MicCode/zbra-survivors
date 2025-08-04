@@ -30,11 +30,6 @@ z_index = 4096
 custom_minimum_size = Vector2(1280, 800)
 metadata/_edit_use_anchors_ = true
 
-[node name="TimeBeforeBoss" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 300.0
-one_shot = true
-
 [node name="RemainingTimeInterval" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
@@ -42,5 +37,4 @@ autostart = true
 [node name="BasicGunCollectible" parent="." instance=ExtResource("6_5n8pi")]
 position = Vector2(418, 199)
 
-[connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]
 [connection signal="timeout" from="RemainingTimeInterval" to="." method="_on_remaining_time_interval_timeout"]

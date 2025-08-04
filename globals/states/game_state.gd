@@ -18,6 +18,7 @@ signal ennemy_spawn_stats_changed(new_stats: EnnemySpawnStats)
 signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
 signal state_changed(new_state: State)
 signal shake_screen(strength: float)
+signal remaining_time_changed(remaining_time: float)
 
 enum State {
     NOT_STARTED,
@@ -61,6 +62,7 @@ var elapsed_time: float = 0.0
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
     elapsed_time = 0.0
+    Engine.time_scale = 1.0
     _reset_player()
     score = 0
     ennemy_spawn_stats = EnnemySpawnStats.new()
@@ -73,6 +75,7 @@ func reset() -> void:
 
 func _init() -> void:
     elapsed_time = 0.0
+    Engine.time_scale = 1.0
     process_mode = Node.PROCESS_MODE_ALWAYS
     _reset_player()
     change_state(State.RUNNING)

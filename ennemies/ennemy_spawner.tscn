@@ -1,29 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://duwn5vbe371b3"]
+[gd_scene load_steps=2 format=3 uid="uid://duwn5vbe371b3"]
 
 [ext_resource type="Script" uid="uid://bbesijp6cg0u2" path="res://ennemies/ennemy_spawner.gd" id="1_or8xr"]
 
-[sub_resource type="Curve2D" id="Curve2D_rf5nu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -712.154, -431, 0, 0, 0, 0, 712.154, -429, 0, 0, 0, 0, 728.145, 429, 0, 0, 0, 0, -720.682, 436, 0, 0, 0, 0, -719.616, -429)
-}
-point_count = 5
-
 [node name="EnnemySpawner" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_or8xr")
-
-[node name="SpawnPath" type="Path2D" parent="."]
-scale = Vector2(0.938, 1)
-curve = SubResource("Curve2D_rf5nu")
-
-[node name="SpawnPoint" type="PathFollow2D" parent="SpawnPath"]
-unique_name_in_owner = true
-position = Vector2(-483.747, -430.679)
-rotation = 0.00140419
-progress = 228.408
-
-[node name="BossSpawnPoint" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(234, 0)
 
 [node name="MobSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -31,4 +13,14 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
+[node name="TimeBeforeBoss" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 300.0
+one_shot = true
+
+[node name="UIRefreshTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
+[connection signal="timeout" from="TimeBeforeBoss" to="." method="_on_time_before_boss_timeout"]
+[connection signal="timeout" from="UIRefreshTimer" to="." method="_on_ui_refresh_timer_timeout"]
