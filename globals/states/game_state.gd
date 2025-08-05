@@ -57,6 +57,9 @@ var ennemy_spawn_stats: EnnemySpawnStats = EnnemySpawnStats.new()
 var pause_menu: PauseMenu
 var gun_change_menu: GunChangeMenu
 
+var lvl_up_exclusions_remaining: int = 3
+var lvl_up_rerolls_remaining: int = 3
+
 var elapsed_time: float = 0.0
 
 ## Resets all game state info, like if the game was freshly started
@@ -64,6 +67,7 @@ func reset() -> void:
     elapsed_time = 0.0
     Engine.time_scale = 1.0
     _reset_player()
+    Modifiers.excluded.clear()
     score = 0
     ennemy_spawn_stats = EnnemySpawnStats.new()
     change_equipped_gun(null)
@@ -89,6 +93,8 @@ func _reset_player():
     base_player_state = preload("res://player/state/default_player_state.tres").duplicate()
     loot_chances = preload("res://player/state/default_loot_chances.tres").duplicate()
     player_state = base_player_state.duplicate(true)
+    lvl_up_exclusions_remaining = 3 # TODO put base value in settings ?
+    lvl_up_rerolls_remaining = 3 # TODO put base value in settings ?
 
 func _process(delta: float) -> void:
     if !get_tree().paused:

@@ -2,6 +2,7 @@ extends Control
 class_name LvlUpChoice
 
 signal clicked
+signal excluded_changed(excluded: bool)
 
 const HOVER_ANIMATION_DURATION = 0.1
 var panel_style: StyleBoxFlat
@@ -9,28 +10,45 @@ var has_been_clicked = false
 var block_focus = false
 var stat_modifier: Modifiers.Mod
 var is_hovered = false
-var prevent_init_mouse_click = false
+var prevent_mouse_click = false
+var excluded = false
+var can_be_excluded = true
 
 func _ready() -> void:
     if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-        prevent_init_mouse_click = true
+        prevent_mouse_click = true
     panel_style = %PanelContainer.get_theme_stylebox("panel")
 
 func _process(_delta: float) -> void:
-    if !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-        prevent_init_mouse_click = false
+    if !Controls.is_pressed(Controls.PlayerAction.ACCEPT) and !Controls.is_pressed(Controls.PlayerAction.EXCLUDE):
+        prevent_mouse_click = false
     if block_focus or has_been_clicked:
         return
-    if is_ui_accept() or is_mouse_clicked():
+
+    if !excluded and is_accept_clicked():
         Sounds.click()
         has_been_clicked = true
         clicked.emit()
 
+    if exclusion_can_be_changed() and is_exclude_clicked():
+        Sounds.click()
+        prevent_mouse_click = true
+        excluded = !excluded
+        excluded_changed.emit(excluded)
+
+func exclusion_can_be_changed() -> bool:
+    var exclusion_allowed = !has_been_clicked and can_be_excluded
+    var player_has_enough_exclusions = GameState.lvl_up_exclusions_remaining > 0 or excluded # if choice is excluded, whatever the remaining exclusions, we want to allow de-excluding it
+    return exclusion_allowed and player_has_enough_exclusions
+
 func is_ui_accept() -> bool:
     return %PanelContainer.has_focus() and Input.is_action_pressed("ui_accept")
 
-func is_mouse_clicked() -> bool:
-    return !prevent_init_mouse_click and is_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+func is_accept_clicked() -> bool:
+    return !prevent_mouse_click and is_hovered and Controls.is_pressed(Controls.PlayerAction.ACCEPT)
+
+func is_exclude_clicked() -> bool:
+    return !prevent_mouse_click and is_hovered and Controls.is_pressed(Controls.PlayerAction.EXCLUDE)
 
 func set_stat_modifier(new_mod: Modifiers.Mod):
     stat_modifier = new_mod
@@ -65,11 +83,13 @@ func _on_panel_container_mouse_exited() -> void:
 
 func _on_panel_container_focus_entered() -> void:
     if !block_focus:
+        is_hovered = true
         Sounds.button_press()
         tween_borders_width(4)
 
 func _on_panel_container_focus_exited() -> void:
     if !block_focus:
+        is_hovered = false
         tween_borders_width(0)
 
 func tween_borders_width(to: int):

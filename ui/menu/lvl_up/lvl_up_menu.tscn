@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6xm6hjhup8ms"]
+[gd_scene load_steps=10 format=3 uid="uid://b6xm6hjhup8ms"]
 
 [ext_resource type="PackedScene" uid="uid://ceixtg3w46q44" path="res://ui/menu/lvl_up/lvl_up_choice.tscn" id="1_t8civ"]
 [ext_resource type="Script" uid="uid://c3u1eefhykdc5" path="res://ui/menu/lvl_up/lvl_up_menu.gd" id="1_v3hmg"]
 [ext_resource type="LabelSettings" uid="uid://brpnehk8qo03s" path="res://ui/theme/title.tres" id="2_7m4ic"]
 [ext_resource type="LabelSettings" uid="uid://bvso4gebpqgpp" path="res://ui/theme/subtitle.tres" id="3_evsw0"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="5_6aqng"]
+[ext_resource type="Texture2D" uid="uid://cbj5l25x68uvj" path="res://assets/sprites/ui/controls/xbox/xbox-A.png" id="6_8libt"]
+[ext_resource type="Texture2D" uid="uid://dvqckbkttord1" path="res://assets/sprites/ui/controls/xbox/xbox-Y.png" id="7_fn0dj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p80mf"]
 bg_color = Color(0.356863, 0.356863, 0.356863, 0.670588)
@@ -15,6 +18,7 @@ process_mode = 3
 script = ExtResource("1_v3hmg")
 
 [node name="Panel" type="Panel" parent="."]
+unique_name_in_owner = true
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,3 +92,59 @@ layout_mode = 2
 
 [node name="LvlUpChoice3" parent="Panel/MainContainer/CenterContainer/VBoxContainer/Choices" instance=ExtResource("1_t8civ")]
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MainContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Panel" type="HBoxContainer" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="ButtonIcon" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/Panel" instance=ExtResource("5_6aqng")]
+layout_mode = 2
+texture = ExtResource("6_8libt")
+action = 5
+animate = true
+
+[node name="Label" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/Panel"]
+layout_mode = 2
+text = "LABEL_CHOOSE"
+
+[node name="ExcludeInfo" type="HBoxContainer" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ExcludeButtonIcon" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/ExcludeInfo" instance=ExtResource("5_6aqng")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("7_fn0dj")
+action = 6
+animate = true
+
+[node name="Label" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/ExcludeInfo"]
+layout_mode = 2
+text = "LABEL_EXCLUDE"
+
+[node name="ExcludeCountLabel" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/ExcludeInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(3)"
+
+[node name="RerollInfo" type="HBoxContainer" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RerollButtonIcon" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/RerollInfo" instance=ExtResource("5_6aqng")]
+unique_name_in_owner = true
+layout_mode = 2
+animate = true
+
+[node name="Label" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/RerollInfo"]
+layout_mode = 2
+text = "LABEL_REROLL"
+
+[node name="RerollCountLabel" type="Label" parent="Panel/MainContainer/CenterContainer/VBoxContainer/HBoxContainer2/RerollInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "(3)"

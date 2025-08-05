@@ -27,6 +27,7 @@ var all: Array[Mod] = [
     Mod.create(Name.EXPLOSION_RADIUS, Type.EXPLOSION, "explosion_radius", "explosion-damage-radius-up", 25.0),
     Mod.create(Name.EXPLOSION_DAMAGE, Type.EXPLOSION, "explosion_damage", "explosion-damage-up", 10.0),
 ]
+var excluded: Array[Mod] = []
 
 enum Name {
     # PLAYER MODIFIERS

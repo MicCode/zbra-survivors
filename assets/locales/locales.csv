@@ -84,3 +84,5 @@ TITLE_LEVEL_UP,Level up!,Nouveau niveau !
 SETTING_DISPLAY_XP_RADIUS,Show XP capture radius,Montrer le rayon de capture de l'XP
 SETTING_ENABLE_ANNOUNCEMENT_STICKERS,Enable visual announcements,Activer les annonces visuelles
 SETTING_MAP_OPACITY,Minimap opacity,Opacité de la minimap
+LABEL_REROLL,Reroll,Relancer
+LABEL_EXCLUDE,Exclude,Exclure

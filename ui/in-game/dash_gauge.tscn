@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cji0tqswdo0sb" path="res://ui/in-game/dash_gauge.gd" id="1_mppy0"]
 [ext_resource type="Texture2D" uid="uid://b2s6kmwjhct7y" path="res://assets/sprites/player/dash-gauge.png" id="2_8ntsr"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_6fws7"]
-[ext_resource type="Texture2D" uid="uid://cxrttnish3hfa" path="res://assets/sprites/ui/controls/xbox/xbox-LT.png" id="4_vhw2p"]
+[ext_resource type="Texture2D" uid="uid://wpbii8jcdwdq" path="res://assets/sprites/ui/controls/keyboard/keyboard-SPACE.png" id="4_vhw2p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s14ex"]
 

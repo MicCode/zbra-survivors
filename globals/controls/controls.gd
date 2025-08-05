@@ -19,7 +19,9 @@ enum PlayerAction {
     GRAB,
     SHOOT,
     USE,
-    DISMISS
+    DISMISS,
+    ACCEPT,
+    EXCLUDE,
 }
 func get_action_name(action: PlayerAction) -> String:
     match action:
@@ -33,6 +35,10 @@ func get_action_name(action: PlayerAction) -> String:
             return "use"
         PlayerAction.DISMISS:
             return "dismiss"
+        PlayerAction.ACCEPT:
+            return "accept"
+        PlayerAction.EXCLUDE:
+            return "exclude"
         _:
             push_error("Unsupported action [%d]" % action)
             return "???"
@@ -185,6 +191,16 @@ func get_input_control(action: PlayerAction) -> InputControl:
                 return get_joypad_control(JoypadButtons.B)
             else:
                 return get_keyboard_control(KeyboardButtons.A)
+        PlayerAction.ACCEPT:
+            if is_joypad:
+                return get_joypad_control(JoypadButtons.A)
+            else:
+                return get_mouse_control(MouseButtons.LEFT)
+        PlayerAction.EXCLUDE:
+            if is_joypad:
+                return get_joypad_control(JoypadButtons.Y)
+            else:
+                return get_mouse_control(MouseButtons.RIGHT)
         _:
             push_error("Unknown player action [%d]" % action)
             return null
