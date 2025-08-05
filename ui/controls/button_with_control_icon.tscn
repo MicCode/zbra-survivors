@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bup8510lxylx3"]
+
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="1_glkru"]
+[ext_resource type="Script" uid="uid://ml2mxv7h48hs" path="res://ui/controls/button_with_control_icon.gd" id="2_8mk3a"]
+[ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="2_owldy"]
+[ext_resource type="Texture2D" uid="uid://cxrttnish3hfa" path="res://assets/sprites/ui/controls/xbox/xbox-LT.png" id="4_6mxj6"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_6mxj6"]
+action = &"dash"
+
+[sub_resource type="Shortcut" id="Shortcut_d5jot"]
+events = [SubResource("InputEventAction_6mxj6")]
+
+[node name="ButtonWithControlIcon" type="Button"]
+custom_minimum_size = Vector2(0, 55)
+offset_right = 406.0
+offset_bottom = 53.0
+size_flags_horizontal = 3
+theme = ExtResource("1_glkru")
+shortcut = SubResource("Shortcut_d5jot")
+script = ExtResource("2_8mk3a")
+label = "BUTTON_LABEL"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ButtonIcon" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_owldy")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("4_6mxj6")
+action = 0
+animate = true
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "BUTTON_LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1

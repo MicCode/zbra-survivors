@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 enum Controllers {
@@ -18,7 +19,23 @@ enum PlayerAction {
     GRAB,
     SHOOT,
     USE,
+    DISMISS
 }
+func get_action_name(action: PlayerAction) -> String:
+    match action:
+        PlayerAction.DASH:
+            return "dash"
+        PlayerAction.GRAB:
+            return "grab"
+        PlayerAction.SHOOT:
+            return "shoot"
+        PlayerAction.USE:
+            return "use"
+        PlayerAction.DISMISS:
+            return "dismiss"
+        _:
+            push_error("Unsupported action [%d]" % action)
+            return "???"
 
 enum JoypadButtons {
     A,
@@ -163,26 +180,18 @@ func get_input_control(action: PlayerAction) -> InputControl:
                 return get_joypad_control(JoypadButtons.RB)
             else:
                 return get_mouse_control(MouseButtons.RIGHT)
+        PlayerAction.DISMISS:
+            if is_joypad:
+                return get_joypad_control(JoypadButtons.B)
+            else:
+                return get_keyboard_control(KeyboardButtons.A)
         _:
             push_error("Unknown player action [%d]" % action)
             return null
 
 
 func is_pressed(action: PlayerAction) -> bool:
-    var action_name = null
-    match action:
-        PlayerAction.DASH:
-            action_name = "dash"
-        PlayerAction.GRAB:
-            action_name = "grab"
-        PlayerAction.SHOOT:
-            action_name = "shoot"
-        PlayerAction.USE:
-            action_name = "use"
-        _:
-            push_error("Unsupported action [%d]" % action)
-            return false
-    var pressed = Input.is_action_pressed(action_name)
+    var pressed = Input.is_action_pressed(get_action_name(action))
     #print("Checking action [%s]: %s" % [action_name, str(pressed)])
     return pressed
 

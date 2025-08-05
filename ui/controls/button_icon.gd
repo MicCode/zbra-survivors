@@ -1,17 +1,16 @@
+@tool
 extends TextureRect
 class_name ControllerButtonIcon
 
-@export var action: Controls.PlayerAction
+@export var action: Controls.PlayerAction:
+    set(value):
+        action = value
+        update_texture()
 @export var pressed: bool = false
 @export var animate: bool = false
 
-
-func _ready() -> void:
-    update_texture()
-
 func change_action(_action: Controls.PlayerAction):
     action = _action
-    update_texture()
 
 func update_texture():
     var control = Controls.get_input_control(action)

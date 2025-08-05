@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b022lydfmv6ep"]
 
-[ext_resource type="Texture2D" uid="uid://mwe7k0d56v3j" path="res://assets/sprites/ui/controls/keyboard/keyboard-A.png" id="1_d2mbv"]
+[ext_resource type="Texture2D" uid="uid://bwhv38ccld7re" path="res://assets/sprites/ui/controls/xbox/xbox-X.png" id="1_s7svj"]
 [ext_resource type="Script" uid="uid://c5sncsho3fhj1" path="res://ui/controls/button_icon.gd" id="2_bw52e"]
 
 [node name="ButtonIcon" type="TextureRect"]
@@ -8,8 +8,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_d2mbv")
+texture = ExtResource("1_s7svj")
 script = ExtResource("2_bw52e")
+action = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3

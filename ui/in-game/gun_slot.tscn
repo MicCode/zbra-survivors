@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7ydpd6qydhnt"]
+[gd_scene load_steps=6 format=3 uid="uid://b7ydpd6qydhnt"]
 
 [ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_w43r3"]
 [ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://assets/sprites/items/sniper-idle.png" id="2_5dpiw"]
 [ext_resource type="Script" uid="uid://bjma854jxsgfs" path="res://ui/in-game/gun_slot.gd" id="2_75gk6"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_75gk6"]
+[ext_resource type="Texture2D" uid="uid://cv18ch5f8j8a1" path="res://assets/sprites/ui/controls/xbox/xbox-RT.png" id="5_75gk6"]
 
 [node name="GunSlot" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 50)
@@ -26,3 +27,5 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+texture = ExtResource("5_75gk6")
+action = 2
