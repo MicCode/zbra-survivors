@@ -39,7 +39,7 @@ func create_chest_on_map(player_position: Vector2):
     var new_chest = preload("res://items/loot_chest.tscn").instantiate()
     new_chest.global_position = random_position
     add_child(new_chest)
-    Sounds.bell_ring()
+    Sounds.chest_available()
 
     is_one_chest_on_map = true
 

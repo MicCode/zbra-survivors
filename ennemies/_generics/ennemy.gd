@@ -60,7 +60,7 @@ func handle_bullet_hit(bullet: Bullet):
     if !is_dead:
         take_damage(bullet.bullet_stats.damage)
         if bullet.bullet_stats.inflicts_fire:
-            Sounds.burn_hit()
+            play_hit_sound(true)
             set_burning()
         else:
             play_hit_sound()
@@ -83,10 +83,10 @@ func take_damage(damage: float):
         previous_damage_indicator.set_damage(accumulated_damages)
 
 
-func play_hit_sound():
+func play_hit_sound(burn_sound: bool = false):
     if hit_sound_repetition_timer != null:
         return
-    if is_burning:
+    if burn_sound:
         Sounds.burn_hit()
     else:
         Sounds.hit()

@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_eboj7"]
 script = ExtResource("2_0kkxt")
-pitch = 0.8
+pitch = 1.0
 pitch_variation = 0.0
-volume = 0.0
+volume = -6.0
 start_delay_ms = 0.0
 start_delay_variation_ms = 0.0
 max_per_s = 10.0
@@ -20,8 +20,8 @@ display_name = "GUN_PISTOL"
 shots_per_s = 1.5
 bullets_spread_angle_deg = 5.0
 bullets_per_shot = 1.0
-shoot_sound = "shoot.ogg"
-is_sound_folder = false
+shoot_sound = "pistol"
+is_sound_folder = true
 shoot_sfx_options = SubResource("Resource_eboj7")
 eject_cartridges = true
 has_laser_dot = false

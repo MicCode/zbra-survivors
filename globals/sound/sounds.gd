@@ -99,8 +99,8 @@ func reload():
 func take():
     SoundPlayer.play_sfx(pick_random("object-take"), SfxOptions.from_dict({volume = 3.0}))
 
-func bell_ring():
-    SoundPlayer.play_sfx("bell-ring.ogg", SfxOptions.from_dict({volume = -6.0, pitch = 0.9}))
+func chest_available():
+    SoundPlayer.play_sfx("chest.ogg", SfxOptions.from_dict({volume = -6.0}))
 #endregion
 
 #region Ennemies
