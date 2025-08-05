@@ -1,5 +1,18 @@
 
 - - -
+## 0.17.0 - 2025-08-05
+
+#### ➕ New features
+- **(controls)** added shortcuts in gun change menu to take or dismiss new gun
+- **(gameplay)** added options in lvl up menu to exclude or reroll modifiers
+- **(gameplay)** added a bullet pierce count modifier
+- **(gameplay)** change ennemy spawn times with progression
+- **(sounds)** better ennemies sounds
+#### 🪲 Bug fixes
+- **(sounds)** better gun sounds
+
+- - -
+
 ## 0.16.0 - 2025-07-31
 
 #### ➕ New features
