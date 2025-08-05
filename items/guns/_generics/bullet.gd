@@ -21,5 +21,5 @@ func _physics_process(delta):
 func _on_body_entered(body):
     if body is Ennemy || body is Boss1 || body is EnvTree:
         pierced_bodies += 1
-        if pierced_bodies >= bullet_stats.pierce_count:
+        if pierced_bodies > bullet_stats.pierce_count:
             get_tree().create_timer(bullet_stats.disapear_delay).timeout.connect(func(): queue_free())

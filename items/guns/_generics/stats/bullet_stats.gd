@@ -16,7 +16,7 @@ class_name BulletStats
 @export var size_variation: float = 0.0
 
 @export_group("Effects")
-@export var pierce_count: int = 0
+@export var pierce_count: float = 0.0
 @export var inflicts_fire: bool = false
 
 static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatsModifier]) -> BulletStats:

@@ -21,6 +21,7 @@ var all: Array[Mod] = [
     Mod.create(Name.BULLET_DAMAGE, Type.BULLET, "damage", "damage-up", 10.0),
     Mod.create(Name.BULLET_SPEED, Type.BULLET, "speed", "bullet-speed-up", 20.0),
     Mod.create(Name.BULLET_RANGE, Type.BULLET, "fly_range", "bullet-range-up", 20.0),
+    Mod.create(Name.BULLET_PIERCE_COUNT, Type.BULLET, "pierce_count", "piercing-plus", 1, true),
 
     # EXPLOSION MODS
     Mod.create(Name.EXPLOSION_RADIUS, Type.EXPLOSION, "explosion_radius", "explosion-damage-radius-up", 25.0),
@@ -46,6 +47,7 @@ enum Name {
     BULLET_DAMAGE,
     BULLET_SPEED,
     BULLET_RANGE,
+    BULLET_PIERCE_COUNT,
 
     # EXPLOSION MODIFIERS
     EXPLOSION_RADIUS,
@@ -72,6 +74,7 @@ func get_name_label(mod_name: Name) -> String:
         Name.BULLET_DAMAGE: return "BULLET_DAMAGE"
         Name.BULLET_SPEED: return "BULLET_SPEED"
         Name.BULLET_RANGE: return "BULLET_RANGE"
+        Name.BULLET_PIERCE_COUNT: return "BULLET_PIERCE_COUNT"
 
         # EXPLOSION MODIFIERS
         Name.EXPLOSION_RADIUS: return "EXPLOSION_RADIUS"
