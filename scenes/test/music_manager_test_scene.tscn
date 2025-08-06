@@ -1,0 +1,157 @@
+[gd_scene load_steps=3 format=3 uid="uid://46di0e3b8tim"]
+
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="1_mb0of"]
+[ext_resource type="Script" uid="uid://c1fmwqxgsbwil" path="res://scenes/test/music_manager_test_scene.gd" id="1_ulrj7"]
+
+[node name="MusicManagerTestScene" type="CanvasLayer"]
+script = ExtResource("1_ulrj7")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartMusicButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Play"
+
+[node name="StopMusicButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Stop"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Electro1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Electro 1"
+
+[node name="Electro2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Electro 2"
+
+[node name="Epic1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Epic 1"
+
+[node name="Epic2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Epic 2"
+
+[node name="Metal1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Metal 1"
+
+[node name="Metal2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mb0of")
+text = "Metal 2"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MuffledButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_mb0of")
+text = "Muffled"
+
+[node name="MuffledProgress" type="ProgressBar" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SoftButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_mb0of")
+text = "Soft"
+
+[node name="SoftProgress" type="ProgressBar" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MediumButton2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_mb0of")
+text = "Medium"
+
+[node name="MediumProgress" type="ProgressBar" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HardButton3" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_mb0of")
+text = "Hard"
+
+[node name="HardProgress" type="ProgressBar" parent="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/StartMusicButton" to="." method="_on_start_music_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/StopMusicButton" to="." method="_on_stop_music_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Electro1" to="." method="_on_electro_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Electro2" to="." method="_on_electro_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Epic1" to="." method="_on_epic_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Epic2" to="." method="_on_epic_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Metal1" to="." method="_on_metal_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Metal2" to="." method="_on_metal_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/MuffledButton" to="." method="_on_muffled_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/SoftButton" to="." method="_on_soft_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3/MediumButton2" to="." method="_on_medium_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4/HardButton3" to="." method="_on_hard_button_3_pressed"]

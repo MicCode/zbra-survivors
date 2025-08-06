@@ -5,4 +5,7 @@ func _enter_tree() -> void:
 
 func _ready():
     GameState.reset()
-    Musics.lvl_1()
+    SoundPlayer.stop_music()
+    MusicManager.change_music(MusicManager.Music.ELECTRO_2)
+    MusicManager.change_layer(MusicManager.MusicLayer.MEDIUM)
+    MusicManager.play()

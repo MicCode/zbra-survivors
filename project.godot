@@ -38,6 +38,7 @@ Controls="*res://globals/controls/controls.gd"
 Modifiers="*res://globals/gameplay/modifiers.gd"
 Conversions="*res://globals/utils/conversions.gd"
 LootGenerator="*res://globals/gameplay/loot_generator.gd"
+MusicManager="*res://globals/sound/music_manager.gd"
 
 [debug]
 

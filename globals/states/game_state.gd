@@ -61,6 +61,7 @@ var lvl_up_exclusions_remaining: int = 3
 var lvl_up_rerolls_remaining: int = 3
 
 var elapsed_time: float = 0.0
+var first_chest_openned: bool = false
 
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
@@ -86,6 +87,9 @@ func _init() -> void:
     player_openned_chest.connect(func():
         var random_gun = LootGenerator.get_random_gun()
         change_equipped_gun(random_gun)
+        if !first_chest_openned:
+            first_chest_openned = true
+            MusicManager.change_layer(MusicManager.MusicLayer.HARD)
     )
 
 func _reset_player():
