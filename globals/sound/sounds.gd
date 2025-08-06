@@ -53,10 +53,10 @@ func player_die():
     SoundPlayer.play_sfx("die.ogg", SfxOptions.from_dict({pitch = 1.4}))
 
 func dash():
-    SoundPlayer.play_sfx("lazercannon.mp3", SfxOptions.from_dict({pitch = 2.0, volume = -16.0}))
+    SoundPlayer.play_sfx(pick_random("dash"), SfxOptions.from_dict({volume = -3.0}))
 
 func dash_ready():
-    SoundPlayer.play_sfx("beep.mp3", SfxOptions.from_dict({pitch = 2.8, volume = -24.0}))
+    SoundPlayer.play_sfx("dash-ready.ogg", SfxOptions.from_dict({pitch = 1.5, volume = -6.0}))
 
 func level_up():
     SoundPlayer.play_sfx("lvlup.ogg", SfxOptions.from_dict({volume = -16.0}))
@@ -121,8 +121,8 @@ func death_boss_1():
 func tree_destroyed():
     SoundPlayer.play_sfx("falling-leaves.ogg", SfxOptions.from_dict({volume = -9.0, pitch_variation = 0.1}))
 
-func explosion():
-    SoundPlayer.play_sfx(pick_random("explosions"), SfxOptions.from_dict({volume = -9.0}))
+func explosion(volume: float = -9.0):
+    SoundPlayer.play_sfx(pick_random("explosions"), SfxOptions.from_dict({volume = volume}))
 
 func drop():
     SoundPlayer.play_sfx(pick_random("drops"), SfxOptions.from_dict({volume = -3.0}))
