@@ -3,8 +3,10 @@ extends Node
 # TODO set a music loop config (to tell if we play the same music when it ends, or if we randomly choose another
 # TODO add a smooth transition between musics
 # TODO allow non-layered music to be played (music is played but layer changes do not have effect)
+# TODO allow user to define preferred music style and chose musics accordingly ?
 
 enum Music {
+    NOT_SET,
     ELECTRO_1,
     ELECTRO_2,
     EPIC_1,
@@ -14,6 +16,7 @@ enum Music {
 }
 func music(_music: Music) -> String:
     match _music:
+        Music.NOT_SET: return "not-set"
         Music.ELECTRO_1: return "electro-1"
         Music.ELECTRO_2: return "electro-2"
         Music.EPIC_1: return "epic-1"
@@ -25,6 +28,7 @@ func music(_music: Music) -> String:
             return "???"
 
 enum MusicLayer {
+    NOT_SET,
     MUFFLED,
     SOFT,
     MEDIUM,
@@ -32,6 +36,7 @@ enum MusicLayer {
 }
 func music_layer(_layer: MusicLayer) -> String:
     match _layer:
+        MusicLayer.NOT_SET: return "NOT_SET"
         MusicLayer.MUFFLED: return "MUFFLED"
         MusicLayer.SOFT: return "SOFT"
         MusicLayer.MEDIUM: return "MEDIUM"
@@ -68,8 +73,8 @@ func _init() -> void:
     add_child(medium_player)
     hard_player = init_layer()
     add_child(hard_player)
-    change_layer(MusicLayer.MEDIUM)
-    wanted_layer = MusicLayer.MEDIUM
+    wanted_layer = MusicLayer.MUFFLED
+    change_layer(MusicLayer.MUFFLED)
 
 func _process(_delta):
     if get_tree().paused and currently_playing_layer != MusicLayer.MUFFLED:
@@ -102,6 +107,7 @@ func _change_layer(layer: MusicLayer):
     if layer != currently_playing_layer:
         var previous_layer = currently_playing_layer
         currently_playing_layer = layer
+        print("Changing music layer from [%s] to [%s]" % [music_layer(previous_layer), music_layer(currently_playing_layer)])
 
         match previous_layer:
             MusicLayer.MUFFLED: previous_player = muffled_player
@@ -128,6 +134,7 @@ func _change_layer(layer: MusicLayer):
         create_tween().tween_property(self, "crossfade_value", MUSIC_VOLUME_OFFSET, TRANSITION_DURATION).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
 func play():
+    print("Playing music [%s]" % music(currently_playing_music))
     muffled_player.play()
     soft_player.play()
     medium_player.play()

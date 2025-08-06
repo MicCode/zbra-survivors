@@ -42,13 +42,13 @@ func spawn_boss():
         boss.scale = Vector2(2.5, 2.5)
         boss.global_position = get_random_point(GameState.player_instance.global_position, SPAWN_DISTANCE_MIN, SPAWN_DISTANCE_MAX)
         SceneManager.current_scene.get_tree().root.add_child(boss)
-        MusicManager.change_music(MusicManager.Music.EPIC_2)
+        MusicManager.change_music(MusicManager.Music.METAL_2)
 
 func get_random_point(origin: Vector2, r_min: float, r_max: float) -> Vector2:
     var angle: float = randf() * TAU
     var radius: float = lerp(r_min, r_max, randf())
     return origin + Vector2(cos(angle), sin(angle)) * radius
 
-func on_boss_changed(_boss_stats: EnnemyStats, boss_health: float):
-    if boss_health <= 0:
-        MusicManager.change_music(MusicManager.Music.ELECTRO_1)
+func on_boss_changed(boss_stats: EnnemyStats, boss_health: float):
+    if boss_stats and boss_health <= 0:
+        MusicManager.change_music(MusicManager.Music.METAL_1)
