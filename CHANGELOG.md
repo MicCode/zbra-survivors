@@ -1,5 +1,16 @@
 
 - - -
+## 0.18.0 - 2025-08-06
+
+#### ➕ New features
+- **(gameplay)** added fire crossbow
+- **(gameplay)** added explosive crossbow
+- **(gameplay)** added crossbow
+#### 🪲 Bug fixes
+- **(sounds)** better dash sounds
+
+- - -
+
 ## 0.17.0 - 2025-08-05
 
 #### ➕ New features
