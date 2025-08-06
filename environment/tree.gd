@@ -37,9 +37,11 @@ func wither():
 func destroy(effect_name: String):
     %Sprite.play(effect_name)
     Sounds.tree_destroyed()
-    set_collision_layer_value(3, false)
-    set_collision_layer_value(8, false)
-    %LightOccluder2D.hide()
+    get_tree().create_timer(0.1).timeout.connect(func():
+        set_collision_layer_value(3, false)
+        set_collision_layer_value(8, false)
+        %LightOccluder2D.hide()
+    )
 
 func _on_sprite_animation_finished():
     if is_destroyed:

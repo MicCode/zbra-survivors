@@ -6,7 +6,8 @@ var all_known_gun_names: Array[String] = [
     "rifle",
     "shotgun",
     "sniper",
-    "crossbow"
+    "crossbow",
+    "crossbow_explosive"
 ]
 
 func get_random_gun() -> Gun:

@@ -24,6 +24,7 @@ shoot_sound = "shotgun"
 is_sound_folder = true
 shoot_sfx_options = SubResource("Resource_vk4mu")
 eject_cartridges = true
+show_muzzle_flash = true
 has_laser_dot = false
 recoil_distance = 30.0
 haptic_feedback = 1

@@ -12,6 +12,9 @@ BUTTON_TAKE,Take new,Prendre nouveau
 ENNEMY_MOB_1,Mob 1,Truc 1
 ENNEMY_MOB_2,Mob 2,Truc 2
 ENNEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
+GUN_CROSSBOW,Crossbow,Arbalète
+GUN_CROSSBOW_EXPLOSIVE,Explosive bolts crossbow,Arbalète à careaux explosifs
+GUN_CROSSBOW_FIRE,Fire bolts crossbow,Arbalète à careaux incendiaires
 GUN_FLAMETHROWER,Flame Thrower,Lance-Flammes
 GUN_PISTOL,Pistol,Pistolet
 GUN_RIFLE,Rifle,Fusil Automatique
@@ -22,9 +25,9 @@ LABEL_ANNOUNCEMENT_RAMPAGE,Rampage!!!,Un massacre !!!
 LABEL_ANNOUNCEMENT_TRIPLE_KILL,Triple kill!!,Triplette !!
 LABEL_AUDIO_SETTINGS,Audio,Audio
 LABEL_BULLET_SPEED,Bullets speed,Vitesse des projectiles
-LABEL_BULLETS_SPREAD_ANGLE_DEG,Gun dispersion angle,Angle de tir des armes
 LABEL_BULLETS_PER_S,Bullets per shot,Projectiles par tir
 LABEL_BULLETS_PER_SHOT,Bullets per shot,Projectiles par tir
+LABEL_BULLETS_SPREAD_ANGLE_DEG,Gun dispersion angle,Angle de tir des armes
 LABEL_CHOOSE,Choose,Choisir
 LABEL_DAMAGE,Bullet damage,Dégâts des projectiles
 LABEL_DAMAGE_PER_S,Damage/s,Dégâts/s
@@ -33,6 +36,7 @@ LABEL_DASH_DURATION,Dash duration,Durée du dash
 LABEL_DASH_SPEED_MULTIPLIER,Dash speed,Vitesse du dash
 LABEL_DISPERSION,Dispersion,Dispersion
 LABEL_DPS,DPS,DPS
+LABEL_EXCLUDE,Exclude,Exclure
 LABEL_EXPLOSION_DAMAGE,Explosions damage,Dégâts des explosions
 LABEL_EXPLOSION_RADIUS,Explosions radius,Rayon des explosions
 LABEL_FLY_RANGE,Bullets range,Portée des projectiles
@@ -47,10 +51,11 @@ LABEL_NO_GUN_EQUIPPED,No gun equipped,Aucune arme équipée
 LABEL_PIERCE_COUNT,Pierce count,Perçage
 LABEL_PROJECTILES,Projectiles,Projectiles
 LABEL_RANGE,Range,Portée
+LABEL_REROLL,Reroll,Relancer
 LABEL_SCORE,Score,Score
 LABEL_SHOT_PER_S,Shots/s,Tirs/s
-LABEL_SHOTS_PER_S,Fire rate,Cadence de tir
 LABEL_SHOT_S,Shot/s,Tir/s
+LABEL_SHOTS_PER_S,Fire rate,Cadence de tir
 LABEL_SPEED,Bullets speed,Vitesse des projectiles
 LABEL_SPREAD_ANGLE,Dispersion,Dispersion
 LABEL_UNIT_BULLETS_PER_S,b/s,p/s
@@ -69,7 +74,10 @@ SETTING_AUDIO_FX,SFX volume,Volume des effets
 SETTING_AUDIO_MASTER,Master volume,Volume principal
 SETTING_AUDIO_MUSIC,Music volume,Volume de la musique
 SETTING_CAMERA_ZOOM,Camera zoom,Zoom de la caméra
+SETTING_DISPLAY_XP_RADIUS,Show XP capture radius,Montrer le rayon de capture de l'XP
+SETTING_ENABLE_ANNOUNCEMENT_STICKERS,Enable visual announcements,Activer les annonces visuelles
 SETTING_GAMEPAD_VIBRATION,Gamepad vibrations,Vibrations de la manette
+SETTING_MAP_OPACITY,Minimap opacity,Opacité de la minimap
 SETTINGS_MUSIC,Music,Musique
 SETTINGS_TITLE,Settings,Paramètres
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
@@ -81,8 +89,3 @@ SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
 TITLE_GUN_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
-SETTING_DISPLAY_XP_RADIUS,Show XP capture radius,Montrer le rayon de capture de l'XP
-SETTING_ENABLE_ANNOUNCEMENT_STICKERS,Enable visual announcements,Activer les annonces visuelles
-SETTING_MAP_OPACITY,Minimap opacity,Opacité de la minimap
-LABEL_REROLL,Reroll,Relancer
-LABEL_EXCLUDE,Exclude,Exclure

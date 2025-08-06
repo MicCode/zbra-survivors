@@ -18,8 +18,27 @@ func _physics_process(delta):
     if travelled_distance > bullet_stats.fly_range:
         queue_free()
 
-func _on_body_entered(body):
-    if body is Ennemy || body is Boss1 || body is EnvTree:
-        pierced_bodies += 1
-        if pierced_bodies > bullet_stats.pierce_count:
-            get_tree().create_timer(bullet_stats.disapear_delay).timeout.connect(func(): queue_free())
+func _on_body_entered(body: Node2D):
+    if body is Ennemy || body is Boss1:
+        pierce(body)
+
+func _on_area_entered(area: Area2D) -> void:
+    var parent = area.get_parent()
+    if parent is EnvTree and !parent.is_destroyed:
+        pierce(area.get_parent())
+
+func pierce(_body: Node2D):
+    pierced_bodies += 1
+    call_deferred("detonate_if_explosive")
+    if pierced_bodies > bullet_stats.pierce_count:
+        get_tree().create_timer(bullet_stats.disapear_delay).timeout.connect(func(): call_deferred("queue_free"))
+
+func detonate_if_explosive():
+    if bullet_stats.is_explosive:
+        var explosive_effect: ExplosiveEffect = load("res://effects/explosive_effect.tscn").instantiate()
+        explosive_effect.global_position = global_position
+        explosive_effect.damage = bullet_stats.explosion_damage
+        explosive_effect.explosion_radius = bullet_stats.explosion_radius
+        explosive_effect.is_from_bullet = true
+        SceneManager.current_scene.add_child(explosive_effect)
+        explosive_effect.explode()

@@ -18,6 +18,11 @@ class_name BulletStats
 @export_group("Effects")
 @export var pierce_count: float = 0.0
 @export var inflicts_fire: bool = false
+@export var is_explosive: bool = false
+
+@export_group("Explosion")
+@export var explosion_damage: float = 50.0
+@export var explosion_radius: float = 200.0
 
 static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatsModifier]) -> BulletStats:
     var new_stats: BulletStats = base_stats.duplicate(true)

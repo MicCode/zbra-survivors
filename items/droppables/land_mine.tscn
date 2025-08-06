@@ -1,43 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://oipt1pi2inkr"]
+[gd_scene load_steps=6 format=3 uid="uid://oipt1pi2inkr"]
 
 [ext_resource type="Texture2D" uid="uid://bstfj5meuh1g5" path="res://assets/sprites/items/mine.png" id="1_1l6cr"]
 [ext_resource type="Script" uid="uid://5yh1vu4ctkkg" path="res://items/droppables/land_mine.gd" id="1_7jyd2"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_7h3kd"]
-[ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_ic872"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jyd2"]
 resource_local_to_scene = true
 radius = 7.07107
 
-[sub_resource type="Gradient" id="Gradient_7h3kd"]
-offsets = PackedFloat32Array(0, 0.215247, 1)
-colors = PackedColorArray(1, 1, 1, 0, 0.984314, 0.92549, 0.937255, 0.854902, 0.950787, 0.704094, 0.0245301, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jau7y"]
-gradient = SubResource("Gradient_7h3kd")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnejb"]
-shader = ExtResource("3_ic872")
-shader_parameter/gradient = SubResource("GradientTexture1D_jau7y")
-shader_parameter/spread = 0.32
-shader_parameter/cutoff = 0.27
-shader_parameter/size = 0.71
-shader_parameter/speed = 5.305
-shader_parameter/ray1_density = 8.915
-shader_parameter/ray2_density = 24.275
-shader_parameter/ray2_intensity = 1.045
-shader_parameter/core_intensity = -17.55
-shader_parameter/hdr = false
-shader_parameter/seed = 5.0
-shader_parameter/alpha = 2.115
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ic872"]
 resource_local_to_scene = true
 radius = 17.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7h3kd"]
-resource_local_to_scene = true
-radius = 1.41421
 
 [node name="LandMine" type="CharacterBody2D"]
 collision_layer = 256
@@ -56,24 +29,6 @@ texture = ExtResource("1_1l6cr")
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_7jyd2")
 
-[node name="ExplosionPanel" type="Panel" parent="."]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_qnejb")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 10
@@ -82,17 +37,5 @@ collision_mask = 10
 shape = SubResource("CircleShape2D_ic872")
 debug_color = Color(0, 0.74902, 0.372549, 0.101961)
 
-[node name="DamageArea" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 262
-
-[node name="DamageRadius" type="CollisionShape2D" parent="DamageArea"]
-unique_name_in_owner = true
-shape = SubResource("CircleShape2D_7h3kd")
-debug_color = Color(0.992157, 0, 0, 0.117647)
-
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

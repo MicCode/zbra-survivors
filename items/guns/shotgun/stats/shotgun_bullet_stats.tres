@@ -13,4 +13,5 @@ size = 1.0
 size_variation = 0.5
 pierce_count = 1
 inflicts_fire = false
+is_explosive = false
 metadata/_custom_type_script = "uid://krig45trd2r0"

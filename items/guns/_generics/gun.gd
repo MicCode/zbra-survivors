@@ -89,7 +89,8 @@ func shoot():
             sound_cooldown = true
             var cooldown_s = 1 / max(0.01, gun_stats.shoot_sfx_options.max_per_s)
             get_tree().create_timer(cooldown_s).connect("timeout", func(): sound_cooldown = false)
-        %MuzzleFlash.play("flash")
+        if gun_stats.show_muzzle_flash:
+            %MuzzleFlash.play("flash")
         haptic_feedback()
         start_cooldown_timer()
 

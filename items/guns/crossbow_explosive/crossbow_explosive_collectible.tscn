@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg4sxevibdowf"]
+
+[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://items/guns/_generics/gun_collectible.tscn" id="1_w8gdu"]
+[ext_resource type="Texture2D" uid="uid://bxxfnx3aduyll" path="res://assets/sprites/ui/controls/keyboard/keyboard-E.png" id="2_fk367"]
+[ext_resource type="Resource" uid="uid://vbkgh7dlxjio" path="res://items/guns/crossbow_explosive/stats/crossbow_explosive_stats.tres" id="2_lsgla"]
+[ext_resource type="Resource" uid="uid://ipf8tusfj8md" path="res://items/guns/crossbow_explosive/stats/crossbow_explosive_bullet_stats.tres" id="3_88gej"]
+[ext_resource type="Texture2D" uid="uid://b75iw5au0w2r5" path="res://assets/sprites/items/crossbow/crossbow-explosive-idle.png" id="4_88gej"]
+
+[node name="CrossbowExplosiveCollectible" instance=ExtResource("1_w8gdu")]
+gun_stats = ExtResource("2_lsgla")
+bullet_stats = ExtResource("3_88gej")
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource("4_88gej")
+
+[node name="ButtonIcon" parent="." index="7"]
+texture = ExtResource("2_fk367")
