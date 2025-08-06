@@ -1,0 +1,118 @@
+[gd_scene load_steps=19 format=3 uid="uid://cuil14n6nlgmp"]
+
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/guns/_generics/gun.tscn" id="1_sechk"]
+[ext_resource type="Resource" uid="uid://cgtwwavupuwjj" path="res://items/guns/crossbow_fire/stats/crossbow_fire_bullet_stats.tres" id="2_exn8q"]
+[ext_resource type="Resource" uid="uid://cm2yh2avvitl8" path="res://items/guns/crossbow_fire/stats/crossbow_fire_stats.tres" id="2_gm446"]
+[ext_resource type="Texture2D" uid="uid://tmpfu7p8cwc4" path="res://assets/sprites/items/crossbow/crossbow-fire-firing.png" id="4_85l3d"]
+[ext_resource type="Texture2D" uid="uid://cp0s5xkg3njy2" path="res://assets/sprites/items/crossbow/crossbow-fire-idle.png" id="5_cyinb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn3vq"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcdsb"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vprj"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k18bn"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4anta"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjn5q"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35u1h"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe57v"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(32, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70s0q"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw4dl"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(0, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4a4u"]
+atlas = ExtResource("4_85l3d")
+region = Rect2(32, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l112v"]
+atlas = ExtResource("5_cyinb")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pysmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn3vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcdsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vprj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k18bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4anta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjn5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35u1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe57v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70s0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw4dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4a4u")
+}],
+"loop": false,
+"name": &"firing",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l112v")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CrossbowFire" instance=ExtResource("1_sechk")]
+gun_stats = ExtResource("2_gm446")
+bullet_stats = ExtResource("2_exn8q")
+
+[node name="Sprite" parent="PivotPoint" index="0"]
+sprite_frames = SubResource("SpriteFrames_pysmx")
+animation = &"idle"
+
+[node name="RedDot" parent="PivotPoint/Sprite/ShootingPoint" index="1"]
+position = Vector2(4.8, 2.8)
+
+[node name="AimGuides" parent="PivotPoint/Sprite/ShootingPoint" index="2"]
+position = Vector2(4.8, 2.8)

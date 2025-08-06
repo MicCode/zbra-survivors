@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://assets/sprites/items/clock.png" id="3_lunev"]
 [ext_resource type="Resource" uid="uid://cp6vpu7ryqeaj" path="res://items/consumables/timewrap_clock/timewrap_clock_stats.tres" id="3_uugxr"]
 
-[node name="Collectible" instance=ExtResource("1_xj5id")]
+[node name="TimewrapClockCollectible" instance=ExtResource("1_xj5id")]
 script = ExtResource("2_hle3m")
+timewarp_duration = 5.0
+timewarp_factor = 0.5
 stats = ExtResource("3_uugxr")
 
 [node name="Sprite" parent="." index="1"]

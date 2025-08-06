@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=21 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" uid="uid://defjyi8hd43wt" path="res://scenes/test/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_cg6cr"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bpfdwmylfvsgq" path="res://items/guns/crossbow/crossbow_collectible.tscn" id="17_3b7a8"]
 [ext_resource type="PackedScene" uid="uid://cg4sxevibdowf" path="res://items/guns/crossbow_explosive/crossbow_explosive_collectible.tscn" id="18_xivjq"]
 [ext_resource type="PackedScene" uid="uid://dx58nvbmorlfh" path="res://items/consumables/timewrap_clock/timewrap_clock.tscn" id="19_v766q"]
+[ext_resource type="PackedScene" uid="uid://7a43kh2mnegh" path="res://items/guns/crossbow_fire/crossbow_fire_collectible.tscn" id="20_6o6iq"]
 
 [node name="TreeTestScene" type="Node2D"]
 y_sort_enabled = true
@@ -32,137 +33,148 @@ position = Vector2(528, 369)
 [node name="GameUI" parent="Player" instance=ExtResource("4_svdi0")]
 debug_mode = true
 
-[node name="XpDrop" parent="." instance=ExtResource("7_b7b57")]
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="CrossbowFireCollectible" parent="Weapons" instance=ExtResource("20_6o6iq")]
+position = Vector2(790, 120)
+
+[node name="CrossbowCollectible" parent="Weapons" instance=ExtResource("17_3b7a8")]
+position = Vector2(538, 110)
+
+[node name="CrossbowExplosiveCollectible" parent="Weapons" instance=ExtResource("18_xivjq")]
+position = Vector2(663, 109)
+
+[node name="FlamethrowerCollectible" parent="Weapons" instance=ExtResource("8_w10lt")]
+position = Vector2(410, 110)
+
+[node name="BasicGunCollectible" parent="Weapons" instance=ExtResource("3_lpvee")]
+position = Vector2(277, 196)
+
+[node name="RifleGunCollectible" parent="Weapons" instance=ExtResource("4_l68rk")]
+position = Vector2(277, 318)
+
+[node name="ShotGunCollectible" parent="Weapons" instance=ExtResource("6_0vx2c")]
+position = Vector2(274, 439)
+
+[node name="SniperCollectible" parent="Weapons" instance=ExtResource("9_tvq1l")]
+position = Vector2(273, 559)
+
+[node name="XpDrops" type="Node2D" parent="."]
+
+[node name="XpDrop" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(956, 615)
 
-[node name="XpDrop2" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop2" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(1223, 179)
 
-[node name="XpDrop3" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop3" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(1006, -33)
 
-[node name="XpDrop4" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop4" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(1372, 470)
 
-[node name="XpDrop5" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop5" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(1136, 291)
 
-[node name="XpDrop10" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop10" parent="XpDrops" instance=ExtResource("7_b7b57")]
 position = Vector2(1108, 488)
 xp_value = 1000.0
 
-[node name="Ennemy" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(795, 360)
-
-[node name="Ennemy2" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(910, 184)
-
-[node name="Ennemy3" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(858, 691)
-
-[node name="Ennemy4" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(-72, 350)
-
-[node name="Ennemy5" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(-138, 349)
-
-[node name="Ennemy6" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(-202, 351)
-
-[node name="Ennemy7" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(-270, 351)
-
-[node name="Ennemy8" parent="." instance=ExtResource("10_juk4v")]
-position = Vector2(-336, 345)
-
-[node name="XpDrop6" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop6" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(100, 99)
 xp_value = 10.0
 
-[node name="RadianceFlask" parent="." instance=ExtResource("12_vs4yp")]
-y_sort_enabled = true
-position = Vector2(494, 658)
-radiance_duration = 5.0
-
-[node name="RadianceFlask2" parent="." instance=ExtResource("12_vs4yp")]
-y_sort_enabled = true
-position = Vector2(43, 638)
-radiance_duration = 5.0
-
-[node name="RadianceFlask3" parent="." instance=ExtResource("12_vs4yp")]
-y_sort_enabled = true
-position = Vector2(-31, 537)
-radiance_duration = 5.0
-
-[node name="Collectible" parent="." instance=ExtResource("13_6k7wn")]
-y_sort_enabled = true
-position = Vector2(41, 110)
-
-[node name="Collectible2" parent="." instance=ExtResource("13_6k7wn")]
-y_sort_enabled = true
-position = Vector2(101, 65)
-
-[node name="FlamethrowerCollectible" parent="." instance=ExtResource("8_w10lt")]
-position = Vector2(410, 110)
-
-[node name="BasicGunCollectible" parent="." instance=ExtResource("3_lpvee")]
-position = Vector2(277, 196)
-
-[node name="RifleGunCollectible" parent="." instance=ExtResource("4_l68rk")]
-position = Vector2(277, 318)
-
-[node name="ShotGunCollectible" parent="." instance=ExtResource("6_0vx2c")]
-position = Vector2(274, 439)
-
-[node name="Collectible3" parent="." instance=ExtResource("9_tvq1l")]
-position = Vector2(273, 559)
-
-[node name="XpDrop9" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop9" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(75, 216)
 xp_value = 10.0
 
-[node name="XpDrop8" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop8" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(190, -19)
 xp_value = 10.0
 
-[node name="XpDrop7" parent="." instance=ExtResource("7_b7b57")]
+[node name="XpDrop7" parent="XpDrops" instance=ExtResource("7_b7b57")]
 y_sort_enabled = true
 position = Vector2(218, 70)
 xp_value = 10.0
 
-[node name="Collectible4" parent="." instance=ExtResource("14_wrh14")]
+[node name="Items" type="Node2D" parent="."]
+
+[node name="TimewrapClockCollectible" parent="Items" instance=ExtResource("19_v766q")]
+position = Vector2(580, 656)
+
+[node name="LifeFlask2" parent="Items" instance=ExtResource("13_6k7wn")]
+y_sort_enabled = true
+position = Vector2(41, 110)
+
+[node name="LifeFlask" parent="Items" instance=ExtResource("13_6k7wn")]
+y_sort_enabled = true
+position = Vector2(101, 65)
+
+[node name="XpCollector" parent="Items" instance=ExtResource("14_wrh14")]
 position = Vector2(876, 517)
 
-[node name="MineCollectible" parent="." instance=ExtResource("15_ktnje")]
+[node name="MineCollectible" parent="Items" instance=ExtResource("15_ktnje")]
 position = Vector2(414, 657)
 
-[node name="LootChest3" parent="." instance=ExtResource("16_uihtm")]
+[node name="RadianceFlask" parent="Items" instance=ExtResource("12_vs4yp")]
+y_sort_enabled = true
+position = Vector2(494, 658)
+radiance_duration = 5.0
+
+[node name="RadianceFlask2" parent="Items" instance=ExtResource("12_vs4yp")]
+y_sort_enabled = true
+position = Vector2(43, 638)
+radiance_duration = 5.0
+
+[node name="RadianceFlask3" parent="Items" instance=ExtResource("12_vs4yp")]
+y_sort_enabled = true
+position = Vector2(-31, 537)
+radiance_duration = 5.0
+
+[node name="Chests" type="Node2D" parent="."]
+
+[node name="LootChest3" parent="Chests" instance=ExtResource("16_uihtm")]
 position = Vector2(1276, -537)
 
-[node name="LootChest4" parent="." instance=ExtResource("16_uihtm")]
+[node name="LootChest4" parent="Chests" instance=ExtResource("16_uihtm")]
 position = Vector2(960, -539)
 
-[node name="LootChest2" parent="." instance=ExtResource("16_uihtm")]
+[node name="LootChest2" parent="Chests" instance=ExtResource("16_uihtm")]
 position = Vector2(1129, -313)
 
-[node name="LootChest" parent="." instance=ExtResource("16_uihtm")]
+[node name="LootChest" parent="Chests" instance=ExtResource("16_uihtm")]
 position = Vector2(813, -315)
 
-[node name="GunCollectible" parent="." instance=ExtResource("17_3b7a8")]
-position = Vector2(538, 110)
+[node name="Ennemies" type="Node2D" parent="."]
 
-[node name="CrossbowExplosiveCollectible" parent="." instance=ExtResource("18_xivjq")]
-position = Vector2(663, 109)
+[node name="Ennemy" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(795, 360)
 
-[node name="Collectible5" parent="." instance=ExtResource("19_v766q")]
-position = Vector2(580, 656)
-timewarp_duration = 5.0
-timewarp_factor = 0.5
+[node name="Ennemy2" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(910, 184)
+
+[node name="Ennemy3" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(858, 691)
+
+[node name="Ennemy4" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(-72, 350)
+
+[node name="Ennemy5" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(-138, 349)
+
+[node name="Ennemy6" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(-202, 351)
+
+[node name="Ennemy7" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(-270, 351)
+
+[node name="Ennemy8" parent="Ennemies" instance=ExtResource("10_juk4v")]
+position = Vector2(-336, 345)
