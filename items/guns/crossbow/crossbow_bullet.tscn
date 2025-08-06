@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpecwo0s11yd7"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/guns/_generics/bullet.tscn" id="1_nydyw"]
+[ext_resource type="Resource" uid="uid://bd4tceugyhp5l" path="res://items/guns/crossbow/stats/crossbow_bullet_stats.tres" id="2_phewx"]
+[ext_resource type="Texture2D" uid="uid://bl8p6lrx2lcgi" path="res://assets/sprites/items/crossbow/crossbow-dart-pierce.png" id="3_0fpfm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug7hx"]
+atlas = ExtResource("3_0fpfm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aaas"]
+atlas = ExtResource("3_0fpfm")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvxx0"]
+atlas = ExtResource("3_0fpfm")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ug7hx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug7hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7aaas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvxx0")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 15.0
+}]
+
+[node name="CrossbowBullet" instance=ExtResource("1_nydyw")]
+bullet_stats = ExtResource("2_phewx")
+
+[node name="BulletSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_ug7hx")
+frame_progress = 0.85238

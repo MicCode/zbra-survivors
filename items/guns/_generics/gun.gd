@@ -83,6 +83,7 @@ func shoot():
         if gun_stats.eject_cartridges:
             eject_cartridge()
         %Sprite.play("firing")
+        (%Sprite as AnimatedSprite2D).set_frame_and_progress(0,0)
         if !sound_cooldown:
             Sounds.shoot(gun_stats.shoot_sfx_options, gun_stats.shoot_sound)
             sound_cooldown = true
