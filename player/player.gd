@@ -240,7 +240,7 @@ func burn_things_in_radius():
                 body.burn()
         elif body is Ennemy:
             if !body.is_dead && !body.is_burning:
-                body.set_burning()
+                body.set_burning(4.0, 0.25, 4.0) # TODO take player fire modifiers into account to determine these values
 
 ## Returns true if the item has been used
 func use_radiance_flask(flask: RadianceFlask) -> bool:

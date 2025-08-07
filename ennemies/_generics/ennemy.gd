@@ -123,9 +123,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
         queue_free()
 
 #region Burn
-###############################################################################################
-## Burn
-###############################################################################################
 func set_burning(duration: float, tick_s: float, damage: float):
     %BurnTimer.start(duration)
     %BurnTickTimer.start(tick_s)

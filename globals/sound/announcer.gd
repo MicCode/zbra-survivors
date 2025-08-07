@@ -40,7 +40,7 @@ func ennemy_died():
     )
 
 func _announce(file_name: String, options: SfxOptions = SfxOptions.new()):
-    var stream = SoundPlayer.load_sfx_stream(file_name)
+    var stream = SoundPlayer.load_sfx_stream("announcements/" + file_name)
     if stream == null:
         return
     if announcer_player != null and announcer_player.playing:

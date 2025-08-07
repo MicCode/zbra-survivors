@@ -119,7 +119,7 @@ func death_boss_1():
 
 #region Environment
 func tree_destroyed():
-    SoundPlayer.play_sfx("falling-leaves.ogg", SfxOptions.from_dict({volume = -9.0, pitch_variation = 0.1}))
+    SoundPlayer.play_sfx("falling-leaves.ogg", SfxOptions.from_dict({volume = -15.0, pitch_variation = 0.1}))
 
 func explosion(volume: float = -9.0):
     SoundPlayer.play_sfx(pick_random("explosions"), SfxOptions.from_dict({volume = volume}))
