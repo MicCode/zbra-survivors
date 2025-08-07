@@ -86,7 +86,8 @@ func reroll():
         choice.excluded_changed.connect(func(excluded: bool): _on_choice_excluded_changed(choice, mod, excluded))
         choices.append(choice)
 
-    choices[0].force_focus()
+    if Controls.is_joypad_connected():
+        choices[0].force_focus()
 
 func pick_random_modifiers(n: int) -> Array[Modifiers.Mod]:
     # TODO implement a more context aware picking system ? like better modifiers as the player level increases

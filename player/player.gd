@@ -217,7 +217,7 @@ func attract_all_xp_on_map(collector: XpCollector):
     get_tree().create_timer(XP_COLLECT_TIME).connect("timeout", func():
         %VisualEffects.stop_effect("absorb_xp")
     )
-    var children = SceneManager.current_scene.get_children()
+    var children = Utils.get_all_children_recursively(SceneManager.current_scene)
     for child in children:
         if child is XpDrop:
             child.move_to_player()
