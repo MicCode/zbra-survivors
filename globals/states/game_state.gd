@@ -33,6 +33,7 @@ const MAX_PLAYER_LEVEL: int = 100
 const MIN_SPAWN_TIME: float = 0.5
 
 var player_instance: Player
+var game_ui_instance: GameUI
 
 var base_player_state: PlayerState
 var player_state: PlayerState
@@ -130,7 +131,7 @@ func _input(event):
         else:
             Sounds.button_press()
             pause_menu = preload("res://ui/menu/pause_menu.tscn").instantiate()
-            get_tree().root.add_child(pause_menu)
+            SceneManager.current_scene.add_child(pause_menu)
             change_state(State.PAUSED)
 
 func change_state(new_state: State):
@@ -257,7 +258,7 @@ func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
     _new_gun.bullet_stats = BulletStats.apply_modifiers(_new_gun.bullet_stats, stats_modifiers)
     gun_change_menu = preload("res://ui/menu/gun_change_menu.tscn").instantiate()
     gun_change_menu.change_proposed_gun(_new_gun)
-    get_tree().root.add_child(gun_change_menu)
+    SceneManager.current_scene.add_child(gun_change_menu)
     change_state(State.PAUSED)
 
     gun_change_menu.take_pressed.connect(func():

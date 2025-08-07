@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://kmn6ndwu5otj"]
+[gd_scene load_steps=7 format=3 uid="uid://kmn6ndwu5otj"]
 
 [ext_resource type="Script" uid="uid://bl0616biw7sew" path="res://scenes/level_1.gd" id="1_nconj"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="1_vgovh"]
 [ext_resource type="PackedScene" uid="uid://bhmxaitsaqnl3" path="res://environment/infinite_world.tscn" id="2_2os1m"]
-[ext_resource type="PackedScene" uid="uid://duwn5vbe371b3" path="res://ennemies/ennemy_spawner.tscn" id="4_pa8r4"]
 [ext_resource type="PackedScene" uid="uid://cplrhnikvgwm3" path="res://ui/in-game/game_ui.tscn" id="4_yuug0"]
 [ext_resource type="PackedScene" uid="uid://bspw82fhsmgk3" path="res://items/guns/pistol/pistol_collectible.tscn" id="6_5n8pi"]
 [ext_resource type="PackedScene" uid="uid://cal4x5wbe2maf" path="res://ui/in-game/boss_ui.tscn" id="10_q8l1h"]
@@ -17,9 +16,6 @@ script = ExtResource("1_nconj")
 [node name="Player" parent="." instance=ExtResource("1_vgovh")]
 unique_name_in_owner = true
 position = Vector2(307, 197)
-
-[node name="EnnemySpawner" parent="Player" instance=ExtResource("4_pa8r4")]
-unique_name_in_owner = true
 
 [node name="GameUI" parent="Player" instance=ExtResource("4_yuug0")]
 unique_name_in_owner = true

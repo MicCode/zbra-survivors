@@ -7,6 +7,12 @@ const ANIMATION_TIME: float = 0.25
 var player_xp: float = -1
 var player_level: int = -1
 
+func _enter_tree() -> void:
+    GameState.game_ui_instance = self
+
+func _exit_tree() -> void:
+    GameState.game_ui_instance = null
+
 func _ready() -> void:
     %MinimapViewer.modulate = Color(Color.WHITE, Settings.game_settings.map_opacity)
 

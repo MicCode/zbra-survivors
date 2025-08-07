@@ -39,7 +39,9 @@ func switch_to(scene_path: String) -> void:
         call_deferred("_deferred_switch_to", scene_path)
 
 func _deferred_switch_to(scene_path: String) -> void:
+    print("Switch to scene: " + scene_path)
     current_scene.free()
+
     var new_scene = load(scene_path)
     current_scene = new_scene.instantiate()
     get_tree().root.add_child(current_scene)

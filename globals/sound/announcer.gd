@@ -62,5 +62,5 @@ func _draw_announcement_sticker(text: String, size: int):
             randf_range(SCREEN_STICKERS_PADDING, screen_size.x - SCREEN_STICKERS_PADDING * 2),
             randf_range(SCREEN_STICKERS_PADDING / 2, screen_size.y - SCREEN_STICKERS_PADDING),
         )
-    get_tree().root.add_child(sticker)
+    SceneManager.current_scene.add_child(sticker)
 #endregion

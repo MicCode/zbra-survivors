@@ -25,7 +25,7 @@ func _show_lvl_up_menu(n_times: int):
     var lvl_up_menu = preload("res://ui/menu/lvl_up/lvl_up_menu.tscn").instantiate()
     lvl_up_menu.set_remaining_times(n_times)
     n_times -= 1
-    get_tree().root.add_child(lvl_up_menu)
+    SceneManager.current_scene.add_child(lvl_up_menu)
     lvl_up_menu.picked_modifier.connect(func(mod: Modifiers.Mod):
         GameState.register_new_modifier(mod)
         lvl_up_menu.slide_out().finished.connect(func():

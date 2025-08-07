@@ -67,7 +67,7 @@ func handle_bullet_hit(bullet: Bullet):
 
 func take_damage(damage: float):
     accumulated_damages += damage
-    if %Health:
+    if has_node("%Health"):
         %Health.take_damage(damage)
     if %DamageSpawnTimer.is_stopped() or previous_damage_indicator == null:
         %Sprite.play("hurt")

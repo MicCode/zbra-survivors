@@ -30,7 +30,7 @@ func shoot():
 
 func _on_shoot_delay_timer_timeout() -> void:
     var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()
-    get_tree().root.add_child(bullet)
+    SceneManager.current_scene.add_child(bullet)
     bullet.global_position = %ShootPoint.global_position
     bullet.scale = scale * 1.5
     bullet.look_at(player.global_position)
