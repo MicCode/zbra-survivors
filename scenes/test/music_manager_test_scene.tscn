@@ -36,41 +36,58 @@ text = "Stop"
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Electro1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Electro1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mb0of")
 text = "Electro 1"
 
-[node name="Electro2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Electro2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mb0of")
 text = "Electro 2"
 
-[node name="Epic1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Epic1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mb0of")
 text = "Epic 1"
 
-[node name="Epic2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Epic2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mb0of")
 text = "Epic 2"
 
-[node name="Metal1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Metal1" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mb0of")
 text = "Metal 1"
 
-[node name="Metal2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Metal2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mb0of")
 text = "Metal 2"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="NonLayered" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("1_mb0of")
+text = "mystery.mp3 (non layered)"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -145,12 +162,13 @@ step = 0.001
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/StartMusicButton" to="." method="_on_start_music_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/StopMusicButton" to="." method="_on_stop_music_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Electro1" to="." method="_on_electro_1_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Electro2" to="." method="_on_electro_2_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Epic1" to="." method="_on_epic_1_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Epic2" to="." method="_on_epic_2_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Metal1" to="." method="_on_metal_1_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Metal2" to="." method="_on_metal_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Electro1" to="." method="_on_electro_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Electro2" to="." method="_on_electro_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Epic1" to="." method="_on_epic_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Epic2" to="." method="_on_epic_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Metal1" to="." method="_on_metal_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Metal2" to="." method="_on_metal_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4/NonLayered" to="." method="_on_non_layered_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/MuffledButton" to="." method="_on_muffled_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/SoftButton" to="." method="_on_soft_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3/MediumButton2" to="." method="_on_medium_button_2_pressed"]

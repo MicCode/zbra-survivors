@@ -102,9 +102,9 @@ func update_music_intensity():
         intensity += 1
 
     match intensity:
-        0: MusicManager.change_layer(MusicManager.MusicLayer.SOFT)
-        1: MusicManager.change_layer(MusicManager.MusicLayer.MEDIUM)
-        2: MusicManager.change_layer(MusicManager.MusicLayer.HARD)
+        0: MusicManager.set_layer(MusicManager.MusicLayer.SOFT)
+        1: MusicManager.set_layer(MusicManager.MusicLayer.MEDIUM)
+        2: MusicManager.set_layer(MusicManager.MusicLayer.HARD)
 
 func _reset_player():
     stats_modifiers = []
