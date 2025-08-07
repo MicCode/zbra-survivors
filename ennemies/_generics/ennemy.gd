@@ -4,11 +4,6 @@ class_name Ennemy
 const DAMAGE_MARKER_DELAY: float = 0.25
 const HIT_SOUND_REPETITION_DELAY: float = 0.25
 
-# TODO make burning related stats variable
-const BURN_DURATION_S: float = 1.1
-const BURN_TICK_S: float = 0.25
-const BURN_DAMAGE: float = 2
-
 @export var is_sprite_reversed = false
 @export var stats: EnnemyStats
 
@@ -22,6 +17,9 @@ var hit_sound_repetition_timer: SceneTreeTimer
 
 var previous_damage_indicator: DamageIndicator
 var accumulated_damages: float = 0.0
+
+var fire_inflicted_damage: float = 2.0
+var fire_tick_s: float = 0.25
 
 
 func _enter_tree() -> void:
@@ -57,11 +55,12 @@ func _physics_process(_delta):
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
 func handle_bullet_hit(bullet: Bullet):
+    var bullet_stats = bullet.bullet_stats
     if !is_dead:
-        take_damage(bullet.bullet_stats.damage)
-        if bullet.bullet_stats.inflicts_fire:
+        take_damage(bullet_stats.damage)
+        if bullet_stats.inflicts_fire:
             play_hit_sound(true)
-            set_burning()
+            set_burning(bullet_stats.fire_duration, 1 / bullet_stats.fire_tick_per_s, bullet_stats.fire_damage)
         else:
             play_hit_sound()
             VisualEffects.bleed(global_position, bullet.position)
@@ -127,9 +126,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 ###############################################################################################
 ## Burn
 ###############################################################################################
-func set_burning():
-    %BurnTimer.start(BURN_DURATION_S)
-    %BurnTickTimer.start(BURN_TICK_S)
+func set_burning(duration: float, tick_s: float, damage: float):
+    %BurnTimer.start(duration)
+    %BurnTickTimer.start(tick_s)
+    fire_inflicted_damage = damage
+    fire_tick_s = tick_s
     if !is_burning:
         %Effects.start_effect("burn", preload("res://effects/burn_effect.tscn"), Vector2(0, -15))
         is_burning = true
@@ -140,8 +141,8 @@ func _on_burn_timer_timeout() -> void:
 
 func _on_burn_tick_timer_timeout() -> void:
     if is_burning && !is_dead:
-        take_damage(BURN_DAMAGE)
-        %BurnTickTimer.start(BURN_TICK_S)
+        take_damage(fire_inflicted_damage)
+        %BurnTickTimer.start(fire_tick_s)
 
 func _on_fire_animation_animation_finished(anim_name: StringName) -> void:
     if anim_name == "fadeout":

@@ -24,6 +24,11 @@ class_name BulletStats
 @export var explosion_damage: float = 50.0
 @export var explosion_radius: float = 200.0
 
+@export_group("Fire")
+@export var fire_tick_per_s: float = 4
+@export var fire_damage: float = 2.0
+@export var fire_duration: float = 2.0
+
 static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatsModifier]) -> BulletStats:
     var new_stats: BulletStats = base_stats.duplicate(true)
     for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.BULLET)):

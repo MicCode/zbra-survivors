@@ -16,4 +16,7 @@ inflicts_fire = true
 is_explosive = false
 explosion_damage = 50.0
 explosion_radius = 200.0
+fire_tick_per_s = 4.0
+fire_damage = 10.0
+fire_duration = 2.0
 metadata/_custom_type_script = "uid://krig45trd2r0"

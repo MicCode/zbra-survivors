@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_sn0pt")
-damage = 1
+damage = 0.2
 speed = 1000.0
 speed_variation = 0.5
 disapear_delay = 0.1
@@ -16,4 +16,7 @@ inflicts_fire = true
 is_explosive = false
 explosion_damage = 50.0
 explosion_radius = 200.0
+fire_tick_per_s = 8.0
+fire_damage = 2.0
+fire_duration = 3.0
 metadata/_custom_type_script = "uid://krig45trd2r0"
