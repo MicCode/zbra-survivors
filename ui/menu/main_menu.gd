@@ -8,8 +8,9 @@ func _ready() -> void:
     create_tween().tween_property(%SubTitle, "visible_ratio", 1.0, 0.5)
     %SubTitle.modulate = Color.RED
     create_tween().tween_property(%SubTitle, "modulate", Color.WHITE, 0.75)
-    SoundPlayer.apply_audio_settings()
-    Musics.main_menu()
+    Settings.apply_audio_settings()
+    MusicManager.set_music(MusicManager.Music.METAL_1)
+    MusicManager.set_layer(MusicManager.MusicLayer.MUFFLED)
 
     match Settings.game_settings.language:
         "fr_FR": %LanguageSwitcher.select(1)

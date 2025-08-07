@@ -5,4 +5,5 @@ func _enter_tree() -> void:
 
 func _ready():
     GameState.reset()
-    Musics.lvl_1()
+    MusicManager.set_music(MusicManager.Music.METAL_1)
+    MusicManager.set_layer(MusicManager.MusicLayer.SOFT)

@@ -127,14 +127,3 @@ func explosion(volume: float = -9.0):
 func drop():
     SoundPlayer.play_sfx(pick_random("drops"), SfxOptions.from_dict({volume = -3.0}))
 #endregion
-
-#region Announcements
-func double_kill():
-    SoundPlayer.announce("double_kill.ogg")
-
-func triple_kill():
-    SoundPlayer.announce("triple_kill.ogg")
-
-func rampage():
-    SoundPlayer.announce("rampage.ogg")
-#endregion

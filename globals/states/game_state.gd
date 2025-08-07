@@ -62,6 +62,9 @@ var lvl_up_rerolls_remaining: int = 3
 
 var elapsed_time: float = 0.0
 
+var first_chest_openned: bool = false
+var first_level_gained: bool = false
+
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
     elapsed_time = 0.0
@@ -86,7 +89,22 @@ func _init() -> void:
     player_openned_chest.connect(func():
         var random_gun = LootGenerator.get_random_gun()
         change_equipped_gun(random_gun)
+        if !first_chest_openned:
+            first_chest_openned = true
+            update_music_intensity()
     )
+
+func update_music_intensity():
+    var intensity = 0
+    if first_chest_openned:
+        intensity += 1
+    if first_level_gained:
+        intensity += 1
+
+    match intensity:
+        0: MusicManager.set_layer(MusicManager.MusicLayer.SOFT)
+        1: MusicManager.set_layer(MusicManager.MusicLayer.MEDIUM)
+        2: MusicManager.set_layer(MusicManager.MusicLayer.HARD)
 
 func _reset_player():
     stats_modifiers = []
@@ -162,6 +180,9 @@ func gain_xp(xp: float) -> void:
 
     if new_level_gained > 0:
         player_gained_level.emit(new_level_gained)
+        if !first_level_gained:
+            first_level_gained = true
+            update_music_intensity()
     emit_player_change()
 
 func register_new_modifier(new_mod: Modifiers.Mod):

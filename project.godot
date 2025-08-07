@@ -32,12 +32,12 @@ VisualEffects="*res://globals/visual/visual_effects.gd"
 Settings="*res://globals/states/settings.gd"
 Announcer="*res://globals/sound/announcer.gd"
 Minimap="*res://globals/visual/minimap.gd"
-Musics="*res://globals/sound/musics.gd"
 Files="*res://globals/utils/files.gd"
 Controls="*res://globals/controls/controls.gd"
 Modifiers="*res://globals/gameplay/modifiers.gd"
 Conversions="*res://globals/utils/conversions.gd"
 LootGenerator="*res://globals/gameplay/loot_generator.gd"
+MusicManager="*res://globals/sound/music_manager.gd"
 
 [debug]
 

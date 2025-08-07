@@ -15,7 +15,7 @@ class_name GunStats
 @export var shoot_sound: String = "shoot.ogg"
 ## Wether the value provided in `shoot_sound` is pointing to a folder name, and thus we will need to load randomly one of the sound in this folder each time
 @export var is_sound_folder: bool = false
-@export var shoot_sfx_options: SfxOptions = preload("res://globals/sound/default_sfx_options.tres")
+@export var shoot_sfx_options: SfxOptions = preload("res://globals/sound/settings/default_sfx_options.tres")
 
 @export_group("Effects")
 @export var eject_cartridges: bool = true
