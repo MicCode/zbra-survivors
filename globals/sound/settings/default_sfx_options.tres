@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SfxOptions" load_steps=2 format=3 uid="uid://dkv3e80l5trup"]
 
-[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/sound/sfx_options.gd" id="1_knxmo"]
+[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/sound/settings/sfx_options.gd" id="1_knxmo"]
 
 [resource]
 script = ExtResource("1_knxmo")

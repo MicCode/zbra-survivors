@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready() -> void:
-    SoundPlayer.apply_audio_settings()
+    Settings.apply_audio_settings()
 
 func _process(_delta: float) -> void:
     %MuffledProgress.value = MusicManager.get_player_volume_linear(MusicManager.MusicLayer.MUFFLED)

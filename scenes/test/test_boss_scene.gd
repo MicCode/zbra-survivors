@@ -5,7 +5,8 @@ var is_boss_spawned = false
 
 func _ready() -> void:
     if PLAY_MUSIC:
-        Musics.lvl_1()
+        MusicManager.set_music(MusicManager.Music.METAL_1)
+        MusicManager.set_layer(MusicManager.MusicLayer.MEDIUM)
 
 func spawn_boss():
     if !is_boss_spawned:
@@ -16,7 +17,8 @@ func spawn_boss():
         add_child(boss)
         boss.global_position = %BossSpawnPoint.global_position
         if PLAY_MUSIC:
-            Musics.boss_battle_1()
+            MusicManager.set_music(MusicManager.Music.METAL_2)
+            MusicManager.set_layer(MusicManager.MusicLayer.HARD)
 
 func _on_boss_spawn_trigger_body_entered(_body: Node2D) -> void:
     call_deferred("spawn_boss")

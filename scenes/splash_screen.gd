@@ -7,9 +7,9 @@ var skip_splash: bool = OS.is_debug_build()
 
 func _ready() -> void:
     Settings.load_from_file()
-    SoundPlayer.apply_audio_settings()
-    #if skip_splash:
-     #   SceneManager.switch_to("res://ui/menu/main_menu.tscn")
+    Settings.apply_audio_settings()
+    if skip_splash:
+       SceneManager.switch_to("res://ui/menu/main_menu.tscn")
 
     MusicManager.set_music(MusicManager.Music.METAL_1)
     MusicManager.set_layer(MusicManager.MusicLayer.MUFFLED)

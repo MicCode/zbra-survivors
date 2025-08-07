@@ -7,4 +7,5 @@ func _ready() -> void:
     GameState.reset()
     GameState.lvl_up_rerolls_remaining = 999
     GameState.lvl_up_exclusions_remaining = 999
-    Musics.lvl_1()
+    MusicManager.set_music(MusicManager.Music.METAL_1)
+    MusicManager.set_layer(MusicManager.MusicLayer.MEDIUM)

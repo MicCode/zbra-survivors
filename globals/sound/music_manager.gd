@@ -6,7 +6,7 @@ const LAYER_TRANSITION_DURATION: float = 0.25
 const MUSIC_TRANSITION_DURATION: float = 1.0
 const MAX_VOLUME_LINEAR: float = 0.9
 
-#region enums
+#region enums ---------------------------------------------------------------------------------------
 enum Music {
     NOT_SET,
     ELECTRO_1,
@@ -53,7 +53,7 @@ func music_layer(_layer: MusicLayer) -> String:
             return "???"
 #endregion
 
-#region variables
+#region variables ---------------------------------------------------------------------------------------
 var players: Dictionary = {
     MusicLayer.MUFFLED: _init_player(),
     MusicLayer.SOFT: _init_player(),
@@ -87,7 +87,7 @@ func stop():
         player.stop()
 #endregion
 
-#region layer change
+#region layer change ---------------------------------------------------------------------------------------
 func set_layer(new_layer: MusicLayer) -> bool:
     if !can_change_layer:
         return false
@@ -110,7 +110,7 @@ func _change_layer(new_layer: MusicLayer):
         create_tween().tween_property(self, "crossfade_value", MAX_VOLUME_LINEAR, LAYER_TRANSITION_DURATION).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 #endregion
 
-#region music change
+#region music change ---------------------------------------------------------------------------------------
 ## Set a new layered music to be played with smooth crossfade from previously played music
 func set_music(new_music: Music):
     next_music = new_music
@@ -175,7 +175,7 @@ func _change_music(new_music: Music):
         )
 #endregion
 
-#region internal
+#region internal ---------------------------------------------------------------------------------------
 func _init() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     for player in players.values():
@@ -219,7 +219,7 @@ func _load_stream(file_path: String) -> AudioStream:
     return null
 #endregion
 
-#region utils
+#region utils ---------------------------------------------------------------------------------------
 func get_player_volume_linear(layer: MusicLayer) -> float:
     return to_linear(players.get(layer).volume_db)
 

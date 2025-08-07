@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GunStats" load_steps=3 format=3 uid="uid://dysw4a64enovt"]
 
 [ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://items/guns/_generics/stats/gun_stats.gd" id="1_a26qv"]
-[ext_resource type="Resource" uid="uid://dkv3e80l5trup" path="res://globals/sound/default_sfx_options.tres" id="2_ekpxh"]
+[ext_resource type="Resource" uid="uid://dkv3e80l5trup" path="res://globals/sound/settings/default_sfx_options.tres" id="2_ekpxh"]
 
 [resource]
 script = ExtResource("1_a26qv")

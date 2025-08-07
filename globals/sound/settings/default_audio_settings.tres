@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AudioSettings" load_steps=2 format=3 uid="uid://d2drni6bgmudw"]
 
-[ext_resource type="Script" uid="uid://cq26metd38h8j" path="res://globals/sound/audio_settings.gd" id="1_k3x7l"]
+[ext_resource type="Script" uid="uid://cq26metd38h8j" path="res://globals/sound/settings/audio_settings.gd" id="1_k3x7l"]
 
 [resource]
 resource_local_to_scene = true
