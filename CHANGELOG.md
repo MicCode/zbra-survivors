@@ -1,5 +1,20 @@
 
 - - -
+## 0.19.0 - 2025-08-08
+
+#### ➕ New features
+- **(gameplay)** added fire modifiers
+- **(sounds)** smooth transition between musics + allow playing non-layered musics
+- **(sounds)** change music intensity in function of player progression
+- **(sounds)** created new music manager that can play music with multiple layers
+- **(ui)** display icon if gun shoots incendiary or explosive bullets
+#### 🪲 Bug fixes
+- **(gameplay)** balanced fire weapons
+- **(ui)** do not grab focus in lvl menu if no joypad connected
+- **(visual)** fixed Z ordering issues where ennemies when visible over obstacles
+
+- - -
+
 ## 0.18.0 - 2025-08-06
 
 #### ➕ New features
