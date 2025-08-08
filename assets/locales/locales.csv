@@ -89,3 +89,5 @@ SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
 TITLE_GUN_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
+TOOLTIP_INCENDIARY_BULLETS,Incendiary bullets,Projectiles incendiaires
+TOOLTIP_EXPLOSIVE_BULLETS,Explosive bullets,Projectiles explosifs

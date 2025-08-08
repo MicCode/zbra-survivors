@@ -31,3 +31,12 @@ func _update_slot(new_gun: Gun):
         %ButtonIcon.show()
     else:
         %ButtonIcon.hide()
+
+    if new_gun.bullet_stats.is_explosive:
+        %IsExplosive.show()
+    else:
+        %IsExplosive.hide()
+    if new_gun.bullet_stats.inflicts_fire:
+        %IsFire.show()
+    else:
+        %IsFire.hide()
