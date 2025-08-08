@@ -26,6 +26,10 @@ var all: Array[Mod] = [
     # EXPLOSION MODS
     Mod.create(Name.EXPLOSION_RADIUS, Type.EXPLOSION, "explosion_radius", "explosion-damage-radius-up", 25.0),
     Mod.create(Name.EXPLOSION_DAMAGE, Type.EXPLOSION, "explosion_damage", "explosion-damage-up", 10.0),
+
+    Mod.create(Name.FIRE_DAMAGE, Type.FIRE, "fire_damage", "fire-damage-up", 10.0),
+    Mod.create(Name.FIRE_DURATION, Type.FIRE, "fire_duration", "fire-duration-up", 15.0),
+    Mod.create(Name.FIRE_FREQUENCY, Type.FIRE, "fire_tick_per_s", "fire-frequency-up", 10.0),
 ]
 var excluded: Array[Mod] = []
 
@@ -53,6 +57,11 @@ enum Name {
     # EXPLOSION MODIFIERS
     EXPLOSION_RADIUS,
     EXPLOSION_DAMAGE,
+
+    # FIRE MODIFIERS
+    FIRE_DAMAGE,
+    FIRE_DURATION,
+    FIRE_FREQUENCY
 }
 
 func get_name_label(mod_name: Name) -> String:
@@ -81,6 +90,11 @@ func get_name_label(mod_name: Name) -> String:
         Name.EXPLOSION_RADIUS: return "EXPLOSION_RADIUS"
         Name.EXPLOSION_DAMAGE: return "EXPLOSION_DAMAGE"
 
+        # FIRE MODIFIERS
+        Name.FIRE_DAMAGE: return "FIRE_DAMAGE"
+        Name.FIRE_DURATION: return "FIRE_DURATION"
+        Name.FIRE_FREQUENCY: return "FIRE_FREQUENCY"
+
         _:
             push_warning("Unknown Modifiers.Name with index [%d]" % mod_name)
             return "???"
@@ -91,6 +105,7 @@ enum Type {
     GUN,
     BULLET,
     EXPLOSION,
+    FIRE,
 }
 
 func get_type_label(type: Type) -> String:
@@ -99,6 +114,7 @@ func get_type_label(type: Type) -> String:
         Type.GUN: return "GUN"
         Type.BULLET: return "BULLET"
         Type.EXPLOSION: return "EXPLOSION"
+        Type.FIRE: return "FIRE"
         _:
             push_warning("Unknown Modifiers.Type with index [%d]" % type)
             return "???"

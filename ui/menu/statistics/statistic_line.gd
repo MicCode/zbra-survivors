@@ -9,6 +9,7 @@ const NEUTRAL_MODULATION = Color.WHITE
 @export var value: float = 0.0
 @export var is_int: bool = true
 @export var unit: String = ""
+@export var label_color: Color = Color.WHITE
 
 var compare_mode: bool = false
 var compare_to: float
@@ -17,6 +18,7 @@ var forced_color: String = ""
 
 func _ready() -> void:
     _update_display()
+    %Label.modulate = label_color
 
 func set_label(_label: String):
     label = _label

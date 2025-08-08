@@ -91,3 +91,6 @@ TITLE_GUN_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
 TOOLTIP_INCENDIARY_BULLETS,Incendiary bullets,Projectiles incendiaires
 TOOLTIP_EXPLOSIVE_BULLETS,Explosive bullets,Projectiles explosifs
+LABEL_FIRE_DAMAGE,Fire damage,Dégâts de feu
+LABEL_FIRE_DURATION,Fire duration,Durée du feu
+LABEL_FIRE_TICK_PER_S,Fire damage frequency,Fréquence de dégât du feu

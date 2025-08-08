@@ -64,3 +64,4 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 texture = ExtResource("7_qrmpt")
 action = 2
+animate = true

@@ -60,7 +60,11 @@ func handle_bullet_hit(bullet: Bullet):
         take_damage(bullet_stats.damage)
         if bullet_stats.inflicts_fire:
             play_hit_sound(true)
-            set_burning(bullet_stats.fire_duration, 1 / bullet_stats.fire_tick_per_s, bullet_stats.fire_damage)
+            set_burning(
+                bullet_stats.fire_duration,
+                1 / bullet_stats.fire_tick_per_s,
+                bullet_stats.fire_damage
+            )
         else:
             play_hit_sound()
             VisualEffects.bleed(global_position, bullet.position)

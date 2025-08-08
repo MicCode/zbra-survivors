@@ -4,13 +4,19 @@
 
 [resource]
 script = ExtResource("1_58f18")
-damage = 10
+damage = 10.0
 speed = 200.0
 speed_variation = 0.0
+disapear_delay = 0.0
+fly_range = 2000.0
 size = 1.0
 size_variation = 0.0
-disapear_delay = 0.0
-pierce_count = 0
-fly_range = 2000.0
+pierce_count = 0.0
 inflicts_fire = false
+is_explosive = false
+explosion_damage = 0.0
+explosion_radius = 0.0
+fire_tick_per_s = 0.0
+fire_damage = 0.0
+fire_duration = 0.0
 metadata/_custom_type_script = "uid://krig45trd2r0"

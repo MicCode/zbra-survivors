@@ -58,7 +58,10 @@ func clean_untracked():
         if !Minimap.tracked_objects.has(object_id):
             var marker = get_marker_by_instance_id(known_objects_positions.get(object_id).marker_id)
             known_objects_positions.erase(object_id)
-            get_tree().create_tween().tween_property(marker, "modulate", Color.TRANSPARENT, 0.25).connect("finished", func(): marker.queue_free())
+            get_tree().create_tween().tween_property(marker, "modulate", Color.TRANSPARENT, 0.25).connect("finished", func():
+                if marker:
+                    marker.queue_free()
+            )
 
 func move_camera_to(target_position: Vector2):
     %MinimapCamera.global_position = target_position

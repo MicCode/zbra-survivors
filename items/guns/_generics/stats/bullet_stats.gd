@@ -21,17 +21,17 @@ class_name BulletStats
 @export var is_explosive: bool = false
 
 @export_group("Explosion")
-@export var explosion_damage: float = 50.0
-@export var explosion_radius: float = 200.0
+@export var explosion_damage: float = 0.0
+@export var explosion_radius: float = 0.0
 
 @export_group("Fire")
-@export var fire_tick_per_s: float = 4
-@export var fire_damage: float = 2.0
-@export var fire_duration: float = 2.0
+@export var fire_tick_per_s: float = 0.0
+@export var fire_damage: float = 0.0
+@export var fire_duration: float = 0.0
 
 static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatsModifier]) -> BulletStats:
     var new_stats: BulletStats = base_stats.duplicate(true)
-    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.BULLET)):
+    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.BULLET) or m.is_type(Modifiers.Type.FIRE)):
         if new_stats.get(mod.get_stat_name()) == null:
             push_error("Unable to apply bullet stat modifier, stat name [%s] not found in class BulletStats" % mod.get_stat_name())
         else:

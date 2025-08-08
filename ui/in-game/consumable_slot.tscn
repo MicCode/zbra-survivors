@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://5dhmrbtdnbhg"]
+[gd_scene load_steps=7 format=3 uid="uid://5dhmrbtdnbhg"]
 
 [ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_cc8y4"]
 [ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://assets/sprites/items/clock.png" id="2_mtpq0"]
 [ext_resource type="Script" uid="uid://dgttg4b11yvj2" path="res://ui/in-game/consumable_slot.gd" id="2_nussi"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_nussi"]
+[ext_resource type="Texture2D" uid="uid://blut8fxueoq7x" path="res://assets/sprites/ui/controls/mouse/mouse-RMB.png" id="5_nussi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mtpq0"]
 line_spacing = 0.0
@@ -33,17 +34,28 @@ stretch_mode = 4
 [node name="UseLabel" type="Label" parent="CenterContainer/ConsumableSprite"]
 unique_name_in_owner = true
 layout_mode = 1
-offset_right = 14.0
-offset_bottom = 35.0
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 30.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "3"
 label_settings = SubResource("LabelSettings_mtpq0")
 horizontal_alignment = 2
 
-[node name="ConsumableButton" parent="." instance=ExtResource("3_nussi")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ConsumableButton" parent="MarginContainer" instance=ExtResource("3_nussi")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+texture = ExtResource("5_nussi")
 action = 3
+animate = true

@@ -59,6 +59,29 @@ label = "LABEL_DAMAGE_PER_S"
 is_int = false
 unit = "LABEL_UNIT_DAMAGE_PER_S"
 
+[node name="FireDamagePerS" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_FIRE_DAMAGE"
+is_int = false
+unit = "LABEL_UNIT_DAMAGE_PER_S"
+label_color = Color(1, 0.694118, 0.113725, 1)
+
+[node name="ExplosionDamage" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_EXPLOSION_DAMAGE"
+is_int = false
+label_color = Color(0.300628, 0.849707, 0.518722, 1)
+
+[node name="ExplosionRadius" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "LABEL_EXPLOSION_RADIUS"
+is_int = false
+unit = "LABEL_UNIT_M"
+label_color = Color(0.300628, 0.849707, 0.518722, 1)
+
 [node name="ShotPerS" parent="MarginContainer/Stats" instance=ExtResource("3_bbpoy")]
 unique_name_in_owner = true
 layout_mode = 2
