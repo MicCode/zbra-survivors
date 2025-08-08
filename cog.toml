@@ -29,6 +29,7 @@ test = { changelog_title = "", omit_from_changelog = true }
 refactor = { changelog_title = "", omit_from_changelog = true }
 refacto = { changelog_title = "", omit_from_changelog = true }
 build = { changelog_title = "", omit_from_changelog = true }
+debug = { changelog_title = "", omit_from_changelog = true }
 
 
 [changelog]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cplrhnikvgwm3"]
+[gd_scene load_steps=22 format=3 uid="uid://cplrhnikvgwm3"]
 
 [ext_resource type="Script" uid="uid://mcrj6jlbb0te" path="res://ui/in-game/game_ui.gd" id="1_70thh"]
 [ext_resource type="PackedScene" uid="uid://c7wx4swx7fty4" path="res://ui/in-game/dash_gauge.tscn" id="2_3a147"]
+[ext_resource type="PackedScene" uid="uid://cvtjd61ejtblt" path="res://ui/in-game/debug_layer.tscn" id="2_il6w2"]
 [ext_resource type="Material" uid="uid://btuabvmpbtjvk" path="res://effects/slow_down_effect_material.tres" id="2_sfyf6"]
 [ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 [ext_resource type="PackedScene" uid="uid://c0qrymdsv0ins" path="res://ui/minimap/minimap_viewer.tscn" id="4_d2uga"]
@@ -105,6 +106,10 @@ corner_radius_bottom_left = 5
 process_mode = 3
 script = ExtResource("1_70thh")
 
+[node name="DebugLayer" parent="." instance=ExtResource("2_il6w2")]
+unique_name_in_owner = true
+visible = false
+
 [node name="Modulate" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
 
@@ -198,13 +203,6 @@ text = "12 / 23"
 label_settings = SubResource("LabelSettings_ooxb5")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="FPSCounter" type="Label" parent="MarginContainer/MainArea/TopContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-text = "123 fps"
 
 [node name="Spacer" type="Panel" parent="MarginContainer/MainArea/TopContainer"]
 layout_mode = 2

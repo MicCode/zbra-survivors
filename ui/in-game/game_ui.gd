@@ -31,25 +31,21 @@ func _ready() -> void:
     set_remaining_time(GameState.ennemy_spawn_stats.boss_spawn_time)
 
     if debug_mode:
-        %FPSCounter.show()
+        %DebugLayer.show()
     else:
-        %FPSCounter.hide()
+        %DebugLayer.hide()
 
     _on_player_state_changed(GameState.player_state)
     %Score.text = str(GameState.score)
     slide_in()
 
-func _process(_delta: float) -> void:
-    if debug_mode:
-        %FPSCounter.text = str("%.1f fps" % Engine.get_frames_per_second())
-
 func _physics_process(_delta: float) -> void:
     if Input.is_action_just_pressed("debug_mode"):
         debug_mode = !debug_mode
         if debug_mode:
-            %FPSCounter.show()
+            %DebugLayer.show()
         else:
-            %FPSCounter.hide()
+            %DebugLayer.hide()
 
 func slide_in():
     %TopContainer.offset_top = -220

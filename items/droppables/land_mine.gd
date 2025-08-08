@@ -26,13 +26,16 @@ func _on_detection_area_area_entered(area: Area2D) -> void:
 func explode():
     if !exploded:
         exploded = true
-        var explosive_effect: ExplosiveEffect = preload("res://effects/explosive_effect.tscn").instantiate()
-        explosive_effect.global_position = global_position
-        SceneManager.current_scene.add_child(explosive_effect)
-        explosive_effect.explode()
-        explosive_effect.explosion_finished.connect(func():
-            queue_free()
-        )
+        call_deferred("create_explosive_effect")
+
+func create_explosive_effect():
+    var explosive_effect: ExplosiveEffect = preload("res://effects/explosive_effect.tscn").instantiate()
+    explosive_effect.global_position = global_position
+    SceneManager.current_scene.add_child(explosive_effect)
+    explosive_effect.explode()
+    explosive_effect.explosion_finished.connect(func():
+        queue_free()
+    )
 
 func trigger(immediate: bool = false):
     if !triggered:

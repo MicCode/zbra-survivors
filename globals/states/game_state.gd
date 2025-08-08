@@ -5,6 +5,7 @@ signal notify_level_gain
 signal player_timewarping_changed(timewarping: bool)
 signal player_moved(position: Vector2)
 signal player_openned_chest()
+signal stats_modifiers_changed
 
 signal equipped_gun_changed(new_gun: Gun, previous_gun_name: String)
 signal gun_stats_changed(new_stats: GunStats)
@@ -109,6 +110,7 @@ func update_music_intensity():
 
 func _reset_player():
     stats_modifiers = []
+    stats_modifiers_changed.emit()
     base_player_state = preload("res://player/state/default_player_state.tres").duplicate()
     loot_chances = preload("res://player/state/default_loot_chances.tres").duplicate()
     player_state = base_player_state.duplicate(true)
@@ -194,6 +196,7 @@ func register_new_modifier(new_mod: Modifiers.Mod):
     else:
         existing_modifiers[0].modifier_value += new_stats_modifier.modifier_value
 
+    stats_modifiers_changed.emit()
     compute_modifiers(new_stats_modifier)
 
 func compute_modifiers(new_stats_modifier: StatsModifier = null):
