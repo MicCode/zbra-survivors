@@ -4,7 +4,9 @@ const SPAWN_DISTANCE_MIN: float = 600.0
 const SPAWN_DISTANCE_MAX: float = 700.0
 
 var spawnable_ennemies = [
-    "mob_1", "mob_2",
+    "mob_1",
+    "mob_2",
+    "slime",
 ]
 
 var all_ennemies = [

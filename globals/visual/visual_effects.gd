@@ -15,12 +15,11 @@ func gore_death(sprite: AnimatedSprite2D, delay: float = 0.0) -> PropertyTweener
     return tween.tween_property(shader_material, "shader_parameter/progress", 2.0, 0.5)
 
 func bleed(node_position: Vector2, hit_position: Vector2):
-    var direction: Enums.Orientations
-    if hit_position.x < node_position.x:
-        direction = Enums.Orientations.RIGHT
-    else:
-        direction = Enums.Orientations.LEFT
-    var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(node_position, direction)
+    var bleed_effect = preload("res://effects/bleed.tscn").instantiate().at(node_position, hit_position)
+    SceneManager.current_scene.add_child(bleed_effect)
+
+func green_squirt(node_position: Vector2, hit_position: Vector2):
+    var bleed_effect = preload("res://effects/green_squirt.tscn").instantiate().at(node_position, hit_position)
     SceneManager.current_scene.add_child(bleed_effect)
 
 func emphases(object: Node, from_scale: float, to_scale: float, to_color: Color):

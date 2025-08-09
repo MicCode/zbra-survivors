@@ -33,6 +33,15 @@ position = Vector2(528, 369)
 [node name="GameUI" parent="Player" instance=ExtResource("4_svdi0")]
 debug_mode = true
 
+[node name="CheckButton" type="CheckButton" parent="Player/GameUI"]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 815.0
+offset_top = 9.0
+offset_right = 1015.0
+offset_bottom = 34.0
+text = "Spawn ennemies
+"
+
 [node name="Weapons" type="Node2D" parent="."]
 
 [node name="CrossbowFireCollectible" parent="Weapons" instance=ExtResource("20_6o6iq")]
@@ -178,3 +187,5 @@ position = Vector2(-270, 351)
 
 [node name="Ennemy8" parent="Ennemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-336, 345)
+
+[connection signal="toggled" from="Player/GameUI/CheckButton" to="." method="_on_check_button_toggled"]

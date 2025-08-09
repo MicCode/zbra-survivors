@@ -16,7 +16,8 @@ func stop_effect(effect_name: String):
         var instance = visual_effects.get(effect_name)
         if instance.has_method("fade_out"):
             instance.fade_out().connect("finished", func():
-                instance.queue_free()
+                if instance:
+                    instance.queue_free()
                 visual_effects.erase(effect_name)
             )
         else:

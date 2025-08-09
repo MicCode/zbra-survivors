@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://b62qqqqu8d2xm"]
+
+[ext_resource type="PackedScene" uid="uid://dtx68anb1bv5m" path="res://effects/bleed.tscn" id="1_j52h8"]
+[ext_resource type="Texture2D" uid="uid://bk2mf5wcd27sj" path="res://assets/sprites/ennemies/mob-3/mob-3-squirt-1.png" id="2_j52h8"]
+[ext_resource type="Texture2D" uid="uid://s02h085tvo3" path="res://assets/sprites/ennemies/mob-3/mob-3-squirt-2.png" id="3_j52h8"]
+[ext_resource type="Script" uid="uid://b3tkrrcjlx3vs" path="res://effects/green_squirt.gd" id="4_rmkl4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmkl4"]
+atlas = ExtResource("2_j52h8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr0i0"]
+atlas = ExtResource("2_j52h8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6nan"]
+atlas = ExtResource("2_j52h8")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w30ro"]
+atlas = ExtResource("2_j52h8")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2v3u"]
+atlas = ExtResource("3_j52h8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83npf"]
+atlas = ExtResource("3_j52h8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em5oc"]
+atlas = ExtResource("3_j52h8")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roeig"]
+atlas = ExtResource("3_j52h8")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2v3u"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmkl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr0i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6nan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w30ro")
+}],
+"loop": false,
+"name": &"horizontal-1",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2v3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83npf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em5oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roeig")
+}],
+"loop": false,
+"name": &"horizontal-2",
+"speed": 20.0
+}]
+
+[node name="AnimatedSprite2D" instance=ExtResource("1_j52h8")]
+sprite_frames = SubResource("SpriteFrames_i2v3u")
+animation = &"horizontal-2"
+autoplay = "horizontal-1"
+script = ExtResource("4_rmkl4")

@@ -1,0 +1,107 @@
+[gd_scene load_steps=18 format=3 uid="uid://p6pxihr2p1qm"]
+
+[ext_resource type="PackedScene" uid="uid://ci36jx3vvoocj" path="res://ennemies/_generics/ennemy.tscn" id="1_goqud"]
+[ext_resource type="Script" uid="uid://dcpm3ltoufqmt" path="res://ennemies/slime/slime.gd" id="2_vx64d"]
+[ext_resource type="Resource" uid="uid://nyrfsbe3xxai" path="res://ennemies/slime/slime_stats.tres" id="3_ahl8l"]
+[ext_resource type="Shader" uid="uid://7n1pltl6qwgc" path="res://shaders/dissolve.gdshader" id="4_r08mo"]
+[ext_resource type="Texture2D" uid="uid://dhdjvi6flg1kg" path="res://effects/gore_death_noise_texture.tres" id="5_2rb00"]
+[ext_resource type="Texture2D" uid="uid://u8q8oc2a6ieb" path="res://assets/sprites/ennemies/mob-3/mob-3-die.png" id="6_n2ans"]
+[ext_resource type="Texture2D" uid="uid://bffbb6rgb871m" path="res://assets/sprites/ennemies/mob-3/mob-3-hurt.png" id="7_0db6e"]
+[ext_resource type="Texture2D" uid="uid://cmqbl0s3dgkb1" path="res://assets/sprites/ennemies/mob-3/mob-3-walk.png" id="8_6g8xq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7xqc"]
+resource_local_to_scene = true
+shader = ExtResource("4_r08mo")
+shader_parameter/progress = -2.0
+shader_parameter/noiseForce = 1.0
+shader_parameter/noiseTexture = ExtResource("5_2rb00")
+shader_parameter/burnColor = Color(1, 0, 0, 1)
+shader_parameter/borderWidth = 0.35
+shader_parameter/direction = 270.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p51k2"]
+atlas = ExtResource("6_n2ans")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr0sl"]
+atlas = ExtResource("6_n2ans")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pmcq"]
+atlas = ExtResource("6_n2ans")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xld0n"]
+atlas = ExtResource("7_0db6e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1j6nv"]
+atlas = ExtResource("7_0db6e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtjrv"]
+atlas = ExtResource("8_6g8xq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3t0d"]
+atlas = ExtResource("8_6g8xq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr0sl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p51k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr0sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pmcq")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xld0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1j6nv")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtjrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3t0d")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Slime" instance=ExtResource("1_goqud")]
+script = ExtResource("2_vx64d")
+is_sprite_reversed = true
+stats = ExtResource("3_ahl8l")
+
+[node name="Shadow" parent="." index="1"]
+position = Vector2(0, -13)
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_o7xqc")
+sprite_frames = SubResource("SpriteFrames_wr0sl")
+frame_progress = 0.0
+
+[node name="SquirtTimer" type="Timer" parent="Timers" index="3"]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timers/SquirtTimer" to="." method="_on_squirt_timer_timeout"]

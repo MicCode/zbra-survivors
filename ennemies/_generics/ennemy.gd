@@ -3,6 +3,7 @@ class_name Ennemy
 
 const DAMAGE_MARKER_DELAY: float = 0.25
 const HIT_SOUND_REPETITION_DELAY: float = 0.25
+const SPAWN_INVICIBILITY_TIME: float = 0.05
 
 @export var is_sprite_reversed = false
 @export var stats: EnnemyStats
@@ -20,6 +21,8 @@ var accumulated_damages: float = 0.0
 
 var fire_inflicted_damage: float = 2.0
 var fire_tick_s: float = 0.25
+
+var can_take_damage = false
 
 
 func _enter_tree() -> void:
@@ -41,6 +44,9 @@ func _ready():
     %Health.current_health = health
     %Health.update_display()
     Minimap.track(self, object_type)
+    get_tree().create_timer(SPAWN_INVICIBILITY_TIME).timeout.connect(func():
+        can_take_damage = true
+    )
 
 func _physics_process(_delta):
     if !is_dead && stats.chase_player && player != null:
@@ -55,6 +61,8 @@ func _physics_process(_delta):
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
 func handle_bullet_hit(bullet: Bullet):
+    if !can_take_damage:
+        return
     var bullet_stats = bullet.bullet_stats
     if !is_dead:
         take_damage(bullet_stats.damage)
@@ -67,9 +75,15 @@ func handle_bullet_hit(bullet: Bullet):
             )
         else:
             play_hit_sound()
-            VisualEffects.bleed(global_position, bullet.position)
+            bleed(GameState.player_instance.global_position)
+
+func bleed(impact_from: Vector2):
+    VisualEffects.bleed(global_position, impact_from)
 
 func take_damage(damage: float):
+    if !can_take_damage:
+        return
+
     accumulated_damages += damage
     if has_node("%Health"):
         %Health.take_damage(damage)
@@ -104,18 +118,22 @@ func _on_animation_finished():
 
 func _on_health_depleted():
     if stats.can_die:
-        is_dead = true
-        if stats.is_elite:
-            Sounds.death_mob_1(1.2)
-        else:
-            Sounds.death_mob_1()
-        %Sprite.play("dead")
-        set_collision_layer_value(2, false)
-        set_collision_layer_value(8, false)
-        VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
-        remove_child(%Health)
-        GameState.register_ennemy_death(self)
-        Minimap.untrack(self)
+        die()
+
+
+func die():
+    is_dead = true
+    if stats.is_elite:
+        Sounds.death_mob_1(1.2)
+    else:
+        Sounds.death_mob_1()
+    %Sprite.play("dead")
+    set_collision_layer_value(2, false)
+    set_collision_layer_value(8, false)
+    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
+    remove_child(%Health)
+    GameState.register_ennemy_death(self)
+    Minimap.untrack(self)
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
     if area is Bullet:
