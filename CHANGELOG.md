@@ -1,5 +1,14 @@
 
 - - -
+## 0.20.0 - 2025-08-09
+
+#### ➕ New features
+- **(gameplay)** added new slime ennemy
+#### 🪲 Bug fixes
+- **(ui)** do not display default gun slot in UI when starting a new game
+
+- - -
+
 ## 0.19.0 - 2025-08-08
 
 #### ➕ New features
