@@ -12,6 +12,8 @@ func _update_slot(new_gun: Gun):
     if new_gun == null:
         %GunSprite.texture = null
         %ButtonIcon.hide()
+        %IsExplosive.hide()
+        %IsFire.hide()
         return
 
     var gun_sprite = new_gun.get_node("PivotPoint/Sprite") as AnimatedSprite2D
