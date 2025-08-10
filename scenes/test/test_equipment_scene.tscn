@@ -114,6 +114,16 @@ y_sort_enabled = true
 position = Vector2(218, 70)
 xp_value = 10.0
 
+[node name="XpDrop11" parent="XpDrops" instance=ExtResource("7_b7b57")]
+y_sort_enabled = true
+position = Vector2(659, 270)
+xp_value = 10.0
+
+[node name="XpDrop12" parent="XpDrops" instance=ExtResource("7_b7b57")]
+y_sort_enabled = true
+position = Vector2(686, 357)
+xp_value = 10.0
+
 [node name="Items" type="Node2D" parent="."]
 
 [node name="TimewrapClockCollectible" parent="Items" instance=ExtResource("19_v766q")]

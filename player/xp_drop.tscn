@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceuyqoivr7ngj"]
+[gd_scene load_steps=8 format=3 uid="uid://ceuyqoivr7ngj"]
 
 [ext_resource type="Script" uid="uid://b5pewsmfm3qp1" path="res://player/xp_drop.gd" id="1_jv8by"]
 [ext_resource type="Texture2D" uid="uid://bafofwn2jb7kj" path="res://assets/sprites/player/xp.png" id="1_tf0of"]
@@ -28,6 +28,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7plo"]
+radius = 100.0
+
 [node name="XpDrop" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 32
@@ -40,3 +43,12 @@ shape = SubResource("CircleShape2D_fr14s")
 sprite_frames = SubResource("SpriteFrames_rcxj3")
 autoplay = "default"
 frame_progress = 0.458832
+
+[node name="FusionZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FusionZone"]
+shape = SubResource("CircleShape2D_f7plo")
+debug_color = Color(0.74902, 0.639216, 0, 0.0588235)
