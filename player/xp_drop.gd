@@ -6,7 +6,10 @@ const MERGE_DISTANCE: float = 10.0
 
 var chase_player = false
 var is_being_merged = false
-@export var xp_value: float = 1.0
+@export var xp_value: float = 1.0:
+    set(value):
+        xp_value = value
+        update_display()
 
 func with_value(_value: float) -> XpDrop:
     xp_value = _value
@@ -49,6 +52,22 @@ func move_to(other_node: Node2D):
     velocity = direction_to_other * MOVE_SPEED
     move_and_slide()
     Minimap.moved(self, global_position)
+
+func update_display():
+    if xp_value < 10:
+        %AnimatedSprite2D.scale = Vector2(1, 1)
+    elif xp_value < 20:
+        %AnimatedSprite2D.scale = Vector2(1.1, 1.1)
+    elif xp_value < 50:
+        %AnimatedSprite2D.scale = Vector2(1.2, 1.2)
+    elif xp_value < 100:
+        %AnimatedSprite2D.scale = Vector2(1.3, 1.3)
+    elif xp_value < 300:
+        %AnimatedSprite2D.scale = Vector2(1.5, 1.5)
+    elif xp_value < 1000:
+        %AnimatedSprite2D.scale = Vector2(1.75, 1.75)
+    else:
+        %AnimatedSprite2D.scale = Vector2(2, 2)
 
 func _exit_tree() -> void:
     Minimap.untrack(self)

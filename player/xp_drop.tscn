@@ -40,6 +40,7 @@ script = ExtResource("1_jv8by")
 shape = SubResource("CircleShape2D_fr14s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_rcxj3")
 autoplay = "default"
 frame_progress = 0.458832

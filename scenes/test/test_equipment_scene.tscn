@@ -138,7 +138,7 @@ y_sort_enabled = true
 position = Vector2(101, 65)
 
 [node name="XpCollector" parent="Items" instance=ExtResource("14_wrh14")]
-position = Vector2(876, 517)
+position = Vector2(883, 481)
 
 [node name="MineCollectible" parent="Items" instance=ExtResource("15_ktnje")]
 position = Vector2(414, 657)
@@ -157,6 +157,12 @@ radiance_duration = 5.0
 y_sort_enabled = true
 position = Vector2(-31, 537)
 radiance_duration = 5.0
+
+[node name="XpCollector2" parent="Items" instance=ExtResource("14_wrh14")]
+position = Vector2(1210, 607)
+
+[node name="XpCollector3" parent="Items" instance=ExtResource("14_wrh14")]
+position = Vector2(1382, 76)
 
 [node name="Chests" type="Node2D" parent="."]
 
