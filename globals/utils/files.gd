@@ -4,13 +4,13 @@ const SETTINGS_JSON_FILE = "user://settings.json"
 
 
 func read_settings() -> Dictionary:
-    return _read_file(SETTINGS_JSON_FILE)
+    return read_file(SETTINGS_JSON_FILE)
 
 func write_settings(data: Dictionary):
-    _write_file(SETTINGS_JSON_FILE, data)
+    write_file(SETTINGS_JSON_FILE, data)
 
 
-func _read_file(file_path: String, as_array: bool = false):
+func read_file(file_path: String, as_array: bool = false):
     var file = FileAccess.open(file_path, FileAccess.READ)
     if file:
         var json_content = file.get_as_text()
@@ -29,7 +29,7 @@ func _read_file(file_path: String, as_array: bool = false):
     else:
         return {}
 
-func _write_file(file_path: String, data):
+func write_file(file_path: String, data):
     var file = FileAccess.open(file_path, FileAccess.WRITE)
     if file:
         var json_content = JSON.stringify(data, "\t")

@@ -1,5 +1,6 @@
 extends Node
 signal player_state_changed
+signal player_gained_xp(amount: float)
 signal player_gained_level(number_of_gained_levels: int)
 signal notify_level_gain
 signal player_timewarping_changed(timewarping: bool)
@@ -97,6 +98,7 @@ func start_new_game():
     change_consumable(null)
 
     # start game
+    GameLogger.start_logging()
     change_state(State.RUNNING)
 
 func update_music_intensity():
@@ -175,6 +177,8 @@ func calculate_spawn_time() -> float:
 
 func gain_xp(xp: float) -> void:
     player_state.xp += xp
+    player_state.total_xp += xp
+    player_gained_xp.emit(xp)
 
     var new_level_gained = 0
     while player_state.xp >= player_state.next_level_xp:
@@ -205,11 +209,19 @@ func register_new_modifier(new_mod: Modifiers.Mod):
 func compute_modifiers(new_stats_modifier: StatsModifier = null):
     var current_level = player_state.level
     var current_xp = player_state.xp
+    var current_total_xp = player_state.total_xp
     var current_next_level_xp = player_state.next_level_xp
+    var current_total_damage_dealt = player_state.total_damage_dealt
+    var current_total_damage_taken = player_state.total_damage_taken
+
     player_state = PlayerState.apply_modifiers(base_player_state, stats_modifiers)
+
     player_state.level = current_level
     player_state.xp = current_xp
+    player_state.total_xp = current_total_xp
     player_state.next_level_xp = current_next_level_xp
+    player_state.total_damage_dealt = current_total_damage_dealt
+    player_state.total_damage_taken = current_total_damage_taken
 
     if equipped_gun:
         equipped_gun.gun_stats = GunStats.apply_modifiers(base_equipped_gun_stats, stats_modifiers)

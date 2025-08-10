@@ -1,0 +1,77 @@
+extends Node
+
+# TODO log player health
+# TODO log player max health
+
+# TODO log spawned ennemies number
+# TODO log spawned ennemies types & stats ?
+# TODO log ennemies spawn time
+# TODO log ennemies killed
+
+# TODO log modifiers acquisition
+# TODO log items acquisitions
+# TODO log gun swap
+# TODO log items uses
+
+const LOGS_SAVE_DIR: String = "user://game_logs/"
+
+var is_logging = false
+var start_timestamp: float = 0.0
+var logs: GameStatLogs = GameStatLogs.new()
+var logs_filename: String = "not-set.json"
+
+#region controls
+func start_logging():
+    is_logging = true
+    start_timestamp = Time.get_unix_time_from_system()
+    logs_filename = get_new_filename()
+
+    _log(logs.player_level, 0)
+    GameState.player_gained_level.connect(log_player_level)
+    _log(logs.player_xp, 0)
+    GameState.player_gained_xp.connect(log_player_xp)
+    _log(logs.dps, 0)
+    GameState.gun_stats_changed.connect(log_gun_stats)
+
+func stop_logging():
+    is_logging = false
+    GameState.player_gained_level.disconnect(log_player_level)
+    GameState.player_gained_xp.disconnect(log_player_xp)
+
+    save_to_file()
+#endregion
+
+#region loggers
+func log_player_level(_n: int):
+    _log(logs.player_level, GameState.player_state.level)
+
+func log_player_xp(_n: int):
+    _log(logs.player_xp, GameState.player_state.total_xp)
+
+func log_gun_stats(_gun_stats: GunStats):
+    if GameState.equipped_gun:
+        _log(logs.dps, Conversions.dps(GameState.equipped_gun.gun_stats, GameState.equipped_gun.bullet_stats))
+#endregion
+
+#region utils
+func _log(array: Array[GameStatLogEntry], value: float):
+    array.append(GameStatLogEntry.create(timestamp(), value))
+    save_to_file()
+
+func timestamp() -> int:
+    return ceil((Time.get_unix_time_from_system() - start_timestamp) * 1000)
+
+func save_to_file():
+    Files.write_file(LOGS_SAVE_DIR + logs_filename, logs.to_dict())
+
+func load_from_latest_file() -> GameStatLogs:
+    var dict: Dictionary = Files.read_file(LOGS_SAVE_DIR + "game-log-1.json") # TODO make this dynamic and get the latest one in folder
+    return GameStatLogs.from_dict(dict)
+
+func get_new_filename() -> String:
+    if not DirAccess.dir_exists_absolute(LOGS_SAVE_DIR):
+        DirAccess.make_dir_absolute(LOGS_SAVE_DIR)
+    var existing_log_files = DirAccess.get_files_at(LOGS_SAVE_DIR)
+    return str("game-log-%d.json" % (existing_log_files.size() + 1))
+
+#endregion

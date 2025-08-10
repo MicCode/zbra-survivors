@@ -8,6 +8,7 @@ class_name PlayerState
 
 @export_group("XP")
 @export var xp: float
+@export var total_xp: float
 @export var xp_collect_radius: float
 @export var level: int
 @export var next_level_xp: float
@@ -18,6 +19,8 @@ class_name PlayerState
 
 @export_group("Damages")
 @export var damage_cooldown: float
+@export var total_damage_dealt: float
+@export var total_damage_taken: float
 
 @export_group("Dash")
 @export var dash_duration: float

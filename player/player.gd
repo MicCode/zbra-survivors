@@ -125,6 +125,7 @@ func check_for_ennemies(_delta):
 
 #region Damage
 func take_damage(damage: int = 1):
+    GameState.player_state.total_damage_taken += damage
     GameState.shake_screen.emit(10)
     GameState.player_state.health -= damage
     %Health.current_health = GameState.player_state.health

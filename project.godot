@@ -25,11 +25,11 @@ EnnemiesService="*res://globals/gameplay/ennemies_service.gd"
 Enums="*res://globals/enums.gd"
 SceneManager="*res://globals/utils/scene_manager.gd"
 GunService="*res://globals/gameplay/gun_service.gd"
-GameState="*res://globals/states/game_state.gd"
+GameState="*res://globals/gameplay/game_state.gd"
 SoundPlayer="*res://globals/sound/sound_player.gd"
 Sounds="*res://globals/sound/sounds.gd"
 VisualEffects="*res://globals/visual/visual_effects.gd"
-Settings="*res://globals/states/settings.gd"
+Settings="*res://globals/gameplay/settings.gd"
 Announcer="*res://globals/sound/announcer.gd"
 Minimap="*res://globals/visual/minimap.gd"
 Files="*res://globals/utils/files.gd"
@@ -39,6 +39,7 @@ Conversions="*res://globals/utils/conversions.gd"
 LootGenerator="*res://globals/gameplay/loot_generator.gd"
 MusicManager="*res://globals/sound/music_manager.gd"
 Utils="*res://globals/utils/utils.gd"
+GameLogger="*res://globals/gameplay/game_logger/game_logger.gd"
 
 [debug]
 
@@ -225,6 +226,6 @@ common/max_physics_steps_per_frame=16
 textures/canvas_textures/default_texture_filter=0
 anti_aliasing/quality/msaa_2d=3
 anti_aliasing/quality/msaa_3d=3
-environment/defaults/default_clear_color=Color(0.435192, 0.435192, 0.435192, 1)
+environment/defaults/default_clear_color=Color(0.133196, 0.133196, 0.133196, 1)
 anti_aliasing/quality/screen_space_aa=1
 anti_aliasing/quality/use_taa=true
