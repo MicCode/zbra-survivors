@@ -153,6 +153,7 @@ func check_for_items():
                     compare_gun(collectible as GunCollectible)
             elif collectible is ConsumableItem:
                 handle_collectible(collectible as ConsumableItem)
+                Minimap.untrack(collectible)
 
 func compare_gun(collectible: GunCollectible):
     if is_pickup_blocked:
@@ -183,6 +184,7 @@ func equip_gun(new_gun: Gun, previous_gun_name: String):
 
 func free_collectible(collectible: GunCollectible):
     block_pickup()
+    Minimap.untrack(collectible)
     collectible.queue_free()
     Controls.vibrate(0.1, 0.5, 1.0)
     get_tree().create_timer(0.4).timeout.connect(func():

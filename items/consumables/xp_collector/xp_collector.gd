@@ -10,7 +10,7 @@ func _ready() -> void:
     %AnimationPlayer.active = false
     super._ready()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     if chase_player and GameState.player_instance:
         move_to(GameState.player_instance)
 
@@ -26,4 +26,4 @@ func move_to(other_node: Node2D):
     var direction_to_other = global_position.direction_to(other_position)
     velocity = direction_to_other * MOVE_SPEED
     move_and_slide()
-    Minimap.moved(self, global_position)
+    #Minimap.moved(self, global_position)

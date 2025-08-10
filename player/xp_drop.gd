@@ -29,6 +29,7 @@ func _physics_process(_delta: float) -> void:
         if get_distance(GameState.player_instance.global_position) < MERGE_DISTANCE:
             GameState.gain_xp(xp_value)
             Sounds.coin()
+            Minimap.untrack(self)
             queue_free()
     else:
         var other_xp_drop_in_range: Array = %FusionZone.get_overlapping_bodies().filter(func(o: Node2D): return o is XpDrop and o != self)
@@ -41,6 +42,7 @@ func _physics_process(_delta: float) -> void:
             if get_distance(closest_xp_drop.global_position) < MERGE_DISTANCE:
                 xp_value += closest_xp_drop.xp_value
                 closest_xp_drop.is_being_merged = true
+                Minimap.untrack(closest_xp_drop)
                 closest_xp_drop.queue_free()
 
 func get_distance(other_position: Vector2) -> float:
@@ -51,7 +53,7 @@ func move_to(other_node: Node2D):
     var direction_to_other = global_position.direction_to(other_position)
     velocity = direction_to_other * MOVE_SPEED
     move_and_slide()
-    Minimap.moved(self, global_position)
+    #Minimap.moved(self, global_position)
 
 func update_display():
     if xp_value < 10:
