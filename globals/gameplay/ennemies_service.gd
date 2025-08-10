@@ -20,6 +20,10 @@ var mob_spawn_timer = Timer.new()
 var time_before_boss = Timer.new()
 var ui_refresh_timer = Timer.new()
 
+func reset():
+    is_boss_spawned = false
+    GameState.remaining_time_changed.emit(GameState.ennemy_spawn_stats.boss_spawn_time)
+
 func _ready() -> void:
     randomize()
     mob_spawn_timer.one_shot = true

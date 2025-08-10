@@ -67,7 +67,6 @@ layout_mode = 2
 text = "Announces volume: 1.0"
 
 [node name="MusicPlayer" type="VBoxContainer" parent="MarginContainer/Settings"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = -5
 

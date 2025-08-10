@@ -69,6 +69,7 @@ var first_level_gained: bool = false
 
 ## Resets all game state info, like if the game was freshly started
 func reset() -> void:
+    # TODO refactor that crap
     elapsed_time = 0.0
     Engine.time_scale = 1.0
     _reset_player()
@@ -80,6 +81,9 @@ func reset() -> void:
     emit_player_change()
     emit_score_change()
     boss_changed.emit(null, 0.0)
+    EnnemiesService.reset()
+    first_chest_openned = false
+    first_level_gained = false
     change_state(State.RUNNING)
 
 func _init() -> void:
