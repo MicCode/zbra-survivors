@@ -11,4 +11,5 @@ enable_vibrations = true
 map_opacity = 0.5
 display_xp_capture_radius = true
 display_announcement_stickers = true
+show_ennemies_healthbar = true
 metadata/_custom_type_script = "uid://d3ww15xrl38l8"

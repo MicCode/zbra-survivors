@@ -15,6 +15,7 @@ func apply_settings():
             TranslationServer.set_locale("en_US")
     %CameraZoom.value = game.camera_zoom
     %EnableVibrations.button_pressed = game.enable_vibrations
+    %ShowEnnemiesHealthbar.button_pressed = game.show_ennemies_healthbar
     %MapOpacity.value = game.map_opacity
     %EnableAnnouncementStickers.button_pressed = game.display_announcement_stickers
     %EnableXpRadius.button_pressed = game.display_xp_capture_radius
@@ -44,6 +45,7 @@ func _on_default_button_pressed() -> void:
 func save_settings():
     Settings.game_settings.camera_zoom = %CameraZoom.value
     Settings.game_settings.enable_vibrations = %EnableVibrations.button_pressed
+    Settings.game_settings.show_ennemies_healthbar = %ShowEnnemiesHealthbar.button_pressed
     Settings.game_settings.map_opacity = %MapOpacity.value
     Settings.game_settings.display_announcement_stickers = %EnableAnnouncementStickers.button_pressed
     Settings.game_settings.display_xp_capture_radius = %EnableXpRadius.button_pressed

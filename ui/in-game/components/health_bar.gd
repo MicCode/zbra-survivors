@@ -3,7 +3,6 @@ signal depleted
 
 @export var max_health: float = 100.0
 @export var current_health: float = 100.0
-@export var visible_bar = true
 
 func _ready():
     current_health = max_health
@@ -12,7 +11,7 @@ func _ready():
 func update_display():
     %Bar.max_value = max_health
     %Bar.value = current_health
-    if visible_bar:
+    if Settings.game_settings.show_ennemies_healthbar:
         %Bar.show()
     else:
         %Bar.hide()
