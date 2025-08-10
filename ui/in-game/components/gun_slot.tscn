@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_w43r3"]
 [ext_resource type="Texture2D" uid="uid://brij0iabddduj" path="res://assets/sprites/items/sniper-idle.png" id="2_5dpiw"]
-[ext_resource type="Script" uid="uid://bjma854jxsgfs" path="res://ui/in-game/gun_slot.gd" id="2_75gk6"]
+[ext_resource type="Script" uid="uid://bjma854jxsgfs" path="res://ui/in-game/components/gun_slot.gd" id="2_75gk6"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_75gk6"]
 [ext_resource type="Texture2D" uid="uid://c7rhlq1mgjv5g" path="res://assets/sprites/items/fire-able.png" id="4_bnrf2"]
 [ext_resource type="Texture2D" uid="uid://cl2f8k66v4db8" path="res://assets/sprites/items/explosive.png" id="5_sjylf"]

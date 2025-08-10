@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://qw8ojo2htw8p"]
 
-[ext_resource type="Script" uid="uid://ci3f4nbuqwo6w" path="res://ui/in-game/annoucement_sticker.gd" id="1_mo7bm"]
+[ext_resource type="Script" uid="uid://ci3f4nbuqwo6w" path="res://ui/in-game/components/annoucement_sticker.gd" id="1_mo7bm"]
 [ext_resource type="FontFile" uid="uid://c27fd1d2vwq7k" path="res://assets/fonts/RubikBurned-Regular.ttf" id="2_jifhi"]
 [ext_resource type="Shader" uid="uid://7n1pltl6qwgc" path="res://shaders/dissolve.gdshader" id="2_uddvy"]
 

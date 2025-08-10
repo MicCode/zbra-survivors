@@ -46,7 +46,7 @@ func take_damage(damage: float):
     health -= damage
     # TODO change sprite modulation on hit
     play_hit_sound()
-    var damage_marker = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(damage)
+    var damage_marker = preload("res://ui/in-game/components/DamageIndicator.tscn").instantiate().with_damage(damage)
     damage_marker.global_position = %DamageAnchor.global_position
     SceneManager.current_scene.add_child(damage_marker)
     %AnimationPlayer.play("hurt")

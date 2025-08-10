@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bvkjjs72fxg4x" path="res://assets/sprites/ennemies/mob-1-dead.png" id="3_qem7r"]
 [ext_resource type="Texture2D" uid="uid://bceetuo4sphb" path="res://assets/sprites/ennemies/mob-1-hurt.png" id="4_yy3p0"]
 [ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://assets/sprites/ennemies/mob-1-walk.png" id="5_grokr"]
-[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="6_o0wmw"]
-[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="9_elh1f"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/components/health_bar.tscn" id="6_o0wmw"]
+[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/components/location_marker.tscn" id="9_elh1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45qg2"]
 atlas = ExtResource("3_qem7r")

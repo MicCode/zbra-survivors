@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
         var obj = tracked_objects[key]
         if obj is MinimapTrackedObject:
             if !known_objects_positions.has(key):
-                var marker = preload("res://ui/minimap/minimap_marker.tscn").instantiate()
+                var marker = preload("res://ui/in-game/minimap/minimap_marker.tscn").instantiate()
                 marker.position = obj.position * map_scale_factor
                 marker.set_marker_type(obj.type)
                 marker.set_texture(obj.sprite_texture)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0qrymdsv0ins"]
 
-[ext_resource type="Script" uid="uid://be222bcveouym" path="res://ui/minimap/minimap_viewer.gd" id="1_npdcq"]
+[ext_resource type="Script" uid="uid://be222bcveouym" path="res://ui/in-game/minimap/minimap_viewer.gd" id="1_npdcq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npdcq"]
 bg_color = Color(0, 0, 0, 0.211765)

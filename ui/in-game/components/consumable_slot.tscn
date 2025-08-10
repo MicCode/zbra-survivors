@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://f60rew07ua46" path="res://ui/theme/ui_transparent_container.tres" id="1_cc8y4"]
 [ext_resource type="Texture2D" uid="uid://p7gs7kgcgirk" path="res://assets/sprites/items/clock.png" id="2_mtpq0"]
-[ext_resource type="Script" uid="uid://dgttg4b11yvj2" path="res://ui/in-game/consumable_slot.gd" id="2_nussi"]
+[ext_resource type="Script" uid="uid://dgttg4b11yvj2" path="res://ui/in-game/components/consumable_slot.gd" id="2_nussi"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="3_nussi"]
 [ext_resource type="Texture2D" uid="uid://blut8fxueoq7x" path="res://assets/sprites/ui/controls/mouse/mouse-RMB.png" id="5_nussi"]
 

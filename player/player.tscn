@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://mbgktmkokcql" path="res://assets/sprites/player/player-idle.png" id="3_hsq4i"]
 [ext_resource type="PackedScene" uid="uid://clxlxqn7b6tph" path="res://effects/shadow.tscn" id="3_wodsf"]
 [ext_resource type="Texture2D" uid="uid://bjwiq2q541nft" path="res://assets/sprites/player/player-walk.png" id="4_4gd1v"]
-[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="5_yybqa"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/components/health_bar.tscn" id="5_yybqa"]
 [ext_resource type="Texture2D" uid="uid://bnx4gwxp4icjk" path="res://assets/sprites/player/level-up.png" id="7_l7eyr"]
 [ext_resource type="Texture2D" uid="uid://dymt52ugwiobd" path="res://assets/sprites/player/player-effects-heal.png" id="7_qp5db"]
 [ext_resource type="Texture2D" uid="uid://twi8lfwt883a" path="res://assets/sprites/player/player-effects-radiance.png" id="9_sing3"]

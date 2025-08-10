@@ -51,7 +51,7 @@ func _draw_announcement_sticker(text: String, size: int):
     if !Settings.game_settings.display_announcement_stickers:
         return
 
-    var sticker = preload("res://ui/in-game/annoucement_sticker.tscn").instantiate()
+    var sticker = preload("res://ui/in-game/components/annoucement_sticker.tscn").instantiate()
     sticker.set_text(text)
     sticker.set_size(size)
     if GameState.player_instance != null:

@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="3_v7rg8"]
 [ext_resource type="Texture2D" uid="uid://clhb4lw3j3e2s" path="res://assets/sprites/ennemies/boss-1/boss-1-spawn.png" id="4_j3lod"]
 [ext_resource type="Texture2D" uid="uid://cxyfdklqky7lc" path="res://assets/sprites/ennemies/boss-1/boss-1-walk.png" id="5_sxbx4"]
-[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/health_bar.tscn" id="9_0e5ht"]
-[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/location_marker.tscn" id="10_ixrhd"]
+[ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/components/health_bar.tscn" id="9_0e5ht"]
+[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/components/location_marker.tscn" id="10_ixrhd"]
 
 [sub_resource type="Gradient" id="Gradient_pjegc"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)

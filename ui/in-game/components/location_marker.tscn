@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dde4kdtsev4lf"]
 
-[ext_resource type="Script" uid="uid://kwfiqojs3jr2" path="res://ui/in-game/location_marker.gd" id="1_l32qi"]
+[ext_resource type="Script" uid="uid://kwfiqojs3jr2" path="res://ui/in-game/components/location_marker.gd" id="1_l32qi"]
 [ext_resource type="Texture2D" uid="uid://bbjtcm8fgwkmw" path="res://assets/sprites/arrow-blue.png" id="1_ubs04"]
 
 [node name="LocationMarker" type="Node2D"]

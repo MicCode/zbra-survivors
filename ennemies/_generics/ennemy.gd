@@ -91,7 +91,7 @@ func take_damage(damage: float):
         %Sprite.play("hurt")
         play_hit_sound()
         VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
-        previous_damage_indicator = preload("res://ui/in-game/DamageIndicator.tscn").instantiate().with_damage(accumulated_damages)
+        previous_damage_indicator = preload("res://ui/in-game/components/DamageIndicator.tscn").instantiate().with_damage(accumulated_damages)
         previous_damage_indicator.global_position = %DamageAnchor.global_position
         SceneManager.current_scene.add_child(previous_damage_indicator)
         accumulated_damages = 0.0
