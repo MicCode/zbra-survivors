@@ -7,8 +7,12 @@ func _ready() -> void:
 func apply_settings():
     var game = Settings.game_settings
     match game.language:
-        "fr_FR": %Language.select(1)
-        _: %Language.select(0) # fallback on english
+        "fr_FR":
+            %Language.select(1)
+            TranslationServer.set_locale("fr_FR")
+        _:
+            %Language.select(0) # fallback on english
+            TranslationServer.set_locale("en_US")
     %CameraZoom.value = game.camera_zoom
     %EnableVibrations.button_pressed = game.enable_vibrations
     %MapOpacity.value = game.map_opacity
@@ -32,6 +36,10 @@ func _on_language_item_selected(index: int) -> void:
 func _on_save_button_pressed() -> void:
     Sounds.button_press()
     save_settings()
+
+func _on_default_button_pressed() -> void:
+    Settings.reset_to_default()
+    apply_settings()
 
 func save_settings():
     Settings.game_settings.camera_zoom = %CameraZoom.value

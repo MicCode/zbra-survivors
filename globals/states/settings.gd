@@ -24,13 +24,17 @@ func load_from_file():
     if dict_from_file.has("audio_settings"):
         audio_settings = AudioSettings.from_dict(dict_from_file.get("audio_settings"))
     else:
-        audio_settings = preload("res://globals/sound/settings/default_audio_settings.tres").duplicate()
+        audio_settings = load("res://globals/sound/settings/default_audio_settings.tres") as AudioSettings
 
     if dict_from_file.has("game_settings"):
         game_settings = GameSettings.from_dict(dict_from_file.get("game_settings"))
     else:
-        game_settings = preload("res://globals/gameplay/default_game_settings.tres").duplicate()
+        game_settings = load("res://globals/gameplay/default_game_settings.tres") as GameSettings
     settings_changed.emit()
+
+func reset_to_default():
+    audio_settings = load("res://globals/sound/settings/default_audio_settings.tres") as AudioSettings
+    game_settings = load("res://globals/gameplay/default_game_settings.tres") as GameSettings
 
 func save_to_file():
     var dict = {

@@ -348,3 +348,4 @@ text = "BUTTON_APPLY_DEFAULT_SETTINGS"
 
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/LanguageSetting/Language" to="." method="_on_language_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Buttons/DefaultButton" to="." method="_on_default_button_pressed"]
