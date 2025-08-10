@@ -1,5 +1,26 @@
 
 - - -
+## 0.21.0 - 2025-08-10
+
+#### ➕ New features
+- **(gameplay)** xp attractors now also attracts other attractors
+- **(settings)** added a setting to display or not ennemies health bar
+- **(ui)** show ennemies healthbar only if they have been hit at least once
+- **(visual)** display xp drops in different sizes in function of their value
+- **(visual)** merge close xp drops to reduce visual clutter
+#### 🪲 Bug fixes
+- **(audio)** take annoucements volume setting into account
+- **(controls)** do not double register players inputs when grabbing weapon or item
+- **(gameplay)** fixed issue when boss was not reappearing after game restarted
+- **(performances)** do not track xp drops positions on minimap when they are moving toward player to reduce cpu usage
+- **(settings)** fixed reset to default settings button not working
+- **(ui)** fixed control buttons showing keyboard buttons during component init while joypad is connected
+- **(ui)** fixed pause menu opening in the background in main menu
+- **(ui)** added missing settings menu parameter title translation
+- **(ui)** fixed broken gun comparison stats when swapping weapon
+
+- - -
+
 ## 0.20.0 - 2025-08-09
 
 #### ➕ New features
