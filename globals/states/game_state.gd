@@ -67,31 +67,8 @@ var elapsed_time: float = 0.0
 var first_chest_openned: bool = false
 var first_level_gained: bool = false
 
-## Resets all game state info, like if the game was freshly started
-func reset() -> void:
-    # TODO refactor that crap
-    elapsed_time = 0.0
-    Engine.time_scale = 1.0
-    _reset_player()
-    Modifiers.excluded.clear()
-    score = 0
-    ennemy_spawn_stats = EnnemySpawnStats.new()
-    change_equipped_gun(null)
-    change_consumable(null)
-    emit_player_change()
-    emit_score_change()
-    boss_changed.emit(null, 0.0)
-    EnnemiesService.reset()
-    first_chest_openned = false
-    first_level_gained = false
-    change_state(State.RUNNING)
-
 func _init() -> void:
-    elapsed_time = 0.0
-    Engine.time_scale = 1.0
     process_mode = Node.PROCESS_MODE_ALWAYS
-    _reset_player()
-    change_state(State.RUNNING)
     player_openned_chest.connect(func():
         var random_gun = LootGenerator.get_random_gun()
         change_equipped_gun(random_gun)
@@ -99,6 +76,28 @@ func _init() -> void:
             first_chest_openned = true
             update_music_intensity()
     )
+
+func start_new_game():
+    # reset state
+    Engine.time_scale = 1.0
+    elapsed_time = 0.0
+    score = 0
+    first_chest_openned = false
+    first_level_gained = false
+    ennemy_spawn_stats = EnnemySpawnStats.new()
+    Modifiers.excluded.clear()
+    EnnemiesService.reset()
+    _reset_player()
+
+    # emit first events to refresh all listening components
+    boss_changed.emit(null, 0.0)
+    emit_player_change()
+    emit_score_change()
+    change_equipped_gun(null)
+    change_consumable(null)
+
+    # start game
+    change_state(State.RUNNING)
 
 func update_music_intensity():
     var intensity = 0
@@ -126,7 +125,7 @@ func _process(delta: float) -> void:
         elapsed_time += delta
 
 func _input(event):
-    if event.is_action_pressed("pause_game") and not [State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
+    if event.is_action_pressed("pause_game") and not [State.NOT_STARTED, State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
         if state == State.PAUSED:
             if pause_menu:
                 Sounds.button_press()
