@@ -1,9 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://deyu38p7ie4ql"]
+[gd_scene load_steps=2 format=3 uid="uid://deyu38p7ie4ql"]
 
 [ext_resource type="Script" uid="uid://cr5ookdok43wt" path="res://ui/menu/game_over_menu.gd" id="1_73h2w"]
-[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="2_vibjm"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ts586"]
 
 [node name="Game-over" type="CanvasLayer"]
 process_mode = 3
@@ -17,7 +14,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.356863, 0.356863, 0.356863, 0.670588)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,7 +24,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.763591, 0.0259512, 2.88785e-07, 1)
@@ -35,33 +33,3 @@ text = "TITLE_GAME_OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-
-[node name="Spacer" type="Panel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ts586")
-
-[node name="RestartButton" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../MenuButton")
-focus_neighbor_bottom = NodePath("../MenuButton")
-theme_override_font_sizes/font_size = 40
-text = "BUTTON_RESTART"
-
-[node name="MenuButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../RestartButton")
-focus_neighbor_bottom = NodePath("../RestartButton")
-theme = ExtResource("2_vibjm")
-theme_override_font_sizes/font_size = 25
-text = "BUTTON_MAIN_MENU"
-
-[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

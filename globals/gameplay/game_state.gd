@@ -81,6 +81,7 @@ func _init() -> void:
 func start_new_game():
     # reset state
     Engine.time_scale = 1.0
+    AudioServer.playback_speed_scale = 1.0
     elapsed_time = 0.0
     score = 0
     first_chest_openned = false
@@ -147,7 +148,7 @@ func change_state(new_state: State):
     if State.GAME_OVER == state:
         show_game_over()
     if is_inside_tree():
-        if [State.PAUSED, State.CHOOSING_UPGRADE, State.GAME_OVER].has(state):
+        if [State.PAUSED, State.CHOOSING_UPGRADE].has(state):
             get_tree().paused = true
         else:
             get_tree().paused = false

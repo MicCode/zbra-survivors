@@ -22,7 +22,11 @@ var logs_filename: String = "not-set.json"
 
 #region controls
 func start_logging():
+    if is_logging:
+        stop_logging()
+
     is_logging = true
+    logs = GameStatLogs.new()
     start_timestamp = Time.get_unix_time_from_system()
     logs_filename = get_new_filename()
 
@@ -37,6 +41,7 @@ func stop_logging():
     is_logging = false
     GameState.player_gained_level.disconnect(log_player_level)
     GameState.player_gained_xp.disconnect(log_player_xp)
+    GameState.gun_stats_changed.disconnect(log_gun_stats)
 
     save_to_file()
 #endregion
@@ -68,13 +73,15 @@ func save_to_file():
 func load_from_latest_file() -> GameStatLogs:
     var existing_log_files = DirAccess.get_files_at(LOGS_SAVE_DIR)
     existing_log_files.sort()
-    var dict: Dictionary = Files.read_file(LOGS_SAVE_DIR.path_join(existing_log_files[existing_log_files.size() - 1]))
+    var latest_file_path = LOGS_SAVE_DIR.path_join(existing_log_files[existing_log_files.size() - 1])
+    print(str("Loading logs from [%s]" % latest_file_path))
+    var dict: Dictionary = Files.read_file(latest_file_path)
     return GameStatLogs.from_dict(dict)
 
 func get_new_filename() -> String:
     if not DirAccess.dir_exists_absolute(LOGS_SAVE_DIR):
         DirAccess.make_dir_absolute(LOGS_SAVE_DIR)
     var existing_log_files = DirAccess.get_files_at(LOGS_SAVE_DIR)
-    return str("game-log-%d.json" % (existing_log_files.size() + 1))
+    return str("game-log-%s.json" % str(existing_log_files.size() + 1).pad_zeros(5))
 
 #endregion

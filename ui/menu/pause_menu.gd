@@ -13,7 +13,7 @@ func _on_quit_button_pressed() -> void:
     reset_effects()
     slide_out().finished.connect(func():
         GameState.change_state(GameState.State.NOT_STARTED)
-        SceneManager.switch_to("res://ui/menu/main_menu.tscn")
+        SceneManager.switch_to("res://ui/menu/game_logs/game_logs_menu.tscn")
         queue_free()
     )
 

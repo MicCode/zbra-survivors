@@ -24,7 +24,6 @@ func _input(event: InputEvent) -> void:
         SceneManager.switch_to("res://scenes/test/test_equipment_scene.tscn")
 
 func _on_start_button_pressed() -> void:
-    Sounds.button_press()
     Sounds.start_game()
     GameState.start_new_game()
     SceneManager.switch_to("res://scenes/level_1.tscn")
