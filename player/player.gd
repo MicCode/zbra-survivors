@@ -211,15 +211,17 @@ func check_for_xp():
             xp.chase_player = true
 
 func attract_all_xp_on_map(collector: XpCollector):
-    Sounds.absorb()
-    %VisualEffects.start_effect("absorb_xp", preload("res://effects/absorb_xp.tscn"))
+    if not collector.chase_player:
+        Sounds.absorb()
+        %VisualEffects.start_effect("absorb_xp", preload("res://effects/absorb_xp.tscn"))
+        get_tree().create_timer(XP_COLLECT_TIME).connect("timeout", func():
+            %VisualEffects.stop_effect("absorb_xp")
+        )
+
     collector.queue_free()
-    get_tree().create_timer(XP_COLLECT_TIME).connect("timeout", func():
-        %VisualEffects.stop_effect("absorb_xp")
-    )
     var children = Utils.get_all_children_recursively(SceneManager.current_scene)
     for child in children:
-        if child is XpDrop:
+        if child is XpDrop or child is XpCollector:
             child.move_to_player()
 
 func use_life_flask(flask: LifeFlask):

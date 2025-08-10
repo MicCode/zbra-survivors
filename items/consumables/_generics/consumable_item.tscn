@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpqk78rbe30jr"]
+[gd_scene load_steps=12 format=3 uid="uid://dpqk78rbe30jr"]
 
 [ext_resource type="Script" uid="uid://cjw4a7s0dmyeb" path="res://items/consumables/_generics/consumable_item.gd" id="1_pakd1"]
 [ext_resource type="Texture2D" uid="uid://dwuk1wotf6y50" path="res://assets/sprites/shadow.png" id="2_l5uqt"]
 [ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/components/location_marker.tscn" id="3_1l5bh"]
 [ext_resource type="PackedScene" uid="uid://b022lydfmv6ep" path="res://ui/controls/button_icon.tscn" id="4_sm5vi"]
+[ext_resource type="Texture2D" uid="uid://bxxfnx3aduyll" path="res://assets/sprites/ui/controls/keyboard/keyboard-E.png" id="5_irt54"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qasv"]
 radius = 16.0
@@ -55,7 +56,7 @@ fill_to = Vector2(0.75, 0.75)
 [sub_resource type="CircleShape2D" id="CircleShape2D_sm5vi"]
 radius = 17.0
 
-[node name="Collectible" type="StaticBody2D"]
+[node name="Collectible" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_pakd1")
@@ -98,6 +99,7 @@ offset_top = 7.5
 offset_right = 22.5
 offset_bottom = 23.5
 scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_irt54")
 animate = true
 
 [node name="Area2D" type="Area2D" parent="."]

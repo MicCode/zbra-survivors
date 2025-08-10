@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends CharacterBody2D
 class_name ConsumableItem
 
 @export var stats: ConsumableItemStats
