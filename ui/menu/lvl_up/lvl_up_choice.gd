@@ -20,7 +20,7 @@ func _ready() -> void:
     panel_style = %PanelContainer.get_theme_stylebox("panel")
 
 func _process(_delta: float) -> void:
-    if !Controls.is_pressed(Controls.PlayerAction.ACCEPT) and !Controls.is_pressed(Controls.PlayerAction.EXCLUDE):
+    if !Controls.is_just_pressed(Controls.PlayerAction.ACCEPT) and !Controls.is_just_pressed(Controls.PlayerAction.EXCLUDE):
         prevent_mouse_click = false
     if block_focus or has_been_clicked:
         return
@@ -45,10 +45,10 @@ func is_ui_accept() -> bool:
     return %PanelContainer.has_focus() and Input.is_action_pressed("ui_accept")
 
 func is_accept_clicked() -> bool:
-    return !prevent_mouse_click and is_hovered and Controls.is_pressed(Controls.PlayerAction.ACCEPT)
+    return !prevent_mouse_click and is_hovered and Controls.is_just_pressed(Controls.PlayerAction.ACCEPT)
 
 func is_exclude_clicked() -> bool:
-    return !prevent_mouse_click and is_hovered and Controls.is_pressed(Controls.PlayerAction.EXCLUDE)
+    return !prevent_mouse_click and is_hovered and Controls.is_just_pressed(Controls.PlayerAction.EXCLUDE)
 
 func set_stat_modifier(new_mod: Modifiers.Mod):
     stat_modifier = new_mod

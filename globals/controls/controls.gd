@@ -211,6 +211,11 @@ func is_pressed(action: PlayerAction) -> bool:
     #print("Checking action [%s]: %s" % [action_name, str(pressed)])
     return pressed
 
+func is_just_pressed(action: PlayerAction) -> bool:
+    var pressed = Input.is_action_just_pressed(get_action_name(action))
+    #print("Checking action [%s]: %s" % [action_name, str(pressed)])
+    return pressed
+
 func is_joypad_connected() -> bool:
     # TODO we should rather check from where was the last input sent and switch between joypad/keyboard+mouse automatically
     # TODO add a game setting for that ?

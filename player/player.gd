@@ -88,9 +88,9 @@ func move(_delta):
 
 
 func process_player_controls():
-    if %DashManager.can_dash() and Controls.is_pressed(Controls.PlayerAction.DASH):
+    if %DashManager.can_dash() and Controls.is_just_pressed(Controls.PlayerAction.DASH):
         %DashManager.start_dashing()
-    if !block_item_use and GameState.consumable and Controls.is_pressed(Controls.PlayerAction.USE):
+    if !block_item_use and GameState.consumable and Controls.is_just_pressed(Controls.PlayerAction.USE):
         var used_item = false
         if GameState.consumable is RadianceFlask:
             used_item = use_radiance_flask(GameState.consumable)
@@ -149,7 +149,7 @@ func check_for_items():
     if overlapping_collectibles.size() > 0:
         for collectible in overlapping_collectibles:
             if collectible is GunCollectible:
-                if Input.is_action_pressed("grab") || !equiped_gun:
+                if Controls.is_just_pressed(Controls.PlayerAction.GRAB) || !equiped_gun:
                     compare_gun(collectible as GunCollectible)
             elif collectible is ConsumableItem:
                 handle_collectible(collectible as ConsumableItem)
@@ -196,7 +196,7 @@ func handle_collectible(consumable: ConsumableItem):
         elif consumable is XpCollector:
             attract_all_xp_on_map(consumable)
     else:
-        if !GameState.consumable or Controls.is_pressed(Controls.PlayerAction.GRAB):
+        if !GameState.consumable or Controls.is_just_pressed(Controls.PlayerAction.GRAB):
             if is_pickup_blocked:
                 return
             GameState.change_consumable(consumable)

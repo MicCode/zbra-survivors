@@ -14,7 +14,7 @@ func _ready() -> void:
     slide_in()
 
 func _input(_event: InputEvent) -> void:
-    if Input.is_action_just_pressed("grab") and !in_animation and GameState.lvl_up_rerolls_remaining > 0:
+    if Controls.is_just_pressed(Controls.PlayerAction.GRAB) and !in_animation and GameState.lvl_up_rerolls_remaining > 0:
         slide_out().finished.connect(func():
             GameState.lvl_up_rerolls_remaining -= 1
             refresh_counters()
@@ -115,7 +115,7 @@ func refresh_counters():
         %ExcludeInfo.modulate = Color.WHITE
         %ExcludeButtonIcon.animate = true
 
-    %RerollCountLabel.text  = str("(%d)" % GameState.lvl_up_rerolls_remaining)
+    %RerollCountLabel.text = str("(%d)" % GameState.lvl_up_rerolls_remaining)
     if GameState.lvl_up_rerolls_remaining <= 0:
         %RerollInfo.modulate = Color(Color.WHITE, 0.5)
         %RerollButtonIcon.animate = false
