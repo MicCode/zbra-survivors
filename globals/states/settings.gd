@@ -17,15 +17,7 @@ var audio_settings: AudioSettings = AudioSettings.new()
 var game_settings: GameSettings = GameSettings.new()
 
 func apply_audio_settings():
-    var master_bus = AudioServer.get_bus_index("Master")
-    AudioServer.set_bus_volume_db(master_bus, audio_settings.master_volume_db)
-
-    var music_bus = AudioServer.get_bus_index("Music")
-    AudioServer.set_bus_volume_db(music_bus, audio_settings.music_volume_db - 6.0)
-    var effects_bus = AudioServer.get_bus_index("Effects")
-    AudioServer.set_bus_volume_db(effects_bus, audio_settings.effects_volume_db)
-    var sfx_bus = AudioServer.get_bus_index("SFX")
-    AudioServer.set_bus_volume_db(sfx_bus, audio_settings.effects_volume_db)
+    SoundPlayer.apply_audio_settings(audio_settings)
 
 func load_from_file():
     var dict_from_file: Dictionary = Files.read_settings()

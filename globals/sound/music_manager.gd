@@ -206,7 +206,7 @@ func _apply_crossfade():
 
 func _init_player() -> AudioStreamPlayer:
     var new_player = AudioStreamPlayer.new()
-    new_player.bus = &"Music"
+    new_player.bus = SoundPlayer.bus(SoundPlayer.Bus.MUSIC)
     new_player.volume_db = to_db(0.0)
     new_player.finished.connect(func(): new_player.play())
     return new_player

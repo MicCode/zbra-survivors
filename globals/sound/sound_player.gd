@@ -4,11 +4,49 @@ const SFX_BASE_PATH := "res://assets/sounds/"
 const MAX_SFX_PLAYERS := 32
 const MAX_EFFECTS_PLAYERS := 32
 
+enum Bus {
+    MASTER,
+    MUSIC,
+    SFX,
+    EFFECTS,
+    ANNOUNCEMENTS,
+}
+func bus(_bus: Bus) -> String:
+    match _bus:
+        Bus.MASTER: return "Master"
+        Bus.MUSIC: return "Music"
+        Bus.SFX: return "SFX"
+        Bus.EFFECTS: return "Effects"
+        Bus.ANNOUNCEMENTS: return "Announcements"
+        _:
+            push_error("Unknown audio Bus [%d], falling back on Master" % _bus)
+            return "Master"
+
+func get_bus_index(_bus: Bus) -> int:
+    var i = AudioServer.get_bus_index(bus(_bus))
+    if i < 0:
+        push_error("Audio bus [%s] is not defined in AudioServer" % bus(_bus))
+        return 0
+    return i
+
+func get_bus_volume_linear(_bus: Bus) -> float:
+    return AudioServer.get_bus_volume_linear(get_bus_index(_bus))
+
 var sfx_players: Array = []
 var sfx_cache: Dictionary = {}
 
 var effects_players: Dictionary = {}
 var effects_cache: Dictionary = {}
+
+func set_bus_volume(bus_name: Bus, volume_db: float):
+    AudioServer.set_bus_volume_db(get_bus_index(bus_name), volume_db)
+
+func apply_audio_settings(audio_settings: AudioSettings):
+    set_bus_volume(Bus.MASTER, audio_settings.master_volume_db)
+    set_bus_volume(Bus.MUSIC, audio_settings.music_volume_db)
+    set_bus_volume(Bus.SFX, audio_settings.effects_volume_db)
+    set_bus_volume(Bus.EFFECTS, audio_settings.effects_volume_db)
+    set_bus_volume(Bus.ANNOUNCEMENTS, audio_settings.announcements_volume_db)
 
 func _ready():
     process_mode = Node.PROCESS_MODE_ALWAYS
@@ -24,7 +62,7 @@ func play_sfx(file_name: String, options: SfxOptions = SfxOptions.new()):
         if is_instance_valid(oldest_player):
             oldest_player.queue_free()
 
-    var player = await play_sound(stream, "SFX", options)
+    var player = await play_sound(stream, Bus.SFX, options)
     player.finished.connect(_on_sfx_finished.bind(player))
     sfx_players.append(player)
 
@@ -64,7 +102,7 @@ func start_effect(file_name: String, options: SfxOptions = SfxOptions.new()):
         if is_instance_valid(oldest_player):
             oldest_player.queue_free()
 
-    var player = await play_sound(stream, "Effects", options)
+    var player = await play_sound(stream, Bus.EFFECTS, options)
     player.finished.connect(_on_effect_finished.bind(player))
     effects_players.set(file_name, player)
 
@@ -100,13 +138,13 @@ func _on_effect_finished(player: AudioStreamPlayer):
 #endregion
 
 #region player ---------------------------------------------------------------------------------------
-func play_sound(stream: AudioStream, bus: String, options: SfxOptions) -> AudioStreamPlayer:
+func play_sound(stream: AudioStream, _bus: Bus, options: SfxOptions) -> AudioStreamPlayer:
     var player = AudioStreamPlayer.new()
     player.stream = stream
-    player.bus = bus
+    player.bus = bus(_bus)
     player.volume_db = options.volume
     player.pitch_scale = max(0.01, randf_range(options.pitch - options.pitch_variation, options.pitch + options.pitch_variation))
-    player.name = bus + "_" + str(Time.get_ticks_msec())
+    player.name = bus(_bus) + "_" + str(Time.get_ticks_msec())
 
     add_child(player)
     if options.start_delay_ms + options.start_delay_variation_ms > 0:

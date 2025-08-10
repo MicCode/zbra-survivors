@@ -17,62 +17,101 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Settings" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="Engine" type="VBoxContainer" parent="MarginContainer/Settings"]
+layout_mode = 2
 theme_override_constants/separation = -5
 
-[node name="FPS" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="FPS" type="Label" parent="MarginContainer/Settings/Engine"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "FPS: 123"
 
-[node name="Timescale" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Timescale" type="Label" parent="MarginContainer/Settings/Engine"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Timescale: 1.0"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Volumes" type="VBoxContainer" parent="MarginContainer/Settings"]
+visible = false
 layout_mode = 2
+theme_override_constants/separation = -5
 
-[node name="Music" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="MasterVolume" type="Label" parent="MarginContainer/Settings/Volumes"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Master volume: 1.0"
+
+[node name="MusicVolume" type="Label" parent="MarginContainer/Settings/Volumes"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Music volume: 1.0"
+
+[node name="SFXVolume" type="Label" parent="MarginContainer/Settings/Volumes"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SFX volume: 1.0"
+
+[node name="EffectsVolume" type="Label" parent="MarginContainer/Settings/Volumes"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Effects volume: 1.0"
+
+[node name="AnnouncesVolume" type="Label" parent="MarginContainer/Settings/Volumes"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Announces volume: 1.0"
+
+[node name="MusicPlayer" type="VBoxContainer" parent="MarginContainer/Settings"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="Music" type="Label" parent="MarginContainer/Settings/MusicPlayer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Music: music-1"
 
-[node name="MusicLayer" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="MusicLayer" type="Label" parent="MarginContainer/Settings/MusicPlayer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Music layer: layer"
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="SoundPlayer" type="VBoxContainer" parent="MarginContainer/Settings"]
+visible = false
 layout_mode = 2
+theme_override_constants/separation = -5
 
-[node name="PlayingSFX" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="PlayingSFX" type="Label" parent="MarginContainer/Settings/SoundPlayer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Playing SFX: 123"
 
-[node name="SFXCache" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="SFXCache" type="Label" parent="MarginContainer/Settings/SoundPlayer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cached SFX: 123"
 
-[node name="PlayingEffects" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="PlayingEffects" type="Label" parent="MarginContainer/Settings/SoundPlayer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Playing effects: 123"
 
-[node name="EffectsCache" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="EffectsCache" type="Label" parent="MarginContainer/Settings/SoundPlayer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cached effects: 123"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Announcer" type="VBoxContainer" parent="MarginContainer/Settings"]
+visible = false
 layout_mode = 2
+theme_override_constants/separation = -5
 
-[node name="AnnouncerCounter" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="AnnouncerCounter" type="Label" parent="MarginContainer/Settings/Announcer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Announcer cpt: 0"

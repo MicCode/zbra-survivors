@@ -45,7 +45,7 @@ func _announce(file_name: String, options: SfxOptions = SfxOptions.new()):
         return
     if announcer_player != null and announcer_player.playing:
         announcer_player.stop()
-    announcer_player = await SoundPlayer.play_sound(stream, "Announcements", options)
+    announcer_player = await SoundPlayer.play_sound(stream, SoundPlayer.Bus.ANNOUNCEMENTS, options)
 
 func _draw_announcement_sticker(text: String, size: int):
     if !Settings.game_settings.display_announcement_stickers:
