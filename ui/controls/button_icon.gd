@@ -9,6 +9,9 @@ class_name ControllerButtonIcon
 @export var pressed: bool = false
 @export var animate: bool = false
 
+func _ready() -> void:
+    update_texture()
+
 func change_action(_action: Controls.PlayerAction):
     action = _action
 

@@ -98,7 +98,6 @@ offset_top = 7.5
 offset_right = 22.5
 offset_bottom = 23.5
 scale = Vector2(0.75, 0.75)
-action = 1
 animate = true
 
 [node name="Area2D" type="Area2D" parent="."]
