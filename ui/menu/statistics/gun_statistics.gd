@@ -52,8 +52,8 @@ func refresh_display():
         %ExplosionRadius.hide()
 
     if compare_to:
-        compare_to_gun_stats = GunStats.apply_modifiers(compare_to.gun_stats, GameState.stats_modifiers)
-        compare_to_bullet_stats = BulletStats.apply_modifiers(compare_to.bullet_stats, GameState.stats_modifiers)
+        compare_to_gun_stats = compare_to.gun_stats
+        compare_to_bullet_stats = compare_to.bullet_stats
 
     var diff_color = "46ce00"
 

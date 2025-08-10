@@ -242,22 +242,23 @@ func register_player_instance(_player) -> void:
 func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
     if !_new_gun:
         equipped_gun = null
+        base_equipped_gun_stats = null
+        base_equipped_bullet_stats = null
         return null
+
 
     if !equipped_gun:
         # do not display the gun swap menu the first time a gun is picked up
         equipped_gun = _new_gun
-        if _new_gun:
-            base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
-            base_equipped_bullet_stats = _new_gun.bullet_stats.duplicate(true)
-        else:
-            base_equipped_gun_stats = null
-            base_equipped_bullet_stats = null
+        base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
+        base_equipped_bullet_stats = _new_gun.bullet_stats.duplicate(true)
         compute_modifiers()
         equipped_gun_changed.emit(equipped_gun, "")
         return null
 
+    var new_gun_base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
     _new_gun.gun_stats = GunStats.apply_modifiers(_new_gun.gun_stats, stats_modifiers)
+    var new_gun_base_equipped_bullet_stats = _new_gun.bullet_stats.duplicate(true)
     _new_gun.bullet_stats = BulletStats.apply_modifiers(_new_gun.bullet_stats, stats_modifiers)
     gun_change_menu = preload("res://ui/menu/gun_change_menu.tscn").instantiate()
     gun_change_menu.change_proposed_gun(_new_gun)
@@ -268,8 +269,8 @@ func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
         var previous_gun_name = equipped_gun.gun_stats.name
         equipped_gun = _new_gun
         if _new_gun:
-            base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
-            base_equipped_bullet_stats = _new_gun.bullet_stats.duplicate(true)
+            base_equipped_gun_stats = new_gun_base_equipped_gun_stats
+            base_equipped_bullet_stats = new_gun_base_equipped_bullet_stats
         else:
             base_equipped_gun_stats = null
             base_equipped_bullet_stats = null
