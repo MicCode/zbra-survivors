@@ -11,7 +11,7 @@ func _ready():
 func update_display():
     %Bar.max_value = max_health
     %Bar.value = current_health
-    if Settings.game_settings.show_ennemies_healthbar:
+    if Settings.game_settings.show_ennemies_healthbar and current_health < max_health:
         %Bar.show()
     else:
         %Bar.hide()
@@ -22,3 +22,5 @@ func take_damage(damage: float):
 
     if current_health <= 0:
         depleted.emit()
+
+    update_display()

@@ -68,8 +68,7 @@ func spawn_ennemy():
         return
 
     var new_ennemy = spawn_random()
-    if randf() < GameState.ennemy_spawn_stats.elite_spawn_chance:
-        new_ennemy.stats.is_elite = true
+    new_ennemy.stats.is_elite = randf() < GameState.ennemy_spawn_stats.elite_spawn_chance
 
     new_ennemy.global_position = get_random_point(GameState.player_instance.global_position, SPAWN_DISTANCE_MIN, SPAWN_DISTANCE_MAX)
     new_ennemy.y_sort_enabled = true
@@ -103,6 +102,7 @@ func spawn_random() -> Ennemy:
         push_error("ennemy scene [" + scene_path + "] not found")
         return null
     var instance = scene.instantiate() as Ennemy
+    instance.stats = instance.stats.duplicate(true)
     instance.stats.resource_local_to_scene = true
     return instance
 
