@@ -6,11 +6,11 @@ var player_level: Array[GameStatLogEntry] = []
 var dps: Array[GameStatLogEntry] = []
 
 
-func add_last_points():
+func create_bounding_points():
     var last_timestamp = get_last_timestamp()
-    _add_last_point_in_array(player_xp, last_timestamp)
-    _add_last_point_in_array(player_level, last_timestamp)
-    _add_last_point_in_array(dps, last_timestamp)
+    _create_array_bounding_points(player_xp, last_timestamp)
+    _create_array_bounding_points(player_level, last_timestamp)
+    _create_array_bounding_points(dps, last_timestamp)
 
 func get_last_timestamp() -> float:
     return max(
@@ -19,7 +19,10 @@ func get_last_timestamp() -> float:
         _get_latest_timestamp_from_array(dps)
     )
 
-func _add_last_point_in_array(array:Array[GameStatLogEntry], last_timestamp: float):
+func _create_array_bounding_points(array:Array[GameStatLogEntry], last_timestamp: float):
+    var first_entry = array[0]
+    if first_entry.timestamp != 0:
+        array.push_front(GameStatLogEntry.create(0, 0.0))
     var last_entry = array[array.size() - 1]
     if last_entry.timestamp != last_timestamp:
         array.append(GameStatLogEntry.create(floor(last_timestamp), last_entry.value))

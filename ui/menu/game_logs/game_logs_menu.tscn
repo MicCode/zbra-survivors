@@ -1,30 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7lo0pt2nawb4"]
+[gd_scene load_steps=4 format=3 uid="uid://iol5urloos3y"]
 
-[ext_resource type="Script" uid="uid://dymnr4rghu88n" path="res://ui/menu/game_logs/game_logs_menu.gd" id="1_fsu8f"]
-[ext_resource type="PackedScene" uid="uid://dlwq4kmdb3bhs" path="res://addons/easy_charts/control_charts/chart.tscn" id="2_ht2w4"]
+[ext_resource type="PackedScene" uid="uid://b7lo0pt2nawb4" path="res://ui/menu/game_logs/game_logs_charts.tscn" id="1_fsu8f"]
+[ext_resource type="LabelSettings" uid="uid://brpnehk8qo03s" path="res://ui/theme/title.tres" id="1_ht2w4"]
+[ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="3_lanfd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsu8f"]
+[node name="GameLogsMenu" type="CanvasLayer"]
 
-[node name="GameLogsMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_fsu8f")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fsu8f")
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,17 +17,26 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="LevelChart" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_ht2w4")]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "TITLE_GAME_FINISHED"
+label_settings = ExtResource("1_ht2w4")
+
+[node name="GameLogsCharts" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_fsu8f")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="XpChart" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_ht2w4")]
-unique_name_in_owner = true
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_lanfd")
+text = "BUTTON_MAIN_MENU"
 
-[node name="DPSChart" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_ht2w4")]
-unique_name_in_owner = true
+[node name="RestartButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+text = "BUTTON_RESTART"

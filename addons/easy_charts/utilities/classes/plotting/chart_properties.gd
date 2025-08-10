@@ -26,7 +26,7 @@ var draw_vertical_grid: bool = true
 var draw_horizontal_grid: bool = true
 var draw_ticks: bool = true
 var draw_origin: bool = false
-var draw_grid_box: bool = true 
+var draw_grid_box: bool = true
 var show_tick_labels: bool = true
 var show_x_label: bool = true
 var show_y_label: bool = true
@@ -35,7 +35,7 @@ var show_title: bool = true
 ## If true will show the legend of your Chart on the right side of the frame.
 var show_legend: bool = false
 
-## If true will make the Chart interactive, i.e. the DataTooltip will be displayed when 
+## If true will make the Chart interactive, i.e. the DataTooltip will be displayed when
 ## hovering points with your mouse, and mouse_entered and mouse_exited signal will be emitted.
 var interactive: bool = false
 
@@ -45,7 +45,7 @@ var smooth_domain: bool = false
 
 ## If > 0, will limit the amount of points plotted in a Chart, discarding older values.
 ## [b]Note:[/b] this parameter will not make the Chart remove points from your Function objects,
-## instead older points will be just ignored. This will make your Function object x and y arrays 
+## instead older points will be just ignored. This will make your Function object x and y arrays
 ## grow linearly, but won't interfere with your own data.
 ## If you instead prefer to improve performances by completely remove older data from your Function
 ## object, consider calling the Function.remove_point(0) method before adding a new point and plotting

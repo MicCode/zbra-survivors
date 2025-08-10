@@ -13,7 +13,7 @@ extends Node
 # TODO log gun swap
 # TODO log items uses
 
-const LOGS_SAVE_DIR: String = "user://game_logs/"
+const LOGS_SAVE_DIR: String = "user://game_logs"
 
 var is_logging = false
 var start_timestamp: float = 0.0
@@ -62,10 +62,13 @@ func timestamp() -> int:
     return ceil((Time.get_unix_time_from_system() - start_timestamp) * 1000)
 
 func save_to_file():
-    Files.write_file(LOGS_SAVE_DIR + logs_filename, logs.to_dict())
+    # TODO add a csv export tool
+    Files.write_file(LOGS_SAVE_DIR.path_join(logs_filename), logs.to_dict())
 
 func load_from_latest_file() -> GameStatLogs:
-    var dict: Dictionary = Files.read_file(LOGS_SAVE_DIR + "game-log-1.json") # TODO make this dynamic and get the latest one in folder
+    var existing_log_files = DirAccess.get_files_at(LOGS_SAVE_DIR)
+    existing_log_files.sort()
+    var dict: Dictionary = Files.read_file(LOGS_SAVE_DIR.path_join(existing_log_files[existing_log_files.size() - 1]))
     return GameStatLogs.from_dict(dict)
 
 func get_new_filename() -> String:
