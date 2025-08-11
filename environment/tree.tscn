@@ -196,7 +196,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3bgjm"]
-radius = 5.5
+radius = 7.0
 height = 57.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eigig"]
@@ -217,12 +217,16 @@ unique_name_in_owner = true
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.196078)
+light_mask = 0
+visibility_layer = 4
 position = Vector2(-0.5, -6)
 scale = Vector2(2, 2)
 texture = ExtResource("1_xbm4e")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+light_mask = 4
+visibility_layer = 4
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_yygov")
 position = Vector2(0, -26)

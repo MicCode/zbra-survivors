@@ -3,4 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cy3eqa27xvapk" path="res://assets/sprites/environment/grass1.png" id="1_ssojx"]
 
 [node name="Grass1" type="Sprite2D"]
+light_mask = 4
+visibility_layer = 4
 texture = ExtResource("1_ssojx")

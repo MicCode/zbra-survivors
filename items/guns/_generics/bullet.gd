@@ -7,7 +7,7 @@ var pierced_bodies: int = 0
 var travelled_distance: float = 0.0
 var exploded = false
 
-func _init() -> void:
+func _enter_tree() -> void:
     if !bullet_stats:
         push_warning("bullet has no bullet_stats defined, falling back to default")
         bullet_stats = load("res://items/guns/_generics/stats/default_bullet_stats.tres")

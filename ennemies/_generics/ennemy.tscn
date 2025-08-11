@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ci36jx3vvoocj"]
+[gd_scene load_steps=22 format=3 uid="uid://ci36jx3vvoocj"]
 
 [ext_resource type="Script" uid="uid://dqlqlkjg6tqvc" path="res://ennemies/_generics/ennemy.gd" id="1_qdj7r"]
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_ce5i1"]
@@ -180,6 +180,9 @@ _data = {
 &"fade_away": SubResource("Animation_kedgy")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ce5i1"]
+polygon = PackedVector2Array(8, 3, 12, 12, 8, 21, 0, 24, -7, 22, -11, 16, -12, 9, -8, 3, -1, 0)
+
 [node name="Ennemy" type="CharacterBody2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -264,6 +267,11 @@ one_shot = true
 [node name="DamageSpawnTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, -27)
+occluder = SubResource("OccluderPolygon2D_ce5i1")
+occluder_light_mask = 8
 
 [connection signal="depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

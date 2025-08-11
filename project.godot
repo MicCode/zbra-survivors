@@ -206,6 +206,7 @@ locale/translations=PackedStringArray("res://assets/locales/locales.en.translati
 
 2d_render/layer_2="muzzle_flash"
 2d_render/layer_3="environment"
+2d_render/layer_4="ennemies"
 2d_physics/layer_1="player"
 2d_physics/layer_2="ennemies"
 2d_physics/layer_3="environment"
