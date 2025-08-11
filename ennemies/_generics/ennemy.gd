@@ -25,7 +25,7 @@ var fire_tick_s: float = 0.25
 var can_take_damage = false
 
 
-func _enter_tree() -> void:
+func _init() -> void:
     if !stats:
         push_error("ennemy has no stats defined")
 
@@ -60,30 +60,35 @@ func _physics_process(_delta):
         Minimap.moved(self, global_position)
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
-func handle_bullet_hit(bullet: Bullet):
-    if !can_take_damage:
-        return
-    var bullet_stats = bullet.bullet_stats
-    if !is_dead:
-        take_damage(bullet_stats.damage)
-        if bullet_stats.inflicts_fire:
-            play_hit_sound(true)
-            set_burning(
-                bullet_stats.fire_duration,
-                1 / bullet_stats.fire_tick_per_s,
-                bullet_stats.fire_damage
-            )
-        else:
-            play_hit_sound()
-            bleed(GameState.player_instance.global_position)
 
 func bleed(impact_from: Vector2):
     VisualEffects.bleed(global_position, impact_from)
 
+func handle_bullet_hit(bullet: Bullet):
+    if !can_take_damage:
+        return
+    if is_dead:
+        return
+
+    if bullet.bullet_stats.inflicts_fire:
+        set_burning(
+            bullet.bullet_stats.fire_duration,
+            1 / bullet.bullet_stats.fire_tick_per_s,
+            bullet.bullet_stats.fire_damage
+        )
+    else:
+        bleed(GameState.player_instance.global_position)
+
+    take_damage(bullet.bullet_stats.damage)
+
+
 func take_damage(damage: float):
     if !can_take_damage:
         return
+    if is_dead:
+        return
 
+    play_hit_sound()
     accumulated_damages += damage
     if has_node("%Health"):
         %Health.take_damage(damage)
@@ -98,7 +103,6 @@ func take_damage(damage: float):
         %DamageSpawnTimer.start(DAMAGE_MARKER_DELAY)
     else:
         previous_damage_indicator.set_damage(accumulated_damages)
-
 
 func play_hit_sound(burn_sound: bool = false):
     if hit_sound_repetition_timer != null:
@@ -134,10 +138,6 @@ func die():
     remove_child(%Health)
     GameState.register_ennemy_death(self)
     Minimap.untrack(self)
-
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-    if area is Bullet:
-        handle_bullet_hit(area as Bullet)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
