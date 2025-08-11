@@ -22,6 +22,7 @@ enum Music {
 ## Util function to display Music enum member as a string
 func music(_music: Music) -> String:
     match _music:
+        Music.NON_LAYERED: return "non-layered"
         Music.NOT_SET: return "not-set"
         Music.ELECTRO_1: return "electro-1"
         Music.ELECTRO_2: return "electro-2"
@@ -114,6 +115,7 @@ func _change_layer(new_layer: MusicLayer):
 ## Set a new layered music to be played with smooth crossfade from previously played music
 func set_music(new_music: Music):
     next_music = new_music
+    next_non_layered_music_filename = ""
 
 ## Set a new non layered music to be played with smooth crossfade from previously played music,
 ## this music will not have layered music features (changing intensity with layers) and must be the music filename, including extendion (without folder path)

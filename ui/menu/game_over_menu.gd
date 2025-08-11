@@ -6,6 +6,8 @@ const SHOW_TIME: float = 10.0
 var can_be_cancelled = false
 
 func _ready() -> void:
+    MusicManager.set_non_layered_music("game-over.ogg")
+    Sounds.game_over()
     slide_in().finished.connect(func():
         can_be_cancelled = true
         get_tree().create_timer(SHOW_TIME).timeout.connect(func():

@@ -84,6 +84,9 @@ func coin():
 
 func chest_open():
     SoundPlayer.play_sfx("chest-open.ogg")
+
+func game_over():
+    SoundPlayer.play_sfx("game-over.ogg", SfxOptions.from_dict({volume = -6.0}))
 #endregion
 
 #region Equipment
