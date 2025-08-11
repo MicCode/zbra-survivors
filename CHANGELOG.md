@@ -1,5 +1,19 @@
 
 - - -
+## 0.22.0 - 2025-08-11
+
+#### ➕ New features
+- **(ui)** show end game screen when game over or left game
+- **(ui)** created end game screen that shows game stats history
+#### 🪲 Bug fixes
+- **(gameplay)** boss now can take fire damages
+- **(gameplay)** fixed explosive bullets sometimes not exploding when hitting ennemies
+- **(gameplay)** fixed player and ennemies hitbox which wouldnt register in some cases
+- **(ui)** improved game over menu
+- **(visual)** fixed laggy fire effect
+
+- - -
+
 ## 0.21.0 - 2025-08-10
 
 #### ➕ New features
