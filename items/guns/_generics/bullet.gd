@@ -5,8 +5,9 @@ class_name Bullet
 
 var pierced_bodies: int = 0
 var travelled_distance: float = 0.0
+var exploded = false
 
-func _enter_tree() -> void:
+func _init() -> void:
     if !bullet_stats:
         push_warning("bullet has no bullet_stats defined, falling back to default")
         bullet_stats = load("res://items/guns/_generics/stats/default_bullet_stats.tres")
@@ -21,6 +22,8 @@ func _physics_process(delta):
 func _on_body_entered(body: Node2D):
     if body is Ennemy || body is Boss1:
         pierce(body)
+        if body.has_method("handle_bullet_hit"):
+            body.handle_bullet_hit(self)
 
 func _on_area_entered(area: Area2D) -> void:
     var parent = area.get_parent()
@@ -34,7 +37,7 @@ func pierce(_body: Node2D):
         get_tree().create_timer(bullet_stats.disapear_delay).timeout.connect(func(): call_deferred("queue_free"))
 
 func detonate_if_explosive():
-    if bullet_stats.is_explosive:
+    if bullet_stats.is_explosive and not exploded:
         var explosive_effect: ExplosiveEffect = load("res://effects/explosive_effect.tscn").instantiate()
         explosive_effect.global_position = global_position
         explosive_effect.damage = bullet_stats.explosion_damage
@@ -42,3 +45,4 @@ func detonate_if_explosive():
         explosive_effect.is_from_bullet = true
         SceneManager.current_scene.add_child(explosive_effect)
         explosive_effect.explode()
+        exploded = true

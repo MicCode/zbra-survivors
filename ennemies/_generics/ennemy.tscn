@@ -67,10 +67,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a4ja4"]
-radius = 15.0
+radius = 12.0416
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gicfc"]
-radius = 17.0
+radius = 15.0
 
 [sub_resource type="Animation" id="Animation_2yt3l"]
 length = 0.001
@@ -213,8 +213,9 @@ frame_progress = 0.0701159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -14)
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_a4ja4")
+debug_color = Color(0, 0.6, 0.701961, 0.0470588)
 
 [node name="Health" parent="." instance=ExtResource("6_o0wmw")]
 unique_name_in_owner = true
@@ -238,7 +239,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_gicfc")
-debug_color = Color(0.838792, 0.353043, 0.410436, 0.42)
+debug_color = Color(0.839216, 0.352941, 0.411765, 0.0588235)
 
 [node name="DamageAnchor" type="Marker2D" parent="."]
 unique_name_in_owner = true

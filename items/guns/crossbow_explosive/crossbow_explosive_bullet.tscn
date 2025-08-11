@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://2ee6a1rfr82t"]
+[gd_scene load_steps=9 format=3 uid="uid://2ee6a1rfr82t"]
 
 [ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/guns/_generics/bullet.tscn" id="1_1iay1"]
+[ext_resource type="Script" uid="uid://b5yy56xkwh03i" path="res://items/guns/crossbow_explosive/crossbow_explosive_bullet.gd" id="2_61ruf"]
 [ext_resource type="Resource" uid="uid://ipf8tusfj8md" path="res://items/guns/crossbow_explosive/stats/crossbow_explosive_bullet_stats.tres" id="2_q6m1m"]
 [ext_resource type="Texture2D" uid="uid://bf0o06x3egowa" path="res://assets/sprites/items/crossbow/crossbow-dart-explosive.png" id="3_k1ebq"]
 
@@ -34,6 +35,7 @@ animations = [{
 }]
 
 [node name="CrossbowExplosiveBullet" instance=ExtResource("1_1iay1")]
+script = ExtResource("2_61ruf")
 bullet_stats = ExtResource("2_q6m1m")
 
 [node name="BulletSprite" parent="." index="1"]
