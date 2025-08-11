@@ -20,21 +20,26 @@ func _physics_process(delta):
 
 func start_chase():
     %Sprite.play("walk")
-    %ShootTimer.start(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S))
+    get_tree().create_timer(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S)).timeout.connect(func():
+        call_deferred("shoot")
+    )
 
 func shoot():
-    if !is_dead:
+    if !is_dead and GameState.player_state.is_alive:
         %Sprite.play("shoot")
-        %ShootDelayTimer.start(SHOOT_START_DELAY_S)
+        get_tree().create_timer(SHOOT_START_DELAY_S).timeout.connect(func():
+            var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()
+            SceneManager.current_scene.add_child(bullet)
+            bullet.global_position = %ShootPoint.global_position
+            bullet.scale = scale * 1.5
+            bullet.look_at(player.global_position)
+            Sounds.zap()
+        )
+        # shoot again after cooldown
+        get_tree().create_timer(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S)).timeout.connect(func():
+            call_deferred("shoot")
+        )
         is_shooting = true
-
-func _on_shoot_delay_timer_timeout() -> void:
-    var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()
-    SceneManager.current_scene.add_child(bullet)
-    bullet.global_position = %ShootPoint.global_position
-    bullet.scale = scale * 1.5
-    bullet.look_at(player.global_position)
-    Sounds.zap()
 
 func handle_bullet_hit(bullet: Bullet):
     if bullet is BossBullet:
@@ -74,13 +79,7 @@ func _on_sprite_animation_finished() -> void:
         is_shooting = false
         %Sprite.play("walk")
 
-func _on_shoot_timer_timeout() -> void:
-    call_deferred("shoot")
-
 func _on_wither_radius_body_entered(body: Node2D) -> void:
     if body is EnvTree:
         if !body.is_destroyed:
             body.wither()
-
-func _exit_tree() -> void:
-    Minimap.untrack(self)

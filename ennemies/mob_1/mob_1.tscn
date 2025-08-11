@@ -21,5 +21,4 @@ script = ExtResource("2_qj5oq")
 stats = ExtResource("3_b1uhc")
 
 [node name="Sprite" parent="." index="2"]
-z_as_relative = false
 material = SubResource("ShaderMaterial_iurdm")

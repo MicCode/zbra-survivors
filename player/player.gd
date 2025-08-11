@@ -24,6 +24,9 @@ var block_item_use = false
 var dash_cooldown: SceneTreeTimer
 var timewarp_ghost_interval: float = 0.05
 
+func _init() -> void:
+    GameState._reset_player()
+
 func _ready():
     randomize()
     init_health()

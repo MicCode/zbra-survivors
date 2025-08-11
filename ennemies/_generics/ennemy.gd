@@ -25,7 +25,7 @@ var fire_tick_s: float = 0.25
 var can_take_damage = false
 
 
-func _init() -> void:
+func _enter_tree() -> void:
     if !stats:
         push_error("ennemy has no stats defined")
 
@@ -88,7 +88,6 @@ func take_damage(damage: float):
     if is_dead:
         return
 
-    play_hit_sound()
     accumulated_damages += damage
     if has_node("%Health"):
         %Health.take_damage(damage)
@@ -104,10 +103,10 @@ func take_damage(damage: float):
     else:
         previous_damage_indicator.set_damage(accumulated_damages)
 
-func play_hit_sound(burn_sound: bool = false):
+func play_hit_sound():
     if hit_sound_repetition_timer != null:
         return
-    if burn_sound:
+    if is_burning:
         Sounds.burn_hit()
     else:
         Sounds.hit()
@@ -137,7 +136,6 @@ func die():
     VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
     remove_child(%Health)
     GameState.register_ennemy_death(self)
-    Minimap.untrack(self)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -168,3 +166,6 @@ func _on_fire_animation_animation_finished(anim_name: StringName) -> void:
         %FireAnimation.stop()
         %FireLight.hide()
 #endregion
+
+func _exit_tree() -> void:
+    Minimap.untrack(self)

@@ -9,8 +9,9 @@ var dash_ghost_interval: float = 0.01
 var timewarp_ghost_interval: float = 0.5
 
 func _ready() -> void:
-    dash_duration = GameState.player_state.dash_duration
-    dash_cooldown = GameState.player_state.dash_cooldown
+    if GameState.player_state:
+        dash_duration = GameState.player_state.dash_duration
+        dash_cooldown = GameState.player_state.dash_cooldown
     GameState.player_state_changed.connect(func(player_state: PlayerState):
         dash_duration = player_state.dash_duration
         dash_cooldown = player_state.dash_cooldown

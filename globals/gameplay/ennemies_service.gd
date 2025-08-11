@@ -76,12 +76,15 @@ func spawn_ennemy():
     mob_spawn_timer.start(GameState.ennemy_spawn_stats.spawn_time)
     GameState.increment_total_spawned(1)
 
-func spawn_boss():
+func spawn_boss(force_position = false, forced_position: Vector2 = Vector2(0,0)):
     if !is_boss_spawned:
         is_boss_spawned = true
         var boss = preload("res://ennemies/boss_1/boss_1.tscn").instantiate()
         boss.scale = Vector2(2.5, 2.5)
-        boss.global_position = get_random_point(GameState.player_instance.global_position, SPAWN_DISTANCE_MIN, SPAWN_DISTANCE_MAX)
+        if !force_position:
+            boss.global_position = get_random_point(GameState.player_instance.global_position, SPAWN_DISTANCE_MIN, SPAWN_DISTANCE_MAX)
+        else:
+            boss.global_position = forced_position
         SceneManager.current_scene.add_child(boss)
         MusicManager.set_music(MusicManager.Music.METAL_2)
 
