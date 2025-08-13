@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdr8rck7r5wts"]
+[gd_scene load_steps=17 format=3 uid="uid://cdr8rck7r5wts"]
 
 [ext_resource type="Script" uid="uid://5arw325siv8x" path="res://items/guns/_generics/gun.gd" id="1_wwnuv"]
 [ext_resource type="Texture2D" uid="uid://xnd37rmkthv" path="res://assets/sprites/items/gun-firing.png" id="2_aj33k"]
@@ -88,6 +88,12 @@ _data = {
 [sub_resource type="Gradient" id="Gradient_sbo7a"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkaqw"]
+bg_color = Color(0.6, 0.6, 0.6, 0.117647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iaigw"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_wwnuv")
 
@@ -172,10 +178,12 @@ position = Vector2(-5, -16)
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.784314)
 offset_left = -3.0
-offset_top = 6.0
-offset_right = 19.0
-offset_bottom = 10.0
-scale = Vector2(0.647619, 0.498367)
+offset_top = 4.0
+offset_right = 12.0
+offset_bottom = 6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vkaqw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iaigw")
+value = 30.52
 show_percentage = false
 
 [node name="CooldownTimer" type="Timer" parent="."]

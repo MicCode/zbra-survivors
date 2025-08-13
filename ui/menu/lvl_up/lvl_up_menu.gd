@@ -35,15 +35,15 @@ func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Modifiers.Mod):
     )
 
 func _on_choice_excluded_changed(clicked_choice: LvlUpChoice, mod: Modifiers.Mod, excluded: bool):
-    var existing_exclusion = Modifiers.excluded.filter(func(m: Modifiers.Mod): return is_same(m, mod))
+    var existing_exclusion = Modifiers.excluded.filter(func(n: Modifiers.Name): return n == mod.name)
     if excluded and existing_exclusion.is_empty():
-        Modifiers.excluded.append(mod)
+        Modifiers.excluded.append(mod.name)
         clicked_choice.modulate = Color(Color.WHITE, 0.5)
         GameState.lvl_up_exclusions_remaining -= 1
         refresh_counters()
         #print("excluded mod [%s]" % mod.name)
     elif !excluded and !existing_exclusion.is_empty():
-        Modifiers.excluded = Modifiers.excluded.filter(func(m: Modifiers.Mod): return !is_same(m, mod))
+        Modifiers.excluded = Modifiers.excluded.filter(func(n: Modifiers.Name): return n == mod.name)
         clicked_choice.modulate = Color.WHITE
         GameState.lvl_up_exclusions_remaining += 1
         refresh_counters()
@@ -78,7 +78,7 @@ func reroll():
         if child is LvlUpChoice:
             child.queue_free()
 
-    for mod in pick_random_modifiers(3):
+    for mod in Modifiers.random_pick_n(3):
         var choice: LvlUpChoice = preload("res://ui/menu/lvl_up/lvl_up_choice.tscn").instantiate()
         choice.set_stat_modifier(mod)
         %Choices.add_child(choice)
@@ -88,23 +88,6 @@ func reroll():
 
     if Controls.is_joypad_connected():
         choices[0].force_focus()
-
-func pick_random_modifiers(n: int) -> Array[Modifiers.Mod]:
-    # TODO implement a more context aware picking system ? like better modifiers as the player level increases
-    var picked: Array[Modifiers.Mod] = []
-    for i in n:
-        var pickable: Array[Modifiers.Mod] = Modifiers.all.filter(func(m: Modifiers.Mod):
-            if Modifiers.excluded.any(func(p: Modifiers.Mod): return is_same(p, m)):
-                return false
-
-            return not picked.any(func(p: Modifiers.Mod):
-                return is_same(p, m)
-            )
-        )
-        if not pickable.is_empty():
-            var rnd = randi_range(0, pickable.size() - 1)
-            picked.append(pickable[rnd])
-    return picked
 
 func refresh_counters():
     %ExcludeCountLabel.text = str("(%d)" % GameState.lvl_up_exclusions_remaining)
@@ -140,6 +123,3 @@ func slide_out() -> PropertyTweener:
         in_animation = false
     )
     return create_tween().tween_property(%Panel, "position", Vector2(0.0, %Panel.size.y), ANIMATION_TIME)
-
-func is_same(mod1: Modifiers.Mod, mod2: Modifiers.Mod) -> bool:
-    return mod1.name == mod2.name and mod1.type == mod2.type

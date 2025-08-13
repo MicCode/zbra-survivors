@@ -33,6 +33,8 @@ enum State {
 const MAX_ELAPSED_TIME: float = 400.0
 const MAX_PLAYER_LEVEL: int = 100
 const MIN_SPAWN_TIME: float = 0.5
+const MODIFIER_CHANCE_DECREASE_PERCENT_PER_PICK: float = 20.0
+const XP_INCREASE_PERCENT_PER_LEVEL: float = 25.0
 
 var player_instance: Player
 var game_ui_instance: GameUI
@@ -90,6 +92,7 @@ func start_new_game():
     Modifiers.excluded.clear()
     EnnemiesService.reset()
     _reset_player()
+    Modifiers.init_modifiers_chances()
 
     # emit first events to refresh all listening components
     boss_changed.emit(null, 0.0)
@@ -101,6 +104,7 @@ func start_new_game():
     # start game
     GameLogger.start_logging()
     change_state(State.RUNNING)
+
 
 func update_music_intensity():
     var intensity = 0
@@ -185,7 +189,7 @@ func gain_xp(xp: float) -> void:
     while player_state.xp >= player_state.next_level_xp:
         var excess = player_state.xp - player_state.next_level_xp
         player_state.xp = excess
-        player_state.next_level_xp += player_state.next_level_xp / 4
+        player_state.next_level_xp = Utils.add_percent(player_state.next_level_xp, XP_INCREASE_PERCENT_PER_LEVEL)
         player_state.level += 1
         new_level_gained += 1
 
@@ -205,6 +209,7 @@ func register_new_modifier(new_mod: Modifiers.Mod):
         existing_modifiers[0].modifier_value += new_stats_modifier.modifier_value
 
     stats_modifiers_changed.emit()
+    Modifiers.decrease_chance(new_mod.name, MODIFIER_CHANCE_DECREASE_PERCENT_PER_PICK)
     compute_modifiers(new_stats_modifier)
 
 func compute_modifiers(new_stats_modifier: StatsModifier = null):

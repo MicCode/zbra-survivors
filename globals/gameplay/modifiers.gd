@@ -1,6 +1,7 @@
 extends Node
 
 const MODIFIERS_TEXTURES_FOLDER: String = "res://assets/sprites/modifiers"
+const DEBUG_MODE: bool = true
 
 var all: Array[Mod] = [
     # PLAYER MODS
@@ -31,7 +32,8 @@ var all: Array[Mod] = [
     Mod.create(Name.FIRE_DURATION, Type.FIRE, "fire_duration", "fire-duration-up", 15.0),
     Mod.create(Name.FIRE_FREQUENCY, Type.FIRE, "fire_tick_per_s", "fire-frequency-up", 10.0),
 ]
-var excluded: Array[Mod] = []
+var excluded: Array[Name] = []
+var drop_chances: Dictionary[Name, float] = {}
 
 enum Name {
     # PLAYER MODIFIERS
@@ -118,6 +120,46 @@ func get_type_label(type: Type) -> String:
         _:
             push_warning("Unknown Modifiers.Type with index [%d]" % type)
             return "???"
+
+func init_modifiers_chances():
+    drop_chances = {}
+    for mod in Modifiers.all:
+        drop_chances.set(mod.name, 1.0) # TODO do not set all modifiers with same probability ? make some increase with player level ?
+
+func random_pick_n(n: int) -> Array[Mod]:
+    # TODO implement a more context aware picking system ? like better modifiers as the player level increases
+    var picked_names: Array[Name] = []
+    for i in n:
+        var pickable: Array[Name] = []
+        for mod in all:
+            if excluded.has(mod.name) or picked_names.has(mod.name):
+                continue
+            pickable.append(mod.name)
+
+        if not pickable.is_empty():
+            var filtered_drop_chances: Dictionary[Name, float] = {}
+            for mod_name in pickable:
+                filtered_drop_chances.set(mod_name, drop_chances.get(mod_name))
+            picked_names.append(Utils.weighted_pick(filtered_drop_chances) as Name)
+
+    var picked_mods = all.filter(func(m: Mod): return picked_names.has(m.name))
+    return picked_mods
+
+## Decrease in percent applied to a modifier so it has less chance to be randomly picked at next level up
+func decrease_chance(mod_name: Name, decrease_percent: float):
+    if drop_chances.has(mod_name):
+        var current_chance: float = drop_chances.get(mod_name)
+        drop_chances.set(mod_name, Utils.sub_percent(current_chance, decrease_percent))
+        if DEBUG_MODE: print_modifiers_chances()
+
+func print_modifiers_chances():
+    print("#### STATS MODIFIERS DROP CHANCES ####")
+    for key in drop_chances.keys():
+        print("  - %s: %.2f" % [get_name_label(key), drop_chances.get(key)])
+    print("######################################")
+
+func are_same_mods(mod1: Modifiers.Mod, mod2: Modifiers.Mod) -> bool:
+    return mod1.name == mod2.name and mod1.type == mod2.type
 
 class Mod:
     var name: Name
