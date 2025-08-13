@@ -111,13 +111,15 @@ func recoil():
     recoil_distance = gun_stats.recoil_distance
 
 func spawn_bullets():
+    var additional_speed_variation = 0.0
+    var additional_spread_angle = 0.0
     for i in range(0, gun_stats.bullets_per_shot):
         var new_bullet = GunService.create_projectile(gun_stats.name)
         new_bullet.bullet_stats = bullet_stats.duplicate(true)
 
         var speed_offset = randf_range(
-            1 - bullet_stats.speed_variation,
-            1 + bullet_stats.speed_variation
+            1 - bullet_stats.speed_variation - additional_speed_variation,
+            1 + bullet_stats.speed_variation + additional_speed_variation
         )
         new_bullet.bullet_stats.speed = bullet_stats.speed * speed_offset
         new_bullet.global_position = %ShootingPoint.global_position
@@ -125,12 +127,18 @@ func spawn_bullets():
 
         var spread_angle_offset = deg_to_rad(
             randf_range(
-                - gun_stats.bullets_spread_angle_deg,
-                gun_stats.bullets_spread_angle_deg
+                - gun_stats.bullets_spread_angle_deg - additional_spread_angle,
+                gun_stats.bullets_spread_angle_deg + additional_spread_angle
             ) / 2
         )
         new_bullet.global_rotation = %ShootingPoint.global_rotation + spread_angle_offset
         SceneManager.current_scene.add_child(new_bullet)
+
+        # add variation to other bullets if multiple are launched per shot
+        if bullet_stats.speed_variation == 0.0 and gun_stats.bullets_per_shot > 1:
+            additional_speed_variation = 0.3
+        if gun_stats.bullets_spread_angle_deg == 0.0 and gun_stats.bullets_per_shot > 1:
+            additional_spread_angle = 5.0
 
 func eject_cartridge():
     # TODO make shell configurable to vary between guns
