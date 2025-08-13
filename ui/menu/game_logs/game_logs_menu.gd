@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+func _init():
+    Settings.load_from_file()
+
 func _ready() -> void:
     %RestartButton.grab_focus()
 

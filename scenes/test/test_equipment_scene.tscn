@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=22 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" uid="uid://defjyi8hd43wt" path="res://scenes/test/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_cg6cr"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bdtx1ty1p5o4x" path="res://items/loot_chest.tscn" id="16_uihtm"]
 [ext_resource type="PackedScene" uid="uid://bpfdwmylfvsgq" path="res://items/guns/crossbow/crossbow_collectible.tscn" id="17_3b7a8"]
 [ext_resource type="PackedScene" uid="uid://cg4sxevibdowf" path="res://items/guns/crossbow_explosive/crossbow_explosive_collectible.tscn" id="18_xivjq"]
+[ext_resource type="PackedScene" uid="uid://c2mm0b645vk0j" path="res://items/guns/machine_gun/machine_gun_collectible.tscn" id="19_hxii2"]
 [ext_resource type="PackedScene" uid="uid://dx58nvbmorlfh" path="res://items/consumables/timewrap_clock/timewrap_clock.tscn" id="19_v766q"]
 [ext_resource type="PackedScene" uid="uid://7a43kh2mnegh" path="res://items/guns/crossbow_fire/crossbow_fire_collectible.tscn" id="20_6o6iq"]
 
@@ -127,7 +128,7 @@ xp_value = 10.0
 [node name="Items" type="Node2D" parent="."]
 
 [node name="TimewrapClockCollectible" parent="Items" instance=ExtResource("19_v766q")]
-position = Vector2(580, 656)
+position = Vector2(705, 598)
 
 [node name="LifeFlask2" parent="Items" instance=ExtResource("13_6k7wn")]
 y_sort_enabled = true
@@ -141,11 +142,11 @@ position = Vector2(101, 65)
 position = Vector2(883, 481)
 
 [node name="MineCollectible" parent="Items" instance=ExtResource("15_ktnje")]
-position = Vector2(414, 657)
+position = Vector2(665, 627)
 
 [node name="RadianceFlask" parent="Items" instance=ExtResource("12_vs4yp")]
 y_sort_enabled = true
-position = Vector2(494, 658)
+position = Vector2(620, 657)
 radiance_duration = 5.0
 
 [node name="RadianceFlask2" parent="Items" instance=ExtResource("12_vs4yp")]
@@ -163,6 +164,9 @@ position = Vector2(1210, 607)
 
 [node name="XpCollector3" parent="Items" instance=ExtResource("14_wrh14")]
 position = Vector2(1382, 76)
+
+[node name="MachineGunCollectible" parent="Items" instance=ExtResource("19_hxii2")]
+position = Vector2(391, 637)
 
 [node name="Chests" type="Node2D" parent="."]
 

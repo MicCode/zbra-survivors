@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2mm0b645vk0j"]
+
+[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://items/guns/_generics/gun_collectible.tscn" id="1_r1hv4"]
+[ext_resource type="Resource" uid="uid://64k0xj44u1fs" path="res://items/guns/machine_gun/stats/machine_gun_stats.tres" id="2_a3ooy"]
+[ext_resource type="Resource" uid="uid://53gbkh2lh6fk" path="res://items/guns/machine_gun/stats/machine_gun_bullet_stats.tres" id="3_u8j57"]
+[ext_resource type="Texture2D" uid="uid://coujk1q6511n2" path="res://assets/sprites/items/machine-gun-idle.png" id="4_5eblw"]
+
+[node name="MachineGunCollectible" instance=ExtResource("1_r1hv4")]
+gun_stats = ExtResource("2_a3ooy")
+bullet_stats = ExtResource("3_u8j57")
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource("4_5eblw")
