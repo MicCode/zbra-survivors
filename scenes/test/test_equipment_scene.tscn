@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=23 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" uid="uid://defjyi8hd43wt" path="res://scenes/test/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_cg6cr"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c2mm0b645vk0j" path="res://items/guns/machine_gun/machine_gun_collectible.tscn" id="19_hxii2"]
 [ext_resource type="PackedScene" uid="uid://dx58nvbmorlfh" path="res://items/consumables/timewrap_clock/timewrap_clock.tscn" id="19_v766q"]
 [ext_resource type="PackedScene" uid="uid://7a43kh2mnegh" path="res://items/guns/crossbow_fire/crossbow_fire_collectible.tscn" id="20_6o6iq"]
+[ext_resource type="PackedScene" uid="uid://dixw4ln2q08f7" path="res://items/guns/laser_gun/laser_gun_collectible.tscn" id="20_qi8ps"]
 
 [node name="TreeTestScene" type="Node2D"]
 y_sort_enabled = true
@@ -167,6 +168,9 @@ position = Vector2(1382, 76)
 
 [node name="MachineGunCollectible" parent="Items" instance=ExtResource("19_hxii2")]
 position = Vector2(391, 637)
+
+[node name="LaserGunCollectible" parent="Items" instance=ExtResource("20_qi8ps")]
+position = Vector2(516, 642)
 
 [node name="Chests" type="Node2D" parent="."]
 

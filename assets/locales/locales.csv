@@ -97,3 +97,5 @@ TOOLTIP_INCENDIARY_BULLETS,Incendiary bullets,Projectiles incendiaires
 SETTING_SHOW_ENNEMIES_HEALTHBAR,Show ennemies healthbars,Afficher les barres de vie des ennemis
 LABEL_TOTAL_XP,Total XP,Expérience totale
 TITLE_GAME_FINISHED,Game finished,Partie terminée
+GUN_MACHINE_GUN,Machine gun,Machine gun
+GUN_LASER_GUN,Laser gun,Pistolet laser

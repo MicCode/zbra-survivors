@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="GunStats" load_steps=4 format=3 uid="uid://yqlv67u372cr"]
+
+[ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://items/guns/_generics/stats/gun_stats.gd" id="1_qv3o6"]
+[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/sound/settings/sfx_options.gd" id="2_qv3o6"]
+
+[sub_resource type="Resource" id="Resource_1kejt"]
+script = ExtResource("2_qv3o6")
+pitch = 0.6
+pitch_variation = 0.0
+volume = 6.0
+start_delay_ms = 0.0
+start_delay_variation_ms = 0.0
+max_per_s = 10.0
+metadata/_custom_type_script = "uid://cf4neewdadfmv"
+
+[resource]
+script = ExtResource("1_qv3o6")
+name = "laser_gun"
+display_name = "GUN_LASER_GUN"
+shots_per_s = 1.0
+bullets_spread_angle_deg = 0.0
+bullets_per_shot = 1.0
+shoot_sound = "laser-gun"
+is_sound_folder = true
+shoot_sfx_options = SubResource("Resource_1kejt")
+eject_cartridges = false
+show_muzzle_flash = true
+has_laser_dot = true
+recoil_distance = 0.0
+haptic_feedback = 0
+metadata/_custom_type_script = "uid://hiuor4oyrxjg"
