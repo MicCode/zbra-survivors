@@ -1,10 +1,6 @@
 extends Resource
 class_name GunStats
 
-@export_group("Display")
-@export var name = "gun"
-@export var display_name = "gun"
-
 @export_group("Attack")
 @export var shots_per_s: float = 1.0
 @export var bullets_spread_angle_deg: float = 0.0

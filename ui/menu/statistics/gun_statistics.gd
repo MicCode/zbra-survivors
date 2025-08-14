@@ -61,7 +61,7 @@ func refresh_display():
     %NoGun.hide()
 
     %SubtitleLabel.text = tr(subtitle_label)
-    %GunName.text = tr(gun_stats.display_name)
+    %GunName.text = "GUN_" + gun.get_gun_name().to_upper()
 
     %Damage.set_value(bullet_stats.damage)
     if compare_to:

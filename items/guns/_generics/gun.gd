@@ -114,7 +114,7 @@ func spawn_bullets():
     var additional_speed_variation = 0.0
     var additional_spread_angle = 0.0
     for i in range(0, gun_stats.bullets_per_shot):
-        var new_bullet = GunService.create_projectile(gun_stats.name)
+        var new_bullet = GunService.create_projectile(get_gun_name())
         new_bullet.bullet_stats = bullet_stats.duplicate(true)
 
         var speed_offset = randf_range(
@@ -163,3 +163,8 @@ func _on_cooldown_timer_timeout():
         if !Controls.is_pressed(Controls.PlayerAction.SHOOT):
             %Sprite.play("idle")
         cooling_down = false
+
+func get_gun_name() -> String:
+    var scene_path = get_scene_file_path()
+    var parts = scene_path.get_base_dir().split("/")
+    return parts[-1]

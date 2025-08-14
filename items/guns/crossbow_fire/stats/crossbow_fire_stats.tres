@@ -15,8 +15,6 @@ metadata/_custom_type_script = "uid://cf4neewdadfmv"
 
 [resource]
 script = ExtResource("1_q035d")
-name = "crossbow_fire"
-display_name = "GUN_CROSSBOW_FIRE"
 shots_per_s = 1.0
 bullets_spread_angle_deg = 10.0
 bullets_per_shot = 1.0

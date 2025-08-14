@@ -5,8 +5,6 @@
 
 [resource]
 script = ExtResource("1_a26qv")
-name = "gun"
-display_name = "gun"
 shots_per_s = 1.0
 bullets_spread_angle_deg = 0
 bullets_per_shot = 1

@@ -160,7 +160,7 @@ func compare_gun(collectible: GunCollectible):
     if is_pickup_blocked:
         return
 
-    var change_menu = GunService.change_equipped_gun(GunService.create_gun(collectible.gun_stats.name))
+    var change_menu = GunService.change_equipped_gun(GunService.create_gun(collectible.get_gun_name()))
     if !change_menu:
         free_collectible(collectible)
         return
@@ -171,7 +171,7 @@ func compare_gun(collectible: GunCollectible):
 func equip_gun(new_gun: Gun, previous_gun_name: String):
     if equiped_gun:
         equiped_gun.queue_free()
-    if previous_gun_name and !previous_gun_name.is_empty():
+    if previous_gun_name:
         var collectible_to_drop = GunService.create_collectible(previous_gun_name)
         collectible_to_drop.global_position = global_position
         SceneManager.current_scene.add_child(collectible_to_drop)

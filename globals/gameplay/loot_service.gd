@@ -1,31 +1,19 @@
 extends Node
 
 var loot_chances: LootChances
-var all_known_gun_names: Array[String] = [
-    "flamethrower",
-    "pistol",
-    "rifle",
-    "shotgun",
-    "sniper",
-    "crossbow",
-    "crossbow_explosive",
-    "crossbow_fire",
-    "machine_gun",
-    "laser_gun"
-]
 
 func reset():
     loot_chances = preload("res://player/state/default_loot_chances.tres").duplicate()
 
 func get_random_gun() -> Gun:
-    var possible_gun_names = all_known_gun_names
+    var possible_guns: Array[String] = GunService.all_gun_names
     if GunService.equipped_gun != null:
-        possible_gun_names = all_known_gun_names.filter(func(gn: String): return gn != GunService.equipped_gun.gun_stats.name)
+        possible_guns = possible_guns.filter(func(gn: String): return gn != GunService.equipped_gun.get_gun_name())
 
     # TODO improve this random pick and make gun statistics random as well
     # TODO give different pick chance to each gun ?
 
-    return GunService.create_gun(possible_gun_names[randi_range(0, possible_gun_names.size() - 1)])
+    return GunService.create_gun(possible_guns[randi_range(0, possible_guns.size() - 1)])
 
 func get_random_item() -> Node2D:
     # TODO implement a better random loot system
@@ -39,5 +27,5 @@ func get_random_item() -> Node2D:
         return preload("res://items/consumables/xp_collector/xp_collector.tscn").instantiate()
     if randf() <= LootService.loot_chances.land_mine_chance:
         return preload("res://items/consumables/mine/mine_collectible.tscn").instantiate()
-    
+
     return null

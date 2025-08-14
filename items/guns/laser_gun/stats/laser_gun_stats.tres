@@ -15,8 +15,6 @@ metadata/_custom_type_script = "uid://cf4neewdadfmv"
 
 [resource]
 script = ExtResource("1_qv3o6")
-name = "laser_gun"
-display_name = "GUN_LASER_GUN"
 shots_per_s = 1.0
 bullets_spread_angle_deg = 0.0
 bullets_per_shot = 1.0

@@ -17,3 +17,8 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
     Minimap.untrack(self)
+
+func get_gun_name() -> String:
+    var scene_path = get_scene_file_path()
+    var parts = scene_path.get_base_dir().split("/")
+    return parts[-1]

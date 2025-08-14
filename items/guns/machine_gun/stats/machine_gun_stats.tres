@@ -15,8 +15,6 @@ metadata/_custom_type_script = "uid://cf4neewdadfmv"
 
 [resource]
 script = ExtResource("1_cp26n")
-name = "machine_gun"
-display_name = "GUN_MACHINE_GUN"
 shots_per_s = 50.0
 bullets_spread_angle_deg = 15.0
 bullets_per_shot = 1.0
