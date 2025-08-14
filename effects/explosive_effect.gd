@@ -12,7 +12,7 @@ var triggered = false
 var already_damaged_nodes = []
 
 func explode():
-    GameState.shake_screen.emit(5.0)
+    GameService.shake_screen.emit(5.0)
     if is_from_bullet:
         Sounds.explosion(-15.0)
     else:
@@ -23,7 +23,7 @@ func explode():
     %ExplosionPanel.position = Vector2(0, 0)
     %ExplosionPanel.show()
 
-    var modified_explosion_radius = explosion_radius * GameState.explosions_radius / 100
+    var modified_explosion_radius = explosion_radius * PlayerService.explosions_radius / 100
     triggered = true
     #get_tree().create_tween().tween_property(%Sprite2D, "modulate", Color.TRANSPARENT, expansion_time / 10)
     get_tree().create_tween().tween_property(%ExplosionPanel, "size", Vector2(modified_explosion_radius * 4, modified_explosion_radius * 4), expansion_time).finished.connect(func():
@@ -49,7 +49,7 @@ func deal_damage():
         if !already_damaged_nodes.has(body_id):
             already_damaged_nodes.append(body_id)
             if overlapping_body is Ennemy:
-                (overlapping_body as Ennemy).take_damage(damage * GameState.explosions_damage / 100)
+                (overlapping_body as Ennemy).take_damage(damage * PlayerService.explosions_damage / 100)
             elif overlapping_body is EnvTree:
                 (overlapping_body as EnvTree).explode()
             elif overlapping_body is LandMine:

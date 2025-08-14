@@ -38,7 +38,7 @@ func _ready():
         scale = scale * 1.5
 
     health = stats.max_health
-    player = GameState.player_instance
+    player = PlayerService.player_instance
     %Sprite.connect("animation_finished", _on_animation_finished)
     %Health.max_health = stats.max_health
     %Health.current_health = health
@@ -77,7 +77,7 @@ func handle_bullet_hit(bullet: Bullet):
             bullet.bullet_stats.fire_damage
         )
     else:
-        bleed(GameState.player_instance.global_position)
+        bleed(PlayerService.player_instance.global_position)
 
     take_damage(bullet.bullet_stats.damage)
 
@@ -135,7 +135,7 @@ func die():
     set_collision_layer_value(8, false)
     VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
     remove_child(%Health)
-    GameState.register_ennemy_death(self)
+    EnnemiesService.register_ennemy_death(self)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

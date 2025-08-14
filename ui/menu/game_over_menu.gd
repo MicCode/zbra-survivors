@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 
 func leave():
     slide_out().finished.connect(func():
-        GameState.change_state(GameState.State.NOT_STARTED)
+        GameService.change_state(E.GameState.NOT_STARTED)
         SceneManager.switch_to("res://ui/menu/game_logs/game_logs_menu.tscn")
         queue_free()
     )

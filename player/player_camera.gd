@@ -4,7 +4,7 @@ var shake_strength: float = 0.0
 var shake_decay: float = 5.0
 
 func _ready() -> void:
-    GameState.shake_screen.connect(shake)
+    GameService.shake_screen.connect(shake)
 
 func shake(strength: float):
     shake_strength = strength

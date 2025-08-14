@@ -8,9 +8,9 @@ var compare_to: Gun
 
 func _ready() -> void:
     refresh_display()
-    if is_current_gun and GameState.equipped_gun != null:
-        change_gun(GameState.equipped_gun, "")
-        GameState.equipped_gun_changed.connect(change_gun)
+    if is_current_gun and GunService.equipped_gun != null:
+        change_gun(GunService.equipped_gun, "")
+        GunService.equipped_gun_changed.connect(change_gun)
 
 func change_gun(new_gun: Gun, _previous_gun_name: String):
     gun = new_gun
@@ -33,11 +33,11 @@ func refresh_display():
 
     var gun_stats: GunStats = gun.gun_stats
     var compare_to_gun_stats: GunStats
-    var base_gun_stats: GunStats = GameState.base_equipped_gun_stats
+    var base_gun_stats: GunStats = GunService.base_equipped_gun_stats
 
     var bullet_stats: BulletStats = gun.bullet_stats
     var compare_to_bullet_stats: BulletStats
-    var base_bullet_stats: BulletStats = GameState.base_equipped_bullet_stats
+    var base_bullet_stats: BulletStats = GunService.base_equipped_bullet_stats
 
     if bullet_stats.inflicts_fire:
         %FireDamagePerS.show()

@@ -23,11 +23,11 @@ func _enter_tree() -> void:
 
 
 func _ready():
-    GameState.gun_stats_changed.connect(func(new_stats: GunStats):
+    GunService.gun_stats_changed.connect(func(new_stats: GunStats):
         gun_stats = new_stats.duplicate(true)
         update_from_stats()
     )
-    GameState.bullet_stats_changed.connect(func(new_stats: BulletStats):
+    GunService.bullet_stats_changed.connect(func(new_stats: BulletStats):
         bullet_stats = new_stats.duplicate(true)
         update_from_stats()
     )
@@ -83,7 +83,7 @@ func shoot():
         if gun_stats.eject_cartridges:
             eject_cartridge()
         %Sprite.play("firing")
-        (%Sprite as AnimatedSprite2D).set_frame_and_progress(0,0)
+        (%Sprite as AnimatedSprite2D).set_frame_and_progress(0, 0)
         if !sound_cooldown:
             Sounds.shoot(gun_stats.shoot_sfx_options, gun_stats.shoot_sound)
             sound_cooldown = true
@@ -96,13 +96,13 @@ func shoot():
 
 func haptic_feedback():
     match gun_stats.haptic_feedback:
-        GunService.HapticFeedback.ONE_SHOT:
+        E.HapticFeedback.ONE_SHOT:
             Controls.vibrate(0.1, 0.5, 0.0)
-        GunService.HapticFeedback.ONE_SHOT_HEAVY:
+        E.HapticFeedback.ONE_SHOT_HEAVY:
             Controls.vibrate(0.2, 0.0, 1.0)
-        GunService.HapticFeedback.AUTOMATIC:
+        E.HapticFeedback.AUTOMATIC:
             Controls.vibrate(0.02, 0.5, 1.0)
-        GunService.HapticFeedback.CONTINUOUS:
+        E.HapticFeedback.CONTINUOUS:
             Controls.vibrate(0.02, 0.0, 0.5)
         _:
             push_warning("Unimplemented HapticFeedback with id [%d]" % gun_stats.haptic_feedback)

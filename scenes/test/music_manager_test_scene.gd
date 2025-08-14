@@ -4,10 +4,10 @@ func _ready() -> void:
     Settings.apply_audio_settings()
 
 func _process(_delta: float) -> void:
-    %MuffledProgress.value = MusicManager.get_player_volume_linear(MusicManager.MusicLayer.MUFFLED)
-    %SoftProgress.value = MusicManager.get_player_volume_linear(MusicManager.MusicLayer.SOFT)
-    %MediumProgress.value = MusicManager.get_player_volume_linear(MusicManager.MusicLayer.MEDIUM)
-    %HardProgress.value = MusicManager.get_player_volume_linear(MusicManager.MusicLayer.HARD)
+    %MuffledProgress.value = MusicManager.get_player_volume_linear(E.MusicLayer.MUFFLED)
+    %SoftProgress.value = MusicManager.get_player_volume_linear(E.MusicLayer.SOFT)
+    %MediumProgress.value = MusicManager.get_player_volume_linear(E.MusicLayer.MEDIUM)
+    %HardProgress.value = MusicManager.get_player_volume_linear(E.MusicLayer.HARD)
 
 func _on_start_music_button_pressed() -> void:
     MusicManager.play()
@@ -18,19 +18,19 @@ func _on_stop_music_button_pressed() -> void:
 
 
 func _on_muffled_button_pressed() -> void:
-    MusicManager.set_layer(MusicManager.MusicLayer.MUFFLED)
+    MusicManager.set_layer(E.MusicLayer.MUFFLED)
 
 
 func _on_soft_button_pressed() -> void:
-    MusicManager.set_layer(MusicManager.MusicLayer.SOFT)
+    MusicManager.set_layer(E.MusicLayer.SOFT)
 
 
 func _on_medium_button_2_pressed() -> void:
-    MusicManager.set_layer(MusicManager.MusicLayer.MEDIUM)
+    MusicManager.set_layer(E.MusicLayer.MEDIUM)
 
 
 func _on_hard_button_3_pressed() -> void:
-    MusicManager.set_layer(MusicManager.MusicLayer.HARD)
+    MusicManager.set_layer(E.MusicLayer.HARD)
 
 
 func _on_electro_1_pressed() -> void:

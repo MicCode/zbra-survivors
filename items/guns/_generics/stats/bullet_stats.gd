@@ -31,7 +31,7 @@ class_name BulletStats
 
 static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatsModifier]) -> BulletStats:
     var new_stats: BulletStats = base_stats.duplicate(true)
-    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.BULLET) or m.is_type(Modifiers.Type.FIRE)):
+    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(E.ModType.BULLET) or m.is_type(E.ModType.FIRE)):
         if new_stats.get(mod.get_stat_name()) == null:
             push_error("Unable to apply bullet stat modifier, stat name [%s] not found in class BulletStats" % mod.get_stat_name())
         else:

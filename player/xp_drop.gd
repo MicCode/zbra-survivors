@@ -24,10 +24,10 @@ func _physics_process(_delta: float) -> void:
         # and shouldnt process physics anymore, before its effective destruction, to avoid both merged drop destruction
         return
 
-    if chase_player and GameState.player_instance:
-        move_to(GameState.player_instance)
-        if get_distance(GameState.player_instance.global_position) < MERGE_DISTANCE:
-            GameState.gain_xp(xp_value)
+    if chase_player and PlayerService.player_instance:
+        move_to(PlayerService.player_instance)
+        if get_distance(PlayerService.player_instance.global_position) < MERGE_DISTANCE:
+            PlayerService.gain_xp(xp_value)
             Sounds.coin()
             Minimap.untrack(self)
             queue_free()

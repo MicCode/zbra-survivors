@@ -3,7 +3,7 @@ extends CanvasLayer
 @export var debug_mode: bool = false
 
 func _ready() -> void:
-    GameState.stats_modifiers_changed.connect(update_mods)
+    ModsService.active_mods_changed.connect(update_mods)
     update_mods()
 
 func _process(_delta: float) -> void:
@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
     %Timescale.text = str("Timescale: %.1f" % Engine.time_scale)
 
     %Music.text = str("Music: %s" % MusicManager.music(MusicManager.current_music))
-    %MusicLayer.text = str("MusicLayer: %s" % MusicManager.music_layer(MusicManager.current_layer))
+    %MusicLayer.text = str("MusicLayer: %s" % E.music_layer(MusicManager.current_layer))
 
     %MasterVolume.text = str("Master volume: %.1f" % SoundPlayer.get_bus_volume_linear(SoundPlayer.Bus.MASTER))
     %MusicVolume.text = str("Music volume: %.1f" % SoundPlayer.get_bus_volume_linear(SoundPlayer.Bus.MUSIC))
@@ -31,12 +31,12 @@ func update_mods():
     for child in %Mods.get_children():
         child.queue_free()
 
-    for mod in GameState.stats_modifiers:
+    for mod in ModsService.active_mods:
         var label = Label.new()
         if mod.modifier_value >= 0:
             label.text = "+"
         label.text += str("%d" % mod.modifier_value)
         if !mod.is_absolute:
             label.text += "%"
-        label.text += " " + Modifiers.get_name_label(mod.modifier)
+        label.text += " " + E.mod_name(mod.modifier)
         %Mods.add_child(label)

@@ -6,10 +6,10 @@ func _init():
     Settings.load_from_file()
 
 func _ready() -> void:
-    GameState.start_new_game()
+    GameService.start_new_game()
     if PLAY_MUSIC:
         MusicManager.set_music(MusicManager.Music.METAL_1)
-        MusicManager.set_layer(MusicManager.MusicLayer.MEDIUM)
+        MusicManager.set_layer(E.MusicLayer.MEDIUM)
 
 func spawn_boss():
     if !EnnemiesService.is_boss_spawned:

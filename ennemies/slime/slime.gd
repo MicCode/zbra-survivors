@@ -12,7 +12,7 @@ func bleed(impact_from: Vector2):
 
 
 func _on_squirt_timer_timeout() -> void:
-    bleed(GameState.player_instance.global_position)
+    bleed(PlayerService.player_instance.global_position)
 
 func die():
     if is_original:

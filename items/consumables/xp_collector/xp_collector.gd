@@ -11,8 +11,8 @@ func _ready() -> void:
     super._ready()
 
 func _physics_process(_delta: float) -> void:
-    if chase_player and GameState.player_instance:
-        move_to(GameState.player_instance)
+    if chase_player and PlayerService.player_instance:
+        move_to(PlayerService.player_instance)
 
 func _rotate():
     %Sprite.rotation_degrees = 0

@@ -29,7 +29,7 @@ func slide_out() -> PropertyTweener:
 func change_proposed_gun(new_gun: Gun):
     gun = new_gun
     %NewGun.change_gun(gun, "")
-    %NewGun.change_compare_to(GameState.equipped_gun)
+    %NewGun.change_compare_to(GunService.equipped_gun)
     %EquippedGun.change_compare_to(gun)
 
 func _on_keep_button_pressed() -> void:

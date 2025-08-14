@@ -7,8 +7,8 @@ var is_one_chest_on_map = false
 var can_spawn_chest = false
 
 func _init() -> void:
-    GameState.player_moved.connect(_on_player_moved)
-    GameState.player_openned_chest.connect(func():
+    PlayerService.player_moved.connect(_on_player_moved)
+    PlayerService.player_openned_chest.connect(func():
         is_one_chest_on_map = false # FIXME this may not be correct the day we spawn chests in other way (not in world generation)
         restart_chest_spawn_timer()
     )

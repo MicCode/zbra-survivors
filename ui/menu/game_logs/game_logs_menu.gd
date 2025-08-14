@@ -12,5 +12,5 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_restart_button_pressed() -> void:
     Sounds.start_game()
-    GameState.start_new_game()
+    GameService.start_new_game()
     SceneManager.switch_to("res://scenes/level_1.tscn")

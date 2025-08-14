@@ -8,36 +8,36 @@ var player_xp: float = -1
 var player_level: int = -1
 
 func _enter_tree() -> void:
-    GameState.game_ui_instance = self
+    GameService.game_ui_instance = self
 
 func _exit_tree() -> void:
-    GameState.game_ui_instance = null
+    GameService.game_ui_instance = null
 
 func _ready() -> void:
     %MinimapViewer.modulate = Color(Color.WHITE, Settings.game_settings.map_opacity)
 
-    GameState.score_changed.connect(_on_score_changed)
-    GameState.player_state_changed.connect(_on_player_state_changed)
-    GameState.player_timewarping_changed.connect(_on_player_timewarping_changed)
-    GameState.notify_level_gain.connect(play_lvl_up_effect)
-    GameState.state_changed.connect(func(new_state: GameState.State):
-        if [GameState.State.PAUSED, GameState.State.GAME_OVER, GameState.State.CHOOSING_UPGRADE].has(new_state): slide_out()
+    GameService.score_changed.connect(_on_score_changed)
+    PlayerService.player_state_changed.connect(_on_player_state_changed)
+    PlayerService.player_timewarping_changed.connect(_on_player_timewarping_changed)
+    PlayerService.notify_level_gain.connect(play_lvl_up_effect)
+    GameService.state_changed.connect(func(new_state: E.GameState):
+        if [E.GameState.PAUSED, E.GameState.GAME_OVER, E.GameState.CHOOSING_UPGRADE].has(new_state): slide_out()
         else: slide_in()
     )
-    GameState.equipped_gun_changed.connect(func(new_gun: Gun, _previous_gun_name: String):
+    GunService.equipped_gun_changed.connect(func(new_gun: Gun, _previous_gun_name: String):
         %EquippedGun.change_gun(new_gun)
     )
     %EquippedGun.change_gun(null)
-    GameState.remaining_time_changed.connect(set_remaining_time)
-    set_remaining_time(GameState.ennemy_spawn_stats.boss_spawn_time)
+    GameService.remaining_time_changed.connect(set_remaining_time)
+    set_remaining_time(EnnemiesService.ennemy_spawn_stats.boss_spawn_time)
 
     if debug_mode:
         %DebugLayer.show()
     else:
         %DebugLayer.hide()
 
-    _on_player_state_changed(GameState.player_state)
-    %Score.text = str(GameState.score)
+    _on_player_state_changed(PlayerService.player_state)
+    %Score.text = str(GameService.score)
     slide_in()
 
 func _physics_process(_delta: float) -> void:
@@ -86,9 +86,9 @@ func _on_player_state_changed(player_state: PlayerState):
 
 
 func update_health_bar():
-    %HealthBar.max_value = GameState.player_state.max_health
-    %HealthBar.value = GameState.player_state.health
-    %HealthBarLabel.text = str("%d / %d" % [GameState.player_state.health, GameState.player_state.max_health])
+    %HealthBar.max_value = PlayerService.player_state.max_health
+    %HealthBar.value = PlayerService.player_state.health
+    %HealthBarLabel.text = str("%d / %d" % [PlayerService.player_state.health, PlayerService.player_state.max_health])
 
 func set_remaining_time(remaining_s: float):
     var remaining_minutes = floor(remaining_s / 60)

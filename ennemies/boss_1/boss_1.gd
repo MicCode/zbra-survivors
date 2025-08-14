@@ -25,7 +25,7 @@ func start_chase():
     )
 
 func shoot():
-    if !is_dead and GameState.player_state.is_alive:
+    if !is_dead and PlayerService.player_state.is_alive:
         %Sprite.play("shoot")
         get_tree().create_timer(SHOOT_START_DELAY_S).timeout.connect(func():
             var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()
@@ -59,7 +59,7 @@ func take_damage(damage: float):
     if health <= 0:
         die()
 
-    GameState.boss_changed.emit(stats, health)
+    GameService.boss_changed.emit(stats, health)
 
 func die():
     is_dead = true
@@ -74,7 +74,7 @@ func _on_sprite_animation_finished() -> void:
     if !is_ready:
         is_ready = true
         call_deferred("start_chase")
-        GameState.boss_changed.emit(stats, health)
+        GameService.boss_changed.emit(stats, health)
     elif !is_dead && is_shooting:
         is_shooting = false
         %Sprite.play("walk")

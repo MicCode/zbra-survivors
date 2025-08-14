@@ -34,40 +34,23 @@ func music(_music: Music) -> String:
             push_error("Unknown Music [%d]" % _music)
             return "???"
 
-enum MusicLayer {
-    NOT_SET,
-    MUFFLED,
-    SOFT,
-    MEDIUM,
-    HARD
-}
-## Util function to display MusicLayer enum member as a string
-func music_layer(_layer: MusicLayer) -> String:
-    match _layer:
-        MusicLayer.NOT_SET: return "NOT_SET"
-        MusicLayer.MUFFLED: return "MUFFLED"
-        MusicLayer.SOFT: return "SOFT"
-        MusicLayer.MEDIUM: return "MEDIUM"
-        MusicLayer.HARD: return "HARD"
-        _:
-            push_error("Unknown MusicLayer [%d]" % _layer)
-            return "???"
+
 #endregion
 
 #region variables ---------------------------------------------------------------------------------------
 var players: Dictionary = {
-    MusicLayer.MUFFLED: _init_player(),
-    MusicLayer.SOFT: _init_player(),
-    MusicLayer.MEDIUM: _init_player(),
-    MusicLayer.HARD: _init_player(),
+    E.MusicLayer.MUFFLED: _init_player(),
+    E.MusicLayer.SOFT: _init_player(),
+    E.MusicLayer.MEDIUM: _init_player(),
+    E.MusicLayer.HARD: _init_player(),
 }
 
 var current_music: Music
 var next_music: Music
 var next_non_layered_music_filename: String
 
-var current_layer: MusicLayer
-var next_layer: MusicLayer
+var current_layer: E.MusicLayer
+var next_layer: E.MusicLayer
 
 var current_player: AudioStreamPlayer
 var previous_player: AudioStreamPlayer
@@ -89,17 +72,17 @@ func stop():
 #endregion
 
 #region layer change ---------------------------------------------------------------------------------------
-func set_layer(new_layer: MusicLayer) -> bool:
+func set_layer(new_layer: E.MusicLayer) -> bool:
     if !can_change_layer:
         return false
     next_layer = new_layer
     return true
 
-func _change_layer(new_layer: MusicLayer):
+func _change_layer(new_layer: E.MusicLayer):
     if new_layer != current_layer:
         var previous_layer = current_layer
         current_layer = new_layer
-        if DEBUG_MODE: print("Changing music layer from [%s] to [%s]" % [music_layer(previous_layer), music_layer(current_layer)])
+        if DEBUG_MODE: print("Changing music layer from [%s] to [%s]" % [E.music_layer(previous_layer), E.music_layer(current_layer)])
 
         previous_player = players.get(previous_layer)
         current_player = players.get(current_layer)
@@ -112,6 +95,18 @@ func _change_layer(new_layer: MusicLayer):
 #endregion
 
 #region music change ---------------------------------------------------------------------------------------
+func update_music_intensity():
+    var intensity = 0
+    if GameService.first_chest_openned:
+        intensity += 1
+    if GameService.first_level_gained:
+        intensity += 1
+
+    match intensity:
+        0: set_layer(E.MusicLayer.SOFT)
+        1: set_layer(E.MusicLayer.MEDIUM)
+        2: set_layer(E.MusicLayer.HARD)
+
 ## Set a new layered music to be played with smooth crossfade from previously played music
 func set_music(new_music: Music):
     next_music = new_music
@@ -143,22 +138,22 @@ func _change_music(new_music: Music):
         previous_player = current_player
 
         var tmp_players: Dictionary = {
-            MusicLayer.MUFFLED: _init_player(),
-            MusicLayer.SOFT: _init_player(),
-            MusicLayer.MEDIUM: _init_player(),
-            MusicLayer.HARD: _init_player(),
+            E.MusicLayer.MUFFLED: _init_player(),
+            E.MusicLayer.SOFT: _init_player(),
+            E.MusicLayer.MEDIUM: _init_player(),
+            E.MusicLayer.HARD: _init_player(),
         }
         if new_music == Music.NON_LAYERED:
             var stream = _load_stream(folder_path + "/" + next_non_layered_music_filename)
-            tmp_players.get(MusicLayer.MUFFLED).stream = stream
-            tmp_players.get(MusicLayer.SOFT).stream = stream
-            tmp_players.get(MusicLayer.MEDIUM).stream = stream
-            tmp_players.get(MusicLayer.HARD).stream = stream
+            tmp_players.get(E.MusicLayer.MUFFLED).stream = stream
+            tmp_players.get(E.MusicLayer.SOFT).stream = stream
+            tmp_players.get(E.MusicLayer.MEDIUM).stream = stream
+            tmp_players.get(E.MusicLayer.HARD).stream = stream
         else:
-            tmp_players.get(MusicLayer.MUFFLED).stream = _load_stream(folder_path + "/muffled.ogg")
-            tmp_players.get(MusicLayer.SOFT).stream = _load_stream(folder_path + "/soft.ogg")
-            tmp_players.get(MusicLayer.MEDIUM).stream = _load_stream(folder_path + "/medium.ogg")
-            tmp_players.get(MusicLayer.HARD).stream = _load_stream(folder_path + "/hard.ogg")
+            tmp_players.get(E.MusicLayer.MUFFLED).stream = _load_stream(folder_path + "/muffled.ogg")
+            tmp_players.get(E.MusicLayer.SOFT).stream = _load_stream(folder_path + "/soft.ogg")
+            tmp_players.get(E.MusicLayer.MEDIUM).stream = _load_stream(folder_path + "/medium.ogg")
+            tmp_players.get(E.MusicLayer.HARD).stream = _load_stream(folder_path + "/hard.ogg")
 
         for player in tmp_players.values():
             add_child(player)
@@ -183,12 +178,12 @@ func _init() -> void:
     for player in players.values():
         add_child(player)
 
-    next_layer = MusicLayer.MUFFLED
-    set_layer(MusicLayer.MUFFLED)
+    next_layer = E.MusicLayer.MUFFLED
+    set_layer(E.MusicLayer.MUFFLED)
 
 func _process(_delta):
-    if get_tree().paused and current_layer != MusicLayer.MUFFLED:
-        _change_layer(MusicLayer.MUFFLED)
+    if get_tree().paused and current_layer != E.MusicLayer.MUFFLED:
+        _change_layer(E.MusicLayer.MUFFLED)
     elif !get_tree().paused and current_layer != next_layer:
         _change_layer(next_layer)
 
@@ -222,7 +217,7 @@ func _load_stream(file_path: String) -> AudioStream:
 #endregion
 
 #region utils ---------------------------------------------------------------------------------------
-func get_player_volume_linear(layer: MusicLayer) -> float:
+func get_player_volume_linear(layer: E.MusicLayer) -> float:
     return to_linear(players.get(layer).volume_db)
 
 ## Converts a linear float value (between 0.0 and 1.0) into a DB value (logarithmic)

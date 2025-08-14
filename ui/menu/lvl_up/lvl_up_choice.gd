@@ -8,7 +8,7 @@ const HOVER_ANIMATION_DURATION = 0.1
 var panel_style: StyleBoxFlat
 var has_been_clicked = false
 var block_focus = false
-var stat_modifier: Modifiers.Mod
+var stat_modifier: Mod
 var is_hovered = false
 var prevent_mouse_click = false
 var excluded = false
@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 
 func exclusion_can_be_changed() -> bool:
     var exclusion_allowed = !has_been_clicked and can_be_excluded
-    var player_has_enough_exclusions = GameState.lvl_up_exclusions_remaining > 0 or excluded # if choice is excluded, whatever the remaining exclusions, we want to allow de-excluding it
+    var player_has_enough_exclusions = PlayerService.lvl_up_exclusions_remaining > 0 or excluded # if choice is excluded, whatever the remaining exclusions, we want to allow de-excluding it
     return exclusion_allowed and player_has_enough_exclusions
 
 func is_ui_accept() -> bool:
@@ -50,7 +50,7 @@ func is_accept_clicked() -> bool:
 func is_exclude_clicked() -> bool:
     return !prevent_mouse_click and is_hovered and Controls.is_just_pressed(Controls.PlayerAction.EXCLUDE)
 
-func set_stat_modifier(new_mod: Modifiers.Mod):
+func set_stat_modifier(new_mod: Mod):
     stat_modifier = new_mod
     %StatName.text = new_mod.get_display_label()
     var value_label = str(new_mod.modification_value)

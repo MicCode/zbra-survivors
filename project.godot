@@ -21,25 +21,26 @@ config/icon="uid://c8wsllrwex0bj"
 
 [autoload]
 
-EnnemiesService="*res://globals/gameplay/ennemies_service.gd"
-Enums="*res://globals/enums.gd"
+EnnemiesService="*res://globals/gameplay/ennemies/ennemies_service.gd"
+E="*res://globals/enums.gd"
 SceneManager="*res://globals/utils/scene_manager.gd"
 GunService="*res://globals/gameplay/gun_service.gd"
-GameState="*res://globals/gameplay/game_state.gd"
+GameService="*res://globals/gameplay/game_service.gd"
 SoundPlayer="*res://globals/sound/sound_player.gd"
 Sounds="*res://globals/sound/sounds.gd"
 VisualEffects="*res://globals/visual/visual_effects.gd"
-Settings="*res://globals/gameplay/settings.gd"
+Settings="*res://globals/settings/settings.gd"
 Announcer="*res://globals/sound/announcer.gd"
 Minimap="*res://globals/visual/minimap.gd"
 Files="*res://globals/utils/files.gd"
 Controls="*res://globals/controls/controls.gd"
-Modifiers="*res://globals/gameplay/modifiers.gd"
+ModsService="*res://globals/gameplay/modifiers/mods_service.gd"
 Conversions="*res://globals/utils/conversions.gd"
-LootGenerator="*res://globals/gameplay/loot_generator.gd"
+LootService="*res://globals/gameplay/loot_service.gd"
 MusicManager="*res://globals/sound/music_manager.gd"
 Utils="*res://globals/utils/utils.gd"
 GameLogger="*res://globals/gameplay/game_logger/game_logger.gd"
+PlayerService="*res://globals/gameplay/player_service.gd"
 
 [debug]
 

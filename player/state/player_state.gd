@@ -30,9 +30,12 @@ class_name PlayerState
 @export var can_dash: bool
 @export var dash_gauge_value: int
 
+@export_group("Others")
+@export var luck: float
+
 static func apply_modifiers(base_state: PlayerState, modifiers: Array[StatsModifier]) -> PlayerState:
     var new_state: PlayerState = base_state.duplicate(true)
-    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(Modifiers.Type.PLAYER)):
+    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(E.ModType.PLAYER)):
         if new_state.get(mod.get_stat_name()) == null:
             push_error("Unable to apply player stat modifier, stat name [%s] not found in class PlayerState" % mod.get_stat_name())
         else:

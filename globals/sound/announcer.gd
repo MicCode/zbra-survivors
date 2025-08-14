@@ -54,8 +54,8 @@ func _draw_announcement_sticker(text: String, size: int):
     var sticker = preload("res://ui/in-game/components/annoucement_sticker.tscn").instantiate()
     sticker.set_text(text)
     sticker.set_size(size)
-    if GameState.player_instance != null:
-        sticker.global_position = GameState.player_instance.global_position
+    if PlayerService.player_instance != null:
+        sticker.global_position = PlayerService.player_instance.global_position
     else:
         var screen_size = get_window().get_size()
         sticker.global_position = Vector2(

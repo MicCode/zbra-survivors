@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal picked_modifier(mod: Modifiers.Mod)
+signal picked_modifier(mod: Mod)
 
 const CHOICE_DISAPPEAR_TIME: float = 0.25
 const ANIMATION_TIME: float = 0.1
@@ -14,9 +14,9 @@ func _ready() -> void:
     slide_in()
 
 func _input(_event: InputEvent) -> void:
-    if Controls.is_just_pressed(Controls.PlayerAction.GRAB) and !in_animation and GameState.lvl_up_rerolls_remaining > 0:
+    if Controls.is_just_pressed(Controls.PlayerAction.GRAB) and !in_animation and PlayerService.lvl_up_rerolls_remaining > 0:
         slide_out().finished.connect(func():
-            GameState.lvl_up_rerolls_remaining -= 1
+            PlayerService.lvl_up_rerolls_remaining -= 1
             refresh_counters()
             reroll()
             slide_in()
@@ -25,7 +25,7 @@ func _input(_event: InputEvent) -> void:
 func set_remaining_times(times: int):
     %RemainingTimesLabel.text = str("(%d)" % times)
 
-func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Modifiers.Mod):
+func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Mod):
     for choice in choices:
         choice.disable()
         if choice != clicked_choice:
@@ -34,23 +34,23 @@ func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Modifiers.Mod):
         picked_modifier.emit(mod)
     )
 
-func _on_choice_excluded_changed(clicked_choice: LvlUpChoice, mod: Modifiers.Mod, excluded: bool):
-    var existing_exclusion = Modifiers.excluded.filter(func(n: Modifiers.Name): return n == mod.name)
+func _on_choice_excluded_changed(clicked_choice: LvlUpChoice, mod: Mod, excluded: bool):
+    var existing_exclusion = ModsService.excluded_mods.filter(func(n: E.ModName): return n == mod.name)
     if excluded and existing_exclusion.is_empty():
-        Modifiers.excluded.append(mod.name)
+        ModsService.excluded_mods.append(mod.name)
         clicked_choice.modulate = Color(Color.WHITE, 0.5)
-        GameState.lvl_up_exclusions_remaining -= 1
+        PlayerService.lvl_up_exclusions_remaining -= 1
         refresh_counters()
         #print("excluded mod [%s]" % mod.name)
     elif !excluded and !existing_exclusion.is_empty():
-        Modifiers.excluded = Modifiers.excluded.filter(func(n: Modifiers.Name): return n == mod.name)
+        ModsService.excluded_mods = ModsService.excluded_mods.filter(func(n: E.ModName): return n == mod.name)
         clicked_choice.modulate = Color.WHITE
-        GameState.lvl_up_exclusions_remaining += 1
+        PlayerService.lvl_up_exclusions_remaining += 1
         refresh_counters()
         #print("removed exclusion of mod [%s]" % mod.name)
 
     # to avoid soft lock we prevent player from excluding all available choices
-    if GameState.lvl_up_exclusions_remaining == 1 and count_excluded_choices() != 0:
+    if PlayerService.lvl_up_exclusions_remaining == 1 and count_excluded_choices() != 0:
         prevent_exclusions(false)
     else:
         prevent_exclusions(true)
@@ -78,7 +78,7 @@ func reroll():
         if child is LvlUpChoice:
             child.queue_free()
 
-    for mod in Modifiers.random_pick_n(3):
+    for mod in ModsService.random_pick_n(3):
         var choice: LvlUpChoice = preload("res://ui/menu/lvl_up/lvl_up_choice.tscn").instantiate()
         choice.set_stat_modifier(mod)
         %Choices.add_child(choice)
@@ -90,16 +90,16 @@ func reroll():
         choices[0].force_focus()
 
 func refresh_counters():
-    %ExcludeCountLabel.text = str("(%d)" % GameState.lvl_up_exclusions_remaining)
-    if GameState.lvl_up_exclusions_remaining <= 0:
+    %ExcludeCountLabel.text = str("(%d)" % PlayerService.lvl_up_exclusions_remaining)
+    if PlayerService.lvl_up_exclusions_remaining <= 0:
         %ExcludeInfo.modulate = Color(Color.WHITE, 0.5)
         %ExcludeButtonIcon.animate = false
     else:
         %ExcludeInfo.modulate = Color.WHITE
         %ExcludeButtonIcon.animate = true
 
-    %RerollCountLabel.text = str("(%d)" % GameState.lvl_up_rerolls_remaining)
-    if GameState.lvl_up_rerolls_remaining <= 0:
+    %RerollCountLabel.text = str("(%d)" % PlayerService.lvl_up_rerolls_remaining)
+    if PlayerService.lvl_up_rerolls_remaining <= 0:
         %RerollInfo.modulate = Color(Color.WHITE, 0.5)
         %RerollButtonIcon.animate = false
     else:

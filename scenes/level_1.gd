@@ -5,7 +5,7 @@ func _enter_tree() -> void:
 
 func _ready():
     MusicManager.set_music(MusicManager.Music.METAL_1)
-    MusicManager.set_layer(MusicManager.MusicLayer.SOFT)
+    MusicManager.set_layer(E.MusicLayer.SOFT)
     EnnemiesService.start_spawning()
 
 func _exit_tree() -> void:

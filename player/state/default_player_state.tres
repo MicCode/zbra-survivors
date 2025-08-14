@@ -24,4 +24,5 @@ dash_speed_multiplier = 3.0
 is_dashing = false
 can_dash = true
 dash_gauge_value = 5
+luck = 1.0
 metadata/_custom_type_script = "uid://cmm446mu4xuuv"

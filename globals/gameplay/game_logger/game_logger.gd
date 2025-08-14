@@ -31,31 +31,31 @@ func start_logging():
     logs_filename = get_new_filename()
 
     _log(logs.player_level, 0)
-    GameState.player_gained_level.connect(log_player_level)
+    PlayerService.player_gained_level.connect(log_player_level)
     _log(logs.player_xp, 0)
-    GameState.player_gained_xp.connect(log_player_xp)
+    PlayerService.player_gained_xp.connect(log_player_xp)
     _log(logs.dps, 0)
-    GameState.gun_stats_changed.connect(log_gun_stats)
+    GunService.gun_stats_changed.connect(log_gun_stats)
 
 func stop_logging():
     is_logging = false
-    GameState.player_gained_level.disconnect(log_player_level)
-    GameState.player_gained_xp.disconnect(log_player_xp)
-    GameState.gun_stats_changed.disconnect(log_gun_stats)
+    PlayerService.player_gained_level.disconnect(log_player_level)
+    PlayerService.player_gained_xp.disconnect(log_player_xp)
+    GunService.gun_stats_changed.disconnect(log_gun_stats)
 
     save_to_file()
 #endregion
 
 #region loggers
 func log_player_level(_n: int):
-    _log(logs.player_level, GameState.player_state.level)
+    _log(logs.player_level, PlayerService.player_state.level)
 
 func log_player_xp(_n: int):
-    _log(logs.player_xp, GameState.player_state.total_xp)
+    _log(logs.player_xp, PlayerService.player_state.total_xp)
 
 func log_gun_stats(_gun_stats: GunStats):
-    if GameState.equipped_gun:
-        _log(logs.dps, Conversions.dps(GameState.equipped_gun.gun_stats, GameState.equipped_gun.bullet_stats))
+    if GunService.equipped_gun:
+        _log(logs.dps, Conversions.dps(GunService.equipped_gun.gun_stats, GunService.equipped_gun.bullet_stats))
 #endregion
 
 #region utils

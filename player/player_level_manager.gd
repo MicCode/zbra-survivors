@@ -14,7 +14,7 @@ func _ready() -> void:
 func register_lvl_up(number_of_gained_levels: int):
     if number_of_gained_levels > 0 and n_menu_to_display == 0:
         # as we want to notify only once, the first time we knwow a new level will be gained
-        GameState.notify_level_gain.emit()
+        PlayerService.notify_level_gain.emit()
 
     n_menu_to_display += number_of_gained_levels
     if %Timer.is_stopped():
@@ -26,17 +26,17 @@ func _show_lvl_up_menu(n_times: int):
     lvl_up_menu.set_remaining_times(n_times)
     n_times -= 1
     SceneManager.current_scene.add_child(lvl_up_menu)
-    lvl_up_menu.picked_modifier.connect(func(mod: Modifiers.Mod):
-        GameState.register_new_modifier(mod)
+    lvl_up_menu.picked_modifier.connect(func(mod: Mod):
+        ModsService.register_new_modifier(mod)
         lvl_up_menu.slide_out().finished.connect(func():
             lvl_up_menu.queue_free()
             if n_times <= 0:
                 menu_displayed_changed.emit(false)
-                GameState.change_state(GameState.State.RUNNING)
+                GameService.change_state(E.GameState.RUNNING)
                 n_menu_to_display = 0
             else:
                 _show_lvl_up_menu(n_times)
         )
     )
-    GameState.change_state(GameState.State.CHOOSING_UPGRADE)
+    GameService.change_state(E.GameState.CHOOSING_UPGRADE)
     menu_displayed_changed.emit(true)

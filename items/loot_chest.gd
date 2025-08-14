@@ -26,7 +26,7 @@ func _on_trigger_radius_body_entered(body: Node2D) -> void:
         var rays_shader: ShaderMaterial = %Rays.material
         create_tween().tween_property(rays_shader, "shader_parameter/edge_fade", 0.15, OPENING_TIME)
         create_tween().tween_property(rays_shader, "shader_parameter/ray_2_intensity", 0.7, OPENING_TIME).finished.connect(func():
-            GameState.player_openned_chest.emit()
+            PlayerService.player_openned_chest.emit()
         )
         is_open = true
         get_tree().create_timer(DISAPPEAR_DELAY).timeout.connect(disappear)

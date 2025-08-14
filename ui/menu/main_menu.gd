@@ -10,22 +10,22 @@ func _ready() -> void:
     create_tween().tween_property(%SubTitle, "modulate", Color.WHITE, 0.75)
     Settings.apply_audio_settings()
     MusicManager.set_music(MusicManager.Music.METAL_1)
-    MusicManager.set_layer(MusicManager.MusicLayer.MUFFLED)
+    MusicManager.set_layer(E.MusicLayer.MUFFLED)
 
     match Settings.game_settings.language:
         "fr_FR": %LanguageSwitcher.select(1)
         _: %LanguageSwitcher.select(0) # fallback on english
     %StartButton.grab_focus()
-    GameState.change_state(GameState.State.NOT_STARTED)
+    GameService.change_state(E.GameState.NOT_STARTED)
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("debug_mode"):
-        GameState.start_new_game()
+        GameService.start_new_game()
         SceneManager.switch_to("res://scenes/test/test_equipment_scene.tscn")
 
 func _on_start_button_pressed() -> void:
     Sounds.start_game()
-    GameState.start_new_game()
+    GameService.start_new_game()
     SceneManager.switch_to("res://scenes/level_1.tscn")
 
 

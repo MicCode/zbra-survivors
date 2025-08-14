@@ -1,17 +1,16 @@
-extends Node
 class_name StatsModifier
 
-var modifier: Modifiers.Name
+var modifier: E.ModName
 var modifier_value: float = 0.0
 var is_absolute = true
 
-static func create_absolute(mod: Modifiers.Name, value: float) -> StatsModifier:
+static func create_absolute(mod: E.ModName, value: float) -> StatsModifier:
     var new_modifier = StatsModifier.new()
     new_modifier.modifier = mod
     new_modifier.modifier_value = value
     return new_modifier
 
-static func create_percent(mod: Modifiers.Name, percentage: float) -> StatsModifier:
+static func create_percent(mod: E.ModName, percentage: float) -> StatsModifier:
     var new_modifier = StatsModifier.new()
     new_modifier.modifier = mod
     new_modifier.modifier_value = percentage
@@ -25,10 +24,10 @@ func deep_duplicate() -> StatsModifier:
         return create_percent(modifier, modifier_value)
 
 func get_stat_name() -> String:
-    return Modifiers.get_stat_name(modifier)
+    return ModsService.get_stat_name(modifier)
 
 func get_label() -> String:
     return tr(str("LABEL_%s" % get_stat_name()).to_upper())
 
-func is_type(type: Modifiers.Type) -> bool:
-    return Modifiers.get_type(modifier) == type
+func is_type(type: E.ModType) -> bool:
+    return ModsService.get_type(modifier) == type

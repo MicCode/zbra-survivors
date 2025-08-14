@@ -12,7 +12,7 @@ func _ready() -> void:
        SceneManager.switch_to("res://ui/menu/main_menu.tscn")
 
     MusicManager.set_music(MusicManager.Music.METAL_1)
-    MusicManager.set_layer(MusicManager.MusicLayer.MUFFLED)
+    MusicManager.set_layer(E.MusicLayer.MUFFLED)
 
     %VBoxContainer.modulate = Color.TRANSPARENT
     create_tween().tween_property(%VBoxContainer, "modulate", Color.WHITE, fade_in_time)

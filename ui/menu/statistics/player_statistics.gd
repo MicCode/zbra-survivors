@@ -2,11 +2,11 @@ extends PanelContainer
 
 func _ready() -> void:
     refresh_stats()
-    GameState.player_state_changed.connect(func(_state): refresh_stats())
+    PlayerService.player_state_changed.connect(func(_state): refresh_stats())
 
 func refresh_stats():
-    var player_state = GameState.player_state
-    var base_state = GameState.base_player_state
+    var player_state = PlayerService.player_state
+    var base_state = PlayerService.base_player_state
     var diff_color = "46ce00"
 
     %Health.set_value(player_state.health)
@@ -38,10 +38,10 @@ func refresh_stats():
     if player_state.dash_speed_multiplier != base_state.dash_speed_multiplier:
         %DashSpeed.set_compare_to(Conversions.game_speed_to_kmh(base_state.move_speed * base_state.dash_speed_multiplier), false, diff_color)
 
-    %ExplosionsDamage.set_value(GameState.explosions_damage)
-    if GameState.explosions_damage != GameState.base_explosions_damage:
-        %ExplosionsDamage.set_compare_to(GameState.base_explosions_damage, false, diff_color)
+    %ExplosionsDamage.set_value(PlayerService.explosions_damage)
+    if PlayerService.explosions_damage != PlayerService.base_explosions_damage:
+        %ExplosionsDamage.set_compare_to(PlayerService.base_explosions_damage, false, diff_color)
 
-    %ExplosionsRadius.set_value(GameState.explosions_radius)
-    if GameState.explosions_radius != GameState.base_explosions_radius:
-        %ExplosionsRadius.set_compare_to(GameState.base_explosions_radius, false, diff_color)
+    %ExplosionsRadius.set_value(PlayerService.explosions_radius)
+    if PlayerService.explosions_radius != PlayerService.base_explosions_radius:
+        %ExplosionsRadius.set_compare_to(PlayerService.base_explosions_radius, false, diff_color)
