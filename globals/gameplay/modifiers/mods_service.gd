@@ -1,10 +1,10 @@
 extends Node
 signal active_mods_changed
+const DEBUG_MODE: bool = false
 
 const MODIFIER_CHANCE_DECREASE_PERCENT_PER_PICK: float = 20.0
 const MODIFIERS_TEXTURES_FOLDER: String = "res://assets/sprites/modifiers"
 const MODIFIERS_DEFINITIONS_FOLDER: String = "res://globals/gameplay/modifiers/definitions"
-const DEBUG_MODE: bool = false
 
 var all_mods: Dictionary[E.ModType, Array] = {}
 var all_mods_flat: Array[ModifierDefinition] = []
@@ -16,6 +16,7 @@ var base_mod_values: Dictionary[E.ModName, float] = {
     E.ModName.PLAYER_DASH_DURATION: 20.0,
     E.ModName.PLAYER_DASH_COOLDOWN: - 20.0,
     E.ModName.PLAYER_DASH_SPEED_MULTIPLIER: 10.0,
+    E.ModName.PLAYER_LUCK: 0.5,
     # GUN
     E.ModName.GUN_FIRE_RATE: 25.0,
     E.ModName.GUN_SPREAD_ANGLE_MORE: 30.0,
@@ -121,6 +122,7 @@ func compute_modifiers(new_stats_modifier: StatModifier = null):
 
     PlayerService.player_stats = player_stats
     PlayerService.emit_player_change()
+    if DEBUG_MODE: debug_print()
 
 func random_pick_n(n: int) -> Array[ModifierDefinition]:
     # TODO implement a more context aware picking system ? like better modifiers as the player level increases
@@ -138,7 +140,9 @@ func random_pick_n(n: int) -> Array[ModifierDefinition]:
                 filtered_drop_chances.set(mod_name, drop_chances.get(mod_name))
             picked_names.append(Utils.weighted_pick(filtered_drop_chances) as E.ModName)
 
-    return all_mods_flat.filter(func(m: ModifierDefinition): return picked_names.has(m.name))
+    var result = all_mods_flat.filter(func(m: ModifierDefinition): return picked_names.has(m.name))
+    result.shuffle()
+    return result
 
 ## Decrease in percent applied to a modifier so it has less chance to be randomly picked at next level up
 func decrease_chance(mod_name: E.ModName, decrease_percent: float):

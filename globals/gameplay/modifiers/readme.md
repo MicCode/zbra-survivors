@@ -1,0 +1,13 @@
+## To create a new modifier
+- Add new sprite in `assets/sprites/modifiers/`
+- Add the new `ModName` in `globals/enums.gd`
+    - Add the new `ModName` enum member (ATTENTION add the new enum member at the end of the enum, as enums are referenced with hardcoded integers in resources using them..)
+    - Add the corresponding string value in `mod_name()` function (used to display value in debug or to build translation strings)
+    - Add the corresponding stat name in `mod_stat_name()` function (used to determine which attribute is impacted by this new modifier)
+- Edit the right modifiers definitions collection in `globals/gameplay/modifiers/definitions/`
+    - Add a new `ModifierDefinition` in the `Mods` array
+    - Edit new `ModifierDefinition`
+        - Set `name` and `is absolute` attributes
+        - Set `Sprite` by dragging&dropping the sprite added at first step
+        - Set resource as `Local to Scene`
+- Edit `base_mod_values` in `globals/gameplay/modifiers/mods_service.gd`

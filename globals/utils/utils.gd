@@ -22,7 +22,7 @@ func weighted_pick(chances: Dictionary) -> int:
         cumulative += chances.get(key)
         if r <= cumulative:
             return key
-    return chances.get(0) # fallback on first entry
+    return chances.keys().get(0) # fallback on first entry
 
 func add_percent(value: float, percent: float) -> float:
     return value + ((value * percent) / 100)

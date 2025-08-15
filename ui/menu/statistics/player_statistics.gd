@@ -18,6 +18,10 @@ func refresh_stats():
     if player_stats.max_health != base_stats.max_health:
         %MaxHealth.set_compare_to(base_stats.max_health, false, diff_color)
 
+    %Luck.set_value(player_stats.luck)
+    if player_stats.luck != base_stats.luck:
+        %Luck.set_compare_to(base_stats.luck, false, diff_color)
+
     %XpCollectRadius.set_value(Conversions.game_pixels_to_m(player_stats.xp_collect_radius))
     if player_stats.xp_collect_radius != base_stats.xp_collect_radius:
         %XpCollectRadius.set_compare_to(Conversions.game_pixels_to_m(base_stats.xp_collect_radius), false, diff_color)

@@ -5,9 +5,9 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_d7mbj")
-life_drop_chance = 0.1
-radiance_drop_chance = 0.1
-timewrap_drop_change = 0.1
-xp_collector_drop_chance = 0.1
-land_mine_chance = 0.1
+life_drop_chance = 1.0
+radiance_drop_chance = 1.0
+timewrap_drop_change = 1.0
+xp_collector_drop_chance = 1.0
+land_mine_chance = 1.0
 metadata/_custom_type_script = "uid://b7n0lul53yndd"

@@ -5,6 +5,7 @@ const ENNEMIES_PATH = "res://ennemies/"
 const SPAWN_DISTANCE_MIN: float = 600.0
 const SPAWN_DISTANCE_MAX: float = 700.0
 
+# TODO refactor this to get enemies list from the enemies folder
 var spawnable_ennemies = [
     "mob_1",
     "mob_2",
@@ -114,7 +115,8 @@ func calculate_spawn_time() -> float:
 
 func register_ennemy_death(ennemy: Ennemy) -> void:
     GameService.increment_score(1)
-    drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(ennemy.stats.xp_value), ennemy.global_position)
+    var xp_value = Utils.add_percent(ennemy.stats.xp_value, PlayerService.player_stats.luck * 2)
+    drop_item(preload("res://player/xp_drop.tscn").instantiate().with_value(xp_value), ennemy.global_position)
     Announcer.ennemy_died()
 
     var random_item = LootService.get_random_item()

@@ -30,6 +30,8 @@ func _enter_tree() -> void:
         push_error("ennemy has no stats defined")
 
 func _ready():
+    add_to_group("enemies")
+
     stats.resource_local_to_scene = true
     if stats.is_elite:
         stats.max_health = floor(stats.max_health * 1.5)

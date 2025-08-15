@@ -16,6 +16,8 @@ GUN_CROSSBOW,Crossbow,Arbalète
 GUN_CROSSBOW_EXPLOSIVE,Explosive bolts crossbow,Arbalète à careaux explosifs
 GUN_CROSSBOW_FIRE,Fire bolts crossbow,Arbalète à careaux incendiaires
 GUN_FLAMETHROWER,Flame Thrower,Lance-Flammes
+GUN_LASER_GUN,Laser gun,Pistolet laser
+GUN_MACHINE_GUN,Machine gun,Machine gun
 GUN_PISTOL,Pistol,Pistolet
 GUN_RIFLE,Rifle,Fusil Automatique
 GUN_SHOTGUN,Shotgun,Fusil à Pompe
@@ -47,6 +49,7 @@ LABEL_GAME_SETTINGS,Gameplay,Jeu
 LABEL_HEALTH,Current health,Vie actuelle
 LABEL_LANGUAGE,Language,Langue
 LABEL_LEVEL,Level,Niveau
+LABEL_LUCK,Luck,Chance
 LABEL_MAX_HEALTH,Maximum health,Vie maximum
 LABEL_MOVE_SPEED,Move speed,Vitesse de déplacement
 LABEL_NEXT_LVL_XP,Next level,Prochain niveau
@@ -61,6 +64,7 @@ LABEL_SHOT_S,Shot/s,Tir/s
 LABEL_SHOTS_PER_S,Fire rate,Cadence de tir
 LABEL_SPEED,Bullets speed,Vitesse des projectiles
 LABEL_SPREAD_ANGLE,Dispersion,Dispersion
+LABEL_TOTAL_XP,Total XP,Expérience totale
 LABEL_UNIT_BULLETS_PER_S,b/s,p/s
 LABEL_UNIT_DAMAGE_PER_S,d/s,d/s
 LABEL_UNIT_DEG,deg,deg
@@ -81,6 +85,7 @@ SETTING_DISPLAY_XP_RADIUS,Show XP capture radius,Montrer le rayon de capture de 
 SETTING_ENABLE_ANNOUNCEMENT_STICKERS,Enable visual announcements,Activer les annonces visuelles
 SETTING_GAMEPAD_VIBRATION,Gamepad vibrations,Vibrations de la manette
 SETTING_MAP_OPACITY,Minimap opacity,Opacité de la minimap
+SETTING_SHOW_ENNEMIES_HEALTHBAR,Show ennemies healthbars,Afficher les barres de vie des ennemis
 SETTINGS_MUSIC,Music,Musique
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
 SUBTITLE_CHOOSE_UPGRADE,Choose upgrade,Choisir une amélioration
@@ -88,14 +93,10 @@ SUBTITLE_EQUIPPED_GUN,Equipped gun,Arme équipée
 SUBTITLE_MAIN_MENU,Survive the ZBRA!,Survivez au ZBRA !
 SUBTITLE_NEW_GUN,New gun,Nouvelle arme
 SUBTITLE_PLAYER_STATISTICS,Stats,Stats
+TITLE_GAME_FINISHED,Game finished,Partie terminée
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
 TITLE_GUN_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
 TITLE_SETTINGS,Settings,Paramètres
 TOOLTIP_EXPLOSIVE_BULLETS,Explosive bullets,Projectiles explosifs
 TOOLTIP_INCENDIARY_BULLETS,Incendiary bullets,Projectiles incendiaires
-SETTING_SHOW_ENNEMIES_HEALTHBAR,Show ennemies healthbars,Afficher les barres de vie des ennemis
-LABEL_TOTAL_XP,Total XP,Expérience totale
-TITLE_GAME_FINISHED,Game finished,Partie terminée
-GUN_MACHINE_GUN,Machine gun,Machine gun
-GUN_LASER_GUN,Laser gun,Pistolet laser

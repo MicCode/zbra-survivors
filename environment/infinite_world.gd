@@ -29,7 +29,9 @@ func _on_player_moved(player_position: Vector2):
 
 func restart_chest_spawn_timer():
     can_spawn_chest = false
-    %ChestSpawnTimer.start(randf_range(Settings.MINIMAL_TIME_BETWEEN_CHEST_SPAWN, Settings.MAXIMAL_TIME_BETWEEN_CHEST_SPAWN))
+    var time_to_spawn = randf_range(Settings.MINIMAL_TIME_BETWEEN_CHEST_SPAWN, Settings.MAXIMAL_TIME_BETWEEN_CHEST_SPAWN)
+    time_to_spawn = max(Utils.sub_percent(time_to_spawn, PlayerService.player_stats.luck * 10), Settings.MINIMAL_TIME_BETWEEN_CHEST_SPAWN)
+    %ChestSpawnTimer.start(time_to_spawn)
 
 func _on_chest_spawn_timer_timeout() -> void:
     can_spawn_chest = true

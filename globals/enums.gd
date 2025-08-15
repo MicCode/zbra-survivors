@@ -23,35 +23,29 @@ enum HapticFeedback {
 }
 
 #region modifiers
+# ATTENTION ! Do not change order in this enum as members are referenced as integers in resources using them
 enum ModName {
-    # PLAYER MODIFIERS
     PLAYER_MAX_HEALTH,
     PLAYER_XP_COLLECT_RADIUS,
     PLAYER_MOVE_SPEED,
     PLAYER_DASH_DURATION,
     PLAYER_DASH_COOLDOWN,
     PLAYER_DASH_SPEED_MULTIPLIER,
-
-    # GUN MODIFIERS
     GUN_FIRE_RATE,
     GUN_SPREAD_ANGLE_MORE,
     GUN_SPREAD_ANGLE_LESS,
     GUN_BULLET_NUMBER,
-
-    # BULLET MODIFIERS
     BULLET_DAMAGE,
     BULLET_SPEED,
     BULLET_RANGE,
     BULLET_PIERCE_COUNT,
-
-    # EXPLOSION MODIFIERS
     EXPLOSION_RADIUS,
     EXPLOSION_DAMAGE,
-
-    # FIRE MODIFIERS
     FIRE_DAMAGE,
     FIRE_DURATION,
-    FIRE_FREQUENCY
+    FIRE_FREQUENCY,
+
+    PLAYER_LUCK,
 }
 
 func mod_name(_mod_name: ModName) -> String:
@@ -63,6 +57,7 @@ func mod_name(_mod_name: ModName) -> String:
         ModName.PLAYER_DASH_DURATION: return "PLAYER_DASH_DURATION"
         ModName.PLAYER_DASH_COOLDOWN: return "PLAYER_DASH_COOLDOWN"
         ModName.PLAYER_DASH_SPEED_MULTIPLIER: return "PLAYER_DASH_SPEED_MULTIPLIER"
+        ModName.PLAYER_LUCK: return "PLAYER_LUCK"
 
         # GUN MODIFIERS
         ModName.GUN_FIRE_RATE: return "GUN_FIRE_RATE"
@@ -98,6 +93,7 @@ func mod_stat_name(n: ModName) -> String:
         ModName.PLAYER_DASH_DURATION: return "dash_duration"
         ModName.PLAYER_DASH_COOLDOWN: return "dash_cooldown"
         ModName.PLAYER_DASH_SPEED_MULTIPLIER: return "dash_speed_multiplier"
+        ModName.PLAYER_LUCK: return "luck"
         # GunStats
         ModName.GUN_FIRE_RATE: return "shots_per_s"
         ModName.GUN_SPREAD_ANGLE_MORE: return "bullets_spread_angle_deg"
