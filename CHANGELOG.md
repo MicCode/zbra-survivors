@@ -1,5 +1,17 @@
 
 - - -
+## 0.23.0 - 2025-08-15
+
+#### ➕ New features
+- **(gameplay)** added a player luck statistic and modifier that can alter some game parameters in an unexpected way
+- **(gameplay)** reduce chance for a modifier to be proposed each time it is picked
+- **(gameplay)** added new weapon: laser gun
+- **(gameplay)** added new weapon: machine gun
+#### 🪲 Bug fixes
+- **(gameplay)** add small speed and spread angle variations when multiple bullets are shot at once
+
+- - -
+
 ## 0.22.0 - 2025-08-11
 
 #### ➕ New features
