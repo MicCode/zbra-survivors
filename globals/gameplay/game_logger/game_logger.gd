@@ -3,10 +3,10 @@ extends Node
 # TODO log player health
 # TODO log player max health
 
-# TODO log spawned ennemies number
-# TODO log spawned ennemies types & stats ?
-# TODO log ennemies spawn time
-# TODO log ennemies killed
+# TODO log spawned enemies number
+# TODO log spawned enemies types & stats ?
+# TODO log enemies spawn time
+# TODO log enemies killed
 
 # TODO log modifiers acquisition
 # TODO log items acquisitions

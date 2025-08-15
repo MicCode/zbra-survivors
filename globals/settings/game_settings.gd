@@ -4,7 +4,7 @@ class_name GameSettings
 @export var language: String
 @export var camera_zoom: float
 @export var map_opacity: float
-@export var show_ennemies_healthbar: bool
+@export var show_enemies_healthbar: bool
 @export var enable_vibrations: bool
 @export var display_xp_capture_radius: bool
 @export var display_announcement_stickers: bool
@@ -17,7 +17,7 @@ func to_dict() -> Dictionary:
         "map_opacity": map_opacity,
         "display_xp_capture_radius": display_xp_capture_radius,
         "display_announcement_stickers": display_announcement_stickers,
-        "show_ennemies_healthbar": show_ennemies_healthbar
+        "show_enemies_healthbar": show_enemies_healthbar
     }
     return dict
 
@@ -30,6 +30,6 @@ static func from_dict(dict: Dictionary) -> GameSettings:
         settings.map_opacity = dict.get("map_opacity", 1.0)
         settings.display_xp_capture_radius = dict.get("display_xp_capture_radius", true)
         settings.display_announcement_stickers = dict.get("display_announcement_stickers", true)
-        settings.show_ennemies_healthbar = dict.get("show_ennemies_healthbar", true)
+        settings.show_enemies_healthbar = dict.get("show_enemies_healthbar", true)
         TranslationServer.set_locale(settings.language)
     return settings

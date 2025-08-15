@@ -12,9 +12,9 @@ func _ready() -> void:
         MusicManager.set_layer(E.MusicLayer.MEDIUM)
 
 func spawn_boss():
-    if !EnnemiesService.is_boss_spawned:
+    if !EnemiesService.is_boss_spawned:
         %BossSpawnTrigger.modulate = Color(1, 1, 1, 0.25)
-        EnnemiesService.spawn_boss(true, %BossSpawnPoint.global_position)
+        EnemiesService.spawn_boss(true, %BossSpawnPoint.global_position)
 
 func _on_boss_spawn_trigger_body_entered(_body: Node2D) -> void:
     call_deferred("spawn_boss")

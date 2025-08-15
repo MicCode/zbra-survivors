@@ -106,7 +106,7 @@ func chest_available():
     SoundPlayer.play_sfx("chest.ogg", SfxOptions.from_dict({volume = -6.0}))
 #endregion
 
-#region Ennemies
+#region Enemies
 func hit():
     SoundPlayer.play_sfx(pick_random("hits"), SfxOptions.from_dict({pitch = 0.9, pitch_variation = 0.1, volume = -12.0}))
 
@@ -114,7 +114,7 @@ func burn_hit():
     SoundPlayer.play_sfx(pick_random("burn"), SfxOptions.from_dict({pitch = 0.8, volume = -6.0}))
 
 func death_mob_1(pitch: float = 3.0):
-    SoundPlayer.play_sfx(pick_random("ennemy-death-1"), SfxOptions.from_dict({pitch = pitch, pitch_variation = 0.1}))
+    SoundPlayer.play_sfx(pick_random("enemy-death-1"), SfxOptions.from_dict({pitch = pitch, pitch_variation = 0.1}))
 
 func death_boss_1():
     SoundPlayer.play_sfx("boss_death.ogg", SfxOptions.from_dict({pitch = 0.8}))

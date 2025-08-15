@@ -147,25 +147,25 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../CameraZoomSetting/CameraZoom")
-focus_neighbor_bottom = NodePath("../../ShowEnnemiesHealthbar/ShowEnnemiesHealthbar")
+focus_neighbor_bottom = NodePath("../../ShowEnemiesHealthbar/ShowEnemiesHealthbar")
 max_value = 1.0
 step = 0.1
 value = 1.0
 
-[node name="ShowEnnemiesHealthbar" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
+[node name="ShowEnemiesHealthbar" type="HBoxContainer" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/ShowEnnemiesHealthbar"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/ShowEnemiesHealthbar"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "SETTING_SHOW_ENNEMIES_HEALTHBAR"
+text = "SETTING_SHOW_ENEMIES_HEALTHBAR"
 
-[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/ShowEnnemiesHealthbar"]
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/ShowEnemiesHealthbar"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
 
-[node name="ShowEnnemiesHealthbar" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/ShowEnnemiesHealthbar"]
+[node name="ShowEnemiesHealthbar" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/ShowEnemiesHealthbar"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../MapOpacitySetting/MapOpacity")
@@ -188,7 +188,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_aneqr")
 [node name="EnableVibrations" type="CheckBox" parent="CenterContainer/VBoxContainer/GameSettings/PanelContainer/GameSettingsList/EnableVibrationsSetting"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../ShowEnnemiesHealthbar/ShowEnnemiesHealthbar")
+focus_neighbor_top = NodePath("../../ShowEnemiesHealthbar/ShowEnemiesHealthbar")
 focus_neighbor_bottom = NodePath("../../EnableXpRadiusSetting/EnableXpRadius")
 flat = true
 

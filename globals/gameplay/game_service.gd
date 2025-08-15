@@ -2,7 +2,7 @@ extends Node
 
 
 signal score_changed
-signal boss_changed(boss_stats: EnnemyStats, boss_health: float)
+signal boss_changed(boss_stats: EnemyStats, boss_health: float)
 signal state_changed(new_state: E.GameState)
 signal shake_screen(strength: float)
 signal remaining_time_changed(remaining_time: float)
@@ -43,7 +43,7 @@ func start_new_game():
     first_level_gained = false
 
     ModsService.reset()
-    EnnemiesService.reset()
+    EnemiesService.reset()
     PlayerService.reset()
     LootService.reset()
     GunService.reset()

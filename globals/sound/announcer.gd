@@ -26,7 +26,7 @@ func rampage():
 #endregion
 
 #region internal ---------------------------------------------------------------------------------------
-func ennemy_died():
+func enemy_died():
     kill_in_one_shot += 1
     kill_announcement_timer = get_tree().create_timer(DELAY_BEFORE_KILL_ANNOUNCEMENT)
     kill_announcement_timer.connect("timeout", func():

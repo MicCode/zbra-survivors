@@ -9,9 +9,9 @@ BUTTON_SAVE_SETTINGS,Save settings,Sauvegarder
 BUTTON_SETTINGS,Settings,Paramètres
 BUTTON_START,Start,Commencer
 BUTTON_TAKE,Take new,Prendre nouveau
-ENNEMY_MOB_1,Mob 1,Truc 1
-ENNEMY_MOB_2,Mob 2,Truc 2
-ENNEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
+ENEMY_MOB_1,Mob 1,Truc 1
+ENEMY_MOB_2,Mob 2,Truc 2
+ENEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
 GUN_CROSSBOW,Crossbow,Arbalète
 GUN_CROSSBOW_EXPLOSIVE,Explosive bolts crossbow,Arbalète à careaux explosifs
 GUN_CROSSBOW_FIRE,Fire bolts crossbow,Arbalète à careaux incendiaires
@@ -85,7 +85,7 @@ SETTING_DISPLAY_XP_RADIUS,Show XP capture radius,Montrer le rayon de capture de 
 SETTING_ENABLE_ANNOUNCEMENT_STICKERS,Enable visual announcements,Activer les annonces visuelles
 SETTING_GAMEPAD_VIBRATION,Gamepad vibrations,Vibrations de la manette
 SETTING_MAP_OPACITY,Minimap opacity,Opacité de la minimap
-SETTING_SHOW_ENNEMIES_HEALTHBAR,Show ennemies healthbars,Afficher les barres de vie des ennemis
+SETTING_SHOW_ENEMIES_HEALTHBAR,Show enemies healthbars,Afficher les barres de vie des ennemis
 SETTINGS_MUSIC,Music,Musique
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
 SUBTITLE_CHOOSE_UPGRADE,Choose upgrade,Choisir une amélioration

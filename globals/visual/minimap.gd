@@ -2,7 +2,7 @@ extends Node
 
 enum ObjectType {
     PLAYER,
-    ENNEMY,
+    ENEMY,
     BOSS,
     COLLECTIBLE,
     GUN,

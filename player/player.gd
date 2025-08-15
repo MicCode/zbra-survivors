@@ -58,7 +58,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta):
     if PlayerService.player_stats.is_alive:
         move(delta)
-        check_for_ennemies(delta)
+        check_for_enemies(delta)
         check_for_items()
         update_dash_gauge()
         check_for_xp()
@@ -118,9 +118,9 @@ func _on_dash_manager_is_dashing_changed(is_dashing: bool) -> void:
     set_invincible(is_dashing)
 #endregion
 
-func check_for_ennemies(_delta):
-    var overlapping_ennemies = %HurtBox.get_overlapping_bodies()
-    if overlapping_ennemies.size() > 0 && can_be_damaged:
+func check_for_enemies(_delta):
+    var overlapping_enemies = %HurtBox.get_overlapping_bodies()
+    if overlapping_enemies.size() > 0 && can_be_damaged:
         take_damage()
 
 #region Damage
@@ -138,7 +138,7 @@ func take_damage(damage: int = 1):
     Sounds.player_hit()
     Controls.vibrate(0.5, 0.5, 1.0)
     just_hurt = true
-    %HurtBox.set_collision_mask_value(2, false) # ennemies
+    %HurtBox.set_collision_mask_value(2, false) # enemies
 
     if PlayerService.player_stats.health <= 0:
         die()
@@ -243,7 +243,7 @@ func burn_things_in_radius():
         if body is EnvTree:
             if !body.is_destroyed:
                 body.burn()
-        elif body is Ennemy:
+        elif body is Enemy:
             if !body.is_dead && !body.is_burning:
                 body.set_burning(4.0, 0.25, 4.0) # TODO take player fire modifiers into account to determine these values
 
@@ -328,7 +328,7 @@ func block_pickup():
     )
 
 func set_invincible(invincible: bool):
-    set_collision_mask_value(2, !invincible) # ennemies layer
+    set_collision_mask_value(2, !invincible) # enemies layer
     set_collision_mask_value(3, !invincible) # environment layer
     set_collision_mask_value(8, !invincible) # radiance layer
     %HurtBox.get_node("shape").disabled = invincible
@@ -340,7 +340,7 @@ func set_invincible(invincible: bool):
 func _on_sprite_animation_finished() -> void:
     if just_hurt:
         just_hurt = false
-        %HurtBox.set_collision_mask_value(2, true) # ennemies
+        %HurtBox.set_collision_mask_value(2, true) # enemies
         %Sprite.play("idle")
 
 func _on_player_stats_changed(player_stats: PlayerStats) -> void:

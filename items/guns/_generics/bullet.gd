@@ -33,7 +33,7 @@ func _physics_process(delta):
         call_deferred("queue_free")
 
 func _on_body_entered(body: Node2D):
-    if body is Ennemy || body is Boss1:
+    if body is Enemy || body is Boss1:
         pierce(body)
         if body.has_method("handle_bullet_hit"):
             body.handle_bullet_hit(self)

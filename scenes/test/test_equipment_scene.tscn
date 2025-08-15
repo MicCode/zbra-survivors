@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ceuyqoivr7ngj" path="res://player/xp_drop.tscn" id="7_b7b57"]
 [ext_resource type="PackedScene" uid="uid://bjac33uc3ygca" path="res://items/guns/flamethrower/flamethrower_collectible.tscn" id="8_w10lt"]
 [ext_resource type="PackedScene" uid="uid://b6ahrxr82mhqj" path="res://items/guns/sniper/sniper_collectible.tscn" id="9_tvq1l"]
-[ext_resource type="PackedScene" uid="uid://drkykj0r3c1kh" path="res://ennemies/dummy/dummy.tscn" id="10_juk4v"]
+[ext_resource type="PackedScene" uid="uid://drkykj0r3c1kh" path="res://enemies/dummy/dummy.tscn" id="10_juk4v"]
 [ext_resource type="PackedScene" uid="uid://diqxvqy6dowgw" path="res://items/consumables/radiance_flask/radiance_flask.tscn" id="12_vs4yp"]
 [ext_resource type="PackedScene" uid="uid://bev8kghrhhghh" path="res://items/consumables/life_flask/life_flask.tscn" id="13_6k7wn"]
 [ext_resource type="PackedScene" uid="uid://drdb0e64568up" path="res://items/consumables/xp_collector/xp_collector.tscn" id="14_wrh14"]
@@ -41,7 +41,7 @@ offset_left = 815.0
 offset_top = 9.0
 offset_right = 1015.0
 offset_bottom = 34.0
-text = "Spawn ennemies
+text = "Spawn enemies
 "
 
 [node name="Weapons" type="Node2D" parent="."]
@@ -186,30 +186,30 @@ position = Vector2(1129, -313)
 [node name="LootChest" parent="Chests" instance=ExtResource("16_uihtm")]
 position = Vector2(813, -315)
 
-[node name="Ennemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="Ennemy" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(795, 360)
 
-[node name="Ennemy2" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(910, 184)
 
-[node name="Ennemy3" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(858, 691)
 
-[node name="Ennemy4" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy4" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-72, 350)
 
-[node name="Ennemy5" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy5" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-138, 349)
 
-[node name="Ennemy6" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy6" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-202, 351)
 
-[node name="Ennemy7" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy7" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-270, 351)
 
-[node name="Ennemy8" parent="Ennemies" instance=ExtResource("10_juk4v")]
+[node name="Enemy8" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-336, 345)
 
 [connection signal="toggled" from="Player/GameUI/CheckButton" to="." method="_on_check_button_toggled"]

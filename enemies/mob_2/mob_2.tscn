@@ -1,0 +1,76 @@
+[gd_scene load_steps=14 format=3 uid="uid://cjw0jumou6ntu"]
+
+[ext_resource type="PackedScene" uid="uid://ci36jx3vvoocj" path="res://enemies/_generics/enemy.tscn" id="1_quukp"]
+[ext_resource type="Shader" uid="uid://7n1pltl6qwgc" path="res://shaders/dissolve.gdshader" id="2_3bvmt"]
+[ext_resource type="Resource" uid="uid://fcied1l0c3ma" path="res://enemies/mob_2/mob_2_stats.tres" id="2_ol0qh"]
+[ext_resource type="Texture2D" uid="uid://drnelp42j481v" path="res://assets/sprites/enemies/enemy-2-dead.png" id="3_6b8w7"]
+[ext_resource type="Texture2D" uid="uid://dhdjvi6flg1kg" path="res://effects/gore_death_noise_texture.tres" id="3_ol0qh"]
+[ext_resource type="Texture2D" uid="uid://l6cj1tg044xc" path="res://assets/sprites/enemies/enemy-2-walk.png" id="3_vp2e4"]
+[ext_resource type="Texture2D" uid="uid://mlv24insxcl0" path="res://assets/sprites/enemies/enemy-2-hurt.png" id="4_0u3s6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mow1r"]
+resource_local_to_scene = true
+shader = ExtResource("2_3bvmt")
+shader_parameter/progress = -2.0
+shader_parameter/noiseForce = 1.0
+shader_parameter/noiseTexture = ExtResource("3_ol0qh")
+shader_parameter/burnColor = Color(1, 0, 0, 1)
+shader_parameter/borderWidth = 0.35
+shader_parameter/direction = 270.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1m82"]
+atlas = ExtResource("4_0u3s6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waowg"]
+atlas = ExtResource("4_0u3s6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2k7t"]
+atlas = ExtResource("3_vp2e4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf6i8"]
+atlas = ExtResource("3_vp2e4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_np543"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6b8w7")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1m82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waowg")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2k7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf6i8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Mob2" instance=ExtResource("1_quukp")]
+stats = ExtResource("2_ol0qh")
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_mow1r")
+sprite_frames = SubResource("SpriteFrames_np543")
+frame_progress = 0.0

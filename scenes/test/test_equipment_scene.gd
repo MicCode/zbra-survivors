@@ -12,6 +12,6 @@ func _ready() -> void:
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
     if toggled_on:
-        EnnemiesService.start_spawning()
+        EnemiesService.start_spawning()
     else:
-        EnnemiesService.stop_spawning()
+        EnemiesService.stop_spawning()

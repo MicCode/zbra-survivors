@@ -11,7 +11,7 @@ func _physics_process(_delta: float) -> void:
     if !%DamageTimer.is_stopped():
         return
 
-    var overlapping_bodies = %EnnemyDetector.get_overlapping_bodies()
+    var overlapping_bodies = %EnemyDetector.get_overlapping_bodies()
     if overlapping_bodies.size() > 0:
         life -= 1
         if life <= 0:

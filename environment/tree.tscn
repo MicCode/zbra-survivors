@@ -256,13 +256,13 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_eigig")
 
-[node name="EnnemyDetector" type="Area2D" parent="."]
+[node name="EnemyDetector" type="Area2D" parent="."]
 unique_name_in_owner = true
 light_mask = 0
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnnemyDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 position = Vector2(1, -13)
 shape = SubResource("CircleShape2D_yygov")
 
