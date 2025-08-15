@@ -21,11 +21,12 @@ func _ready() -> void:
 
 func _physics_process(delta):
     var attraction_force = clamp(PlayerService.player_stats.luck * 5, 0.0, 10.0)
-    var target = find_nearest_enemy()
-    if target:
-        var to_target = (target.global_position - global_position).normalized()
-        direction = direction.lerp(to_target, attraction_force * delta).normalized()
-        rotation = direction.angle()
+    if is_from_player:
+        var target = find_nearest_enemy()
+        if target:
+            var to_target = (target.global_position - global_position).normalized()
+            direction = direction.lerp(to_target, attraction_force * delta).normalized()
+            rotation = direction.angle()
 
     position += direction * bullet_stats.speed * delta
     travelled_distance += bullet_stats.speed * delta

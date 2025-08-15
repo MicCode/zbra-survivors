@@ -1,4 +1,4 @@
----
+- - -
 
 ## 0.23.0 - 2025-08-15
 
@@ -13,7 +13,7 @@
 
 -   **(gameplay)** add small speed and spread angle variations when multiple bullets are shot at once
 
----
+- - -
 
 ## 0.22.0 - 2025-08-11
 
@@ -30,7 +30,7 @@
 -   **(ui)** improved game over menu
 -   **(visual)** fixed laggy fire effect
 
----
+- - -
 
 ## 0.21.0 - 2025-08-10
 
@@ -54,7 +54,7 @@
 -   **(ui)** added missing settings menu parameter title translation
 -   **(ui)** fixed broken gun comparison stats when swapping weapon
 
----
+- - -
 
 ## 0.20.0 - 2025-08-09
 
@@ -66,7 +66,7 @@
 
 -   **(ui)** do not display default gun slot in UI when starting a new game
 
----
+- - -
 
 ## 0.19.0 - 2025-08-08
 
@@ -84,7 +84,7 @@
 -   **(ui)** do not grab focus in lvl menu if no joypad connected
 -   **(visual)** fixed Z ordering issues where enemies when visible over obstacles
 
----
+- - -
 
 ## 0.18.0 - 2025-08-06
 
@@ -98,7 +98,7 @@
 
 -   **(sounds)** better dash sounds
 
----
+- - -
 
 ## 0.17.0 - 2025-08-05
 
@@ -114,7 +114,7 @@
 
 -   **(sounds)** better gun sounds
 
----
+- - -
 
 ## 0.16.0 - 2025-07-31
 
@@ -133,7 +133,7 @@
 -   **(gameplay)** accumulate new levels when getting a lot of xp at once, instead of giving only a single level
 -   **(ui)** reduced enemies hit marker display frequency
 
----
+- - -
 
 ## 0.15.0 - 2025-07-30
 
@@ -142,7 +142,7 @@
 -   **(gameplay)** randomly place one chest on the map at random interval
 -   **(gameplay)** added chest that gives a random gun
 
----
+- - -
 
 ## 0.14.0 - 2025-07-30
 
@@ -164,7 +164,7 @@
 -   **(ui)** reworked main UI to be more readable
 -   **(ui)** fixed health not being well displayed + used a more simple progress bar to display current health
 
----
+- - -
 
 ## 0.13.0 - 2025-07-28
 
@@ -181,7 +181,7 @@
 -   **(sound)** made announcements independent from SFX + added a dedicated volume setting
 -   **(ui)** added missing xbox controls sprites
 
----
+- - -
 
 ## 0.12.0 - 2025-07-27
 
@@ -192,7 +192,7 @@
 -   **(visual)** display ghost when timewarping
 -   **(visual)** highlight enemies on hit
 
----
+- - -
 
 ## 0.11.0 - 2025-07-27
 
@@ -206,7 +206,7 @@
 -   **(gameplay)** reset equipment on new game
 -   **(ui)** fixed bad consumable item number in UI when picking up a new one
 
----
+- - -
 
 ## 0.10.0 - 2025-07-27
 
@@ -222,7 +222,7 @@
 -   increased trees density in map
 -   player can change equipped consumable item even if not used
 
----
+- - -
 
 ## 0.9.0 - 2025-07-27
 
@@ -232,7 +232,7 @@
 -   consumable items can now be used when player stroke the use button
 -   added aim guides to show gun dispersion angle
 
----
+- - -
 
 ## 0.8.0 - 2025-07-27
 
@@ -249,7 +249,7 @@
 -   clear minimap on game reset + refresh minimap display at a given rate
 -   fixed sound issues
 
----
+- - -
 
 ## 0.7.0 - 2025-07-27
 
@@ -261,7 +261,7 @@
 
 -   better gun sounds
 
----
+- - -
 
 ## 0.6.0 - 2025-07-27
 
@@ -273,7 +273,7 @@
 
 -   zoomed in camera
 
----
+- - -
 
 ## 0.5.0 - 2025-07-27
 
@@ -281,7 +281,7 @@
 
 -   added splashscreen + created game theme
 
----
+- - -
 
 ## 0.4.0 - 2025-07-27
 
@@ -294,7 +294,7 @@
 -   added a minimap
 -   improved fire effect
 
----
+- - -
 
 ## 0.3.0 - 2025-07-27
 
@@ -308,7 +308,7 @@
 -   better lvl up effect
 -   fixed enemies not dropping xp on death
 
----
+- - -
 
 ## 0.2.0 - 2025-07-27
 
@@ -321,7 +321,7 @@
 -   fixed enemy movements that were stuck between objects
 -   reworked UI to be more flexible
 
----
+- - -
 
 ## 0.1.0 - 2025-07-27
 
