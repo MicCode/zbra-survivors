@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ModifiersList" load_steps=7 format=3 uid="uid://5hi0eum6gc6h"]
+
+[ext_resource type="Script" uid="uid://1rlxyaiou2lq" path="res://globals/gameplay/modifiers/modifier_definition.gd" id="1_bbmq7"]
+[ext_resource type="Script" uid="uid://dpyg86ut44qd3" path="res://globals/gameplay/modifiers/modifiers_list.gd" id="2_ivrdr"]
+[ext_resource type="Texture2D" uid="uid://cb57q4mq8gjxq" path="res://assets/sprites/modifiers/explosion-damage-radius-up.png" id="2_s4al2"]
+[ext_resource type="Texture2D" uid="uid://p0d2ui83txj5" path="res://assets/sprites/modifiers/explosion-damage-up.png" id="3_t6kfk"]
+
+[sub_resource type="Resource" id="Resource_bbmq7"]
+resource_local_to_scene = true
+script = ExtResource("1_bbmq7")
+name = 14
+stat_name = "explosion_radius"
+is_absolute = false
+sprite = ExtResource("2_s4al2")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_ivrdr"]
+resource_local_to_scene = true
+script = ExtResource("1_bbmq7")
+name = 15
+is_absolute = false
+sprite = ExtResource("3_t6kfk")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[resource]
+script = ExtResource("2_ivrdr")
+type = 4
+mods = Array[ExtResource("1_bbmq7")]([SubResource("Resource_bbmq7"), SubResource("Resource_ivrdr")])
+metadata/_custom_type_script = "uid://dpyg86ut44qd3"

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="ModifiersList" load_steps=9 format=3 uid="uid://bqaj5dktugdtc"]
+
+[ext_resource type="Script" uid="uid://1rlxyaiou2lq" path="res://globals/gameplay/modifiers/modifier_definition.gd" id="1_x11qv"]
+[ext_resource type="Texture2D" uid="uid://w8yb1sa6xd8b" path="res://assets/sprites/modifiers/fire-damage-up.png" id="2_t1ajt"]
+[ext_resource type="Script" uid="uid://dpyg86ut44qd3" path="res://globals/gameplay/modifiers/modifiers_list.gd" id="2_wclwv"]
+[ext_resource type="Texture2D" uid="uid://dvhpasmsiw3vm" path="res://assets/sprites/modifiers/fire-duration-up.png" id="3_487gx"]
+[ext_resource type="Texture2D" uid="uid://jsu563chpd3s" path="res://assets/sprites/modifiers/fire-frequency-up.png" id="4_aib5k"]
+
+[sub_resource type="Resource" id="Resource_nxa3e"]
+resource_local_to_scene = true
+script = ExtResource("1_x11qv")
+name = 16
+is_absolute = false
+sprite = ExtResource("2_t1ajt")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_io3et"]
+resource_local_to_scene = true
+script = ExtResource("1_x11qv")
+name = 17
+is_absolute = false
+sprite = ExtResource("3_487gx")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_75oqj"]
+resource_local_to_scene = true
+script = ExtResource("1_x11qv")
+name = 18
+is_absolute = false
+sprite = ExtResource("4_aib5k")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[resource]
+script = ExtResource("2_wclwv")
+type = 5
+mods = Array[ExtResource("1_x11qv")]([SubResource("Resource_nxa3e"), SubResource("Resource_io3et"), SubResource("Resource_75oqj")])
+metadata/_custom_type_script = "uid://dpyg86ut44qd3"

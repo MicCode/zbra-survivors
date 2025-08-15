@@ -103,7 +103,7 @@ func increment_total_spawned(count: int = 1):
 func calculate_spawn_time() -> float:
     # TODO extract this in dedicated global class ? ennemy spawner ?
     var time_factor: float = clamp(GameService.elapsed_time / GameService.MAX_ELAPSED_TIME, 0.0, 1.0)
-    var level_factor: float = clamp(float(PlayerService.player_state.level) / PlayerService.MAX_PLAYER_LEVEL, 0.0, 1.0)
+    var level_factor: float = clamp(float(PlayerService.player_stats.level) / PlayerService.MAX_PLAYER_LEVEL, 0.0, 1.0)
     var progression: float = (time_factor + level_factor) / 2.0
     var curve: float = pow(1.0 - progression, ennemy_spawn_stats.progression_steepness)
     var spawn_time: float = GameService.MIN_SPAWN_TIME + (ennemy_spawn_stats.initial_spawn_time - GameService.MIN_SPAWN_TIME) * curve

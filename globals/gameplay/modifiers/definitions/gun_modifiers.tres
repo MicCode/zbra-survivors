@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="ModifiersList" load_steps=11 format=3 uid="uid://d2tsd71mbkuep"]
+
+[ext_resource type="Script" uid="uid://1rlxyaiou2lq" path="res://globals/gameplay/modifiers/modifier_definition.gd" id="1_5dejf"]
+[ext_resource type="Texture2D" uid="uid://cbvuou01e6gyj" path="res://assets/sprites/modifiers/gun-fire-rate-up.png" id="2_gdcmw"]
+[ext_resource type="Script" uid="uid://dpyg86ut44qd3" path="res://globals/gameplay/modifiers/modifiers_list.gd" id="2_j87nm"]
+[ext_resource type="Texture2D" uid="uid://cqlacpplga4tq" path="res://assets/sprites/modifiers/bullet-spread-angle-up.png" id="3_f5axl"]
+[ext_resource type="Texture2D" uid="uid://dlne16q1u0pgh" path="res://assets/sprites/modifiers/bullet-spread-angle-down.png" id="4_fw5e3"]
+[ext_resource type="Texture2D" uid="uid://c484xwfw47y3r" path="res://assets/sprites/modifiers/bullet-per-shot-up.png" id="5_6pgkb"]
+
+[sub_resource type="Resource" id="Resource_5dejf"]
+resource_local_to_scene = true
+script = ExtResource("1_5dejf")
+name = 6
+is_absolute = false
+sprite = ExtResource("2_gdcmw")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_j87nm"]
+resource_local_to_scene = true
+script = ExtResource("1_5dejf")
+name = 7
+is_absolute = false
+sprite = ExtResource("3_f5axl")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_j5eg1"]
+resource_local_to_scene = true
+script = ExtResource("1_5dejf")
+name = 8
+is_absolute = false
+sprite = ExtResource("4_fw5e3")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_addje"]
+resource_local_to_scene = true
+script = ExtResource("1_5dejf")
+name = 9
+is_absolute = true
+sprite = ExtResource("5_6pgkb")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[resource]
+script = ExtResource("2_j87nm")
+type = 2
+mods = Array[ExtResource("1_5dejf")]([SubResource("Resource_5dejf"), SubResource("Resource_j87nm"), SubResource("Resource_j5eg1"), SubResource("Resource_addje")])
+metadata/_custom_type_script = "uid://dpyg86ut44qd3"

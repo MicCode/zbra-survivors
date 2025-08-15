@@ -17,7 +17,7 @@ func _ready() -> void:
     %MinimapViewer.modulate = Color(Color.WHITE, Settings.game_settings.map_opacity)
 
     GameService.score_changed.connect(_on_score_changed)
-    PlayerService.player_state_changed.connect(_on_player_state_changed)
+    PlayerService.player_stats_changed.connect(_on_player_stats_changed)
     PlayerService.player_timewarping_changed.connect(_on_player_timewarping_changed)
     PlayerService.notify_level_gain.connect(play_lvl_up_effect)
     GameService.state_changed.connect(func(new_state: E.GameState):
@@ -36,7 +36,7 @@ func _ready() -> void:
     else:
         %DebugLayer.hide()
 
-    _on_player_state_changed(PlayerService.player_state)
+    _on_player_stats_changed(PlayerService.player_stats)
     %Score.text = str(GameService.score)
     slide_in()
 
@@ -67,28 +67,28 @@ func slide_out():
 func _on_score_changed(new_score: int):
     %Score.text = str(new_score)
 
-func _on_player_state_changed(player_state: PlayerState):
+func _on_player_stats_changed(player_stats: PlayerStats):
     update_health_bar()
 
-    if player_state.xp != player_xp:
-        player_xp = player_state.xp
-        %XpLabel.text = str(floor(player_xp)) + " / " + str(floor(player_state.next_level_xp))
+    if player_stats.xp != player_xp:
+        player_xp = player_stats.xp
+        %XpLabel.text = str(floor(player_xp)) + " / " + str(floor(player_stats.next_level_xp))
         #VisualEffects.emphases(%XpLabel, %XpLabel.scale.x, 1.2, Color.YELLOW)
         var tween = get_tree().create_tween()
-        tween.tween_property(%XpBar, "value", player_state.xp, 0.25)
+        tween.tween_property(%XpBar, "value", player_stats.xp, 0.25)
 
-    if player_state.level != player_level:
-        player_level = player_state.level
-        %LevelLabel.text = str(player_state.level)
+    if player_stats.level != player_level:
+        player_level = player_stats.level
+        %LevelLabel.text = str(player_stats.level)
         #VisualEffects.emphases(%LevelLabel, %LevelLabel.scale.x, 1.2, Color.YELLOW)
 
-    %XpBar.max_value = player_state.next_level_xp
+    %XpBar.max_value = player_stats.next_level_xp
 
 
 func update_health_bar():
-    %HealthBar.max_value = PlayerService.player_state.max_health
-    %HealthBar.value = PlayerService.player_state.health
-    %HealthBarLabel.text = str("%d / %d" % [PlayerService.player_state.health, PlayerService.player_state.max_health])
+    %HealthBar.max_value = PlayerService.player_stats.max_health
+    %HealthBar.value = PlayerService.player_stats.health
+    %HealthBarLabel.text = str("%d / %d" % [PlayerService.player_stats.health, PlayerService.player_stats.max_health])
 
 func set_remaining_time(remaining_s: float):
     var remaining_minutes = floor(remaining_s / 60)

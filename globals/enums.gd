@@ -89,6 +89,36 @@ func mod_name(_mod_name: ModName) -> String:
             push_warning("Unknown E.ModName with index [%d]" % _mod_name)
             return "???"
 
+func mod_stat_name(n: ModName) -> String:
+    match n:
+        # PlayerStats
+        ModName.PLAYER_MAX_HEALTH: return "max_health"
+        ModName.PLAYER_XP_COLLECT_RADIUS: return "xp_collect_radius"
+        ModName.PLAYER_MOVE_SPEED: return "move_speed"
+        ModName.PLAYER_DASH_DURATION: return "dash_duration"
+        ModName.PLAYER_DASH_COOLDOWN: return "dash_cooldown"
+        ModName.PLAYER_DASH_SPEED_MULTIPLIER: return "dash_speed_multiplier"
+        # GunStats
+        ModName.GUN_FIRE_RATE: return "shots_per_s"
+        ModName.GUN_SPREAD_ANGLE_MORE: return "bullets_spread_angle_deg"
+        ModName.GUN_SPREAD_ANGLE_LESS: return "bullets_spread_angle_deg"
+        ModName.GUN_BULLET_NUMBER: return "bullets_per_shot"
+        # BulletStats
+        ModName.BULLET_DAMAGE: return "damage"
+        ModName.BULLET_SPEED: return "speed"
+        ModName.BULLET_RANGE: return "fly_range"
+        ModName.BULLET_PIERCE_COUNT: return "pierce_count"
+        # Explosion
+        ModName.EXPLOSION_RADIUS: return "explosion_radius"
+        ModName.EXPLOSION_DAMAGE: return "explosion_damage"
+        # Fire
+        ModName.FIRE_DAMAGE: return "fire_damage"
+        ModName.FIRE_DURATION: return "fire_duration"
+        ModName.FIRE_FREQUENCY: return "fire_tick_per_s"
+        _:
+            push_warning("Unknown E.ModStatName with index [%d]" % n)
+            return "???"
+
 enum ModType {
     UNKNOWN,
     PLAYER,

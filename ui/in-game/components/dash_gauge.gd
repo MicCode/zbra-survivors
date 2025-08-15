@@ -15,12 +15,12 @@ const TEXTURE_SIZE = 16
 var state: DashGaugeStates = DashGaugeStates.FULL
 
 func _ready() -> void:
-    PlayerService.player_state_changed.connect(_update_gauge)
+    PlayerService.player_stats_changed.connect(_update_gauge)
 
-func _update_gauge(new_player_state: PlayerState):
-    var new_state = get_new_gauge_state(new_player_state)
-    if new_state != state:
-        state = new_state
+func _update_gauge(new_player_stats: PlayerStats):
+    var new_stats = get_new_gauge_state(new_player_stats)
+    if new_stats != state:
+        state = new_stats
         if state == DashGaugeStates.FULL:
             %ButtonIcon.animate = true
             %ButtonIcon.modulate = Color(1, 1, 1, 1)
@@ -29,11 +29,11 @@ func _update_gauge(new_player_state: PlayerState):
             %ButtonIcon.modulate = Color(1, 1, 1, 0.5)
         update_texture()
 
-func get_new_gauge_state(new_player_state: PlayerState) -> DashGaugeStates:
-    if new_player_state.is_dashing:
+func get_new_gauge_state(new_player_stats: PlayerStats) -> DashGaugeStates:
+    if new_player_stats.is_dashing:
         return DashGaugeStates.USING
     else:
-        match new_player_state.dash_gauge_value:
+        match new_player_stats.dash_gauge_value:
             1: return DashGaugeStates.LOADING_1
             2: return DashGaugeStates.LOADING_2
             3: return DashGaugeStates.LOADING_3

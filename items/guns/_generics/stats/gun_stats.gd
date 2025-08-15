@@ -20,19 +20,20 @@ class_name GunStats
 @export var recoil_distance: float = 10.0
 @export var haptic_feedback: E.HapticFeedback = E.HapticFeedback.ONE_SHOT
 
-static func apply_modifiers(base_stats: GunStats, modifiers: Array[StatsModifier]) -> GunStats:
+static func apply_modifiers(base_stats: GunStats, modifiers: Array[StatModifier]) -> GunStats:
     var new_stats: GunStats = base_stats.duplicate(true)
-    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(E.ModType.GUN)):
-        if new_stats.get(mod.get_stat_name()) == null:
-            push_error("Unable to apply gun stat modifier, stat name [%s] not found in class GunStats" % mod.get_stat_name())
+    for mod in modifiers.filter(func(m: StatModifier): return m.is_type(E.ModType.GUN)):
+        var stat_name = mod.get_stat_name()
+        if new_stats.get(stat_name) == null:
+            push_error("Unable to apply gun stat modifier, stat name [%s] not found in class GunStats" % stat_name)
         else:
-            var base_value = base_stats.get(mod.get_stat_name())
-            if typeof(base_value) != typeof(mod.modifier_value):
-                push_error("GunStats property [%s] is expecting type [%d] but provided modifier is of type [%d]" % [mod.get_stat_name(), typeof(base_value), typeof(mod.modifier_value)])
+            var base_value = base_stats.get(stat_name)
+            if typeof(base_value) != typeof(mod.value):
+                push_error("GunStats property [%s] is expecting type [%d] but provided modifier is of type [%d]" % [stat_name, typeof(base_value), typeof(mod.modifier_value)])
             else:
                 if mod.is_absolute:
-                    base_value += mod.modifier_value
+                    base_value += mod.value
                 else:
-                    base_value *= 1 + (mod.modifier_value / 100)
-            new_stats.set(mod.get_stat_name(), base_value)
+                    base_value *= 1 + (mod.value / 100)
+            new_stats.set(stat_name, base_value)
     return new_stats

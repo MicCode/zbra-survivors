@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="ModifiersList" load_steps=15 format=3 uid="uid://cjkpphhg0kucc"]
+
+[ext_resource type="Script" uid="uid://1rlxyaiou2lq" path="res://globals/gameplay/modifiers/modifier_definition.gd" id="1_l6gxf"]
+[ext_resource type="Texture2D" uid="uid://diowo5ep22tmq" path="res://assets/sprites/modifiers/max-heath-up.png" id="2_t6ovk"]
+[ext_resource type="Texture2D" uid="uid://ccdr4e1ov8g24" path="res://assets/sprites/modifiers/xp-collect-range-up.png" id="3_1gjc1"]
+[ext_resource type="Texture2D" uid="uid://cpxobwb657pwc" path="res://assets/sprites/modifiers/speed-up.png" id="4_s343m"]
+[ext_resource type="Texture2D" uid="uid://dw4p1iq5wlrg7" path="res://assets/sprites/modifiers/dash-duration-up.png" id="5_l0bsn"]
+[ext_resource type="Texture2D" uid="uid://dmt6a8mf6vdnd" path="res://assets/sprites/modifiers/dash-cooldown-down.png" id="6_pnyrk"]
+[ext_resource type="Texture2D" uid="uid://b55ctet56ho2d" path="res://assets/sprites/modifiers/dash-speed-up.png" id="7_4qx5m"]
+[ext_resource type="Script" uid="uid://dpyg86ut44qd3" path="res://globals/gameplay/modifiers/modifiers_list.gd" id="8_7a7pw"]
+
+[sub_resource type="Resource" id="Resource_a4oba"]
+resource_local_to_scene = true
+script = ExtResource("1_l6gxf")
+name = 0
+stat_name = "max_health"
+is_absolute = true
+sprite = ExtResource("2_t6ovk")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_fulek"]
+resource_local_to_scene = true
+script = ExtResource("1_l6gxf")
+name = 1
+stat_name = "xp_collect_radius"
+is_absolute = false
+sprite = ExtResource("3_1gjc1")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_otxlw"]
+resource_local_to_scene = true
+script = ExtResource("1_l6gxf")
+name = 2
+stat_name = "move_speed"
+is_absolute = false
+sprite = ExtResource("4_s343m")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_3psj6"]
+resource_local_to_scene = true
+script = ExtResource("1_l6gxf")
+name = 3
+is_absolute = false
+sprite = ExtResource("5_l0bsn")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_us83o"]
+resource_local_to_scene = true
+script = ExtResource("1_l6gxf")
+name = 4
+is_absolute = false
+sprite = ExtResource("6_pnyrk")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_2rhmt"]
+resource_local_to_scene = true
+script = ExtResource("1_l6gxf")
+name = 5
+is_absolute = false
+sprite = ExtResource("7_4qx5m")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[resource]
+script = ExtResource("8_7a7pw")
+type = 1
+mods = Array[ExtResource("1_l6gxf")]([SubResource("Resource_a4oba"), SubResource("Resource_fulek"), SubResource("Resource_otxlw"), SubResource("Resource_3psj6"), SubResource("Resource_us83o"), SubResource("Resource_2rhmt")])
+metadata/_custom_type_script = "uid://dpyg86ut44qd3"

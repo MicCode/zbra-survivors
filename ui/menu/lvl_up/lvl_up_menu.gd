@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal picked_modifier(mod: Mod)
+signal picked_modifier(mod: ModifierDefinition)
 
 const CHOICE_DISAPPEAR_TIME: float = 0.25
 const ANIMATION_TIME: float = 0.1
@@ -25,7 +25,7 @@ func _input(_event: InputEvent) -> void:
 func set_remaining_times(times: int):
     %RemainingTimesLabel.text = str("(%d)" % times)
 
-func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Mod):
+func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: ModifierDefinition):
     for choice in choices:
         choice.disable()
         if choice != clicked_choice:
@@ -34,16 +34,16 @@ func _on_choice_clicked(clicked_choice: LvlUpChoice, mod: Mod):
         picked_modifier.emit(mod)
     )
 
-func _on_choice_excluded_changed(clicked_choice: LvlUpChoice, mod: Mod, excluded: bool):
-    var existing_exclusion = ModsService.excluded_mods.filter(func(n: E.ModName): return n == mod.name)
-    if excluded and existing_exclusion.is_empty():
+func _on_choice_excluded_changed(clicked_choice: LvlUpChoice, mod: ModifierDefinition, excluded: bool):
+    var existing_exclusions = ModsService.excluded_mods.filter(func(n: E.ModName): return n == mod.name)
+    if excluded and existing_exclusions.is_empty():
         ModsService.excluded_mods.append(mod.name)
         clicked_choice.modulate = Color(Color.WHITE, 0.5)
         PlayerService.lvl_up_exclusions_remaining -= 1
         refresh_counters()
         #print("excluded mod [%s]" % mod.name)
-    elif !excluded and !existing_exclusion.is_empty():
-        ModsService.excluded_mods = ModsService.excluded_mods.filter(func(n: E.ModName): return n == mod.name)
+    elif !excluded and !existing_exclusions.is_empty():
+        ModsService.excluded_mods = ModsService.excluded_mods.filter(func(n: E.ModName): return n != mod.name)
         clicked_choice.modulate = Color.WHITE
         PlayerService.lvl_up_exclusions_remaining += 1
         refresh_counters()
@@ -78,9 +78,9 @@ func reroll():
         if child is LvlUpChoice:
             child.queue_free()
 
-    for mod in ModsService.random_pick_n(3):
+    for mod: ModifierDefinition in ModsService.random_pick_n(3):
         var choice: LvlUpChoice = preload("res://ui/menu/lvl_up/lvl_up_choice.tscn").instantiate()
-        choice.set_stat_modifier(mod)
+        choice.mod_definition = mod
         %Choices.add_child(choice)
         choice.clicked.connect(func(): _on_choice_clicked(choice, mod))
         choice.excluded_changed.connect(func(excluded: bool): _on_choice_excluded_changed(choice, mod, excluded))

@@ -25,7 +25,7 @@ func start_chase():
     )
 
 func shoot():
-    if !is_dead and PlayerService.player_state.is_alive:
+    if !is_dead and PlayerService.player_stats.is_alive:
         %Sprite.play("shoot")
         get_tree().create_timer(SHOOT_START_DELAY_S).timeout.connect(func():
             var bullet = preload("res://ennemies/boss_1/boss_bullet.tscn").instantiate()

@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="ModifiersList" load_steps=11 format=3 uid="uid://7fejgulo3qo3"]
+
+[ext_resource type="Script" uid="uid://1rlxyaiou2lq" path="res://globals/gameplay/modifiers/modifier_definition.gd" id="1_fgynf"]
+[ext_resource type="Texture2D" uid="uid://b2ihiv657hrde" path="res://assets/sprites/modifiers/damage-up.png" id="2_208gi"]
+[ext_resource type="Script" uid="uid://dpyg86ut44qd3" path="res://globals/gameplay/modifiers/modifiers_list.gd" id="2_labpn"]
+[ext_resource type="Texture2D" uid="uid://damdssy7uff3h" path="res://assets/sprites/modifiers/bullet-speed-up.png" id="3_td2mw"]
+[ext_resource type="Texture2D" uid="uid://dv85miwbnofv6" path="res://assets/sprites/modifiers/bullet-range-up.png" id="4_x8wpn"]
+[ext_resource type="Texture2D" uid="uid://dynjye88ifx4u" path="res://assets/sprites/modifiers/piercing-plus.png" id="5_amjuh"]
+
+[sub_resource type="Resource" id="Resource_fgynf"]
+resource_local_to_scene = true
+script = ExtResource("1_fgynf")
+name = 10
+is_absolute = false
+sprite = ExtResource("2_208gi")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_labpn"]
+resource_local_to_scene = true
+script = ExtResource("1_fgynf")
+name = 11
+is_absolute = false
+sprite = ExtResource("3_td2mw")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_j7ftq"]
+resource_local_to_scene = true
+script = ExtResource("1_fgynf")
+name = 12
+is_absolute = false
+sprite = ExtResource("4_x8wpn")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[sub_resource type="Resource" id="Resource_ne8di"]
+resource_local_to_scene = true
+script = ExtResource("1_fgynf")
+name = 13
+is_absolute = true
+sprite = ExtResource("5_amjuh")
+metadata/_custom_type_script = "uid://1rlxyaiou2lq"
+
+[resource]
+script = ExtResource("2_labpn")
+type = 3
+mods = Array[ExtResource("1_fgynf")]([SubResource("Resource_fgynf"), SubResource("Resource_labpn"), SubResource("Resource_j7ftq"), SubResource("Resource_ne8di")])
+metadata/_custom_type_script = "uid://dpyg86ut44qd3"

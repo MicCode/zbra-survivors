@@ -26,7 +26,7 @@ func _show_lvl_up_menu(n_times: int):
     lvl_up_menu.set_remaining_times(n_times)
     n_times -= 1
     SceneManager.current_scene.add_child(lvl_up_menu)
-    lvl_up_menu.picked_modifier.connect(func(mod: Mod):
+    lvl_up_menu.picked_modifier.connect(func(mod: ModifierDefinition):
         ModsService.register_new_modifier(mod)
         lvl_up_menu.slide_out().finished.connect(func():
             lvl_up_menu.queue_free()

@@ -1,6 +1,6 @@
 extends Node
 signal notify_level_gain
-signal player_state_changed
+signal player_stats_changed
 signal player_gained_xp(amount: float)
 signal player_gained_level(number_of_gained_levels: int)
 signal player_timewarping_changed(timewarping: bool)
@@ -13,8 +13,8 @@ const MAX_PLAYER_LEVEL: int = 100
 const XP_INCREASE_PERCENT_PER_LEVEL: float = 25.0
 
 var player_instance: Player
-var base_player_state: PlayerState
-var player_state: PlayerState
+var base_player_stats: PlayerStats
+var player_stats: PlayerStats
 
 var explosions_damage: float = 100.0
 var base_explosions_damage: float = 100.0
@@ -27,8 +27,8 @@ var lvl_up_exclusions_remaining: int = 3
 var lvl_up_rerolls_remaining: int = 3
 
 func reset():
-    base_player_state = load("res://player/state/default_player_state.tres")
-    player_state = base_player_state.duplicate(true)
+    base_player_stats = load("res://player/stats/default_player_stats.tres")
+    player_stats = base_player_stats.duplicate(true)
     lvl_up_exclusions_remaining = 3 # TODO put base value in settings ?
     lvl_up_rerolls_remaining = 3 # TODO put base value in settings ?
 
@@ -36,16 +36,16 @@ func reset():
     emit_player_change()
 
 func gain_xp(xp: float) -> void:
-    player_state.xp += xp
-    player_state.total_xp += xp
+    player_stats.xp += xp
+    player_stats.total_xp += xp
     player_gained_xp.emit(xp)
 
     var new_level_gained = 0
-    while player_state.xp >= player_state.next_level_xp:
-        var excess = player_state.xp - player_state.next_level_xp
-        player_state.xp = excess
-        player_state.next_level_xp = Utils.add_percent(player_state.next_level_xp, XP_INCREASE_PERCENT_PER_LEVEL)
-        player_state.level += 1
+    while player_stats.xp >= player_stats.next_level_xp:
+        var excess = player_stats.xp - player_stats.next_level_xp
+        player_stats.xp = excess
+        player_stats.next_level_xp = Utils.add_percent(player_stats.next_level_xp, XP_INCREASE_PERCENT_PER_LEVEL)
+        player_stats.level += 1
         new_level_gained += 1
 
     if new_level_gained > 0:
@@ -64,7 +64,7 @@ func change_consumable(_new_consumable: ConsumableItem) -> void:
     consumable_changed.emit(consumable)
 
 func emit_player_change() -> void:
-    player_state_changed.emit(player_state)
+    player_stats_changed.emit(player_stats)
 
 func register_player_instance(_player) -> void:
     player_instance = _player

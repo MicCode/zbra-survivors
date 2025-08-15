@@ -8,7 +8,10 @@ const HOVER_ANIMATION_DURATION = 0.1
 var panel_style: StyleBoxFlat
 var has_been_clicked = false
 var block_focus = false
-var stat_modifier: Mod
+var mod_definition: ModifierDefinition:
+    set(new_definition):
+        mod_definition = new_definition
+        refresh_display()
 var is_hovered = false
 var prevent_mouse_click = false
 var excluded = false
@@ -50,18 +53,17 @@ func is_accept_clicked() -> bool:
 func is_exclude_clicked() -> bool:
     return !prevent_mouse_click and is_hovered and Controls.is_just_pressed(Controls.PlayerAction.EXCLUDE)
 
-func set_stat_modifier(new_mod: Mod):
-    stat_modifier = new_mod
-    %StatName.text = new_mod.get_display_label()
-    var value_label = str(new_mod.modification_value)
+func refresh_display():
+    %StatName.text = mod_definition.get_display_label()
+    var value_label = str(ModsService.base_mod_values.get(mod_definition.name))
     if value_label.ends_with(".0"):
         value_label = value_label.split(".")[0]
-    if !new_mod.is_absolute:
+    if !mod_definition.is_absolute:
         value_label += "%"
     if not (value_label.begins_with("-") or value_label.begins_with("0")):
         value_label = "+" + value_label
     %ModifierValue.text = value_label
-    %Sprite.texture = new_mod.get_sprite()
+    %Sprite.texture = mod_definition.sprite
 
 func force_focus():
     %PanelContainer.grab_focus()

@@ -63,6 +63,8 @@ func refresh_display():
     %SubtitleLabel.text = tr(subtitle_label)
     %GunName.text = "GUN_" + gun.get_gun_name().to_upper()
 
+    # TODO refactor this crap
+
     %Damage.set_value(bullet_stats.damage)
     if compare_to:
         %Damage.set_compare_to(compare_to_bullet_stats.damage)
@@ -81,15 +83,23 @@ func refresh_display():
     elif fire_dps != base_fire_dps:
         %FireDamagePerS.set_compare_to(base_fire_dps, false, diff_color)
 
-    %ExplosionDamage.set_value(bullet_stats.explosion_damage)
-    if compare_to: %ExplosionDamage.set_compare_to(compare_to_bullet_stats.explosion_damage)
-    elif bullet_stats.explosion_damage != base_bullet_stats.explosion_damage:
-        %ExplosionDamage.set_compare_to(base_bullet_stats.explosion_damage, false, diff_color)
+    var explosion_damage = bullet_stats.explosion_damage * (PlayerService.explosions_damage / 100)
+    var base_explosion_damage = bullet_stats.explosion_damage
+    %ExplosionDamage.set_value(explosion_damage)
+    if compare_to:
+        var other_explosion_damage = compare_to_bullet_stats.explosion_damage * (PlayerService.explosions_damage / 100)
+        %ExplosionDamage.set_compare_to(other_explosion_damage)
+    elif explosion_damage != base_explosion_damage:
+        %ExplosionDamage.set_compare_to(base_explosion_damage, false, diff_color)
 
-    %ExplosionRadius.set_value(bullet_stats.explosion_radius)
-    if compare_to: %ExplosionRadius.set_compare_to(compare_to_bullet_stats.explosion_radius)
-    elif bullet_stats.explosion_radius != base_bullet_stats.explosion_radius:
-        %ExplosionRadius.set_compare_to(base_bullet_stats.explosion_radius, false, diff_color)
+    var explosion_radius = bullet_stats.explosion_radius * (PlayerService.explosions_radius / 100)
+    var base_explosion_radius = bullet_stats.explosion_radius
+    %ExplosionRadius.set_value(explosion_radius)
+    if compare_to:
+        var other_explosion_radius = compare_to_bullet_stats.explosion_radius * (PlayerService.explosions_radius / 100)
+        %ExplosionRadius.set_compare_to(other_explosion_radius)
+    elif explosion_radius != base_explosion_radius:
+        %ExplosionRadius.set_compare_to(base_explosion_radius, false, diff_color)
 
     %ShotPerS.set_value(gun_stats.shots_per_s)
     if compare_to: %ShotPerS.set_compare_to(compare_to_gun_stats.shots_per_s)

@@ -3,7 +3,7 @@ extends Node
 var loot_chances: LootChances
 
 func reset():
-    loot_chances = preload("res://player/state/default_loot_chances.tres").duplicate()
+    loot_chances = preload("res://player/stats/default_loot_chances.tres").duplicate()
 
 func get_random_gun() -> Gun:
     var possible_guns: Array[String] = GunService.all_gun_names

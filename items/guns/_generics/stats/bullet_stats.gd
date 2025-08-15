@@ -29,19 +29,19 @@ class_name BulletStats
 @export var fire_damage: float = 0.0
 @export var fire_duration: float = 0.0
 
-static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatsModifier]) -> BulletStats:
+static func apply_modifiers(base_stats: BulletStats, modifiers: Array[StatModifier]) -> BulletStats:
     var new_stats: BulletStats = base_stats.duplicate(true)
-    for mod in modifiers.filter(func(m: StatsModifier): return m.is_type(E.ModType.BULLET) or m.is_type(E.ModType.FIRE)):
+    for mod in modifiers.filter(func(m: StatModifier): return m.is_type(E.ModType.BULLET) or m.is_type(E.ModType.FIRE)):
         if new_stats.get(mod.get_stat_name()) == null:
             push_error("Unable to apply bullet stat modifier, stat name [%s] not found in class BulletStats" % mod.get_stat_name())
         else:
             var base_value = base_stats.get(mod.get_stat_name())
-            if typeof(base_value) != typeof(mod.modifier_value):
-                push_error("BulletStats property [%s] is expecting type [%d] but provided modifier is of type [%d]" % [mod.get_stat_name(), typeof(base_value), typeof(mod.modifier_value)])
+            if typeof(base_value) != typeof(mod.value):
+                push_error("BulletStats property [%s] is expecting type [%d] but provided modifier is of type [%d]" % [mod.get_stat_name(), typeof(base_value), typeof(mod.value)])
             else:
                 if mod.is_absolute:
-                    base_value += mod.modifier_value
+                    base_value += mod.value
                 else:
-                    base_value *= 1 + (mod.modifier_value / 100)
+                    base_value *= 1 + (mod.value / 100)
             new_stats.set(mod.get_stat_name(), base_value)
     return new_stats

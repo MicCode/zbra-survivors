@@ -33,10 +33,10 @@ func update_mods():
 
     for mod in ModsService.active_mods:
         var label = Label.new()
-        if mod.modifier_value >= 0:
+        if mod.value >= 0:
             label.text = "+"
-        label.text += str("%d" % mod.modifier_value)
+        label.text += str("%d" % mod.value)
         if !mod.is_absolute:
             label.text += "%"
-        label.text += " " + E.mod_name(mod.modifier)
+        label.text += " " + E.mod_name(mod.name)
         %Mods.add_child(label)

@@ -48,10 +48,10 @@ func stop_logging():
 
 #region loggers
 func log_player_level(_n: int):
-    _log(logs.player_level, PlayerService.player_state.level)
+    _log(logs.player_level, PlayerService.player_stats.level)
 
 func log_player_xp(_n: int):
-    _log(logs.player_xp, PlayerService.player_state.total_xp)
+    _log(logs.player_xp, PlayerService.player_stats.total_xp)
 
 func log_gun_stats(_gun_stats: GunStats):
     if GunService.equipped_gun:

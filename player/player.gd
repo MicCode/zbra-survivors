@@ -29,10 +29,10 @@ func _ready():
     init_health()
     if Settings.WORLD_GENERATION_DEBUG:
         Settings.game_settings.camera_zoom = 0.1
-        PlayerService.player_state.move_speed = 1000.0
+        PlayerService.player_stats.move_speed = 1000.0
     %Camera.zoom = Vector2(Settings.game_settings.camera_zoom, Settings.game_settings.camera_zoom)
     PlayerService.register_player_instance(self)
-    PlayerService.player_state_changed.connect(_on_player_state_changed)
+    PlayerService.player_stats_changed.connect(_on_player_stats_changed)
     PlayerService.player_gained_level.connect(_on_player_level_gained)
     GunService.equipped_gun_changed.connect(equip_gun)
     PlayerService.notify_level_gain.connect(play_lvl_animation)
@@ -42,7 +42,7 @@ func _ready():
         %XpCollectRadiusDisplay.show()
     else:
         %XpCollectRadiusDisplay.hide()
-    update_xp_collect_radius(PlayerService.player_state.xp_collect_radius)
+    update_xp_collect_radius(PlayerService.player_stats.xp_collect_radius)
 
     effects_manager = %EffectsManager
 
@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
         AudioServer.playback_speed_scale = actual_time_scale
 
 func _physics_process(delta):
-    if PlayerService.player_state.is_alive:
+    if PlayerService.player_stats.is_alive:
         move(delta)
         check_for_ennemies(delta)
         check_for_items()
@@ -73,9 +73,9 @@ func move(_delta):
         %Sprite.flip_h = (h_direction != 1)
 
     if !%DashManager.is_dashing():
-        velocity = direction * PlayerService.player_state.move_speed * PlayerService.player_state.move_speed_factor
+        velocity = direction * PlayerService.player_stats.move_speed * PlayerService.player_stats.move_speed_factor
     else:
-        velocity = direction * PlayerService.player_state.move_speed * PlayerService.player_state.move_speed_factor * PlayerService.player_state.dash_speed_multiplier
+        velocity = direction * PlayerService.player_stats.move_speed * PlayerService.player_stats.move_speed_factor * PlayerService.player_stats.dash_speed_multiplier
 
     move_and_slide()
     Minimap.moved(self, position)
@@ -109,9 +109,9 @@ func process_player_controls():
 #region Dash
 func update_dash_gauge():
     var time_left = %DashManager.get_cooldown_remaining()
-    var gauge_value = floor((1 - (time_left / PlayerService.player_state.dash_cooldown)) * 5)
-    if gauge_value != PlayerService.player_state.dash_gauge_value:
-        PlayerService.player_state.dash_gauge_value = gauge_value
+    var gauge_value = floor((1 - (time_left / PlayerService.player_stats.dash_cooldown)) * 5)
+    if gauge_value != PlayerService.player_stats.dash_gauge_value:
+        PlayerService.player_stats.dash_gauge_value = gauge_value
         PlayerService.emit_player_change()
 
 func _on_dash_manager_is_dashing_changed(is_dashing: bool) -> void:
@@ -125,13 +125,13 @@ func check_for_ennemies(_delta):
 
 #region Damage
 func take_damage(damage: int = 1):
-    PlayerService.player_state.total_damage_taken += damage
+    PlayerService.player_stats.total_damage_taken += damage
     GameService.shake_screen.emit(10)
-    PlayerService.player_state.health -= damage
-    %Health.current_health = PlayerService.player_state.health
+    PlayerService.player_stats.health -= damage
+    %Health.current_health = PlayerService.player_stats.health
     PlayerService.emit_player_change()
     can_be_damaged = false
-    get_tree().create_timer(PlayerService.player_state.damage_cooldown).timeout.connect(func():
+    get_tree().create_timer(PlayerService.player_stats.damage_cooldown).timeout.connect(func():
         can_be_damaged = true
     )
     %Sprite.play("hurt")
@@ -140,7 +140,7 @@ func take_damage(damage: int = 1):
     just_hurt = true
     %HurtBox.set_collision_mask_value(2, false) # ennemies
 
-    if PlayerService.player_state.health <= 0:
+    if PlayerService.player_stats.health <= 0:
         die()
 #endregion
 
@@ -228,8 +228,8 @@ func attract_all_xp_on_map(collector: XpCollector):
             child.move_to_player()
 
 func use_life_flask(flask: LifeFlask):
-    if PlayerService.player_state.health < PlayerService.player_state.max_health:
-        PlayerService.player_state.health = min(PlayerService.player_state.health + flask.life_amount, PlayerService.player_state.max_health)
+    if PlayerService.player_stats.health < PlayerService.player_stats.max_health:
+        PlayerService.player_stats.health = min(PlayerService.player_stats.health + flask.life_amount, PlayerService.player_stats.max_health)
         PlayerService.emit_player_change()
         Sounds.heal()
         %Effects.show()
@@ -272,12 +272,12 @@ func use_timewrap_clock(clock: TimewrapClock) -> bool:
         Engine.time_scale = 1.0
         time_scale_target = 1.0
         Sounds.stop_timewarping()
-        PlayerService.player_state.move_speed_factor = 1.0
+        PlayerService.player_stats.move_speed_factor = 1.0
         PlayerService.player_timewarping_changed.emit(false)
     )
     Engine.time_scale = clock.timewarp_factor
     time_scale_target = clock.timewarp_factor
-    PlayerService.player_state.move_speed_factor = 1 / clock.timewarp_factor
+    PlayerService.player_stats.move_speed_factor = 1 / clock.timewarp_factor
     clock.queue_free()
     Sounds.start_timewarping()
     PlayerService.player_timewarping_changed.emit(true)
@@ -305,12 +305,12 @@ func use_mine(mine: Mine) -> bool:
     return mine.time_used >= mine.stats.max_uses
 
 func init_health():
-    %Health.max_health = PlayerService.player_state.max_health
-    %Health.current_health = PlayerService.player_state.health
+    %Health.max_health = PlayerService.player_stats.max_health
+    %Health.current_health = PlayerService.player_stats.health
 
 func die():
     health_depleted.emit()
-    PlayerService.player_state.is_alive = false
+    PlayerService.player_stats.is_alive = false
     PlayerService.emit_player_change()
     if equiped_gun != null:
         equiped_gun.queue_free()
@@ -343,8 +343,8 @@ func _on_sprite_animation_finished() -> void:
         %HurtBox.set_collision_mask_value(2, true) # ennemies
         %Sprite.play("idle")
 
-func _on_player_state_changed(player_state: PlayerState) -> void:
-    update_xp_collect_radius(player_state.xp_collect_radius)
+func _on_player_stats_changed(player_stats: PlayerStats) -> void:
+    update_xp_collect_radius(player_stats.xp_collect_radius)
 
 func update_xp_collect_radius(new_radius: float):
     %XpCollectShape.shape.radius = new_radius
