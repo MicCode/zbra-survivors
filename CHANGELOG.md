@@ -1,4 +1,13 @@
 - - -
+## 0.23.1 - 2025-08-15
+
+#### 🪲 Bug fixes
+- **(gameplay)** fixed issue with boss bullets
+- **(gameplay)** fixed issue preventing selecting a lvl mod or getting weapon from chests
+- **(settings)** disabled announcer by default (until it is reworked)
+
+- - -
+
 
 ## 0.23.0 - 2025-08-15
 
