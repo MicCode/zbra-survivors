@@ -34,7 +34,7 @@ func get_scenes_inheriting(parent_scene_path: String, folder_path: String) -> Ar
     var result: Array[String] = []
     var dir := DirAccess.open(folder_path)
     if dir == null:
-        push_error("Impossible d'ouvrir le dossier : " + folder_path)
+        push_error("Unable to open folder: " + folder_path)
         return result
 
     dir.list_dir_begin()
@@ -43,14 +43,15 @@ func get_scenes_inheriting(parent_scene_path: String, folder_path: String) -> Ar
         if dir.current_is_dir():
             if file_name != "." and file_name != "..":
                 result.append_array(get_scenes_inheriting(parent_scene_path, folder_path.path_join(file_name)))
-        elif file_name.ends_with(".tscn"):
-            var scene_path = folder_path.path_join(file_name)
+        elif file_name.ends_with(".tscn") or file_name.ends_with(".tscn.remap"):
+            var clean_file_name = file_name.replace(".remap", "")
+            var scene_path = folder_path.path_join(clean_file_name)
             var file = FileAccess.open(scene_path, FileAccess.READ)
             if file:
                 var content = file.get_as_text()
                 file.close()
                 if parent_scene_path in content:
-                    result.append(file_name.replace(".tscn", "")) # ou scene_path si tu veux le chemin complet
+                    result.append(clean_file_name.replace(".tscn", ""))
         file_name = dir.get_next()
     dir.list_dir_end()
 

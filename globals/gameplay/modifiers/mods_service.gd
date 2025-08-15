@@ -51,8 +51,9 @@ func reset():
 func init_modifiers_dict():
     all_mods = {}
     for file in DirAccess.get_files_at(MODIFIERS_DEFINITIONS_FOLDER):
-        if file.get_extension() == "tres":
-            var definitions: ModifiersList = load(MODIFIERS_DEFINITIONS_FOLDER.path_join(file))
+        if file.get_basename().contains("_modifiers") and ["tres", "remap"].has(file.get_extension()):
+            var clean_name = file.replace(".remap", "")
+            var definitions: ModifiersList = load(MODIFIERS_DEFINITIONS_FOLDER.path_join(clean_name))
             all_mods.set(definitions.type, definitions.mods)
             all_mods_flat.append_array(definitions.mods)
 

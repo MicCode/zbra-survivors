@@ -28,10 +28,10 @@ func load_all() -> Array[Resource]:
     var result: Array[Resource] = []
     load_all_into(result)
     return result
-    
+
 ## Loads all resources and stores them into the given array. Allows
-## to load resources into typed arrays for better type safety. If 
-## the item is not of the required type, an error will be printed and 
+## to load resources into typed arrays for better type safety. If
+## the item is not of the required type, an error will be printed and
 ## the item is skipped.
 func load_all_into(destination: Array):
     for path in paths:
@@ -49,12 +49,12 @@ func load_matching(includes: Array[String], excludes: Array[String]) -> Array[Re
     var result: Array[Resource] = []
     load_matching_into(result, includes, excludes)
     return result
-    
-    
+
+
 ## Loads all resources in this resource group that match the given
 ## include and exclude criteria and stores them into the given array.
-## Allows to load resources into typed arrays for better type safety. If 
-## the item is not of the required type, an error will be printed and 
+## Allows to load resources into typed arrays for better type safety. If
+## the item is not of the required type, an error will be printed and
 ## the item is skipped.
 func load_matching_into(destination: Array, includes: Array[String], excludes: Array[String]):
     var matching_paths = get_matching_paths(includes, excludes)
@@ -76,14 +76,14 @@ func load_all_in_background(on_resource_loaded: Callable) -> ResourceGroupBackgr
 func load_matching_in_background(includes: Array[String], excludes: Array[String], on_resource_loaded: Callable) \
         -> ResourceGroupBackgroundLoader:
     return ResourceGroupBackgroundLoader.new(get_matching_paths(includes, excludes), on_resource_loaded)
-    
-#### CSHARP Specifics ####    
-    
+
+#### CSHARP Specifics ####
+
 # Workaround for C# interop not being able to properly convert arrays into Godot land.
 func __csharp_get_matching_paths(includes: Array, excludes: Array) -> Array[String]:
     return get_matching_paths(__to_string_array(includes), __to_string_array(excludes))
-    
-    
+
+
 # Workaround for C# interop not being able to properly convert arrays into Godot land.
 func __csharp_load_matching(includes: Array, excludes: Array) -> Array[Resource]:
     return load_matching(__to_string_array(includes), __to_string_array(excludes))
@@ -99,5 +99,5 @@ func __to_string_array(array: Array) -> Array[String]:
     var result: Array[String] = []
     for item in array:
         result.append(item)
-        
+
     return result

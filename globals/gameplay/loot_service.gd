@@ -39,7 +39,7 @@ func get_random_gun() -> Gun:
 
     # TODO improve this random pick and make gun statistics random as well
     # TODO give different pick chance to each gun ?
-
+    print(possible_guns)
     return GunService.create_gun(possible_guns[randi_range(0, possible_guns.size() - 1)])
 
 func get_random_item() -> Node2D:

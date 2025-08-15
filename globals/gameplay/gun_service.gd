@@ -14,7 +14,11 @@ var base_equipped_bullet_stats: BulletStats
 var gun_change_menu: GunChangeMenu
 
 func _ready() -> void:
-    all_gun_names = Utils.get_scenes_inheriting(EQUIPMENT_PATH + GUNS_PATH + "_generics/gun.tscn", EQUIPMENT_PATH + GUNS_PATH)
+    var guns_group: ResourceGroup = preload("res://items/guns/guns.tres")
+    all_gun_names = []
+    for gun_path in guns_group.paths:
+        all_gun_names.append(gun_path.split("/")[-1].split(".")[0])
+    print("loaded guns, founs [%d] guns" % all_gun_names.size())
     print(all_gun_names)
 
 func reset():
