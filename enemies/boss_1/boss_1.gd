@@ -47,7 +47,7 @@ func handle_bullet_hit(bullet: Bullet):
     if is_ready && !is_dead:
         super.handle_bullet_hit(bullet)
 
-func take_damage(damage: float):
+func take_damage(damage: float, is_fire: bool = false):
     health -= damage
     # TODO change sprite modulation on hit
     play_hit_sound()

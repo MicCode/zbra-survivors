@@ -62,10 +62,6 @@ func _physics_process(_delta):
         Minimap.moved(self, global_position)
         %Sprite.flip_h = !is_sprite_reversed && direction_to_player.x < 0 || is_sprite_reversed && direction_to_player.x >= 0
 
-
-func bleed(impact_from: Vector2):
-    VisualEffects.bleed(global_position, impact_from)
-
 func handle_bullet_hit(bullet: Bullet):
     if !can_take_damage:
         return
@@ -78,13 +74,11 @@ func handle_bullet_hit(bullet: Bullet):
             1 / bullet.bullet_stats.fire_tick_per_s,
             bullet.bullet_stats.fire_damage
         )
-    else:
-        bleed(PlayerService.player_instance.global_position)
 
-    take_damage(bullet.bullet_stats.damage)
+    take_damage(bullet.bullet_stats.damage, bullet.bullet_stats.inflicts_fire)
 
 
-func take_damage(damage: float):
+func take_damage(damage: float, is_fire = false):
     if !can_take_damage:
         return
     if is_dead:
@@ -96,6 +90,8 @@ func take_damage(damage: float):
     if %DamageSpawnTimer.is_stopped() or previous_damage_indicator == null:
         %Sprite.play("hurt")
         play_hit_sound()
+        if !is_fire:
+            bleed(PlayerService.player_instance.global_position)
         VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
         previous_damage_indicator = preload("res://ui/in-game/components/DamageIndicator.tscn").instantiate().with_damage(accumulated_damages)
         previous_damage_indicator.global_position = %DamageAnchor.global_position
@@ -104,6 +100,9 @@ func take_damage(damage: float):
         %DamageSpawnTimer.start(DAMAGE_MARKER_DELAY)
     else:
         previous_damage_indicator.set_damage(accumulated_damages)
+
+func bleed(impact_from: Vector2):
+    VisualEffects.bleed(global_position, impact_from)
 
 func play_hit_sound():
     if hit_sound_repetition_timer != null:
