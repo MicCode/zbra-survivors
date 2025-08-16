@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7lo0pt2nawb4"]
+[gd_scene load_steps=6 format=3 uid="uid://b7lo0pt2nawb4"]
 
 [ext_resource type="Script" uid="uid://dymnr4rghu88n" path="res://ui/menu/game_logs/game_logs_charts.gd" id="1_tcjc5"]
 [ext_resource type="PackedScene" uid="uid://dlwq4kmdb3bhs" path="res://addons/easy_charts/control_charts/chart.tscn" id="2_mdcn2"]
@@ -7,6 +7,8 @@
 bg_color = Color(0.28485, 0.28485, 0.28485, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcjc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdcn2"]
 
 [node name="GameLogsCharts" type="Control"]
 layout_mode = 3
@@ -48,5 +50,18 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="DPSChart" parent="Panel/VBoxContainer" instance=ExtResource("2_mdcn2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mdcn2")
+
+[node name="EnemySpawnChart" parent="Panel/VBoxContainer/PanelContainer" instance=ExtResource("2_mdcn2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EnemyKillChart" parent="Panel/VBoxContainer/PanelContainer" instance=ExtResource("2_mdcn2")]
 unique_name_in_owner = true
 layout_mode = 2

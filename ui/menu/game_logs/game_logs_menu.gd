@@ -4,6 +4,7 @@ func _init():
     Settings.load_from_file()
 
 func _ready() -> void:
+    GameLogger.stop_logging()
     %RestartButton.grab_focus()
 
 func _on_main_menu_button_pressed() -> void:

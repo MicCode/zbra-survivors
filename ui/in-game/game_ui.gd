@@ -29,7 +29,7 @@ func _ready() -> void:
     )
     %EquippedGun.change_gun(null)
     GameService.remaining_time_changed.connect(set_remaining_time)
-    set_remaining_time(EnemiesService.enemy_spawn_stats.boss_spawn_time)
+    set_remaining_time(EnemiesService.stats.boss_spawn_time)
 
     if debug_mode:
         %DebugLayer.show()

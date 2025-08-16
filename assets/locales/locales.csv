@@ -38,6 +38,9 @@ LABEL_DASH_DURATION,Dash duration,Durée du dash
 LABEL_DASH_SPEED_MULTIPLIER,Dash speed,Vitesse du dash
 LABEL_DISPERSION,Dispersion,Dispersion
 LABEL_DPS,DPS,DPS
+LABEL_ENEMIES,Enemies,Ennemis
+LABEL_ENEMY_KILL_PER_M,Enemies killes per minute,Ennemis tués par minute
+LABEL_ENEMY_SPAWN_PER_M,Enemies spawned per minute,Ennemis apparus par minute
 LABEL_EXCLUDE,Exclude,Exclure
 LABEL_EXPLOSION_DAMAGE,Explosions damage,Dégâts des explosions
 LABEL_EXPLOSION_RADIUS,Explosions radius,Rayon des explosions

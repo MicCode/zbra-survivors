@@ -10,15 +10,10 @@ signal remaining_time_changed(remaining_time: float)
 const MAX_ELAPSED_TIME: float = 400.0
 const MIN_SPAWN_TIME: float = 0.5
 
-
 var game_ui_instance: GameUI
-
 var state: E.GameState = E.GameState.NOT_STARTED
 var score: int = 0
-
-
 var pause_menu: PauseMenu
-
 var elapsed_time: float = 0.0
 var first_chest_openned: bool = false
 var first_level_gained: bool = false
