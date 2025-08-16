@@ -49,7 +49,7 @@ func create_chest_on_map(player_position: Vector2):
 func _get_random_position_around_player(player_position: Vector2) -> Vector2:
     var angle = randf_range(0.0, TAU)
     var distance = randf_range(Settings.MINIMAL_DISTANCE_FROM_CHEST, Settings.MAXIMAL_DISTANCE_FROM_CHEST)
-    var offset = Vector2.RIGHT.rotated(angle) * distance
+    var offset = Vector2.RIGHT.rotated(angle) * Utils.sub_percent(distance, PlayerService.player_stats.luck * 10)
     return player_position + offset
 
 func get_chunk_coords(player_position: Vector2) -> Vector2i:
