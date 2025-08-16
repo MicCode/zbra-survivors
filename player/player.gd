@@ -38,6 +38,9 @@ func _ready():
     PlayerService.notify_level_gain.connect(play_lvl_animation)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
 
+    LootService.chest_registered.connect(add_chest_marker)
+    LootService.chest_unregistered.connect(remove_chest_marker)
+
     if Settings.game_settings.display_xp_capture_radius:
         %XpCollectRadiusDisplay.show()
     else:
@@ -70,6 +73,18 @@ func _physics_process(delta):
         check_for_xp()
         if effects_manager.has_effect(PlayerEffect.Effects.FIRE_RADIATION):
             burn_things_in_radius()
+
+func add_chest_marker(chest: LootChest):
+    var new_marker = preload("res://player/direction_marker.tscn").instantiate()
+    new_marker.target = chest
+    %DirectionMarkers.add_child(new_marker)
+
+func remove_chest_marker(chest: LootChest):
+    for child in %DirectionMarkers.get_children():
+        if child is DirectionMarker:
+            if child.target == chest:
+                child.queue_free()
+                return
 
 func move(_delta):
     var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

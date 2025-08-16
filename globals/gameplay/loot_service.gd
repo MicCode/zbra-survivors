@@ -1,4 +1,6 @@
 extends Node
+signal chest_registered(chest: LootChest)
+signal chest_unregistered(chest: LootChest)
 
 enum ItemName {
     LIFE_FLASK,
@@ -22,8 +24,11 @@ const CHANCE_TO_DROP_ITEM: float = 0.1 # TODO make this configurable / dynamic ?
 var loot_chances: LootChances
 var item_chance_weights: Dictionary[ItemName, float] = {}
 
+var chests: Array[LootChest] = []
+
 func reset():
     loot_chances = preload("res://player/stats/default_loot_chances.tres").duplicate()
+    chests = []
     item_chance_weights = {
         ItemName.LIFE_FLASK: loot_chances.life_drop_chance,
         ItemName.RADIANCE_FLASK: loot_chances.radiance_drop_chance,
@@ -31,6 +36,15 @@ func reset():
         ItemName.XP_COLLECTOR: loot_chances.xp_collector_drop_chance,
         ItemName.MINE: loot_chances.land_mine_chance,
     }
+
+func register_chest(chest: LootChest):
+    chests.append(chest)
+    chest_registered.emit(chest)
+
+func unregister_chest(chest: LootChest):
+    if chests.has(chest):
+        chests.erase(chest)
+        chest_unregistered.emit(chest)
 
 func get_random_gun() -> Gun:
     var possible_guns: Array[String] = GunService.all_gun_names

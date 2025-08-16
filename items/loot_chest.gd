@@ -1,4 +1,5 @@
 extends Node2D
+class_name LootChest
 
 const OPENING_TIME: float = 1.0
 const DISAPPEAR_DELAY: float = 5.0
@@ -10,6 +11,7 @@ func _ready() -> void:
     rays_shader.set_shader_parameter("edge_fade", 0.4)
     rays_shader.set_shader_parameter("ray_2_intensity", 0.0)
     Minimap.track(self, Minimap.ObjectType.CHEST)
+    LootService.register_chest(self)
 
 func _process(_delta: float) -> void:
     var overlapping_env_element = %SafeArea.get_overlapping_bodies()
@@ -26,6 +28,7 @@ func _on_trigger_radius_body_entered(body: Node2D) -> void:
         var rays_shader: ShaderMaterial = %Rays.material
         create_tween().tween_property(rays_shader, "shader_parameter/edge_fade", 0.15, OPENING_TIME)
         create_tween().tween_property(rays_shader, "shader_parameter/ray_2_intensity", 0.7, OPENING_TIME).finished.connect(func():
+            LootService.unregister_chest(self)
             PlayerService.player_openned_chest.emit()
         )
         is_open = true
@@ -37,5 +40,5 @@ func disappear():
     create_tween().tween_property(rays_shader, "shader_parameter/edge_fade", 1.0, OPENING_TIME)
     create_tween().tween_property(rays_shader, "shader_parameter/ray_2_intensity", 0.0, OPENING_TIME)
     create_tween().tween_property(self, "modulate", Color.TRANSPARENT, OPENING_TIME).finished.connect(func():
-        queue_free()
+        call_deferred("queue_free")
     )

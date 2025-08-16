@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ci36jx3vvoocj"]
+[gd_scene load_steps=21 format=3 uid="uid://ci36jx3vvoocj"]
 
 [ext_resource type="Script" uid="uid://dqlqlkjg6tqvc" path="res://enemies/_generics/enemy.gd" id="1_qdj7r"]
 [ext_resource type="PackedScene" uid="uid://bkh37y1i8fjjq" path="res://effects/visual_effects_holder.tscn" id="2_ce5i1"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bceetuo4sphb" path="res://assets/sprites/enemies/mob-1-hurt.png" id="4_yy3p0"]
 [ext_resource type="Texture2D" uid="uid://curemujf2tqhp" path="res://assets/sprites/enemies/mob-1-walk.png" id="5_grokr"]
 [ext_resource type="PackedScene" uid="uid://cl0vk4malih5v" path="res://ui/in-game/components/health_bar.tscn" id="6_o0wmw"]
-[ext_resource type="PackedScene" uid="uid://dde4kdtsev4lf" path="res://ui/in-game/components/location_marker.tscn" id="9_elh1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45qg2"]
 atlas = ExtResource("3_qem7r")
@@ -227,13 +226,6 @@ z_index = 4096
 position = Vector2(0, -46)
 max_health = 3.0
 current_health = 3.0
-
-[node name="LocationMarker" parent="." instance=ExtResource("9_elh1f")]
-visible = false
-position = Vector2(0, 5.5)
-color = 2
-opacity = 0.5
-sprite_scale = 2.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
