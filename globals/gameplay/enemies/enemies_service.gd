@@ -164,7 +164,7 @@ func get_random_point(origin: Vector2, r_min: float, r_max: float) -> Vector2:
 
 func on_boss_changed(boss_stats: EnemyStats, boss_health: float):
     if boss_stats and boss_health <= 0:
-        MusicManager.set_music(MusicManager.Music.METAL_1)
+        MusicManager.set_music(GameService.music)
 
 func spawn_random() -> Enemy:
     var random_enemy = spawnable_enemies[randi_range(0, spawnable_enemies.size() - 1)]

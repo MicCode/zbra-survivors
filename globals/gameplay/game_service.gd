@@ -1,6 +1,4 @@
 extends Node
-
-
 signal score_changed
 signal boss_changed(boss_stats: EnemyStats, boss_health: float)
 signal state_changed(new_state: E.GameState)
@@ -17,6 +15,8 @@ var pause_menu: PauseMenu
 var elapsed_time: float = 0.0
 var first_chest_openned: bool = false
 var first_level_gained: bool = false
+
+var music: MusicManager.Music = MusicManager.Music.NOT_SET
 
 func _ready() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
@@ -43,6 +43,15 @@ func start_new_game():
     GunService.reset()
 
     ModsService.init_modifiers_chances()
+
+    var possible_musics: Array[MusicManager.Music] = [
+        MusicManager.Music.ELECTRO_1,
+        MusicManager.Music.ELECTRO_2,
+        MusicManager.Music.METAL_1,
+    ]
+    music = possible_musics.pick_random()
+    MusicManager.set_music(music)
+    MusicManager.set_layer(E.MusicLayer.SOFT)
 
     # emit first events to refresh all listening components
     boss_changed.emit(null, 0.0)
