@@ -88,7 +88,8 @@ func take_damage(damage: float, is_fire = false):
     if has_node("%Health"):
         %Health.take_damage(damage)
     if %DamageSpawnTimer.is_stopped() or previous_damage_indicator == null:
-        %Sprite.play("hurt")
+        if (%Sprite as AnimatedSprite2D).sprite_frames.has_animation("hurt"):
+            %Sprite.play("hurt")
         play_hit_sound()
         if !is_fire:
             bleed(PlayerService.player_instance.global_position)

@@ -46,18 +46,12 @@ func handle_bullet_hit(bullet: Bullet):
     if is_ready && !is_dead:
         super.handle_bullet_hit(bullet)
 
-func take_damage(damage: float, _is_fire: bool = false):
+func take_damage(damage: float, is_fire: bool = false):
+    super.take_damage(damage, is_fire)
     health -= damage
-    # TODO change sprite modulation on hit
-    play_hit_sound()
-    var damage_marker = preload("res://ui/in-game/components/DamageIndicator.tscn").instantiate().with_damage(damage)
-    damage_marker.global_position = %DamageAnchor.global_position
-    SceneManager.current_scene.add_child(damage_marker)
     %AnimationPlayer.play("hurt")
-
     if health <= 0:
         die()
-
     GameService.boss_changed.emit(stats, health)
 
 func die(_game_over: bool = false):
