@@ -64,7 +64,10 @@ func start_new_game():
 
 
 func _process(delta: float) -> void:
-    if !get_tree().paused:
+    var is_current_scene_paused = false
+    if SceneManager.current_scene:
+        is_current_scene_paused = SceneManager.current_scene.get_tree().paused
+    if !get_tree().paused and !is_current_scene_paused and state != E.GameState.PAUSED:
         elapsed_time += delta
 
 func _input(event):
@@ -85,6 +88,7 @@ func _input(event):
 func end_game(success: bool = false):
     is_success = success
     PlayerService.freeze_player = true
+    EnemiesService.stop_spawning()
     EnemiesService.kill_all()
     get_tree().create_timer(2.0).timeout.connect(func():
         change_state(E.GameState.GAME_OVER)

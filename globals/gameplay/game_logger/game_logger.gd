@@ -14,7 +14,6 @@ extends Node
 const LOGS_SAVE_DIR: String = "user://game_logs"
 
 var is_logging = false
-var start_timestamp: float = 0.0
 var logs: GameStatLogs = GameStatLogs.new()
 var logs_filename: String = "not-set.json"
 
@@ -34,7 +33,6 @@ func start_logging():
 
     is_logging = true
     logs = GameStatLogs.new()
-    start_timestamp = Time.get_unix_time_from_system()
     logs_filename = get_new_filename()
 
 
@@ -90,7 +88,7 @@ func _log(array: Array[GameStatLogEntry], value: float):
     save_to_file()
 
 func timestamp() -> int:
-    return ceil((Time.get_unix_time_from_system() - start_timestamp) * 1000)
+    return ceil(GameService.elapsed_time * 1000)
 
 func save_to_file():
     # TODO add a csv export tool

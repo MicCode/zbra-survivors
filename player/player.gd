@@ -131,6 +131,9 @@ func check_for_enemies(_delta):
 
 #region Damage
 func take_damage(damage: int = 1):
+    if PlayerService.freeze_player:
+        return
+
     PlayerService.player_stats.total_damage_taken += damage
     GameService.shake_screen.emit(10)
     PlayerService.player_stats.health -= damage

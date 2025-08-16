@@ -120,7 +120,7 @@ func get_sliding_average(from_array: Array[float]) -> float:
 func cleanup_timestamps(from_array: Array[float], older_than_timestamp: float):
     if from_array.is_empty():
         return
-    var now = Time.get_ticks_msec()
+    var now = GameService.elapsed_time * 1000
     while from_array.size() > 0 and now - from_array[0] > older_than_timestamp:
         from_array.pop_front()
 
