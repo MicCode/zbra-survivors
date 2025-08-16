@@ -97,9 +97,10 @@ func _change_layer(new_layer: E.MusicLayer):
 #region music change ---------------------------------------------------------------------------------------
 func update_music_intensity():
     var intensity = 0
-    if GameService.first_chest_openned:
+    var kill_per_m = EnemiesService.get_kill_per_minute_average()
+    if kill_per_m > 15:
         intensity += 1
-    if GameService.first_level_gained:
+    if kill_per_m > 40:
         intensity += 1
 
     match intensity:

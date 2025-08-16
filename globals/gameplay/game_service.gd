@@ -25,7 +25,6 @@ func _ready() -> void:
         GunService.change_equipped_gun(random_gun, true)
         if !first_chest_openned:
             first_chest_openned = true
-            MusicManager.update_music_intensity()
     )
 
 func start_new_game():
@@ -88,6 +87,7 @@ func increment_score(i: int) -> void:
     emit_score_change()
 
 func emit_score_change() -> void:
+    MusicManager.update_music_intensity()
     score_changed.emit(score)
 
 func show_game_over() -> void:

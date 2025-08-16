@@ -52,7 +52,6 @@ func gain_xp(xp: float) -> void:
         player_gained_level.emit(new_level_gained)
         if !GameService.first_level_gained:
             GameService.first_level_gained = true
-            MusicManager.update_music_intensity()
     emit_player_change()
 
 func change_consumable(_new_consumable: ConsumableItem) -> void:

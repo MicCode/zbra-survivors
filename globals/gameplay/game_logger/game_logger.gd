@@ -94,7 +94,8 @@ func timestamp() -> int:
 
 func save_to_file():
     # TODO add a csv export tool
-    Files.write_file(LOGS_SAVE_DIR.path_join(logs_filename), logs.to_dict())
+    if !logs_filename == "not-set.json":
+        Files.write_file(LOGS_SAVE_DIR.path_join(logs_filename), logs.to_dict())
 
 func load_from_latest_file() -> GameStatLogs:
     var existing_log_files = DirAccess.get_files_at(LOGS_SAVE_DIR)
