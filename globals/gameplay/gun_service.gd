@@ -59,7 +59,7 @@ func create_projectile(_gun_name: String) -> Bullet:
 func _get_gun_path(_gun_name: String) -> String:
     return EQUIPMENT_PATH + GUNS_PATH + _gun_name + "/" + _gun_name
 
-func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
+func change_equipped_gun(_new_gun: Gun, _from_chest: bool = false) -> GunChangeMenu:
     if !_new_gun:
         equipped_gun = null
         base_equipped_gun_stats = null
@@ -101,6 +101,12 @@ func change_equipped_gun(_new_gun: Gun) -> GunChangeMenu:
     )
     gun_change_menu.keep_pressed.connect(func():
         gun_change_menu.queue_free()
+        drop_collectible(_new_gun.get_gun_name(), PlayerService.player_instance.global_position)
         GameService.change_state(E.GameState.RUNNING)
     )
     return gun_change_menu
+
+func drop_collectible(gun_name: String, at_postion: Vector2):
+    var collectible_to_drop = GunService.create_collectible(gun_name)
+    collectible_to_drop.global_position = at_postion
+    SceneManager.current_scene.add_child(collectible_to_drop)

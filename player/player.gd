@@ -172,9 +172,7 @@ func equip_gun(new_gun: Gun, previous_gun_name: String):
     if equiped_gun:
         equiped_gun.queue_free()
     if previous_gun_name:
-        var collectible_to_drop = GunService.create_collectible(previous_gun_name)
-        collectible_to_drop.global_position = global_position
-        SceneManager.current_scene.add_child(collectible_to_drop)
+        GunService.drop_collectible(previous_gun_name, global_position)
 
     if new_gun:
         equiped_gun = new_gun.duplicate()

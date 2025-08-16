@@ -27,7 +27,7 @@ func _ready() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     PlayerService.player_openned_chest.connect(func():
         var random_gun = LootService.get_random_gun()
-        GunService.change_equipped_gun(random_gun)
+        GunService.change_equipped_gun(random_gun, true)
         if !first_chest_openned:
             first_chest_openned = true
             MusicManager.update_music_intensity()
