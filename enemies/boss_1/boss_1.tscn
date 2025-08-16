@@ -397,6 +397,10 @@ libraries = {
 }
 autoplay = "spawn"
 
+[node name="ShootTimer" type="Timer" parent="Timers" index="3"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="LightOccluder2D" parent="." index="14"]
 occluder = SubResource("OccluderPolygon2D_0e5ht")
 

@@ -10,6 +10,9 @@ const SHOOT_START_DELAY_S: float = 0.3
 
 func _ready() -> void:
     object_type = Minimap.ObjectType.BOSS
+    %ShootTimer.timeout.connect(func():
+        call_deferred("shoot")
+    )
     super._ready()
 
 func _physics_process(delta):
@@ -20,9 +23,7 @@ func _physics_process(delta):
 
 func start_chase():
     %Sprite.play("walk")
-    get_tree().create_timer(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S)).timeout.connect(func():
-        call_deferred("shoot")
-    )
+    %ShootTimer.start(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S))
 
 func shoot():
     if !is_dead and PlayerService.player_stats.is_alive:
@@ -36,9 +37,7 @@ func shoot():
             Sounds.zap()
         )
         # shoot again after cooldown
-        get_tree().create_timer(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S)).timeout.connect(func():
-            call_deferred("shoot")
-        )
+        %ShootTimer.start(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S))
         is_shooting = true
 
 func handle_bullet_hit(bullet: Bullet):
