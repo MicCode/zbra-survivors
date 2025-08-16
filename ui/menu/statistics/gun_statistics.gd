@@ -39,6 +39,13 @@ func refresh_display():
     var compare_to_bullet_stats: BulletStats
     var base_bullet_stats: BulletStats = GunService.base_equipped_bullet_stats
 
+    var gun_description = gun.get_gun_description()
+    if gun_description.length() > 0:
+        %GunDescription.text = gun_description
+        %GunDescription.show()
+    else:
+        %GunDescription.hide()
+
     if bullet_stats.inflicts_fire:
         %FireDamagePerS.show()
     else:

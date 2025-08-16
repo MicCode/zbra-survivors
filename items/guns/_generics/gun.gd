@@ -168,3 +168,12 @@ func get_gun_name() -> String:
     var scene_path = get_scene_file_path()
     var parts = scene_path.get_base_dir().split("/")
     return parts[-1]
+
+func get_gun_description() -> String:
+    var gun_name = get_gun_name()
+    var tr_key = "GUN_" + gun_name.to_upper() + "_DESCRIPTION"
+    var description = tr(tr_key)
+    if description != tr_key:
+        return description
+    else:
+        return ""

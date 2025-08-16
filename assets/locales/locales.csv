@@ -13,15 +13,25 @@ ENEMY_MOB_1,Mob 1,Truc 1
 ENEMY_MOB_2,Mob 2,Truc 2
 ENEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
 GUN_CROSSBOW,Crossbow,Arbalète
+GUN_CROSSBOW_DESCRIPTION,"Antique weapon, still deadly.","Une arme antique, mais toujours aussi mortelle."
 GUN_CROSSBOW_EXPLOSIVE,Explosive bolts crossbow,Arbalète à careaux explosifs
+GUN_CROSSBOW_EXPLOSIVE_DESCRIPTION,"Still antique, but with a twist.","Toujours antique, mais avec un petit truc en plus."
 GUN_CROSSBOW_FIRE,Fire bolts crossbow,Arbalète à careaux incendiaires
+GUN_CROSSBOW_FIRE_DESCRIPTION,Avoid use during summer.,A ne pas utiliser pendant la sècheresse.
 GUN_FLAMETHROWER,Flame Thrower,Lance-Flammes
+GUN_FLAMETHROWER_DESCRIPTION,"Burn baby, burn.","Brûle Babylone, brûle."
 GUN_LASER_GUN,Laser gun,Pistolet laser
+GUN_LASER_GUN_DESCRIPTION,Pew! Pew!,Piou ! Piou !
 GUN_MACHINE_GUN,Machine gun,Machine gun
+GUN_MACHINE_GUN_DESCRIPTION,Shower time!,A la douche !
 GUN_PISTOL,Pistol,Pistolet
+GUN_PISTOL_DESCRIPTION,A simple weapon. That's all.,Une arme simple. Voilà.
 GUN_RIFLE,Rifle,Fusil Automatique
+GUN_RIFLE_DESCRIPTION,Has been seen in all revolutions.,Il a été de toutes les révolutions.
 GUN_SHOTGUN,Shotgun,Fusil à Pompe
+GUN_SHOTGUN_DESCRIPTION,"Not accurate, but who cares?","Pas très précis, mais qui s'en soucie ?"
 GUN_SNIPER,Sniper Rifle,Fusil de Sniper
+GUN_SNIPER_DESCRIPTION,Straight to the point.,Droit au but.
 LABEL_ANNOUNCEMENT_DOUBLE_KILL,Double kill!,Doublette !
 LABEL_ANNOUNCEMENT_RAMPAGE,Rampage!!!,Un massacre !!!
 LABEL_ANNOUNCEMENT_TRIPLE_KILL,Triple kill!!,Triplette !!
@@ -29,13 +39,19 @@ LABEL_AUDIO_SETTINGS,Audio,Audio
 LABEL_BULLET_SPEED,Bullets speed,Vitesse des projectiles
 LABEL_BULLETS_PER_S,Bullets per shot,Projectiles par tir
 LABEL_BULLETS_PER_SHOT,Bullets per shot,Projectiles par tir
+LABEL_BULLETS_PER_SHOT_DESCRIPTION,Never enough.,C'est jamais assez.
 LABEL_BULLETS_SPREAD_ANGLE_DEG,Gun dispersion angle,Angle de tir des armes
+LABEL_BULLETS_SPREAD_ANGLE_DEG_DESCRIPTION,With open arms.,A bras ouverts.
 LABEL_CHOOSE,Choose,Choisir
 LABEL_DAMAGE,Bullet damage,Dégâts des projectiles
+LABEL_DAMAGE_DESCRIPTION,"Simple, basic.","Simple, basique."
 LABEL_DAMAGE_PER_S,Damage/s,Dégâts/s
 LABEL_DASH_COOLDOWN,Dash cooldown,Rechargement du dash
+LABEL_DASH_COOLDOWN_DESCRIPTION,No time to rest.,Pas le temps de niaiser.
 LABEL_DASH_DURATION,Dash duration,Durée du dash
+LABEL_DASH_DURATION_DESCRIPTION,Dont blink.,Ne pas cligner des yeux.
 LABEL_DASH_SPEED_MULTIPLIER,Dash speed,Vitesse du dash
+LABEL_DASH_SPEED_MULTIPLIER_DESCRIPTION,To the moon!,Vers l'infini et au delà !
 LABEL_DISPERSION,Dispersion,Dispersion
 LABEL_DPS,DPS,DPS
 LABEL_ENEMIES,Enemies,Ennemis
@@ -43,21 +59,31 @@ LABEL_ENEMY_KILL_PER_M,Enemies killes per minute,Ennemis tués par minute
 LABEL_ENEMY_SPAWN_PER_M,Enemies spawned per minute,Ennemis apparus par minute
 LABEL_EXCLUDE,Exclude,Exclure
 LABEL_EXPLOSION_DAMAGE,Explosions damage,Dégâts des explosions
+LABEL_EXPLOSION_DAMAGE_DESCRIPTION,"Harder, stronger.",Et bim !
 LABEL_EXPLOSION_RADIUS,Explosions radius,Rayon des explosions
+LABEL_EXPLOSION_RADIUS_DESCRIPTION,"Bigger, better.","Plus grand, plus fort."
 LABEL_FIRE_DAMAGE,Fire damage,Dégâts de feu
+LABEL_FIRE_DAMAGE_DESCRIPTION,They should have put on sunscreen.,Ils auraient dû mettre de la crème solaire.
 LABEL_FIRE_DURATION,Fire duration,Durée du feu
+LABEL_FIRE_DURATION_DESCRIPTION,Good things last.,Les bonnes choses durent.
 LABEL_FIRE_TICK_PER_S,Fire damage frequency,Fréquence de dégât du feu
+LABEL_FIRE_TICK_PER_S_DESCRIPTION,How touching.,Comme c'est touchant.
 LABEL_FLY_RANGE,Bullets range,Portée des projectiles
+LABEL_FLY_RANGE_DESCRIPTION,"You will go far, little one.","Tu iras loin, petit."
 LABEL_GAME_SETTINGS,Gameplay,Jeu
 LABEL_HEALTH,Current health,Vie actuelle
 LABEL_LANGUAGE,Language,Langue
 LABEL_LEVEL,Level,Niveau
 LABEL_LUCK,Luck,Chance
+LABEL_LUCK_DESCRIPTION,Who knows?,Qui sait ?
 LABEL_MAX_HEALTH,Maximum health,Vie maximum
+LABEL_MAX_HEALTH_DESCRIPTION,Useful.,Toujours utile.
 LABEL_MOVE_SPEED,Move speed,Vitesse de déplacement
+LABEL_MOVE_SPEED_DESCRIPTION,"Run, coward!",Cours Forest !
 LABEL_NEXT_LVL_XP,Next level,Prochain niveau
 LABEL_NO_GUN_EQUIPPED,No gun equipped,Aucune arme équipée
 LABEL_PIERCE_COUNT,Pierce count,Perçage
+LABEL_PIERCE_COUNT_DESCRIPTION,It never stops.,Que ça ne s'arrête jamais.
 LABEL_PROJECTILES,Projectiles,Projectiles
 LABEL_RANGE,Range,Portée
 LABEL_REROLL,Reroll,Relancer
@@ -65,7 +91,9 @@ LABEL_SCORE,Score,Score
 LABEL_SHOT_PER_S,Shots/s,Tirs/s
 LABEL_SHOT_S,Shot/s,Tir/s
 LABEL_SHOTS_PER_S,Fire rate,Cadence de tir
+LABEL_SHOTS_PER_S_DESCRIPTION,Getting into the rhythm!,Prends le rythme !
 LABEL_SPEED,Bullets speed,Vitesse des projectiles
+LABEL_SPEED_DESCRIPTION,They will never see it coming.,Ils ne la verront jamais arriver.
 LABEL_SPREAD_ANGLE,Dispersion,Dispersion
 LABEL_TOTAL_XP,Total XP,Expérience totale
 LABEL_UNIT_BULLETS_PER_S,b/s,p/s
@@ -77,6 +105,7 @@ LABEL_UNIT_S,s,s
 LABEL_UNIT_SHOT_PER_S,s/s,t/s
 LABEL_XP,Current XP,Expérience actuelle
 LABEL_XP_COLLECT_RADIUS,XP collect radius,Rayon de capture de l'XP
+LABEL_XP_COLLECT_RADIUS_DESCRIPTION,Suck it all.,Ayez le bras long.
 LANGUAGE_EN,English,Anglais
 LANGUAGE_FR,French,Français
 SETTING_AUDIO_ANNOUNCEMENTS,Announcements volume,Volume des annonces

@@ -54,6 +54,13 @@ func is_exclude_clicked() -> bool:
     return !prevent_mouse_click and is_hovered and Controls.is_just_pressed(Controls.PlayerAction.EXCLUDE)
 
 func refresh_display():
+    var description = mod_definition.get_description()
+    if !description.is_empty():
+        %Description.text = description
+        %Description.show()
+    else:
+        %Description.hide()
+
     %StatName.text = mod_definition.get_display_label()
     var value_label = str(ModsService.base_mod_values.get(mod_definition.name))
     if value_label.ends_with(".0"):
