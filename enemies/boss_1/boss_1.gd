@@ -61,7 +61,7 @@ func take_damage(damage: float, _is_fire: bool = false):
 
     GameService.boss_changed.emit(stats, health)
 
-func die():
+func die(_game_over: bool = false):
     is_dead = true
     %Sprite.play("die")
     Sounds.death_boss_1()

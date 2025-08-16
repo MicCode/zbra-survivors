@@ -26,11 +26,14 @@ var consumable: ConsumableItem
 var lvl_up_exclusions_remaining: int = 3
 var lvl_up_rerolls_remaining: int = 3
 
+var freeze_player = false
+
 func reset():
     base_player_stats = load("res://player/stats/default_player_stats.tres")
     player_stats = base_player_stats.duplicate(true)
     lvl_up_exclusions_remaining = 3 # TODO put base value in settings ?
     lvl_up_rerolls_remaining = 3 # TODO put base value in settings ?
+    freeze_player = false
 
     change_consumable(null)
     emit_player_change()

@@ -47,6 +47,9 @@ func _ready():
     effects_manager = %EffectsManager
 
 func _process(_delta: float) -> void:
+    if PlayerService.freeze_player:
+        return
+
     process_player_controls()
     if actual_time_scale != time_scale_target:
         if actual_time_scale < time_scale_target:
@@ -56,6 +59,9 @@ func _process(_delta: float) -> void:
         AudioServer.playback_speed_scale = actual_time_scale
 
 func _physics_process(delta):
+    if PlayerService.freeze_player:
+        return
+
     if PlayerService.player_stats.is_alive:
         move(delta)
         check_for_enemies(delta)

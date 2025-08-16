@@ -11,6 +11,7 @@ const MIN_SPAWN_TIME: float = 0.5
 var game_ui_instance: GameUI
 var state: E.GameState = E.GameState.NOT_STARTED
 var score: int = 0
+var is_success = false
 var pause_menu: PauseMenu
 var elapsed_time: float = 0.0
 var first_chest_openned: bool = false
@@ -35,6 +36,7 @@ func start_new_game():
     score = 0
     first_chest_openned = false
     first_level_gained = false
+    is_success = false
 
     ModsService.reset()
     EnemiesService.reset()
@@ -80,6 +82,14 @@ func _input(event):
             SceneManager.current_scene.add_child(pause_menu)
             change_state(E.GameState.PAUSED)
 
+func end_game(success: bool = false):
+    is_success = success
+    PlayerService.freeze_player = true
+    EnemiesService.kill_all()
+    get_tree().create_timer(2.0).timeout.connect(func():
+        change_state(E.GameState.GAME_OVER)
+    )
+
 func change_state(new_state: E.GameState):
     state = new_state
     state_changed.emit(new_state)
@@ -103,4 +113,5 @@ func show_game_over() -> void:
     var current_scene = SceneManager.current_scene
     if current_scene:
         var game_over_menu = preload("res://ui/menu/game_over_menu.tscn").instantiate()
+        game_over_menu.is_success = is_success
         current_scene.add_child(game_over_menu)

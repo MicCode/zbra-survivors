@@ -4,10 +4,19 @@ const ANIMATION_TIME: float = 0.1
 const SHOW_TIME: float = 10.0
 
 var can_be_cancelled = false
+var is_success = false
 
 func _ready() -> void:
-    MusicManager.set_non_layered_music("game-over.ogg")
-    Sounds.game_over()
+    if is_success:
+        MusicManager.set_non_layered_music("zbra-slain.ogg")
+        %Label.add_theme_color_override("font_color", Color("c39200"))
+        %Label.text = tr("TITLE_GAME_SUCCESS")
+    else:
+        MusicManager.set_non_layered_music("game-over.ogg")
+        Sounds.game_over()
+        %Label.add_theme_color_override("font_color", Color("c30700"))
+        %Label.text = tr("TITLE_GAME_OVER")
+
     slide_in().finished.connect(func():
         can_be_cancelled = true
         get_tree().create_timer(SHOW_TIME).timeout.connect(func():

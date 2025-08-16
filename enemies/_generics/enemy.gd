@@ -125,17 +125,19 @@ func _on_health_depleted():
         die()
 
 
-func die():
+func die(game_over: bool = false):
     is_dead = true
-    if stats.is_elite:
-        Sounds.death_mob_1(1.2)
-    else:
-        Sounds.death_mob_1()
+    if !game_over:
+        if stats.is_elite:
+            Sounds.death_mob_1(1.2)
+        else:
+            Sounds.death_mob_1()
     %Sprite.play("dead")
     set_collision_layer_value(2, false)
     set_collision_layer_value(8, false)
     VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
-    remove_child(%Health)
+    if has_node("%Health"):
+        remove_child(%Health)
     EnemiesService.register_enemy_death(self)
 
 

@@ -153,6 +153,12 @@ func register_enemy_death(enemy: Enemy) -> void:
     stats.total_killed += 1
     enemy_died.emit(enemy)
 
+func kill_all():
+    var enemies = SceneManager.current_scene.get_tree().get_nodes_in_group("enemies")
+    for enemy in enemies:
+        if enemy is Enemy:
+            enemy.die(true)
+
 func drop_item(item: Node2D, position: Vector2) -> void:
     item.global_position = position
     SceneManager.current_scene.call_deferred("add_child", item)
@@ -164,7 +170,7 @@ func get_random_point(origin: Vector2, r_min: float, r_max: float) -> Vector2:
 
 func on_boss_changed(boss_stats: EnemyStats, boss_health: float):
     if boss_stats and boss_health <= 0:
-        MusicManager.set_music(GameService.music)
+        GameService.end_game(true)
 
 func spawn_random() -> Enemy:
     var random_enemy = spawnable_enemies[randi_range(0, spawnable_enemies.size() - 1)]

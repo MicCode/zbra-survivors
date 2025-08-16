@@ -14,13 +14,13 @@ func bleed(impact_from: Vector2):
 func _on_squirt_timer_timeout() -> void:
     bleed(PlayerService.player_instance.global_position)
 
-func die():
-    if is_original:
+func die(game_over: bool = false):
+    if is_original and !game_over:
         var children_to_spawn = 3
         if stats.is_elite:
             children_to_spawn = 5
         call_deferred("spawn_children", children_to_spawn)
-    super.die()
+    super.die(game_over)
 
 func spawn_children(n: int):
     for i in n:

@@ -25,9 +25,10 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Label" type="Label" parent="MainContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.763591, 0.0259512, 2.88785e-07, 1)
+theme_override_colors/font_color = Color(0.764706, 0.572549, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "TITLE_GAME_OVER"
 horizontal_alignment = 1
