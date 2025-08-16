@@ -1,4 +1,26 @@
 - - -
+## 0.24.0 - 2025-08-16
+
+#### ➕ New features
+- **(gameplay)** display success screen when killing boss
+- **(gameplay)** weapons have less chance to be proposed multiple times from chests
+- **(gameplay)** luck now have effect on chests spawn location
+- **(gameplay)** weapons refused from chests are now dropped on the floor to allow picking up later
+- **(sounds)** play random music at game start
+- **(ui)** added weapons and modifiers descriptions
+- **(ui)** show enemies spawn and kill stats at postgame
+- **(visual)** better direction markers for chests
+- **(visual)** added a highlight effect for weapons on the floor
+- **(visual)** reduced bleed effect frequency to improve performances
+#### 🪲 Bug fixes
+- **(gameplay)** fixed time being counted even if in pause menu
+- **(gameplay)** fixed a bug where the boss was shooting even if game paused
+- **(sounds)** better handling of the dynamic music
+- **(visual)** made UI components like aim guides or xp collect radius always on top
+- **(visual)** reduced boss damage markers draw frequency
+
+- - -
+
 ## 0.23.1 - 2025-08-15
 
 #### 🪲 Bug fixes
