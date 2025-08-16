@@ -186,6 +186,30 @@ position = Vector2(1129, -313)
 [node name="LootChest" parent="Chests" instance=ExtResource("16_uihtm")]
 position = Vector2(813, -315)
 
+[node name="LootChest5" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(644, -537)
+
+[node name="LootChest6" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(328, -539)
+
+[node name="LootChest7" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(497, -313)
+
+[node name="LootChest8" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(181, -315)
+
+[node name="LootChest9" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(1902, -532)
+
+[node name="LootChest10" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(1586, -534)
+
+[node name="LootChest11" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(1755, -308)
+
+[node name="LootChest12" parent="Chests" instance=ExtResource("16_uihtm")]
+position = Vector2(1439, -310)
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("10_juk4v")]

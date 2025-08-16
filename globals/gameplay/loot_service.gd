@@ -36,10 +36,12 @@ func get_random_gun() -> Gun:
     var possible_guns: Array[String] = GunService.all_gun_names
     if GunService.equipped_gun != null:
         possible_guns = possible_guns.filter(func(gn: String): return gn != GunService.equipped_gun.get_gun_name())
+    if !GunService.already_proposed_gun_names.is_empty() and GunService.already_proposed_gun_names.size() < GunService.all_gun_names.size():
+        possible_guns = possible_guns.filter(func(gn: String): return !GunService.already_proposed_gun_names.has(gn))
 
     # TODO improve this random pick and make gun statistics random as well
     # TODO give different pick chance to each gun ?
-    print(possible_guns)
+
     return GunService.create_gun(possible_guns[randi_range(0, possible_guns.size() - 1)])
 
 func get_random_item() -> Node2D:

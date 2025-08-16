@@ -7,6 +7,7 @@ const EQUIPMENT_PATH = "res://items/"
 const GUNS_PATH = "guns/"
 
 var all_gun_names: Array[String] = []
+var already_proposed_gun_names: Array[String] = []
 var equipped_gun: Gun
 var base_equipped_gun_stats: GunStats
 var base_equipped_bullet_stats: BulletStats
@@ -59,13 +60,14 @@ func create_projectile(_gun_name: String) -> Bullet:
 func _get_gun_path(_gun_name: String) -> String:
     return EQUIPMENT_PATH + GUNS_PATH + _gun_name + "/" + _gun_name
 
-func change_equipped_gun(_new_gun: Gun, _from_chest: bool = false) -> GunChangeMenu:
+func change_equipped_gun(_new_gun: Gun, is_from_chest: bool = false) -> GunChangeMenu:
     if !_new_gun:
         equipped_gun = null
         base_equipped_gun_stats = null
         base_equipped_bullet_stats = null
         return null
 
+    var new_gun_name = _new_gun.get_gun_name()
 
     if !equipped_gun:
         # do not display the gun swap menu the first time a gun is picked up
@@ -75,6 +77,9 @@ func change_equipped_gun(_new_gun: Gun, _from_chest: bool = false) -> GunChangeM
         ModsService.compute_modifiers()
         equipped_gun_changed.emit(equipped_gun, "")
         return null
+
+    if is_from_chest and !already_proposed_gun_names.has(new_gun_name):
+        already_proposed_gun_names.append(new_gun_name)
 
     var new_gun_base_equipped_gun_stats = _new_gun.gun_stats.duplicate(true)
     _new_gun.gun_stats = GunStats.apply_modifiers(_new_gun.gun_stats, ModsService.active_mods)
@@ -101,7 +106,7 @@ func change_equipped_gun(_new_gun: Gun, _from_chest: bool = false) -> GunChangeM
     )
     gun_change_menu.keep_pressed.connect(func():
         gun_change_menu.queue_free()
-        drop_collectible(_new_gun.get_gun_name(), PlayerService.player_instance.global_position)
+        drop_collectible(new_gun_name, PlayerService.player_instance.global_position)
         GameService.change_state(E.GameState.RUNNING)
     )
     return gun_change_menu
