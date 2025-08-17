@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vyj203yy0x2"]
 
 [ext_resource type="Script" uid="uid://2lu7s2k0j3kx" path="res://player/direction_marker.gd" id="1_58pyy"]
-[ext_resource type="Texture2D" uid="uid://c7rc6rmdgd48y" path="res://assets/sprites/arrow-gold.png" id="1_igk5i"]
+[ext_resource type="Texture2D" uid="uid://cmp465f3jmoc1" path="res://assets/sprites/direction-marker.png" id="2_58pyy"]
 
 [node name="DirectionMarker" type="Node2D"]
 z_index = 4096
@@ -9,7 +9,7 @@ z_as_relative = false
 script = ExtResource("1_58pyy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.75)
 position = Vector2(100, 0)
-rotation = 1.5708
-scale = Vector2(3, 1.5)
-texture = ExtResource("1_igk5i")
+scale = Vector2(1, 1.5)
+texture = ExtResource("2_58pyy")
