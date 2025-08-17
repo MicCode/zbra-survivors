@@ -37,6 +37,14 @@ func _ready():
 func update_from_stats():
     var guides = %AimGuides as AimGuides
     guides.set_dispersion_angle(gun_stats.bullets_spread_angle_deg)
+
+    var frames: SpriteFrames = %Sprite.sprite_frames
+    if frames.has_animation("firing"):
+        var firing_frames_count = frames.get_frame_count("firing")
+        var fps = gun_stats.shots_per_s * firing_frames_count
+        print(str(fps))
+        frames.set_animation_speed("firing", fps)
+
     if gun_stats.has_laser_dot:
         %RedDot.show()
         guides.hide()
