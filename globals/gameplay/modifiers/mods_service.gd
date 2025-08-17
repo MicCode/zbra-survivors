@@ -88,6 +88,7 @@ func compute_modifiers(new_stats_modifier: StatModifier = null):
     var base_player_stats = PlayerService.base_player_stats
 
     var current_level = player_stats.level
+    var current_health = player_stats.health
     var current_xp = player_stats.xp
     var current_total_xp = player_stats.total_xp
     var current_next_level_xp = player_stats.next_level_xp
@@ -97,6 +98,7 @@ func compute_modifiers(new_stats_modifier: StatModifier = null):
     player_stats = PlayerStats.apply_modifiers(base_player_stats, active_mods)
 
     player_stats.level = current_level
+    player_stats.health = current_health
     player_stats.xp = current_xp
     player_stats.total_xp = current_total_xp
     player_stats.next_level_xp = current_next_level_xp
