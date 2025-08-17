@@ -71,7 +71,7 @@ LABEL_FIRE_TICK_PER_S_DESCRIPTION,How touching.,Comme c'est touchant.
 LABEL_FLY_RANGE,Bullets range,Portée des projectiles
 LABEL_FLY_RANGE_DESCRIPTION,"You will go far, little one.","Tu iras loin, petit."
 LABEL_GAME_SETTINGS,Gameplay,Jeu
-LABEL_HEALTH,Current health,Vie actuelle
+LABEL_HEALTH,Health points,Points de vie
 LABEL_LANGUAGE,Language,Langue
 LABEL_LEVEL,Level,Niveau
 LABEL_LUCK,Luck,Chance

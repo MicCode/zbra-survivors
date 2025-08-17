@@ -123,7 +123,7 @@ func compute_modifiers(new_stats_modifier: StatModifier = null):
                 PlayerService.explosions_damage += mod.value
 
     PlayerService.player_stats = player_stats
-    PlayerService.emit_player_change()
+    PlayerService.emit_player_stats_change()
     if DEBUG_MODE: debug_print()
 
 func random_pick_n(n: int) -> Array[ModifierDefinition]:

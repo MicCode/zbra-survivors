@@ -36,7 +36,7 @@ func reset():
     freeze_player = false
 
     change_consumable(null)
-    emit_player_change()
+    emit_player_stats_change()
 
 func gain_xp(xp: float) -> void:
     player_stats.xp += xp
@@ -55,7 +55,7 @@ func gain_xp(xp: float) -> void:
         player_gained_level.emit(new_level_gained)
         if !GameService.first_level_gained:
             GameService.first_level_gained = true
-    emit_player_change()
+    emit_player_stats_change()
 
 func change_consumable(_new_consumable: ConsumableItem) -> void:
     if _new_consumable:
@@ -65,7 +65,7 @@ func change_consumable(_new_consumable: ConsumableItem) -> void:
     # print("should emit new consumable: " + str(_new_consumable))
     consumable_changed.emit(consumable)
 
-func emit_player_change() -> void:
+func emit_player_stats_change() -> void:
     player_stats_changed.emit(player_stats)
 
 func register_player_instance(_player) -> void:

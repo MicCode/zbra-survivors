@@ -3,6 +3,8 @@ class_name GameStatLogs
 var events: Array[GameEventLogEntry] = []
 
 var player_xp: Array[GameStatLogEntry] = []
+var player_max_health: Array[GameStatLogEntry] = []
+var player_health: Array[GameStatLogEntry] = []
 var player_level: Array[GameStatLogEntry] = []
 var dps: Array[GameStatLogEntry] = []
 
@@ -15,6 +17,8 @@ var total_enemy_killed: Array[GameStatLogEntry] = []
 func create_bounding_points():
     var last_timestamp = get_last_timestamp()
     _create_array_bounding_points(player_xp, last_timestamp)
+    _create_array_bounding_points(player_max_health, last_timestamp)
+    _create_array_bounding_points(player_health, last_timestamp)
     _create_array_bounding_points(player_level, last_timestamp)
     _create_array_bounding_points(dps, last_timestamp)
     _create_array_bounding_points(enemy_spawn_per_m, last_timestamp)
@@ -25,6 +29,8 @@ func create_bounding_points():
 func get_last_timestamp() -> float:
     return max(
         _get_latest_timestamp_from_array(player_xp),
+        _get_latest_timestamp_from_array(player_max_health),
+        _get_latest_timestamp_from_array(player_health),
         _get_latest_timestamp_from_array(player_level),
         _get_latest_timestamp_from_array(dps),
         _get_latest_timestamp_from_array(enemy_spawn_per_m),
@@ -37,6 +43,8 @@ func to_dict() -> Dictionary:
     return {
         "events": events.map(func(entry: GameEventLogEntry): return entry.to_dict()),
         "player_xp": player_xp.map(func(entry: GameStatLogEntry): return entry.to_dict()),
+        "player_max_health": player_max_health.map(func(entry: GameStatLogEntry): return entry.to_dict()),
+        "player_health": player_health.map(func(entry: GameStatLogEntry): return entry.to_dict()),
         "player_level": player_level.map(func(entry: GameStatLogEntry): return entry.to_dict()),
         "dps": dps.map(func(entry: GameStatLogEntry): return entry.to_dict()),
         "enemy_spawn_per_m": enemy_spawn_per_m.map(func(entry: GameStatLogEntry): return entry.to_dict()),
@@ -50,6 +58,8 @@ static func from_dict(dict: Dictionary) -> GameStatLogs:
 
     logs.events = _load_events_array(dict, "events")
     logs.player_xp = _load_stats_array(dict, "player_xp")
+    logs.player_max_health = _load_stats_array(dict, "player_max_health")
+    logs.player_health = _load_stats_array(dict, "player_health")
     logs.player_level = _load_stats_array(dict, "player_level")
     logs.dps = _load_stats_array(dict, "dps")
     logs.enemy_spawn_per_m = _load_stats_array(dict, "enemy_spawn_per_m")

@@ -32,6 +32,12 @@ func start_logging():
 
     _log_stat(logs.player_level, 0)
     PlayerService.player_gained_level.connect(log_player_level)
+    _log_stat(logs.player_health, 0)
+    _log_stat(logs.player_max_health, 0)
+    PlayerService.player_stats_changed.connect(func(_stats):
+        log_player_health()
+        log_player_max_health()
+    )
     _log_stat(logs.player_xp, 0)
     PlayerService.player_gained_xp.connect(log_player_xp)
     _log_stat(logs.dps, 0)
@@ -69,6 +75,14 @@ func log_event(type: E.EventLogType, value: String):
 func log_player_level(_n: int):
     if !is_logging: return
     _log_stat(logs.player_level, PlayerService.player_stats.level)
+
+func log_player_max_health():
+    if !is_logging: return
+    _log_stat(logs.player_max_health, PlayerService.player_stats.max_health)
+
+func log_player_health():
+    if !is_logging: return
+    _log_stat(logs.player_health, PlayerService.player_stats.health)
 
 func log_player_xp(_n: int):
     if !is_logging: return

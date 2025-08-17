@@ -3,6 +3,8 @@ extends Control
 @onready var level_chart: Chart = %LevelChart
 @onready var xp_chart: Chart = %XpChart
 @onready var dps_chart: Chart = %DPSChart
+@onready var player_health_chart: Chart = %PlayerHealthChart
+@onready var player_max_health_chart: Chart = %PlayerMaxHealthChart
 @onready var enemy_spawn_chart: Chart = %EnemySpawnChart
 @onready var enemy_kill_chart: Chart = %EnemyKillChart
 
@@ -23,6 +25,14 @@ func render_charts():
     )
     xp_chart.plot(
         [f(tr("LABEL_TOTAL_XP"), logs.player_xp, Color.ORANGE, Function.Interpolation.LINEAR)],
+        cp("", Color.TRANSPARENT)
+    )
+    player_health_chart.plot(
+        [f(tr("LABEL_HEALTH"), logs.player_health, Color.RED)],
+        cp("LABEL_HEALTH")
+    )
+    player_max_health_chart.plot(
+        [f(tr("LABEL_MAX_HEALTH"), logs.player_max_health, Color.ORANGE)],
         cp("", Color.TRANSPARENT)
     )
     dps_chart.plot(

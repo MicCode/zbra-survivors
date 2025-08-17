@@ -119,6 +119,8 @@ func process_player_controls():
             used_item = use_timewrap_clock(PlayerService.consumable)
         elif PlayerService.consumable is Mine:
             used_item = use_mine(PlayerService.consumable)
+            if !used_item:
+                GameLogger.log_event(E.EventLogType.ITEM_USED, PlayerService.consumable.get_item_name())
         else:
             push_warning("Unknown consumable [%s]" % str(PlayerService.consumable))
         if used_item:
@@ -134,7 +136,7 @@ func update_dash_gauge():
     var gauge_value = floor((1 - (time_left / PlayerService.player_stats.dash_cooldown)) * 5)
     if gauge_value != PlayerService.player_stats.dash_gauge_value:
         PlayerService.player_stats.dash_gauge_value = gauge_value
-        PlayerService.emit_player_change()
+        PlayerService.emit_player_stats_change()
 
 func _on_dash_manager_is_dashing_changed(is_dashing: bool) -> void:
     set_invincible(is_dashing)
@@ -154,7 +156,7 @@ func take_damage(damage: int = 1):
     GameService.shake_screen.emit(10)
     PlayerService.player_stats.health -= damage
     %Health.current_health = PlayerService.player_stats.health
-    PlayerService.emit_player_change()
+    PlayerService.emit_player_stats_change()
     can_be_damaged = false
     get_tree().create_timer(PlayerService.player_stats.damage_cooldown).timeout.connect(func():
         can_be_damaged = true
@@ -260,7 +262,7 @@ func attract_all_xp_on_map(collector: XpCollector) -> bool:
 func use_life_flask(flask: LifeFlask) -> bool:
     if PlayerService.player_stats.health < PlayerService.player_stats.max_health:
         PlayerService.player_stats.health = min(PlayerService.player_stats.health + flask.life_amount, PlayerService.player_stats.max_health)
-        PlayerService.emit_player_change()
+        PlayerService.emit_player_stats_change()
         Sounds.heal()
         %Effects.show()
         %Effects.play("heal")
@@ -334,7 +336,7 @@ func use_mine(mine: Mine) -> bool:
     SceneManager.current_scene.call_deferred("add_child", new_mine)
     Sounds.drop()
 
-    return true
+    return mine.time_used >= mine.stats.max_uses
 
 func init_health():
     %Health.max_health = PlayerService.player_stats.max_health
@@ -343,7 +345,7 @@ func init_health():
 func die():
     health_depleted.emit()
     PlayerService.player_stats.is_alive = false
-    PlayerService.emit_player_change()
+    PlayerService.emit_player_stats_change()
     if equiped_gun != null:
         equiped_gun.queue_free()
     %Sprite.play("dead")
