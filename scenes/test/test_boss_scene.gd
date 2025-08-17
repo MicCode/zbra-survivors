@@ -7,6 +7,7 @@ func _init():
 
 func _ready() -> void:
     GameService.start_new_game()
+    # Engine.time_scale = 0.5
     if PLAY_MUSIC:
         MusicManager.set_music(MusicManager.Music.METAL_1)
         MusicManager.set_layer(E.MusicLayer.MEDIUM)

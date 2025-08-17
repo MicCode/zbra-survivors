@@ -36,6 +36,9 @@ func shoot():
         danger_zone.base_modulate = Color(Color.WHITE, 0.5)
         %ShootPoint.add_child(danger_zone)
 
+        get_tree().create_timer((SHOOT_WARN_DELAY + SHOOT_START_DELAY_S) - 0.9).timeout.connect(func():
+            Sounds.shoot_boss_1()
+        )
         get_tree().create_timer(SHOOT_WARN_DELAY).timeout.connect(func():
             var target = PlayerService.player_instance.global_position
             danger_zone.track_player = false
@@ -47,7 +50,6 @@ func shoot():
                 bullet.scale = scale * 1.5
                 bullet.direction = (target - bullet.global_position).normalized()
                 bullet.look_at(target)
-                Sounds.zap()
                 is_shooting = false
             )
             # shoot again after cooldown

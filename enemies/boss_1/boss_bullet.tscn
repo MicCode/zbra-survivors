@@ -1,9 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7caqb07rcjgv"]
+[gd_scene load_steps=14 format=3 uid="uid://c7caqb07rcjgv"]
 
 [ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/guns/_generics/bullet.tscn" id="1_eiblb"]
 [ext_resource type="Script" uid="uid://c7my317uirsi1" path="res://enemies/boss_1/boss_bullet.gd" id="2_asu7v"]
 [ext_resource type="Resource" uid="uid://c4njtnhiserio" path="res://enemies/boss_1/boss_bullet_stats.tres" id="3_ej1t6"]
 [ext_resource type="Texture2D" uid="uid://cigo4bmiadlg0" path="res://assets/sprites/enemies/boss-1/boss-bullet.png" id="3_xumc3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbkgu"]
+bg_color = Color(0.130039, 0.715844, 0.333178, 1)
+
+[sub_resource type="Gradient" id="Gradient_2n5fa"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.0307329, 0.0401891, 0.177305, 0.543735, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0.231895, 0.231895, 0.231895, 0.231895, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ucgvg"]
+gradient = SubResource("Gradient_2n5fa")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_kbkgu"]
+offsets = PackedFloat32Array(0, 0.0898345, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2n5fa"]
+gradient = SubResource("Gradient_kbkgu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.649573, 0.213675)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kbkgu"]
+radius = 16.5076
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ej1t6"]
 atlas = ExtResource("3_xumc3")
@@ -29,11 +55,38 @@ animations = [{
 
 [node name="BossBullet" instance=ExtResource("1_eiblb")]
 scale = Vector2(2, 2)
-collision_mask = 7
+collision_mask = 5
 script = ExtResource("2_asu7v")
 bullet_stats = ExtResource("3_ej1t6")
 
-[node name="BulletSprite" parent="." index="1"]
+[node name="DebugPanel" type="Panel" parent="." index="0"]
+visible = false
+light_mask = 4
+visibility_layer = 4
+offset_left = -86.0
+offset_top = -86.0
+offset_right = 87.0
+offset_bottom = 86.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbkgu")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="1"]
+color = Color(0.433162, 0.247218, 0.185453, 1)
+energy = 4.5
+blend_mode = 1
+range_item_cull_mask = 12
+texture = SubResource("GradientTexture2D_ucgvg")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." index="2"]
+color = Color(1, 0.59593, 0.430824, 1)
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_2n5fa")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CircleShape2D_kbkgu")
+debug_color = Color(0, 0.6, 0.7, 0)
+
+[node name="BulletSprite" parent="." index="4"]
+modulate = Color(0.932448, 0.421738, 0.237968, 1)
 sprite_frames = SubResource("SpriteFrames_jxplf")
 frame_progress = 0.223658
 flip_h = true

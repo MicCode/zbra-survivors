@@ -116,6 +116,9 @@ func burn_hit():
 func death_mob_1(pitch: float = 3.0):
     SoundPlayer.play_sfx(pick_random("enemy-death-1"), SfxOptions.from_dict({pitch = pitch, pitch_variation = 0.1}))
 
+func shoot_boss_1():
+    SoundPlayer.play_sfx("boss_1-shoot.ogg", SfxOptions.from_dict({volume = -5.0}))
+
 func death_boss_1():
     SoundPlayer.play_sfx("boss_death.ogg", SfxOptions.from_dict({pitch = 0.8, volume = -3.0}))
 #endregion
