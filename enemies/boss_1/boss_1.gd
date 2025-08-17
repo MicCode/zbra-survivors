@@ -55,13 +55,14 @@ func take_damage(damage: float, is_fire: bool = false):
     GameService.boss_changed.emit(stats, health)
 
 func die(_game_over: bool = false):
-    is_dead = true
-    %Sprite.play("die")
-    Sounds.death_boss_1()
-    %AnimationPlayer.play("die")
-    VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
-    set_collision_layer_value(2, false)
-    set_collision_layer_value(8, false)
+    if !is_dead:
+        is_dead = true
+        %Sprite.play("die")
+        Sounds.death_boss_1()
+        %AnimationPlayer.play("die")
+        VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func(): queue_free())
+        set_collision_layer_value(2, false)
+        set_collision_layer_value(8, false)
 
 func _on_sprite_animation_finished() -> void:
     if !is_ready:

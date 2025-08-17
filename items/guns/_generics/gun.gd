@@ -42,7 +42,6 @@ func update_from_stats():
     if frames.has_animation("firing"):
         var firing_frames_count = frames.get_frame_count("firing")
         var fps = gun_stats.shots_per_s * firing_frames_count
-        print(str(fps))
         frames.set_animation_speed("firing", fps)
 
     if gun_stats.has_laser_dot:
