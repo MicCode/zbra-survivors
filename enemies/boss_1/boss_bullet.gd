@@ -5,12 +5,11 @@ func _init():
     is_from_player = false
 
 func _ready() -> void:
-    direction = Vector2(0,0)
     look_at(PlayerService.player_instance.global_position)
 
 func _physics_process(delta):
-    var to_target = (PlayerService.player_instance.global_position - global_position).normalized()
-    direction = direction.lerp(to_target, delta).normalized()
+    # var to_target = (PlayerService.player_instance.global_position - global_position).normalized()
+    # direction = direction.lerp(to_target, delta).normalized()
     position += direction * bullet_stats.speed * delta
     travelled_distance += bullet_stats.speed * delta
     if travelled_distance > bullet_stats.fly_range:

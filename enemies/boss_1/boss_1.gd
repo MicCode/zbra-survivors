@@ -6,6 +6,8 @@ var is_shooting = false
 
 const MINIMUM_TIME_BETWEEN_SHOTS_S: float = 3.0
 const MAXIMUM_TIME_BETWEEN_SHOTS_S: float = 5.0
+
+const SHOOT_WARN_DELAY: float = 1.0
 const SHOOT_START_DELAY_S: float = 0.3
 
 func _ready() -> void:
@@ -27,18 +29,31 @@ func start_chase():
 
 func shoot():
     if !is_dead and PlayerService.player_stats.is_alive:
-        %Sprite.play("shoot")
-        get_tree().create_timer(SHOOT_START_DELAY_S).timeout.connect(func():
-            var bullet = preload("res://enemies/boss_1/boss_bullet.tscn").instantiate()
-            SceneManager.current_scene.add_child(bullet)
-            bullet.global_position = %ShootPoint.global_position
-            bullet.scale = scale * 1.5
-            bullet.look_at(player.global_position)
-            Sounds.zap()
+        var danger_zone: DangerZoneRect = preload("res://ui/in-game/components/danger_zone_rect.tscn").instantiate()
+        danger_zone.animation_time = SHOOT_WARN_DELAY + SHOOT_START_DELAY_S / 2
+        danger_zone.track_player = true
+        danger_zone.height = 30
+        danger_zone.base_modulate = Color(Color.WHITE, 0.5)
+        %ShootPoint.add_child(danger_zone)
+
+        get_tree().create_timer(SHOOT_WARN_DELAY).timeout.connect(func():
+            var target = PlayerService.player_instance.global_position
+            danger_zone.track_player = false
+            %Sprite.play("shoot")
+            get_tree().create_timer(SHOOT_START_DELAY_S).timeout.connect(func():
+                var bullet = preload("res://enemies/boss_1/boss_bullet.tscn").instantiate()
+                SceneManager.current_scene.add_child(bullet)
+                bullet.global_position = %ShootPoint.global_position
+                bullet.scale = scale * 1.5
+                bullet.direction = (target - bullet.global_position).normalized()
+                bullet.look_at(target)
+                Sounds.zap()
+                is_shooting = false
+            )
+            # shoot again after cooldown
+            %ShootTimer.start(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S))
+            is_shooting = true
         )
-        # shoot again after cooldown
-        %ShootTimer.start(randf_range(MINIMUM_TIME_BETWEEN_SHOTS_S, MAXIMUM_TIME_BETWEEN_SHOTS_S))
-        is_shooting = true
 
 func handle_bullet_hit(bullet: Bullet):
     if bullet is BossBullet:
@@ -70,7 +85,6 @@ func _on_sprite_animation_finished() -> void:
         call_deferred("start_chase")
         GameService.boss_changed.emit(stats, health)
     elif !is_dead && is_shooting:
-        is_shooting = false
         %Sprite.play("walk")
 
 func _on_wither_radius_body_entered(body: Node2D) -> void:

@@ -391,7 +391,7 @@ position = Vector2(0, -18)
 shape = SubResource("CircleShape2D_xag0g")
 debug_color = Color(0.0250004, 0.180515, 0.140529, 0.124)
 
-[node name="AnimationPlayer" parent="." index="12"]
+[node name="AnimationPlayer" parent="." index="11"]
 libraries = {
 &"": SubResource("AnimationLibrary_ids3a")
 }
@@ -401,7 +401,7 @@ autoplay = "spawn"
 unique_name_in_owner = true
 one_shot = true
 
-[node name="LightOccluder2D" parent="." index="14"]
+[node name="LightOccluder2D" parent="." index="13"]
 occluder = SubResource("OccluderPolygon2D_0e5ht")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
