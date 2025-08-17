@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
     %Timescale.text = str("Timescale: %.1f" % Engine.time_scale)
 
     %Music.text = str("Music: %s" % MusicManager.music(MusicManager.current_music))
-    %MusicLayer.text = str("MusicLayer: %s" % E.music_layer(MusicManager.current_layer))
+    %MusicLayer.text = str("MusicLayer: %s" % E.to_str(E.MusicLayer, MusicManager.current_layer))
 
     %MasterVolume.text = str("Master volume: %.1f" % SoundPlayer.get_bus_volume_linear(SoundPlayer.Bus.MASTER))
     %MusicVolume.text = str("Music volume: %.1f" % SoundPlayer.get_bus_volume_linear(SoundPlayer.Bus.MUSIC))
@@ -38,5 +38,5 @@ func update_mods():
         label.text += str("%d" % mod.value)
         if !mod.is_absolute:
             label.text += "%"
-        label.text += " " + E.mod_name(mod.name)
+        label.text += " " + E.to_str(E.ModName, mod.name)
         %Mods.add_child(label)

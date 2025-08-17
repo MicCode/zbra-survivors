@@ -8,18 +8,18 @@ enum GameState {
     GAME_OVER
 }
 
-enum Orientation {
-    LEFT,
-    RIGHT,
-    BELOW,
-    ABOVE,
-}
-
 enum HapticFeedback {
     ONE_SHOT,
     ONE_SHOT_HEAVY,
     AUTOMATIC,
     CONTINUOUS,
+}
+
+enum EventLogType {
+    GUN_CHANGE,
+    ITEM_PICKUP,
+    ITEM_USE,
+    MODIFIER_PICKUP,
 }
 
 #region modifiers
@@ -47,42 +47,6 @@ enum ModName {
 
     PLAYER_LUCK,
 }
-
-func mod_name(_mod_name: ModName) -> String:
-    match _mod_name:
-        # PLAYER MODIFIERS
-        ModName.PLAYER_MAX_HEALTH: return "PLAYER_MAX_HEALTH"
-        ModName.PLAYER_XP_COLLECT_RADIUS: return "PLAYER_XP_COLLECT_RADIUS"
-        ModName.PLAYER_MOVE_SPEED: return "PLAYER_MOVE_SPEED"
-        ModName.PLAYER_DASH_DURATION: return "PLAYER_DASH_DURATION"
-        ModName.PLAYER_DASH_COOLDOWN: return "PLAYER_DASH_COOLDOWN"
-        ModName.PLAYER_DASH_SPEED_MULTIPLIER: return "PLAYER_DASH_SPEED_MULTIPLIER"
-        ModName.PLAYER_LUCK: return "PLAYER_LUCK"
-
-        # GUN MODIFIERS
-        ModName.GUN_FIRE_RATE: return "GUN_FIRE_RATE"
-        ModName.GUN_SPREAD_ANGLE_MORE: return "GUN_SPREAD_ANGLE_MORE"
-        ModName.GUN_SPREAD_ANGLE_LESS: return "GUN_SPREAD_ANGLE_LESS"
-        ModName.GUN_BULLET_NUMBER: return "GUN_BULLET_NUMBER"
-
-        # BULLET MODIFIERS
-        ModName.BULLET_DAMAGE: return "BULLET_DAMAGE"
-        ModName.BULLET_SPEED: return "BULLET_SPEED"
-        ModName.BULLET_RANGE: return "BULLET_RANGE"
-        ModName.BULLET_PIERCE_COUNT: return "BULLET_PIERCE_COUNT"
-
-        # EXPLOSION MODIFIERS
-        ModName.EXPLOSION_RADIUS: return "EXPLOSION_RADIUS"
-        ModName.EXPLOSION_DAMAGE: return "EXPLOSION_DAMAGE"
-
-        # FIRE MODIFIERS
-        ModName.FIRE_DAMAGE: return "FIRE_DAMAGE"
-        ModName.FIRE_DURATION: return "FIRE_DURATION"
-        ModName.FIRE_FREQUENCY: return "FIRE_FREQUENCY"
-
-        _:
-            push_warning("Unknown E.ModName with index [%d]" % _mod_name)
-            return "???"
 
 func mod_stat_name(n: ModName) -> String:
     match n:
@@ -123,17 +87,6 @@ enum ModType {
     EXPLOSION,
     FIRE,
 }
-
-func mod_type(_mod_type: ModType) -> String:
-    match _mod_type:
-        ModType.PLAYER: return "PLAYER"
-        ModType.GUN: return "GUN"
-        ModType.BULLET: return "BULLET"
-        ModType.EXPLOSION: return "EXPLOSION"
-        ModType.FIRE: return "FIRE"
-        _:
-            push_warning("Unknown E.ModType with index [%d]" % _mod_type)
-            return "???"
 #endregion
 
 #region musics
@@ -144,16 +97,24 @@ enum MusicLayer {
     MEDIUM,
     HARD
 }
-
-## Util function to display MusicLayer enum member as a string
-func music_layer(_layer: MusicLayer) -> String:
-    match _layer:
-        MusicLayer.NOT_SET: return "NOT_SET"
-        MusicLayer.MUFFLED: return "MUFFLED"
-        MusicLayer.SOFT: return "SOFT"
-        MusicLayer.MEDIUM: return "MEDIUM"
-        MusicLayer.HARD: return "HARD"
-        _:
-            push_error("Unknown MusicLayer [%d]" % _layer)
-            return "???"
 #endregion
+
+func to_str(enum_dict: Dictionary, value: int) -> String:
+    var _str = enum_reverse(enum_dict).get(value, "???")
+    if _str == "???":
+        push_error("enum member with value [%d] not found in dictionary:" % value)
+        push_error(enum_dict)
+    return _str
+
+func from_str(enum_dict: Dictionary, _str: String) -> int:
+    if not enum_dict.keys().has(_str):
+        push_error("enum key [%s] not found in dictionary:" % _str)
+        push_error(enum_dict)
+        return -1
+    return enum_dict[_str]
+
+func enum_reverse(enum_dict: Dictionary) -> Dictionary:
+    var dict: Dictionary = {}
+    for _key in enum_dict:
+        dict.set(enum_dict[_key], _key)
+    return dict

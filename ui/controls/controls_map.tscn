@@ -1,9 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc8rkdfax3ovv"]
+[gd_scene load_steps=2 format=3 uid="uid://4y1uiguslpo0"]
 
-[ext_resource type="Script" uid="uid://bjhh6vtevdu6e" path="res://ui/controls/controls_map.gd" id="1_8gw53"]
+[sub_resource type="GDScript" id="GDScript_q5878"]
+script/source = "extends CanvasLayer
+
+enum ControllerCombos {
+    MOUSE_KEYBOARD,
+    XBOX_CONTROLLER
+}
+
+var controls = {
+    \"Move\": {
+        ControllerCombos.MOUSE_KEYBOARD: [\"Z\", \"Q\", \"S\", \"D\"]
+    },
+    \"Aim\": {
+        ControllerCombos.MOUSE_KEYBOARD: [\"mouse\"]
+    },
+    \"Shoot\": {
+        ControllerCombos.MOUSE_KEYBOARD: [\"mouse-LMB\"]
+    },
+    \"Equip\": {
+        ControllerCombos.MOUSE_KEYBOARD: [\"E\"]
+    },
+    \"Dash\": {
+        ControllerCombos.MOUSE_KEYBOARD: [\"SPACE\"]
+    },
+    \"Pause\": {
+        ControllerCombos.MOUSE_KEYBOARD: [\"ESC\"]
+    }
+}
+
+var current_controller_combo = ControllerCombos.MOUSE_KEYBOARD
+
+func _ready() -> void:
+    for control in controls.keys():
+        var control_label = Label.new()
+        control_label.text = control
+        control_label.modulate = Color(0, 0, 0)
+        %GridContainer.add_child(control_label)
+        var keys = controls[control][current_controller_combo]
+        var keys_container = HBoxContainer.new()
+        for key in keys:
+            var icon = ControllerButtonIcon.new()
+            icon.key_name = key
+            icon.animate = true
+            if key.contains(Controls.get_controller_name(Controls.Controllers.MOUSE)):
+                icon.key_name = key
+                icon.controller_name = Controls.get_controller_name(Controls.Controllers.MOUSE)
+            else:
+                if current_controller_combo == ControllerCombos.MOUSE_KEYBOARD:
+                    icon.key_name = Controls.get_controller_name(Controls.Controllers.KEYBOARD) + \"-\" + key
+                    icon.controller_name = Controls.get_controller_name(Controls.Controllers.KEYBOARD)
+                elif current_controller_combo == ControllerCombos.XBOX_CONTROLLER:
+                    icon.key_name = Controls.get_controller_name(Controls.Controllers.XBOX) + \"-\" + key
+                    icon.controller_name = Controls.get_controller_name(Controls.Controllers.XBOX)
+
+            keys_container.add_child(icon)
+
+        %GridContainer.add_child(keys_container)
+"
 
 [node name="ControlsMap" type="CanvasLayer"]
-script = ExtResource("1_8gw53")
+script = SubResource("GDScript_q5878")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 262.0

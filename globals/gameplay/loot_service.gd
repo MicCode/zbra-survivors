@@ -9,15 +9,6 @@ enum ItemName {
     XP_COLLECTOR,
     MINE,
 }
-func item_name(n: ItemName) -> String:
-    match n:
-        ItemName.LIFE_FLASK: return "life_flask"
-        ItemName.RADIANCE_FLASK: return "radiance_flask"
-        ItemName.TIMEWRAP_CLOCK: return "timewrap_clock"
-        ItemName.XP_COLLECTOR: return "xp_collector"
-        ItemName.MINE: return "mine"
-        _:
-            return "???"
 
 const CONSUMABLES_FOLDER = "res://items/consumables"
 const CHANCE_TO_DROP_ITEM: float = 0.1 # TODO make this configurable / dynamic ? evolve with game progress ?
@@ -61,7 +52,7 @@ func get_random_gun() -> Gun:
 func get_random_item() -> Node2D:
     if randf() <= CHANCE_TO_DROP_ITEM:
         var picked_item_name: ItemName = Utils.weighted_pick(item_chance_weights) as ItemName
-        var item_name_str = item_name(picked_item_name)
+        var item_name_str = E.to_str(ItemName, picked_item_name).to_lower()
         var item = (load(CONSUMABLES_FOLDER.path_join(item_name_str).path_join(item_name_str) + ".tscn") as PackedScene).instantiate()
         if picked_item_name == ItemName.LIFE_FLASK:
             var life_amount: int = ceil(1 + PlayerService.player_stats.luck / 2)

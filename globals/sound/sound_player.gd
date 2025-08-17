@@ -11,21 +11,13 @@ enum Bus {
     EFFECTS,
     ANNOUNCEMENTS,
 }
-func bus(_bus: Bus) -> String:
-    match _bus:
-        Bus.MASTER: return "Master"
-        Bus.MUSIC: return "Music"
-        Bus.SFX: return "SFX"
-        Bus.EFFECTS: return "Effects"
-        Bus.ANNOUNCEMENTS: return "Announcements"
-        _:
-            push_error("Unknown audio Bus [%d], falling back on Master" % _bus)
-            return "Master"
+func bus_name(_bus: Bus) -> String:
+    return E.to_str(Bus, _bus).to_pascal_case()
 
 func get_bus_index(_bus: Bus) -> int:
-    var i = AudioServer.get_bus_index(bus(_bus))
+    var i = AudioServer.get_bus_index(bus_name(_bus))
     if i < 0:
-        push_error("Audio bus [%s] is not defined in AudioServer" % bus(_bus))
+        push_error("Audio bus_name [%s] is not defined in AudioServer" % bus_name(_bus))
         return 0
     return i
 
@@ -38,8 +30,8 @@ var sfx_cache: Dictionary = {}
 var effects_players: Dictionary = {}
 var effects_cache: Dictionary = {}
 
-func set_bus_volume(bus_name: Bus, volume_db: float):
-    AudioServer.set_bus_volume_db(get_bus_index(bus_name), volume_db)
+func set_bus_volume(_bus_name: Bus, volume_db: float):
+    AudioServer.set_bus_volume_db(get_bus_index(_bus_name), volume_db)
 
 func apply_audio_settings(audio_settings: AudioSettings):
     set_bus_volume(Bus.MASTER, audio_settings.master_volume_db)
@@ -141,10 +133,10 @@ func _on_effect_finished(player: AudioStreamPlayer):
 func play_sound(stream: AudioStream, _bus: Bus, options: SfxOptions) -> AudioStreamPlayer:
     var player = AudioStreamPlayer.new()
     player.stream = stream
-    player.bus = bus(_bus)
+    player.bus = bus_name(_bus)
     player.volume_db = options.volume
     player.pitch_scale = max(0.01, randf_range(options.pitch - options.pitch_variation, options.pitch + options.pitch_variation))
-    player.name = bus(_bus) + "_" + str(Time.get_ticks_msec())
+    player.name = bus_name(_bus) + "_" + str(Time.get_ticks_msec())
 
     add_child(player)
     if options.start_delay_ms + options.start_delay_variation_ms > 0:

@@ -1,19 +1,6 @@
 @tool
 extends Node
 
-enum Controllers {
-    MOUSE,
-    KEYBOARD,
-    XBOX
-}
-
-func get_controller_name(controller: Controllers) -> String:
-    match controller:
-        Controllers.MOUSE: return "mouse"
-        Controllers.KEYBOARD: return "keyboard"
-        Controllers.XBOX: return "xbox"
-        _: return "unknown controller"
-
 enum PlayerAction {
     DASH,
     GRAB,
@@ -23,25 +10,6 @@ enum PlayerAction {
     ACCEPT,
     EXCLUDE,
 }
-func get_action_name(action: PlayerAction) -> String:
-    match action:
-        PlayerAction.DASH:
-            return "dash"
-        PlayerAction.GRAB:
-            return "grab"
-        PlayerAction.SHOOT:
-            return "shoot"
-        PlayerAction.USE:
-            return "use"
-        PlayerAction.DISMISS:
-            return "dismiss"
-        PlayerAction.ACCEPT:
-            return "accept"
-        PlayerAction.EXCLUDE:
-            return "exclude"
-        _:
-            push_error("Unsupported action [%d]" % action)
-            return "???"
 
 enum JoypadButtons {
     A,
@@ -207,12 +175,12 @@ func get_input_control(action: PlayerAction) -> InputControl:
 
 
 func is_pressed(action: PlayerAction) -> bool:
-    var pressed = Input.is_action_pressed(get_action_name(action))
+    var pressed = Input.is_action_pressed(E.to_str(PlayerAction, action).to_lower())
     #print("Checking action [%s]: %s" % [action_name, str(pressed)])
     return pressed
 
 func is_just_pressed(action: PlayerAction) -> bool:
-    var pressed = Input.is_action_just_pressed(get_action_name(action))
+    var pressed = Input.is_action_just_pressed(E.to_str(PlayerAction, action).to_lower())
     #print("Checking action [%s]: %s" % [action_name, str(pressed)])
     return pressed
 

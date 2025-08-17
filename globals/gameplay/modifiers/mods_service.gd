@@ -155,7 +155,7 @@ func decrease_chance(mod_name: E.ModName, decrease_percent: float):
 func print_modifiers_chances():
     print("#### STATS MODIFIERS DROP CHANCES ####")
     for key in drop_chances.keys():
-        print("  - %s: %.2f" % [E.mod_name(key), drop_chances.get(key)])
+        print("  - %s: %.2f" % [E.to_str(E.ModName, key), drop_chances.get(key)])
     print("######################################")
 
 func are_same_mods(mod1: ModifierDefinition, mod2: ModifierDefinition) -> bool:
@@ -174,14 +174,14 @@ func get_type(mod_name: E.ModName) -> E.ModType:
         for mod: ModifierDefinition in mod_group:
             if mod.name == mod_name:
                 return mod_type
-    push_error("ModType for mod [%s] not found in all_mods" % E.mod_name(mod_name))
+    push_error("ModType for mod [%s] not found in all_mods" % E.to_str(E.ModName, mod_name))
     return E.ModType.UNKNOWN
 
 func debug_print():
     print("= ModsService DEBUG ========================================================================")
     print("### all_mods ###")
-    print(all_mods_flat.map(func(m: ModifierDefinition): return E.mod_name(m.name)))
+    print(all_mods_flat.map(func(m: ModifierDefinition): return E.to_str(E.ModName, m.name)))
     print("### actives ###")
-    print(active_mods.map(func(m: StatModifier): return E.mod_name(m.name)))
+    print(active_mods.map(func(m: StatModifier): return E.to_str(E.ModName, m.name)))
     print("### excluded ###")
-    print(excluded_mods.map(func(m: E.ModName): return E.mod_name(m)))
+    print(excluded_mods.map(func(m: E.ModName): return E.to_str(E.ModName, m)))

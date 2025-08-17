@@ -21,18 +21,7 @@ enum Music {
 }
 ## Util function to display Music enum member as a string
 func music(_music: Music) -> String:
-    match _music:
-        Music.NON_LAYERED: return "non-layered"
-        Music.NOT_SET: return "not-set"
-        Music.ELECTRO_1: return "electro-1"
-        Music.ELECTRO_2: return "electro-2"
-        Music.EPIC_1: return "epic-1"
-        Music.EPIC_2: return "epic-2"
-        Music.METAL_1: return "metal-1"
-        Music.METAL_2: return "metal-2"
-        _:
-            push_error("Unknown Music [%d]" % _music)
-            return "???"
+    return E.to_str(Music, _music).to_lower().replace("_", "-")
 
 
 #endregion
@@ -82,7 +71,7 @@ func _change_layer(new_layer: E.MusicLayer):
     if new_layer != current_layer:
         var previous_layer = current_layer
         current_layer = new_layer
-        if DEBUG_MODE: print("Changing music layer from [%s] to [%s]" % [E.music_layer(previous_layer), E.music_layer(current_layer)])
+        if DEBUG_MODE: print("Changing music layer from [%s] to [%s]" % [E.to_str(E.MusicLayer, previous_layer), E.to_str(E.MusicLayer, current_layer)])
 
         previous_player = players.get(previous_layer)
         current_player = players.get(current_layer)
@@ -204,7 +193,7 @@ func _apply_crossfade():
 
 func _init_player() -> AudioStreamPlayer:
     var new_player = AudioStreamPlayer.new()
-    new_player.bus = SoundPlayer.bus(SoundPlayer.Bus.MUSIC)
+    new_player.bus = SoundPlayer.bus_name(SoundPlayer.Bus.MUSIC)
     new_player.volume_db = to_db(0.0)
     new_player.finished.connect(func(): new_player.play())
     return new_player

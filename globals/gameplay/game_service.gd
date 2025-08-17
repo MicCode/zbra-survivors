@@ -95,6 +95,7 @@ func end_game(success: bool = false):
     )
 
 func change_state(new_state: E.GameState):
+    print("changing game state from [%s] to [%s]" % [E.to_str(E.GameState, state), E.to_str(E.GameState, new_state)])
     state = new_state
     state_changed.emit(new_state)
     if E.GameState.GAME_OVER == state:

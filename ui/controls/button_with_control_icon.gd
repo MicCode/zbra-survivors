@@ -14,5 +14,5 @@ func _enter_tree() -> void:
     %ButtonIcon.action = action
     shortcut = Shortcut.new()
     var input_event = InputEventAction.new()
-    input_event.action = Controls.get_action_name(action)
+    input_event.action = E.to_str(Controls.PlayerAction, action).to_lower()
     shortcut.events.append(input_event)
