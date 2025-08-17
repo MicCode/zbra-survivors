@@ -25,6 +25,7 @@ func _on_trigger_radius_body_entered(body: Node2D) -> void:
     if !is_open:
         %Sprite.play("open")
         Sounds.chest_open()
+        GameLogger.log_event(E.EventLogType.CHEST_OPENED, str("%d,%d" % [global_position.x, global_position.y]))
         var rays_shader: ShaderMaterial = %Rays.material
         create_tween().tween_property(rays_shader, "shader_parameter/edge_fade", 0.15, OPENING_TIME)
         create_tween().tween_property(rays_shader, "shader_parameter/ray_2_intensity", 0.7, OPENING_TIME).finished.connect(func():

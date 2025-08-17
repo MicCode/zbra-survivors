@@ -122,6 +122,7 @@ func process_player_controls():
         else:
             push_warning("Unknown consumable [%s]" % str(PlayerService.consumable))
         if used_item:
+            GameLogger.log_event(E.EventLogType.ITEM_USED, PlayerService.consumable.get_item_name())
             PlayerService.change_consumable(null)
         get_tree().create_timer(time_between_item_use).timeout.connect(func():
             block_item_use = false
@@ -216,10 +217,13 @@ func free_collectible(collectible: GunCollectible):
 
 func handle_collectible(consumable: ConsumableItem):
     if consumable.stats.immediate_use:
+        var used = false
         if consumable is LifeFlask:
-            use_life_flask(consumable as LifeFlask)
+            used = use_life_flask(consumable as LifeFlask)
         elif consumable is XpCollector:
-            attract_all_xp_on_map(consumable)
+            used = attract_all_xp_on_map(consumable)
+        if used:
+            GameLogger.log_event(E.EventLogType.ITEM_PICKED_UP, consumable.get_item_name())
     else:
         if !PlayerService.consumable or Controls.is_just_pressed(Controls.PlayerAction.GRAB):
             if is_pickup_blocked:
@@ -228,6 +232,7 @@ func handle_collectible(consumable: ConsumableItem):
             Sounds.take()
             consumable.queue_free()
             block_pickup()
+            GameLogger.log_event(E.EventLogType.ITEM_PICKED_UP, consumable.get_item_name())
 
 func check_for_xp():
     var overlapping_xp = %XpCollectRadius.get_overlapping_bodies()
@@ -235,21 +240,24 @@ func check_for_xp():
         if xp is XpDrop && !xp.chase_player:
             xp.chase_player = true
 
-func attract_all_xp_on_map(collector: XpCollector):
+func attract_all_xp_on_map(collector: XpCollector) -> bool:
+    var collected = false
     if not collector.chase_player:
         Sounds.absorb()
         %VisualEffects.start_effect("absorb_xp", preload("res://effects/absorb_xp.tscn"))
         get_tree().create_timer(XP_COLLECT_TIME).connect("timeout", func():
             %VisualEffects.stop_effect("absorb_xp")
         )
+        collected = true
 
     collector.queue_free()
     var children = Utils.get_all_children_recursively(SceneManager.current_scene)
     for child in children:
         if child is XpDrop or child is XpCollector:
             child.move_to_player()
+    return collected
 
-func use_life_flask(flask: LifeFlask):
+func use_life_flask(flask: LifeFlask) -> bool:
     if PlayerService.player_stats.health < PlayerService.player_stats.max_health:
         PlayerService.player_stats.health = min(PlayerService.player_stats.health + flask.life_amount, PlayerService.player_stats.max_health)
         PlayerService.emit_player_change()
@@ -257,6 +265,8 @@ func use_life_flask(flask: LifeFlask):
         %Effects.show()
         %Effects.play("heal")
         flask.queue_free()
+        return true
+    return false
 #endregion
 
 func burn_things_in_radius():
@@ -324,7 +334,7 @@ func use_mine(mine: Mine) -> bool:
     SceneManager.current_scene.call_deferred("add_child", new_mine)
     Sounds.drop()
 
-    return mine.time_used >= mine.stats.max_uses
+    return true
 
 func init_health():
     %Health.max_health = PlayerService.player_stats.max_health

@@ -30,6 +30,7 @@ func reset():
 
 func register_chest(chest: LootChest):
     chests.append(chest)
+    GameLogger.log_event(E.EventLogType.CHEST_SPAWNED, str("%d,%d" % [chest.global_position.x, chest.global_position.y]))
     chest_registered.emit(chest)
 
 func unregister_chest(chest: LootChest):

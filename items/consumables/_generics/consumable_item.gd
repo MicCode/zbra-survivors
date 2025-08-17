@@ -26,6 +26,10 @@ func increment_use():
     can_be_used = false
     SceneManager.current_scene.get_tree().create_timer(stats.time_between_use).connect("timeout", func(): can_be_used = true)
 
+func get_item_name() -> String:
+    var scene_path = get_scene_file_path()
+    var parts = scene_path.get_base_dir().split("/")
+    return parts[-1]
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
     if body is not Player or !%ButtonIcon:

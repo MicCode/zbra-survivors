@@ -172,13 +172,26 @@ func _init() -> void:
     set_layer(E.MusicLayer.MUFFLED)
 
 func _process(_delta):
+    var changed = false
     if get_tree().paused and current_layer != E.MusicLayer.MUFFLED:
         _change_layer(E.MusicLayer.MUFFLED)
+        changed = true
     elif !get_tree().paused and current_layer != next_layer:
         _change_layer(next_layer)
+        changed = true
 
     if next_music != current_music:
         _change_music(next_music)
+        changed = true
+    
+    if changed:
+        GameLogger.log_event(
+            E.EventLogType.MUSIC_CHANGED,
+            str("%s:%s" % [
+                E.to_str(Music, current_music),
+                E.to_str(E.MusicLayer, current_layer)
+            ])
+        )
 
     _apply_crossfade()
 

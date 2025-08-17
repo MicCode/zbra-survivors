@@ -16,10 +16,18 @@ enum HapticFeedback {
 }
 
 enum EventLogType {
-    GUN_CHANGE,
-    ITEM_PICKUP,
-    ITEM_USE,
-    MODIFIER_PICKUP,
+    LEVEL_LOADED,
+    GUN_CHANGED,
+    ITEM_PICKED_UP,
+    ITEM_USED,
+    MODIFIER_PICKED_UP,
+    GAME_STATE_CHANGED,
+    CHEST_SPAWNED,
+    CHEST_OPENED,
+    BOSS_SPAWNED,
+    BOSS_DIED,
+    GAME_FINISHED,
+    MUSIC_CHANGED,
 }
 
 #region modifiers

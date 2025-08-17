@@ -11,11 +11,13 @@ func _ready() -> void:
         MusicManager.set_non_layered_music("zbra-slain.ogg")
         %Label.add_theme_color_override("font_color", Color("c39200"))
         %Label.text = tr("TITLE_GAME_SUCCESS")
+        GameLogger.log_event(E.EventLogType.GAME_FINISHED, "true")
     else:
         MusicManager.set_non_layered_music("game-over.ogg")
         Sounds.game_over()
         %Label.add_theme_color_override("font_color", Color("c30700"))
         %Label.text = tr("TITLE_GAME_OVER")
+        GameLogger.log_event(E.EventLogType.GAME_FINISHED, "false")
 
     slide_in().finished.connect(func():
         can_be_cancelled = true

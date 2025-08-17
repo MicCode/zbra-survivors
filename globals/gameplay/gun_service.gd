@@ -100,6 +100,7 @@ func change_equipped_gun(_new_gun: Gun, is_from_chest: bool = false) -> GunChang
             base_equipped_gun_stats = null
             base_equipped_bullet_stats = null
         ModsService.compute_modifiers()
+        GameLogger.log_event(E.EventLogType.GUN_CHANGED, equipped_gun.get_gun_name())
         equipped_gun_changed.emit(equipped_gun, previous_gun_name)
         gun_change_menu.call_deferred("queue_free")
         GameService.change_state(E.GameState.RUNNING)

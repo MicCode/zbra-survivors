@@ -99,6 +99,7 @@ func spawn_boss(force_position = false, forced_position: Vector2 = Vector2(0, 0)
             boss.global_position = forced_position
         SceneManager.current_scene.add_child(boss)
         MusicManager.set_music(MusicManager.Music.METAL_2)
+        GameLogger.log_event(E.EventLogType.BOSS_SPAWNED, str("%d,%d" % [boss.global_position.x, boss.global_position.y]))
 
 func increment_total_spawned(count: int = 1):
     stats.total_spawned += count
@@ -170,6 +171,7 @@ func get_random_point(origin: Vector2, r_min: float, r_max: float) -> Vector2:
 
 func on_boss_changed(boss_stats: EnemyStats, boss_health: float):
     if boss_stats and boss_health <= 0:
+        GameLogger.log_event(E.EventLogType.BOSS_DIED, "true")
         GameService.end_game(true)
 
 func spawn_random() -> Enemy:

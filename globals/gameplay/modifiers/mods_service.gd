@@ -73,6 +73,7 @@ func register_new_modifier(new_mod: ModifierDefinition):
     active_mods_changed.emit()
     decrease_chance(new_mod.name, MODIFIER_CHANCE_DECREASE_PERCENT_PER_PICK)
     compute_modifiers(new_stats_modifier)
+    GameLogger.log_event(E.EventLogType.MODIFIER_PICKED_UP, E.to_str(E.ModName, new_mod.name))
 
 ## Transforms the Mod, which is a definition of a modifier, into a StatModifier, which is a real modifier ready to be applied on a statistic and has lighter information
 func definition_to_stats_modifier(definition: ModifierDefinition) -> StatModifier:

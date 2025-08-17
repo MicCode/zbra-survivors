@@ -1,5 +1,6 @@
-extends Node
 class_name GameStatLogs
+
+var events: Array[GameEventLogEntry] = []
 
 var player_xp: Array[GameStatLogEntry] = []
 var player_level: Array[GameStatLogEntry] = []
@@ -34,6 +35,7 @@ func get_last_timestamp() -> float:
 
 func to_dict() -> Dictionary:
     return {
+        "events": events.map(func(entry: GameEventLogEntry): return entry.to_dict()),
         "player_xp": player_xp.map(func(entry: GameStatLogEntry): return entry.to_dict()),
         "player_level": player_level.map(func(entry: GameStatLogEntry): return entry.to_dict()),
         "dps": dps.map(func(entry: GameStatLogEntry): return entry.to_dict()),
@@ -46,13 +48,14 @@ func to_dict() -> Dictionary:
 static func from_dict(dict: Dictionary) -> GameStatLogs:
     var logs: GameStatLogs = GameStatLogs.new()
 
-    logs.player_xp = _load_array(dict, "player_xp")
-    logs.player_level = _load_array(dict, "player_level")
-    logs.dps = _load_array(dict, "dps")
-    logs.enemy_spawn_per_m = _load_array(dict, "enemy_spawn_per_m")
-    logs.total_enemy_spawned = _load_array(dict, "total_enemy_spawned")
-    logs.enemy_kill_per_m = _load_array(dict, "enemy_kill_per_m")
-    logs.total_enemy_killed = _load_array(dict, "total_enemy_killed")
+    logs.events = _load_events_array(dict, "events")
+    logs.player_xp = _load_stats_array(dict, "player_xp")
+    logs.player_level = _load_stats_array(dict, "player_level")
+    logs.dps = _load_stats_array(dict, "dps")
+    logs.enemy_spawn_per_m = _load_stats_array(dict, "enemy_spawn_per_m")
+    logs.total_enemy_spawned = _load_stats_array(dict, "total_enemy_spawned")
+    logs.enemy_kill_per_m = _load_stats_array(dict, "enemy_kill_per_m")
+    logs.total_enemy_killed = _load_stats_array(dict, "total_enemy_killed")
 
     return logs
 
@@ -71,8 +74,14 @@ func _get_latest_timestamp_from_array(array: Array[GameStatLogEntry]) -> float:
             latest_timestamp = e.timestamp
     return latest_timestamp
 
-static func _load_array(dict: Dictionary, key: String) -> Array[GameStatLogEntry]:
+static func _load_stats_array(dict: Dictionary, key: String) -> Array[GameStatLogEntry]:
     var array: Array[GameStatLogEntry] = []
     for e in dict.get(key, []):
         array.append(GameStatLogEntry.from_dict(e))
+    return array
+
+static func _load_events_array(dict: Dictionary, key: String) -> Array[GameEventLogEntry]:
+    var array: Array[GameEventLogEntry] = []
+    for e in dict.get(key, []):
+        array.append(GameEventLogEntry.from_dict(e))
     return array
