@@ -1,4 +1,17 @@
 - - -
+## 0.25.0 - 2025-08-17
+
+#### ➕ New features
+- **(gameplay)** boss is stronger and hits harder
+- **(gameplay)** displayed danger zone when boss is about to shoot
+- **(ui)** added player health postgame statistics
+#### 🪲 Bug fixes
+- **(gameplay)** fixed bug making player recover full health at level up
+- **(sounds)** fixed boss emitting multiple time its death signal and sound
+- **(visual)** improved gun firing animation to be synchronized with fire rate
+
+- - -
+
 ## 0.24.0 - 2025-08-16
 
 #### ➕ New features
