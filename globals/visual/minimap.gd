@@ -5,7 +5,7 @@ enum ObjectType {
     ENEMY,
     BOSS,
     COLLECTIBLE,
-    GUN,
+    WEAPON,
     XP,
     CHEST
 }
@@ -16,7 +16,7 @@ func track(object: Node2D, type: ObjectType):
     var object_id = object.get_instance_id()
     var texture: Texture = null
     if !tracked_objects.has(object_id):
-        if [ObjectType.GUN, ObjectType.COLLECTIBLE].has(type) and object:
+        if [ObjectType.WEAPON, ObjectType.COLLECTIBLE].has(type) and object:
             var sprite = object.get_node("Sprite")
             if sprite and sprite is Sprite2D:
                 texture = (sprite as Sprite2D).texture

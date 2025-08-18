@@ -9,7 +9,7 @@ var kill_announcement_timer: SceneTreeTimer
 var announcer_player: AudioStreamPlayer
 
 #region announcements ---------------------------------------------------------------------------------------
-func gun_shoot():
+func weapon_shoot():
     kill_in_one_shot = 0
 
 func double_kill():

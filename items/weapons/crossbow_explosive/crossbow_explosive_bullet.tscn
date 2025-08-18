@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://2ee6a1rfr82t"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/weapons/_generics/bullet.tscn" id="1_1iay1"]
+[ext_resource type="Script" uid="uid://b5yy56xkwh03i" path="res://items/weapons/crossbow_explosive/crossbow_explosive_bullet.gd" id="2_61ruf"]
+[ext_resource type="Resource" uid="uid://ipf8tusfj8md" path="res://items/weapons/crossbow_explosive/stats/crossbow_explosive_bullet_stats.tres" id="2_q6m1m"]
+[ext_resource type="Texture2D" uid="uid://bf0o06x3egowa" path="res://assets/sprites/items/crossbow/crossbow-dart-explosive.png" id="3_k1ebq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ktw2"]
+atlas = ExtResource("3_k1ebq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe7s4"]
+atlas = ExtResource("3_k1ebq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jico"]
+atlas = ExtResource("3_k1ebq")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvxbe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ktw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe7s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jico")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 15.0
+}]
+
+[node name="CrossbowExplosiveBullet" instance=ExtResource("1_1iay1")]
+script = ExtResource("2_61ruf")
+bullet_stats = ExtResource("2_q6m1m")
+
+[node name="BulletSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_qvxbe")
+frame_progress = 0.720549

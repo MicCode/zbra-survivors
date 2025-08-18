@@ -34,10 +34,10 @@ func _process(_delta: float) -> void:
                 marker.position = obj.position * map_scale_factor
                 marker.set_marker_type(obj.type)
                 marker.set_texture(obj.sprite_texture)
-                if obj.type == Minimap.ObjectType.GUN:
+                if obj.type == Minimap.ObjectType.WEAPON:
                     marker.rotation_degrees = -30.0
                 %Miniworld.add_child(marker)
-                known_objects_positions.set(key, { object_position = obj.position, marker_id = marker.get_instance_id()})
+                known_objects_positions.set(key, {object_position = obj.position, marker_id = marker.get_instance_id()})
                 if obj.type == Minimap.ObjectType.PLAYER:
                     move_camera_to(marker.position)
             else:

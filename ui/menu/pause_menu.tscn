@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://sh000knuasji" path="res://ui/menu/pause_menu.gd" id="1_4ffn6"]
 [ext_resource type="Theme" uid="uid://ovugx2tb06c" path="res://ui/theme/secondary_ui_theme.tres" id="2_bygbl"]
 [ext_resource type="PackedScene" uid="uid://dn2dtj2wmt7qb" path="res://ui/menu/statistics/player_statistics.tscn" id="2_wxqc1"]
-[ext_resource type="PackedScene" uid="uid://bdqu3ily4t8ix" path="res://ui/menu/statistics/gun_statistics.tscn" id="3_kk7rk"]
+[ext_resource type="PackedScene" uid="uid://bdqu3ily4t8ix" path="res://ui/menu/statistics/weapon_statistics.tscn" id="3_kk7rk"]
 
 [node name="Pause-menu" type="CanvasLayer"]
 process_mode = 3

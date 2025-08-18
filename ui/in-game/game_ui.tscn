@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://btuabvmpbtjvk" path="res://effects/slow_down_effect_material.tres" id="2_sfyf6"]
 [ext_resource type="Shader" uid="uid://sr5kbh3fj2po" path="res://shaders/shockwave.gdshader" id="3_png7d"]
 [ext_resource type="PackedScene" uid="uid://c0qrymdsv0ins" path="res://ui/in-game/minimap/minimap_viewer.tscn" id="4_d2uga"]
-[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/components/gun_slot.tscn" id="7_il6w2"]
+[ext_resource type="PackedScene" uid="uid://b7ydpd6qydhnt" path="res://ui/in-game/components/weapon_slot.tscn" id="7_il6w2"]
 [ext_resource type="PackedScene" uid="uid://5dhmrbtdnbhg" path="res://ui/in-game/components/consumable_slot.tscn" id="10_ooeft"]
 
 [sub_resource type="Gradient" id="Gradient_png7d"]
@@ -230,7 +230,7 @@ grow_vertical = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="EquippedGun" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("7_il6w2")]
+[node name="EquippedWeapon" parent="MarginContainer/MainArea/BottomContainer" instance=ExtResource("7_il6w2")]
 unique_name_in_owner = true
 layout_mode = 2
 

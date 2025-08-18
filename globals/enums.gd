@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 enum GameState {
@@ -17,7 +18,7 @@ enum HapticFeedback {
 
 enum EventLogType {
     LEVEL_LOADED,
-    GUN_CHANGED,
+    WEAPON_CHANGED,
     ITEM_PICKED_UP,
     ITEM_USED,
     MODIFIER_PICKED_UP,
@@ -39,10 +40,10 @@ enum ModName {
     PLAYER_DASH_DURATION,
     PLAYER_DASH_COOLDOWN,
     PLAYER_DASH_SPEED_MULTIPLIER,
-    GUN_FIRE_RATE,
-    GUN_SPREAD_ANGLE_MORE,
-    GUN_SPREAD_ANGLE_LESS,
-    GUN_BULLET_NUMBER,
+    WEAPON_FIRE_RATE,
+    WEAPON_SPREAD_ANGLE_MORE,
+    WEAPON_SPREAD_ANGLE_LESS,
+    WEAPON_BULLET_NUMBER,
     BULLET_DAMAGE,
     BULLET_SPEED,
     BULLET_RANGE,
@@ -66,11 +67,11 @@ func mod_stat_name(n: ModName) -> String:
         ModName.PLAYER_DASH_COOLDOWN: return "dash_cooldown"
         ModName.PLAYER_DASH_SPEED_MULTIPLIER: return "dash_speed_multiplier"
         ModName.PLAYER_LUCK: return "luck"
-        # GunStats
-        ModName.GUN_FIRE_RATE: return "shots_per_s"
-        ModName.GUN_SPREAD_ANGLE_MORE: return "bullets_spread_angle_deg"
-        ModName.GUN_SPREAD_ANGLE_LESS: return "bullets_spread_angle_deg"
-        ModName.GUN_BULLET_NUMBER: return "bullets_per_shot"
+        # WeaponStats
+        ModName.WEAPON_FIRE_RATE: return "shots_per_s"
+        ModName.WEAPON_SPREAD_ANGLE_MORE: return "bullets_spread_angle_deg"
+        ModName.WEAPON_SPREAD_ANGLE_LESS: return "bullets_spread_angle_deg"
+        ModName.WEAPON_BULLET_NUMBER: return "bullets_per_shot"
         # BulletStats
         ModName.BULLET_DAMAGE: return "damage"
         ModName.BULLET_SPEED: return "speed"
@@ -90,7 +91,7 @@ func mod_stat_name(n: ModName) -> String:
 enum ModType {
     UNKNOWN,
     PLAYER,
-    GUN,
+    WEAPON,
     BULLET,
     EXPLOSION,
     FIRE,

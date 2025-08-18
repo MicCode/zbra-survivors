@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ModifiersList" load_steps=11 format=3 uid="uid://d2tsd71mbkuep"]
 
 [ext_resource type="Script" uid="uid://1rlxyaiou2lq" path="res://globals/gameplay/modifiers/modifier_definition.gd" id="1_5dejf"]
-[ext_resource type="Texture2D" uid="uid://cbvuou01e6gyj" path="res://assets/sprites/modifiers/gun-fire-rate-up.png" id="2_gdcmw"]
+[ext_resource type="Texture2D" uid="uid://cbvuou01e6gyj" path="res://assets/sprites/modifiers/weapon-fire-rate-up.png" id="2_gdcmw"]
 [ext_resource type="Script" uid="uid://dpyg86ut44qd3" path="res://globals/gameplay/modifiers/modifiers_list.gd" id="2_j87nm"]
 [ext_resource type="Texture2D" uid="uid://cqlacpplga4tq" path="res://assets/sprites/modifiers/bullet-spread-angle-up.png" id="3_f5axl"]
 [ext_resource type="Texture2D" uid="uid://dlne16q1u0pgh" path="res://assets/sprites/modifiers/bullet-spread-angle-down.png" id="4_fw5e3"]

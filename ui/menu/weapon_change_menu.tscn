@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctpllqc8x6ai3"]
+
+[ext_resource type="LabelSettings" uid="uid://brpnehk8qo03s" path="res://ui/theme/title.tres" id="1_1p8as"]
+[ext_resource type="Script" uid="uid://bl34t5236bkf3" path="res://ui/menu/weapon_change_menu.gd" id="1_tih6i"]
+[ext_resource type="PackedScene" uid="uid://bdqu3ily4t8ix" path="res://ui/menu/statistics/weapon_statistics.tscn" id="2_x3lcr"]
+[ext_resource type="PackedScene" uid="uid://bup8510lxylx3" path="res://ui/controls/button_with_control_icon.tscn" id="5_gm86g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tih6i"]
+bg_color = Color(0.356863, 0.356863, 0.356863, 0.670588)
+
+[sub_resource type="InputEventAction" id="InputEventAction_ea8pb"]
+action = &"dismiss"
+
+[sub_resource type="Shortcut" id="Shortcut_vym6e"]
+events = [SubResource("InputEventAction_ea8pb")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_4iiol"]
+action = &"grab"
+
+[sub_resource type="Shortcut" id="Shortcut_beaif"]
+events = [SubResource("InputEventAction_4iiol")]
+
+[node name="GunChangeMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_tih6i")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tih6i")
+
+[node name="MainContainer" type="MarginContainer" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/MainContainer/VBoxContainer"]
+layout_mode = 2
+text = "TITLE_WEAPON_CHANGE"
+label_settings = ExtResource("1_1p8as")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="EquippedWeapon" parent="Panel/MainContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_x3lcr")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewWeapon" parent="Panel/MainContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_x3lcr")]
+unique_name_in_owner = true
+layout_mode = 2
+subtitle_label = "SUBTITLE_NEW_WEAPON"
+is_current_weapon = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MainContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="KeepButton" parent="Panel/MainContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("5_gm86g")]
+unique_name_in_owner = true
+layout_mode = 2
+shortcut = SubResource("Shortcut_vym6e")
+label = "BUTTON_KEEP"
+action = 4
+
+[node name="TakeButton" parent="Panel/MainContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("5_gm86g")]
+unique_name_in_owner = true
+layout_mode = 2
+shortcut = SubResource("Shortcut_beaif")
+label = "BUTTON_TAKE"
+action = 1
+
+[connection signal="pressed" from="Panel/MainContainer/VBoxContainer/HBoxContainer2/KeepButton" to="." method="_on_keep_button_pressed"]
+[connection signal="pressed" from="Panel/MainContainer/VBoxContainer/HBoxContainer2/TakeButton" to="." method="_on_take_button_pressed"]

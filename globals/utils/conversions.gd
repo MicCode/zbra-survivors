@@ -8,5 +8,5 @@ func game_speed_to_kmh(game_speed: float) -> float:
     # 200 should approximately be 5km/h
     return game_speed / 40
 
-func dps(gun_stats: GunStats, bullet_stats: BulletStats) -> float:
-    return bullet_stats.damage * gun_stats.bullets_per_shot * gun_stats.shots_per_s
+func dps(weapon_stats: WeaponStats, bullet_stats: BulletStats) -> float:
+    return bullet_stats.damage * weapon_stats.bullets_per_shot * weapon_stats.shots_per_s

@@ -12,26 +12,26 @@ BUTTON_TAKE,Take new,Prendre nouveau
 ENEMY_MOB_1,Mob 1,Truc 1
 ENEMY_MOB_2,Mob 2,Truc 2
 ENEMY_ZBRA,"ZBRA, Devourer Of Worlds","ZBRA, le Dévoreur de Mondes"
-GUN_CROSSBOW,Crossbow,Arbalète
-GUN_CROSSBOW_DESCRIPTION,"Antique weapon, still deadly.","Une arme antique, mais toujours aussi mortelle."
-GUN_CROSSBOW_EXPLOSIVE,Explosive bolts crossbow,Arbalète à careaux explosifs
-GUN_CROSSBOW_EXPLOSIVE_DESCRIPTION,"Still antique, but with a twist.","Toujours antique, mais avec un petit truc en plus."
-GUN_CROSSBOW_FIRE,Fire bolts crossbow,Arbalète à careaux incendiaires
-GUN_CROSSBOW_FIRE_DESCRIPTION,Avoid use during summer.,A ne pas utiliser pendant la sècheresse.
-GUN_FLAMETHROWER,Flame Thrower,Lance-Flammes
-GUN_FLAMETHROWER_DESCRIPTION,"Burn baby, burn.","Brûle Babylone, brûle."
-GUN_LASER_GUN,Laser gun,Pistolet laser
-GUN_LASER_GUN_DESCRIPTION,Pew! Pew!,Piou ! Piou !
-GUN_MACHINE_GUN,Machine gun,Machine gun
-GUN_MACHINE_GUN_DESCRIPTION,Shower time!,A la douche !
-GUN_PISTOL,Pistol,Pistolet
-GUN_PISTOL_DESCRIPTION,A simple weapon. That's all.,Une arme simple. Voilà.
-GUN_RIFLE,Rifle,Fusil Automatique
-GUN_RIFLE_DESCRIPTION,Has been seen in all revolutions.,Il a été de toutes les révolutions.
-GUN_SHOTGUN,Shotgun,Fusil à Pompe
-GUN_SHOTGUN_DESCRIPTION,"Not accurate, but who cares?","Pas très précis, mais qui s'en soucie ?"
-GUN_SNIPER,Sniper Rifle,Fusil de Sniper
-GUN_SNIPER_DESCRIPTION,Straight to the point.,Droit au but.
+WEAPON_CROSSBOW,Crossbow,Arbalète
+WEAPON_CROSSBOW_DESCRIPTION,"Antique weapon, still deadly.","Une arme antique, mais toujours aussi mortelle."
+WEAPON_CROSSBOW_EXPLOSIVE,Explosive bolts crossbow,Arbalète à careaux explosifs
+WEAPON_CROSSBOW_EXPLOSIVE_DESCRIPTION,"Still antique, but with a twist.","Toujours antique, mais avec un petit truc en plus."
+WEAPON_CROSSBOW_FIRE,Fire bolts crossbow,Arbalète à careaux incendiaires
+WEAPON_CROSSBOW_FIRE_DESCRIPTION,Avoid use during summer.,A ne pas utiliser pendant la sècheresse.
+WEAPON_FLAMETHROWER,Flame Thrower,Lance-Flammes
+WEAPON_FLAMETHROWER_DESCRIPTION,"Burn baby, burn.","Brûle Babylone, brûle."
+WEAPON_LASER_WEAPON,Laser gun,Pistolet laser
+WEAPON_LASER_WEAPON_DESCRIPTION,Pew! Pew!,Piou ! Piou !
+WEAPON_MACHINE_WEAPON,Machine gun,Machine gun
+WEAPON_MACHINE_WEAPON_DESCRIPTION,Shower time!,A la douche !
+WEAPON_PISTOL,Pistol,Pistolet
+WEAPON_PISTOL_DESCRIPTION,A simple weapon. That's all.,Une arme simple. Voilà.
+WEAPON_RIFLE,Rifle,Fusil Automatique
+WEAPON_RIFLE_DESCRIPTION,Has been seen in all revolutions.,Il a été de toutes les révolutions.
+WEAPON_SHOTWEAPON,Shotgun,Fusil à Pompe
+WEAPON_SHOTWEAPON_DESCRIPTION,"Not accurate, but who cares?","Pas très précis, mais qui s'en soucie ?"
+WEAPON_SNIPER,Sniper Rifle,Fusil de Sniper
+WEAPON_SNIPER_DESCRIPTION,Straight to the point.,Droit au but.
 LABEL_ANNOUNCEMENT_DOUBLE_KILL,Double kill!,Doublette !
 LABEL_ANNOUNCEMENT_RAMPAGE,Rampage!!!,Un massacre !!!
 LABEL_ANNOUNCEMENT_TRIPLE_KILL,Triple kill!!,Triplette !!
@@ -81,7 +81,7 @@ LABEL_MAX_HEALTH_DESCRIPTION,Useful.,Toujours utile.
 LABEL_MOVE_SPEED,Move speed,Vitesse de déplacement
 LABEL_MOVE_SPEED_DESCRIPTION,"Run, coward!",Cours Forest !
 LABEL_NEXT_LVL_XP,Next level,Prochain niveau
-LABEL_NO_GUN_EQUIPPED,No gun equipped,Aucune arme équipée
+LABEL_NO_WEAPON_EQUIPPED,No gun equipped,Aucune arme équipée
 LABEL_PIERCE_COUNT,Pierce count,Perçage
 LABEL_PIERCE_COUNT_DESCRIPTION,It never stops.,Que ça ne s'arrête jamais.
 LABEL_PROJECTILES,Projectiles,Projectiles
@@ -121,13 +121,13 @@ SETTING_SHOW_ENEMIES_HEALTHBAR,Show enemies healthbars,Afficher les barres de vi
 SETTINGS_MUSIC,Music,Musique
 SPLASH_STUDIO,A game by MicMac Studio ,Un jeu de MicMac Studio
 SUBTITLE_CHOOSE_UPGRADE,Choose upgrade,Choisir une amélioration
-SUBTITLE_EQUIPPED_GUN,Equipped gun,Arme équipée
+SUBTITLE_EQUIPPED_WEAPON,Equipped gun,Arme équipée
 SUBTITLE_MAIN_MENU,Survive the ZBRA!,Survivez au ZBRA !
-SUBTITLE_NEW_GUN,New gun,Nouvelle arme
+SUBTITLE_NEW_WEAPON,New gun,Nouvelle arme
 SUBTITLE_PLAYER_STATISTICS,Stats,Stats
 TITLE_GAME_FINISHED,Game finished,Partie terminée
 TITLE_GAME_OVER,You Died,Vous Êtes Mort
-TITLE_GUN_CHANGE,Change gun,Changement d'arme
+TITLE_WEAPON_CHANGE,Change gun,Changement d'arme
 TITLE_LEVEL_UP,Level up!,Nouveau niveau !
 TITLE_SETTINGS,Settings,Paramètres
 TOOLTIP_EXPLOSIVE_BULLETS,Explosive bullets,Projectiles explosifs

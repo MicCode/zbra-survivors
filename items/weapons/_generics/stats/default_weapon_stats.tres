@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=3 format=3 uid="uid://dysw4a64enovt"]
+
+[ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://items/weapons/_generics/stats/weapon_stats.gd" id="1_a26qv"]
+[ext_resource type="Resource" uid="uid://dkv3e80l5trup" path="res://globals/settings/defaults/default_sfx_options.tres" id="2_ekpxh"]
+
+[resource]
+script = ExtResource("1_a26qv")
+shots_per_s = 1.0
+bullets_spread_angle_deg = 0
+bullets_per_shot = 1
+shoot_sound = "shoot.ogg"
+is_sound_folder = false
+shoot_sfx_options = ExtResource("2_ekpxh")
+eject_cartridges = true
+has_laser_dot = false
+recoil_distance = 10.0
+metadata/_custom_type_script = "uid://hiuor4oyrxjg"

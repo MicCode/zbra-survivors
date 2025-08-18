@@ -27,7 +27,7 @@ func deep_duplicate() -> StatModifier:
     else:
         return create_percent(name, value)
 
-## Returns the name of the statistic this modifier is intended to modify, it must be a known property of a modified class (PlayerStats, GunStats, BulletStats...)
+## Returns the name of the statistic this modifier is intended to modify, it must be a known property of a modified class (PlayerStats, WeaponStats, BulletStats...)
 func get_stat_name() -> String:
     return ModsService.get_stat_name(name)
 
@@ -35,6 +35,6 @@ func get_stat_name() -> String:
 func get_label() -> String:
     return tr(str("LABEL_%s" % get_stat_name()).to_upper())
 
-## Determines if this modifier is of given ModType, to know on which statistics class it can be applied (PlayerStats, GunStats, BulletStats...)
+## Determines if this modifier is of given ModType, to know on which statistics class it can be applied (PlayerStats, WeaponStats, BulletStats...)
 func is_type(type: E.ModType) -> bool:
     return ModsService.get_type(name) == type

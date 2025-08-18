@@ -27,7 +27,7 @@ func set_marker_type(type: Minimap.ObjectType):
         Minimap.ObjectType.COLLECTIBLE:
             modulate = Color.DARK_SALMON
             set_size(14)
-        Minimap.ObjectType.GUN:
+        Minimap.ObjectType.WEAPON:
             modulate = Color.LAWN_GREEN
             set_size(16)
         Minimap.ObjectType.ENEMY:

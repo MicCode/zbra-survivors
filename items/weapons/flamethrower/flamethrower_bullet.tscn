@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://fnoy4ifioady"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/weapons/_generics/bullet.tscn" id="1_ytb8c"]
+[ext_resource type="Script" uid="uid://b5tojl2ns63p1" path="res://items/weapons/flamethrower/flamethrower_bullet.gd" id="2_nu66m"]
+[ext_resource type="Resource" uid="uid://b3mm3v5a6g5md" path="res://items/weapons/flamethrower/stats/flamethrower_bullet_stats.tres" id="3_0ag0a"]
+[ext_resource type="Texture2D" uid="uid://sptmojautd37" path="res://assets/sprites/items/flame-bullet.png" id="3_10iuj"]
+[ext_resource type="PackedScene" uid="uid://bnc4i72jww3j4" path="res://effects/burn_effect.tscn" id="4_j020g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ag0a"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wecr3"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h4fl"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ocgf"]
+atlas = ExtResource("3_10iuj")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3d4wd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ag0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wecr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h4fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ocgf")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[node name="GunProjectile" instance=ExtResource("1_ytb8c")]
+script = ExtResource("2_nu66m")
+bullet_stats = ExtResource("3_0ag0a")
+
+[node name="BurnEffect" parent="." index="0" instance=ExtResource("4_j020g")]
+unique_name_in_owner = true
+intensity = 0.1
+
+[node name="BulletSprite" parent="." index="2"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_3d4wd")
+frame_progress = 0.659089

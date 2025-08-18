@@ -34,7 +34,7 @@ func get_item_name() -> String:
 func _on_area_2d_body_entered(body: Node2D) -> void:
     if body is not Player or !%ButtonIcon:
         return
-    if self is GunCollectible or (PlayerService.consumable and stats and !stats.immediate_use):
+    if self is WeaponCollectible or (PlayerService.consumable and stats and !stats.immediate_use):
         %ButtonIcon.show()
     else:
         %ButtonIcon.hide()

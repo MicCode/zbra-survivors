@@ -38,17 +38,17 @@ func unregister_chest(chest: LootChest):
         chests.erase(chest)
         chest_unregistered.emit(chest)
 
-func get_random_gun() -> Gun:
-    var possible_guns: Array[String] = GunService.all_gun_names
-    if GunService.equipped_gun != null:
-        possible_guns = possible_guns.filter(func(gn: String): return gn != GunService.equipped_gun.get_gun_name())
-    if !GunService.already_proposed_gun_names.is_empty() and GunService.already_proposed_gun_names.size() < GunService.all_gun_names.size():
-        possible_guns = possible_guns.filter(func(gn: String): return !GunService.already_proposed_gun_names.has(gn))
+func get_random_weapon() -> Weapon:
+    var possible_weapons: Array[String] = WeaponService.all_weapon_names
+    if WeaponService.equipped_weapon != null:
+        possible_weapons = possible_weapons.filter(func(gn: String): return gn != WeaponService.equipped_weapon.get_weapon_name())
+    if !WeaponService.already_proposed_weapon_names.is_empty() and WeaponService.already_proposed_weapon_names.size() < WeaponService.all_weapon_names.size():
+        possible_weapons = possible_weapons.filter(func(gn: String): return !WeaponService.already_proposed_weapon_names.has(gn))
 
-    # TODO improve this random pick and make gun statistics random as well
-    # TODO give different pick chance to each gun ?
+    # TODO improve this random pick and make weapon statistics random as well
+    # TODO give different pick chance to each weapon ?
 
-    return GunService.create_gun(possible_guns[randi_range(0, possible_guns.size() - 1)])
+    return WeaponService.create_weapon(possible_weapons[randi_range(0, possible_weapons.size() - 1)])
 
 func get_random_item() -> Node2D:
     if randf() <= CHANCE_TO_DROP_ITEM:

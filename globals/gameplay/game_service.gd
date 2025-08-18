@@ -22,8 +22,8 @@ var music: MusicManager.Music = MusicManager.Music.NOT_SET
 func _ready() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     PlayerService.player_openned_chest.connect(func():
-        var random_gun = LootService.get_random_gun()
-        GunService.change_equipped_gun(random_gun, true)
+        var random_weapon = LootService.get_random_weapon()
+        WeaponService.change_equipped_weapon(random_weapon, true)
         if !first_chest_openned:
             first_chest_openned = true
     )
@@ -42,7 +42,7 @@ func start_new_game():
     EnemiesService.reset()
     PlayerService.reset()
     LootService.reset()
-    GunService.reset()
+    WeaponService.reset()
 
     ModsService.init_modifiers_chances()
 

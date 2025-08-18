@@ -17,11 +17,11 @@ var base_mod_values: Dictionary[E.ModName, float] = {
     E.ModName.PLAYER_DASH_COOLDOWN: - 20.0,
     E.ModName.PLAYER_DASH_SPEED_MULTIPLIER: 10.0,
     E.ModName.PLAYER_LUCK: 0.5,
-    # GUN
-    E.ModName.GUN_FIRE_RATE: 25.0,
-    E.ModName.GUN_SPREAD_ANGLE_MORE: 30.0,
-    E.ModName.GUN_SPREAD_ANGLE_LESS: - 30.0,
-    E.ModName.GUN_BULLET_NUMBER: 2,
+    # WEAPON
+    E.ModName.WEAPON_FIRE_RATE: 25.0,
+    E.ModName.WEAPON_SPREAD_ANGLE_MORE: 30.0,
+    E.ModName.WEAPON_SPREAD_ANGLE_LESS: - 30.0,
+    E.ModName.WEAPON_BULLET_NUMBER: 2,
     # BULLET
     E.ModName.BULLET_DAMAGE: 10.0,
     E.ModName.BULLET_SPEED: 20.0,
@@ -105,11 +105,11 @@ func compute_modifiers(new_stats_modifier: StatModifier = null):
     player_stats.total_damage_dealt = current_total_damage_dealt
     player_stats.total_damage_taken = current_total_damage_taken
 
-    if GunService.equipped_gun:
-        GunService.equipped_gun.gun_stats = GunStats.apply_modifiers(GunService.base_equipped_gun_stats, active_mods)
-        GunService.gun_stats_changed.emit(GunService.equipped_gun.gun_stats)
-        GunService.equipped_gun.bullet_stats = BulletStats.apply_modifiers(GunService.base_equipped_bullet_stats, active_mods)
-        GunService.bullet_stats_changed.emit(GunService.equipped_gun.bullet_stats)
+    if WeaponService.equipped_weapon:
+        WeaponService.equipped_weapon.weapon_stats = WeaponStats.apply_modifiers(WeaponService.base_equipped_weapon_stats, active_mods)
+        WeaponService.weapon_stats_changed.emit(WeaponService.equipped_weapon.weapon_stats)
+        WeaponService.equipped_weapon.bullet_stats = BulletStats.apply_modifiers(WeaponService.base_equipped_bullet_stats, active_mods)
+        WeaponService.bullet_stats_changed.emit(WeaponService.equipped_weapon.bullet_stats)
 
     if new_stats_modifier and new_stats_modifier.name == E.ModName.PLAYER_MAX_HEALTH:
         player_stats.health += new_stats_modifier.value

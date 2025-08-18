@@ -8,7 +8,7 @@ const PICKUP_COOLDOWN_S = 0.5
 const XP_COLLECT_TIME = 3.0
 
 var is_pickup_blocked = false
-var equiped_gun: Gun
+var equipped_weapon: Weapon
 var can_be_damaged = true
 var just_hurt = false
 
@@ -34,7 +34,7 @@ func _ready():
     PlayerService.register_player_instance(self)
     PlayerService.player_stats_changed.connect(_on_player_stats_changed)
     PlayerService.player_gained_level.connect(_on_player_level_gained)
-    GunService.equipped_gun_changed.connect(equip_gun)
+    WeaponService.equipped_weapon_changed.connect(equip_new_weapon)
     PlayerService.notify_level_gain.connect(play_lvl_animation)
     Minimap.track(self, Minimap.ObjectType.PLAYER)
 
@@ -176,18 +176,18 @@ func check_for_items():
     var overlapping_collectibles = %CollectRadius.get_overlapping_bodies()
     if overlapping_collectibles.size() > 0:
         for collectible in overlapping_collectibles:
-            if collectible is GunCollectible:
-                if Controls.is_just_pressed(Controls.PlayerAction.GRAB) || !equiped_gun:
-                    compare_gun(collectible as GunCollectible)
+            if collectible is WeaponCollectible:
+                if Controls.is_just_pressed(Controls.PlayerAction.GRAB) || !equipped_weapon:
+                    compare_weapons(collectible as WeaponCollectible)
             elif collectible is ConsumableItem:
                 handle_collectible(collectible as ConsumableItem)
                 Minimap.untrack(collectible)
 
-func compare_gun(collectible: GunCollectible):
+func compare_weapons(collectible: WeaponCollectible):
     if is_pickup_blocked:
         return
 
-    var change_menu = GunService.change_equipped_gun(GunService.create_gun(collectible.get_gun_name()))
+    var change_menu = WeaponService.change_equipped_weapon(WeaponService.create_weapon(collectible.get_weapon_name()))
     if !change_menu:
         free_collectible(collectible)
         return
@@ -195,20 +195,20 @@ func compare_gun(collectible: GunCollectible):
         free_collectible(collectible)
     )
 
-func equip_gun(new_gun: Gun, previous_gun_name: String):
-    if equiped_gun:
-        equiped_gun.queue_free()
-    if previous_gun_name:
-        GunService.drop_collectible(previous_gun_name, global_position)
+func equip_new_weapon(new_weapon: Weapon, previous_weapon_name: String):
+    if equipped_weapon:
+        equipped_weapon.queue_free()
+    if previous_weapon_name:
+        WeaponService.drop_collectible(previous_weapon_name, global_position)
 
-    if new_gun:
-        equiped_gun = new_gun.duplicate()
-        add_child(equiped_gun)
+    if new_weapon:
+        equipped_weapon = new_weapon.duplicate()
+        add_child(equipped_weapon)
         Sounds.reload()
     else:
-        equiped_gun = null
+        equipped_weapon = null
 
-func free_collectible(collectible: GunCollectible):
+func free_collectible(collectible: WeaponCollectible):
     block_pickup()
     Minimap.untrack(collectible)
     collectible.queue_free()
@@ -346,8 +346,8 @@ func die():
     health_depleted.emit()
     PlayerService.player_stats.is_alive = false
     PlayerService.emit_player_stats_change()
-    if equiped_gun != null:
-        equiped_gun.queue_free()
+    if equipped_weapon != null:
+        equipped_weapon.queue_free()
     %Sprite.play("dead")
     Sounds.player_die()
     VisualEffects.gore_death(%Sprite, 1.0).connect("finished", func():

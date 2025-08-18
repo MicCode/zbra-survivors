@@ -2,7 +2,9 @@ extends CanvasLayer
 class_name GameUI
 
 const ANIMATION_TIME: float = 0.25
+
 @export var debug_mode: bool = false
+@onready var equipped_weapon: WeaponSlotUI = %EquippedWeapon
 
 var player_xp: float = -1
 var player_level: int = -1
@@ -24,10 +26,10 @@ func _ready() -> void:
         if [E.GameState.PAUSED, E.GameState.GAME_OVER, E.GameState.CHOOSING_UPGRADE].has(new_state): slide_out()
         else: slide_in()
     )
-    GunService.equipped_gun_changed.connect(func(new_gun: Gun, _previous_gun_name: String):
-        %EquippedGun.change_gun(new_gun)
+    WeaponService.equipped_weapon_changed.connect(func(new_weapon: Weapon, _previous_weapon_name: String):
+        equipped_weapon.change_weapon(new_weapon)
     )
-    %EquippedGun.change_gun(null)
+    equipped_weapon.change_weapon(null)
     GameService.remaining_time_changed.connect(set_remaining_time)
     set_remaining_time(EnemiesService.stats.boss_spawn_time)
 

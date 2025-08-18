@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=4 format=3 uid="uid://b6t0g4ye4ovww"]
+
+[ext_resource type="Script" uid="uid://hiuor4oyrxjg" path="res://items/weapons/_generics/stats/weapon_stats.gd" id="1_surw8"]
+[ext_resource type="Script" uid="uid://cf4neewdadfmv" path="res://globals/settings/sfx_options.gd" id="2_0kkxt"]
+
+[sub_resource type="Resource" id="Resource_eboj7"]
+script = ExtResource("2_0kkxt")
+pitch = 1.0
+pitch_variation = 0.0
+volume = -6.0
+start_delay_ms = 0.0
+start_delay_variation_ms = 0.0
+max_per_s = 10.0
+metadata/_custom_type_script = "uid://cf4neewdadfmv"
+
+[resource]
+script = ExtResource("1_surw8")
+shots_per_s = 1.5
+bullets_spread_angle_deg = 5.0
+bullets_per_shot = 1.0
+shoot_sound = "pistol"
+is_sound_folder = true
+shoot_sfx_options = SubResource("Resource_eboj7")
+eject_cartridges = true
+show_muzzle_flash = true
+has_laser_dot = false
+recoil_distance = 10.0
+haptic_feedback = 0
+metadata/_custom_type_script = "uid://hiuor4oyrxjg"

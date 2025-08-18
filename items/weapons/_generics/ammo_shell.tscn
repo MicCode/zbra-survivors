@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://bujh631q50ecc"]
+
+[ext_resource type="Texture2D" uid="uid://cskuralh3yult" path="res://assets/sprites/items/ammo-shell.png" id="1_i8mk3"]
+[ext_resource type="Script" uid="uid://cnei8v73yrqoe" path="res://items/weapons/_generics/ammo_shell.gd" id="1_ptik2"]
+
+[sub_resource type="Curve2D" id="Curve2D_368di"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 15.9951, 4.48985, -15.9951, -4.48985, -44, -15, 7.57662, -0.280615, -7.57662, 0.280615, -94, -22, 14.8726, -12.3471, -14.8726, 12.3471, -138, -6, 0, 0, 0, 0, -163, 25)
+}
+point_count = 5
+
+[sub_resource type="Animation" id="Animation_6ubqr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nigy3"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gs35y"]
+_data = {
+&"RESET": SubResource("Animation_6ubqr"),
+&"fade": SubResource("Animation_nigy3")
+}
+
+[node name="AmmoShell" type="Node2D"]
+script = ExtResource("1_ptik2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = -1
+texture = ExtResource("1_i8mk3")
+
+[node name="Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_368di")
+
+[node name="Point" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+rotation = -2.81304
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_gs35y")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

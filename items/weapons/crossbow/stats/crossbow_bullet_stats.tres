@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BulletStats" load_steps=2 format=3 uid="uid://bd4tceugyhp5l"]
+
+[ext_resource type="Script" uid="uid://krig45trd2r0" path="res://items/weapons/_generics/stats/bullet_stats.gd" id="1_dm72v"]
+
+[resource]
+script = ExtResource("1_dm72v")
+damage = 30.0
+speed = 500.0
+speed_variation = 0.0
+disapear_delay = 0.0
+fly_range = 500.0
+size = 1.0
+size_variation = 0.0
+pierce_count = 2.0
+inflicts_fire = false
+is_explosive = false
+explosion_damage = 0.0
+explosion_radius = 0.0
+fire_tick_per_s = 4.0
+fire_damage = 2.0
+fire_duration = 2.0
+metadata/_custom_type_script = "uid://krig45trd2r0"

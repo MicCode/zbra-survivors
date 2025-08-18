@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpfdwmylfvsgq"]
+
+[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://items/weapons/_generics/weapon_collectible.tscn" id="1_eep62"]
+[ext_resource type="Resource" uid="uid://6eal7n0iiorh" path="res://items/weapons/crossbow/stats/crossbow_stats.tres" id="2_bj4ww"]
+[ext_resource type="Resource" uid="uid://bd4tceugyhp5l" path="res://items/weapons/crossbow/stats/crossbow_bullet_stats.tres" id="3_5ki2p"]
+[ext_resource type="Texture2D" uid="uid://y8iv0epkfgly" path="res://assets/sprites/items/crossbow/crossbow-idle.png" id="4_5ki2p"]
+
+[node name="CrossbowCollectible" instance=ExtResource("1_eep62")]
+weapon_stats = ExtResource("2_bj4ww")
+bullet_stats = ExtResource("3_5ki2p")
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource("4_5ki2p")

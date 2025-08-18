@@ -41,7 +41,7 @@ func start_logging():
     _log_stat(logs.player_xp, 0)
     PlayerService.player_gained_xp.connect(log_player_xp)
     _log_stat(logs.dps, 0)
-    GunService.gun_stats_changed.connect(log_gun_stats)
+    WeaponService.weapon_stats_changed.connect(log_weapon_stats)
 
     _log_stat(logs.enemy_kill_per_m, 0)
     _log_stat(logs.total_enemy_killed, 0)
@@ -62,7 +62,7 @@ func stop_logging():
     is_logging = false
     PlayerService.player_gained_level.disconnect(log_player_level)
     PlayerService.player_gained_xp.disconnect(log_player_xp)
-    GunService.gun_stats_changed.disconnect(log_gun_stats)
+    WeaponService.weapon_stats_changed.disconnect(log_weapon_stats)
     save_to_file()
 
 #endregion
@@ -88,10 +88,10 @@ func log_player_xp(_n: int):
     if !is_logging: return
     _log_stat(logs.player_xp, PlayerService.player_stats.total_xp)
 
-func log_gun_stats(_gun_stats: GunStats):
+func log_weapon_stats(_weapon_stats: WeaponStats):
     if !is_logging: return
-    if GunService.equipped_gun:
-        _log_stat(logs.dps, Conversions.dps(GunService.equipped_gun.gun_stats, GunService.equipped_gun.bullet_stats))
+    if WeaponService.equipped_weapon:
+        _log_stat(logs.dps, Conversions.dps(WeaponService.equipped_weapon.weapon_stats, WeaponService.equipped_weapon.bullet_stats))
 
 func log_enemy_death():
     if !is_logging: return

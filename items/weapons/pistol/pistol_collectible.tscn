@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bspw82fhsmgk3"]
+
+[ext_resource type="PackedScene" uid="uid://bvu2hswqayla6" path="res://items/weapons/_generics/weapon_collectible.tscn" id="1_rpajl"]
+[ext_resource type="Texture2D" uid="uid://c6s0dhmit678" path="res://assets/sprites/items/gun.png" id="1_s2b2s"]
+[ext_resource type="Resource" uid="uid://b6t0g4ye4ovww" path="res://items/weapons/pistol/stats/pistol_stats.tres" id="2_207wp"]
+[ext_resource type="Resource" uid="uid://8vmamp54w57d" path="res://items/weapons/pistol/stats/pistol_bullet_stats.tres" id="3_tx7fk"]
+
+[node name="BasicGunCollectible" instance=ExtResource("1_rpajl")]
+weapon_stats = ExtResource("2_207wp")
+bullet_stats = ExtResource("3_tx7fk")
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource("1_s2b2s")
