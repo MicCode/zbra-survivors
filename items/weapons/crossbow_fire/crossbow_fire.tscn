@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cuil14n6nlgmp"]
 
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/weapons/_generics/gun.tscn" id="1_sechk"]
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/weapons/_generics/ranged_weapon.tscn" id="1_sechk"]
 [ext_resource type="Resource" uid="uid://cgtwwavupuwjj" path="res://items/weapons/crossbow_fire/stats/crossbow_fire_bullet_stats.tres" id="2_exn8q"]
 [ext_resource type="Resource" uid="uid://cm2yh2avvitl8" path="res://items/weapons/crossbow_fire/stats/crossbow_fire_stats.tres" id="2_gm446"]
 [ext_resource type="Texture2D" uid="uid://tmpfu7p8cwc4" path="res://assets/sprites/items/crossbow/crossbow-fire-firing.png" id="4_85l3d"]

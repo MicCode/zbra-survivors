@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dm30dh6tpw4bg"]
 
-[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/weapons/_generics/gun.tscn" id="1_sen5n"]
+[ext_resource type="PackedScene" uid="uid://cdr8rck7r5wts" path="res://items/weapons/_generics/ranged_weapon.tscn" id="1_sen5n"]
 [ext_resource type="Resource" uid="uid://d2mgtjti81jbf" path="res://items/weapons/sniper/stats/sniper_stats.tres" id="2_qvxhd"]
 [ext_resource type="Resource" uid="uid://cwur0vrd88nwp" path="res://items/weapons/sniper/stats/sniper_bullet_stats.tres" id="3_2mu0f"]
 [ext_resource type="Texture2D" uid="uid://b8k7hvcm3pii5" path="res://assets/sprites/items/sniper.png" id="3_wilyu"]
