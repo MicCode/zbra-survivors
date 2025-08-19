@@ -1,4 +1,13 @@
 - - -
+## 0.26.0 - 2025-08-19
+
+#### ➕ New features
+- **(gameplay)** added first melee weapon, the sword
+#### 🪲 Bug fixes
+- **(visual)** better direction marker
+
+- - -
+
 ## 0.25.0 - 2025-08-17
 
 #### ➕ New features
