@@ -31,6 +31,13 @@ enum EventLogType {
     MUSIC_CHANGED,
 }
 
+enum DamageType {
+    BULLET,
+    MELEE,
+    FIRE,
+    EXPLOSION
+}
+
 #region modifiers
 # ATTENTION ! Do not change order in this enum as members are referenced as integers in resources using them
 enum ModName {

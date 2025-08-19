@@ -75,10 +75,10 @@ func handle_bullet_hit(bullet: Bullet):
             bullet.bullet_stats.fire_damage
         )
 
-    take_damage(bullet.bullet_stats.damage, bullet.bullet_stats.inflicts_fire)
+    take_damage(bullet.bullet_stats.damage, bullet.bullet_stats.damage_type)
 
 
-func take_damage(damage: float, is_fire = false):
+func take_damage(damage: float, damage_type: E.DamageType):
     if !can_take_damage:
         return
     if is_dead:
@@ -90,8 +90,8 @@ func take_damage(damage: float, is_fire = false):
     if %DamageSpawnTimer.is_stopped() or previous_damage_indicator == null:
         if (%Sprite as AnimatedSprite2D).sprite_frames.has_animation("hurt"):
             %Sprite.play("hurt")
-        play_hit_sound()
-        if !is_fire:
+        play_hit_sound(damage_type)
+        if [E.DamageType.BULLET, E.DamageType.MELEE].has(damage_type):
             bleed(PlayerService.player_instance.global_position)
         VisualEffects.emphases(%Sprite, %Sprite.scale.x, 1.3, Color.RED)
         previous_damage_indicator = preload("res://ui/in-game/components/DamageIndicator.tscn").instantiate().with_damage(accumulated_damages)
@@ -105,13 +105,14 @@ func take_damage(damage: float, is_fire = false):
 func bleed(impact_from: Vector2):
     VisualEffects.bleed(global_position, impact_from)
 
-func play_hit_sound():
+func play_hit_sound(damage_type: E.DamageType):
     if hit_sound_repetition_timer != null:
         return
-    if is_burning:
-        Sounds.burn_hit()
-    else:
-        Sounds.hit()
+
+    match damage_type:
+        E.DamageType.FIRE: Sounds.burn_hit()
+        _: Sounds.hit()
+
     hit_sound_repetition_timer = get_tree().create_timer(HIT_SOUND_REPETITION_DELAY)
     hit_sound_repetition_timer.timeout.connect(func():
         hit_sound_repetition_timer = null
@@ -162,7 +163,7 @@ func _on_burn_timer_timeout() -> void:
 
 func _on_burn_tick_timer_timeout() -> void:
     if is_burning && !is_dead:
-        take_damage(fire_inflicted_damage)
+        take_damage(fire_inflicted_damage, E.DamageType.FIRE)
         %BurnTickTimer.start(fire_tick_s)
 
 func _on_fire_animation_animation_finished(anim_name: StringName) -> void:

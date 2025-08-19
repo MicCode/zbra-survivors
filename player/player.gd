@@ -6,6 +6,7 @@ signal health_depleted
 const DAMAGE_RATE = 50.0
 const PICKUP_COOLDOWN_S = 0.5
 const XP_COLLECT_TIME = 3.0
+const SHOW_MARKERS = true # TODO make this a setting ?
 
 var is_pickup_blocked = false
 var equipped_weapon: Weapon
@@ -75,6 +76,9 @@ func _physics_process(delta):
             burn_things_in_radius()
 
 func add_chest_marker(chest: LootChest):
+    if !SHOW_MARKERS:
+        return
+
     var new_marker = preload("res://player/direction_marker.tscn").instantiate()
     new_marker.target = chest
     %DirectionMarkers.add_child(new_marker)

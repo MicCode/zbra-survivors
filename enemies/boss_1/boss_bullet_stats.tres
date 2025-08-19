@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_c4okf")
 damage = 2.0
+damage_type = 0
 speed = 5000.0
 speed_variation = 0.0
 disapear_delay = 0.0

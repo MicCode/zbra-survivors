@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxwpm4xqe3q7d"]
+
+[ext_resource type="PackedScene" uid="uid://cr2atmw7lsjf5" path="res://items/weapons/_generics/bullet.tscn" id="1_7eiew"]
+[ext_resource type="Script" uid="uid://ci4bspuo5eok3" path="res://items/weapons/_generics/melee_shock_wave.gd" id="2_qso5l"]
+
+[node name="MeleeShockWave" instance=ExtResource("1_7eiew")]
+script = ExtResource("2_qso5l")
+
+[node name="BulletSprite" parent="." index="1"]
+unique_name_in_owner = true

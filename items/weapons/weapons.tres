@@ -7,5 +7,5 @@ script = ExtResource("1_3gh2l")
 base_folder = "res://items/weapons"
 includes = Array[String](["**.tscn"])
 excludes = Array[String](["_generics/**", "**_bullet.tscn", "**_collectible.tscn"])
-paths = Array[String](["res://items/weapons/crossbow/crossbow.tscn", "res://items/weapons/crossbow_explosive/crossbow_explosive.tscn", "res://items/weapons/crossbow_fire/crossbow_fire.tscn", "res://items/weapons/flamethrower/flamethrower.tscn", "res://items/weapons/laser_gun/laser_gun.tscn", "res://items/weapons/machine_gun/machine_gun.tscn", "res://items/weapons/pistol/pistol.tscn", "res://items/weapons/rifle/rifle.tscn", "res://items/weapons/shotgun/shotgun.tscn", "res://items/weapons/sniper/sniper.tscn"])
+paths = Array[String](["res://items/weapons/crossbow/crossbow.tscn", "res://items/weapons/crossbow_explosive/crossbow_explosive.tscn", "res://items/weapons/crossbow_fire/crossbow_fire.tscn", "res://items/weapons/flamethrower/flamethrower.tscn", "res://items/weapons/laser_gun/laser_gun.tscn", "res://items/weapons/machine_gun/machine_gun.tscn", "res://items/weapons/pistol/pistol.tscn", "res://items/weapons/rifle/rifle.tscn", "res://items/weapons/shotgun/shotgun.tscn", "res://items/weapons/sniper/sniper.tscn", "res://items/weapons/sword/sword.tscn"])
 metadata/_custom_type_script = "uid://20arl3r2eix8"

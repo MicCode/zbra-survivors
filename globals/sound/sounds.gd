@@ -110,6 +110,9 @@ func chest_available():
 func hit():
     SoundPlayer.play_sfx(pick_random("hits"), SfxOptions.from_dict({pitch = 0.9, pitch_variation = 0.1, volume = -12.0}))
 
+func hit_melee():
+    SoundPlayer.play_sfx(pick_random("impact-wood"), SfxOptions.from_dict({pitch = 0.8, pitch_variation = 0.1, volume = 0}))
+
 func burn_hit():
     SoundPlayer.play_sfx(pick_random("burn"), SfxOptions.from_dict({pitch = 0.8, volume = -6.0}))
 

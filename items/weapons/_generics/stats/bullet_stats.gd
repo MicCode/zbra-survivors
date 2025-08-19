@@ -4,6 +4,7 @@ class_name BulletStats
 @export_group("Attributes")
 @export_subgroup("Damages")
 @export var damage: float = 10.0
+@export var damage_type: E.DamageType = E.DamageType.BULLET
 
 @export_subgroup("Movement")
 @export var speed: float = 200

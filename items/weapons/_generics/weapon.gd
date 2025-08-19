@@ -7,7 +7,9 @@ class_name Weapon
 var cooling_down = false
 var sound_cooldown = false
 var flipped = false
+var flip_vertical = false
 var initial_x_position: float
+var ignore_spread = false
 
 func _enter_tree() -> void:
     if !weapon_stats:
@@ -34,14 +36,14 @@ func _ready():
     (%Sprite as AnimatedSprite2D).animation_finished.connect(_on_sprite_animation_finished)
     (%CooldownTimer as Timer).timeout.connect(_on_cooldown_timer_timeout)
 
-    initial_x_position = %Sprite.position.x
+    initial_x_position = (%Sprite as AnimatedSprite2D).position.x
     update_from_stats()
 
 func update_from_stats():
     var guides = %AimGuides as AimGuides
     guides.set_dispersion_angle(weapon_stats.bullets_spread_angle_deg)
 
-    var frames: SpriteFrames = %Sprite.sprite_frames
+    var frames: SpriteFrames = (%Sprite as AnimatedSprite2D).sprite_frames
     if frames.has_animation("firing"):
         var firing_frames_count = frames.get_frame_count("firing")
         var fps = weapon_stats.shots_per_s * firing_frames_count
@@ -57,19 +59,21 @@ func _physics_process(_delta):
     if self.global_rotation_degrees > 90 || self.global_rotation_degrees < -90:
         if !flipped:
             flipped = true
-            %Sprite.scale = Vector2(1, -1)
+            if flip_vertical: (%Sprite as AnimatedSprite2D).rotation_degrees += 90
+            (%Sprite as AnimatedSprite2D).scale = Vector2(1, -1)
     else:
         if flipped:
             flipped = false
-            %Sprite.scale = Vector2(1, 1)
+            if flip_vertical: (%Sprite as AnimatedSprite2D).rotation_degrees -= 90
+            (%Sprite as AnimatedSprite2D).scale = Vector2(1, 1)
 
 func _on_sprite_animation_finished():
-    %Sprite.play("idle")
+    (%Sprite as AnimatedSprite2D).play("idle")
 
 func _on_cooldown_timer_timeout():
     if cooling_down:
         if !Controls.is_pressed(Controls.PlayerAction.SHOOT):
-            %Sprite.play("idle")
+            (%Sprite as AnimatedSprite2D).play("idle")
         cooling_down = false
 
 func move_target():
@@ -84,7 +88,7 @@ func move_target():
 func shoot() -> bool:
     if !cooling_down:
         spawn_projectiles()
-        %Sprite.play("firing")
+        (%Sprite as AnimatedSprite2D).play("firing")
         (%Sprite as AnimatedSprite2D).set_frame_and_progress(0, 0)
         if !sound_cooldown:
             Sounds.shoot(weapon_stats.shoot_sfx_options, weapon_stats.shoot_sound)
@@ -131,6 +135,9 @@ func spawn_projectiles():
                 weapon_stats.bullets_spread_angle_deg + additional_spread_angle
             ) / 2
         )
+        if ignore_spread:
+            spread_angle_offset = 0
+
         new_bullet.global_rotation = %ShootingPoint.global_rotation + spread_angle_offset
         SceneManager.current_scene.add_child(new_bullet)
 

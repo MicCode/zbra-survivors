@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://376kwcw11r2k"]
+[gd_scene load_steps=24 format=3 uid="uid://376kwcw11r2k"]
 
 [ext_resource type="Script" uid="uid://defjyi8hd43wt" path="res://scenes/test/test_equipment_scene.gd" id="1_sutrr"]
 [ext_resource type="PackedScene" uid="uid://gdo7fmio88fn" path="res://player/player.tscn" id="2_cg6cr"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dx58nvbmorlfh" path="res://items/consumables/timewrap_clock/timewrap_clock.tscn" id="19_v766q"]
 [ext_resource type="PackedScene" uid="uid://7a43kh2mnegh" path="res://items/weapons/crossbow_fire/crossbow_fire_collectible.tscn" id="20_6o6iq"]
 [ext_resource type="PackedScene" uid="uid://dixw4ln2q08f7" path="res://items/weapons/laser_gun/laser_gun_collectible.tscn" id="20_qi8ps"]
+[ext_resource type="PackedScene" uid="uid://ct4upvpo44k0" path="res://items/weapons/sword/sword_collectible.tscn" id="23_2ba0p"]
 
 [node name="TreeTestScene" type="Node2D"]
 y_sort_enabled = true
@@ -129,7 +130,7 @@ xp_value = 10.0
 [node name="Items" type="Node2D" parent="."]
 
 [node name="TimewrapClockCollectible" parent="Items" instance=ExtResource("19_v766q")]
-position = Vector2(705, 598)
+position = Vector2(862, 532)
 
 [node name="LifeFlask2" parent="Items" instance=ExtResource("13_6k7wn")]
 y_sort_enabled = true
@@ -143,11 +144,11 @@ position = Vector2(101, 65)
 position = Vector2(883, 481)
 
 [node name="MineCollectible" parent="Items" instance=ExtResource("15_ktnje")]
-position = Vector2(665, 627)
+position = Vector2(822, 561)
 
 [node name="RadianceFlask" parent="Items" instance=ExtResource("12_vs4yp")]
 y_sort_enabled = true
-position = Vector2(620, 657)
+position = Vector2(777, 591)
 radiance_duration = 5.0
 
 [node name="RadianceFlask2" parent="Items" instance=ExtResource("12_vs4yp")]
@@ -235,5 +236,8 @@ position = Vector2(-270, 351)
 
 [node name="Enemy8" parent="Enemies" instance=ExtResource("10_juk4v")]
 position = Vector2(-336, 345)
+
+[node name="SwordCollectible" parent="." instance=ExtResource("23_2ba0p")]
+position = Vector2(559, 395)
 
 [connection signal="toggled" from="Player/GameUI/CheckButton" to="." method="_on_check_button_toggled"]

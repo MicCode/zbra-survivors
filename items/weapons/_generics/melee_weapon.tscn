@@ -1,0 +1,230 @@
+[gd_scene load_steps=19 format=3 uid="uid://df2p8snrmlucx"]
+
+[ext_resource type="Script" uid="uid://wstfj0x35c3" path="res://items/weapons/_generics/melee_weapon.gd" id="1_7o0fo"]
+[ext_resource type="PackedScene" uid="uid://dokccb0wthmtb" path="res://items/weapons/_generics/aim_guides.tscn" id="2_8carc"]
+[ext_resource type="Texture2D" uid="uid://mp31dmurtj2h" path="res://assets/sprites/items/sword/sword-firing.png" id="3_8carc"]
+[ext_resource type="Texture2D" uid="uid://do365s7gsjolh" path="res://assets/sprites/items/sword/sword-idle.png" id="4_8carc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okpay"]
+atlas = ExtResource("3_8carc")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7g7o"]
+atlas = ExtResource("3_8carc")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y08gp"]
+atlas = ExtResource("3_8carc")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovonx"]
+atlas = ExtResource("3_8carc")
+region = Rect2(0, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oks4j"]
+atlas = ExtResource("3_8carc")
+region = Rect2(0, 64, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utc51"]
+atlas = ExtResource("3_8carc")
+region = Rect2(0, 80, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xflqi"]
+atlas = ExtResource("4_8carc")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sue17"]
+atlas = ExtResource("4_8carc")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okpay"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okpay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7g7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y08gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovonx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oks4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utc51")
+}],
+"loop": false,
+"name": &"firing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xflqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sue17")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7g7o"]
+bg_color = Color(0.6, 0.6, 0.6, 0.117647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y08gp"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_xflqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PivotPoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PivotPoint/Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.02277]
+}
+
+[sub_resource type="Animation" id="Animation_8carc"]
+resource_name = "slash"
+length = 4.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"prepare",
+"time": 0.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"reset",
+"time": 3.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end",
+"time": 4.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"swing",
+"time": 1.0
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PivotPoint:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(0.297302, 0.378929, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, 1.48353, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PivotPoint/Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 0.15932, 1, 1),
+"update": 0,
+"values": [-1.02277, -1.39626, -0.780162, -1.01229]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xflqi"]
+_data = {
+&"RESET": SubResource("Animation_xflqi"),
+&"slash": SubResource("Animation_8carc")
+}
+
+[node name="MeleeWeapon" type="Node2D"]
+script = ExtResource("1_7o0fo")
+
+[node name="DebugPanel" type="ColorRect" parent="."]
+visible = false
+light_mask = 4
+visibility_layer = 4
+offset_top = -152.0
+offset_right = 325.0
+offset_bottom = 117.0
+color = Color(0.242655, 0.707726, 0.344725, 1)
+
+[node name="AimPivotPoint" type="Marker2D" parent="."]
+
+[node name="ShootingPoint" type="Marker2D" parent="AimPivotPoint"]
+unique_name_in_owner = true
+position = Vector2(34, -1)
+
+[node name="AimGuides" parent="AimPivotPoint/ShootingPoint" instance=ExtResource("2_8carc")]
+unique_name_in_owner = true
+
+[node name="PivotPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PivotPoint"]
+unique_name_in_owner = true
+position = Vector2(15.6777, 0.0212927)
+rotation = -1.02277
+sprite_frames = SubResource("SpriteFrames_okpay")
+animation = &"firing"
+autoplay = "idle"
+frame = 5
+frame_progress = 1.0
+offset = Vector2(14.0758, -0.0131321)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="PivotPoint/Sprite"]
+unique_name_in_owner = true
+position = Vector2(-6.54259, -5.00143)
+
+[node name="CooldownProgress" type="ProgressBar" parent="PivotPoint/Sprite/CanvasGroup"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.784314)
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 12.0
+offset_bottom = 6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_q7g7o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y08gp")
+value = 30.52
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_xflqi")
+}
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ShootDelay" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timers/ShootDelay" to="." method="_on_shoot_delay_timeout"]

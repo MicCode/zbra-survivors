@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2b6enhi4od8s"]
+
+[ext_resource type="PackedScene" uid="uid://cxwpm4xqe3q7d" path="res://items/weapons/_generics/melee_shock_wave.tscn" id="1_6jouw"]
+[ext_resource type="Resource" uid="uid://dkdgskrg5ve8l" path="res://items/weapons/sword/stats/sword_bullet_stats.tres" id="2_o5nwq"]
+[ext_resource type="Texture2D" uid="uid://6ui4i1gpfaf6" path="res://assets/sprites/items/sword/sword-bullet.png" id="3_s0jr1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0jr1"]
+radius = 5.0
+height = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04ic5"]
+atlas = ExtResource("3_s0jr1")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xwti"]
+atlas = ExtResource("3_s0jr1")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iw1g0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04ic5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xwti")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[node name="SwordBullet" instance=ExtResource("1_6jouw")]
+bullet_stats = ExtResource("2_o5nwq")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_s0jr1")
+
+[node name="BulletSprite" parent="." index="1"]
+modulate = Color(1, 1, 1, 0.75)
+sprite_frames = SubResource("SpriteFrames_iw1g0")
+frame_progress = 0.698737

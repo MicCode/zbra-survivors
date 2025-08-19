@@ -49,7 +49,7 @@ func deal_damage():
         if !already_damaged_nodes.has(body_id):
             already_damaged_nodes.append(body_id)
             if overlapping_body is Enemy:
-                (overlapping_body as Enemy).take_damage(damage * PlayerService.explosions_damage / 100)
+                (overlapping_body as Enemy).take_damage(damage * PlayerService.explosions_damage / 100, E.DamageType.EXPLOSION)
             elif overlapping_body is EnvTree:
                 (overlapping_body as EnvTree).explode()
             elif overlapping_body is LandMine:

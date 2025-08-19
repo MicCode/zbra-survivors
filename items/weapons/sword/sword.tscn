@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://dajdgf0rgiwi6"]
+
+[ext_resource type="PackedScene" uid="uid://df2p8snrmlucx" path="res://items/weapons/_generics/melee_weapon.tscn" id="1_i1ddg"]
+[ext_resource type="Resource" uid="uid://02ga1yvkulfm" path="res://items/weapons/sword/stats/sword_stats.tres" id="2_off2i"]
+[ext_resource type="Resource" uid="uid://dkdgskrg5ve8l" path="res://items/weapons/sword/stats/sword_bullet_stats.tres" id="3_turg6"]
+[ext_resource type="Texture2D" uid="uid://mp31dmurtj2h" path="res://assets/sprites/items/sword/sword-firing.png" id="4_off2i"]
+[ext_resource type="Texture2D" uid="uid://do365s7gsjolh" path="res://assets/sprites/items/sword/sword-idle.png" id="5_off2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okpay"]
+atlas = ExtResource("4_off2i")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7g7o"]
+atlas = ExtResource("4_off2i")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y08gp"]
+atlas = ExtResource("4_off2i")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovonx"]
+atlas = ExtResource("4_off2i")
+region = Rect2(0, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oks4j"]
+atlas = ExtResource("4_off2i")
+region = Rect2(0, 64, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utc51"]
+atlas = ExtResource("4_off2i")
+region = Rect2(0, 80, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xflqi"]
+atlas = ExtResource("5_off2i")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sue17"]
+atlas = ExtResource("5_off2i")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_off2i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okpay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7g7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y08gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovonx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oks4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utc51")
+}],
+"loop": false,
+"name": &"firing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xflqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sue17")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Sword" instance=ExtResource("1_i1ddg")]
+weapon_stats = ExtResource("2_off2i")
+bullet_stats = ExtResource("3_turg6")
+
+[node name="Sprite" parent="PivotPoint" index="0"]
+sprite_frames = SubResource("SpriteFrames_off2i")

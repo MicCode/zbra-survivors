@@ -63,8 +63,8 @@ func handle_bullet_hit(bullet: Bullet):
     if is_ready && !is_dead:
         super.handle_bullet_hit(bullet)
 
-func take_damage(damage: float, is_fire: bool = false):
-    super.take_damage(damage, is_fire)
+func take_damage(damage: float, damage_type: E.DamageType):
+    super.take_damage(damage, damage_type)
     health -= damage
     %AnimationPlayer.play("hurt")
     if health <= 0:
